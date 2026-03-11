@@ -308,23 +308,153 @@
                 Currently pursuing a B.U.T. (Bachelor Universitaire de Technologie) in Computer Science,
                 deepening expertise in algorithms, systems architecture, and Artificial Intelligence.
               </p>
-              <!-- BUT1 Semester 1 Gallery trigger -->
-              <div class="mt-2">
-                <a href="assets/img/dossiers/but1_s1-1.png"
-                   class="portfolio-lightbox btn btn-outline-primary btn-sm"
-                   data-gallery="but1Gallery"
-                   title="BUT1 — Semestre 1 · Page 1/8">
-                  <i class="bi bi-bar-chart-line me-1"></i> BUT1 — Semester 1 Results
-                </a>
-                <!-- Hidden gallery pages 2–8 (glightbox needs sibling links with same data-gallery) -->
-                <a href="assets/img/dossiers/but1_s1-2.png" class="portfolio-lightbox d-none" data-gallery="but1Gallery" title="BUT1 — Semestre 1 · Page 2/8"></a>
-                <a href="assets/img/dossiers/but1_s1-3.png" class="portfolio-lightbox d-none" data-gallery="but1Gallery" title="BUT1 — Semestre 1 · Page 3/8"></a>
-                <a href="assets/img/dossiers/but1_s1-4.png" class="portfolio-lightbox d-none" data-gallery="but1Gallery" title="BUT1 — Semestre 1 · Page 4/8"></a>
-                <a href="assets/img/dossiers/but1_s1-5.png" class="portfolio-lightbox d-none" data-gallery="but1Gallery" title="BUT1 — Semestre 1 · Page 5/8"></a>
-                <a href="assets/img/dossiers/but1_s1-6.png" class="portfolio-lightbox d-none" data-gallery="but1Gallery" title="BUT1 — Semestre 1 · Page 6/8"></a>
-                <a href="assets/img/dossiers/but1_s1-7.png" class="portfolio-lightbox d-none" data-gallery="but1Gallery" title="BUT1 — Semestre 1 · Page 7/8"></a>
-                <a href="assets/img/dossiers/but1_s1-8.png" class="portfolio-lightbox d-none" data-gallery="but1Gallery" title="BUT1 — Semestre 1 · Page 8/8"></a>
+
+              <!-- ===== BUT1 Stacked Photo Preview ===== -->
+              <div class="but1-stack-wrapper" id="but1StackTrigger" title="Click to view my Semester 1 results">
+                <!-- Back shadow cards (for depth effect) -->
+                <div class="but1-card but1-card--back2"></div>
+                <div class="but1-card but1-card--back1"></div>
+                <!-- Top card with real preview image -->
+                <div class="but1-card but1-card--top">
+                  <img src="assets/img/dossiers/but1_s1-1.png" alt="BUT1 Semester 1 Preview">
+                  <div class="but1-card__label">
+                    <i class="bi bi-images me-1"></i> Semester 1 Results &nbsp;·&nbsp; 8 pages
+                    <br><small style="font-weight:400; opacity:0.85;">Click to view</small>
+                  </div>
+                </div>
               </div>
+
+              <!-- ===== BUT1 Full-Screen Scrollable Modal ===== -->
+              <div id="but1Modal" class="but1-modal" onclick="if(event.target===this){closeBut1Modal()}">
+                <div class="but1-modal__inner">
+                  <div class="but1-modal__header">
+                    <span><i class="bi bi-bar-chart-line me-2"></i>BUT1 — Semestre 1 &nbsp;·&nbsp; 8 pages</span>
+                    <button class="but1-modal__close" onclick="closeBut1Modal()">&#x2715;</button>
+                  </div>
+                  <div class="but1-modal__pages">
+                    <img src="assets/img/dossiers/but1_s1-1.png" alt="Page 1">
+                    <img src="assets/img/dossiers/but1_s1-2.png" alt="Page 2">
+                    <img src="assets/img/dossiers/but1_s1-3.png" alt="Page 3">
+                    <img src="assets/img/dossiers/but1_s1-4.png" alt="Page 4">
+                    <img src="assets/img/dossiers/but1_s1-5.png" alt="Page 5">
+                    <img src="assets/img/dossiers/but1_s1-6.png" alt="Page 6">
+                    <img src="assets/img/dossiers/but1_s1-7.png" alt="Page 7">
+                    <img src="assets/img/dossiers/but1_s1-8.png" alt="Page 8">
+                  </div>
+                </div>
+              </div>
+
+              <style>
+                /* ---- Stack wrapper ---- */
+                .but1-stack-wrapper {
+                  position: relative;
+                  width: 220px;
+                  height: 165px;
+                  margin: 14px 0 28px 0;
+                  cursor: pointer;
+                  transition: transform 0.2s;
+                }
+                .but1-stack-wrapper:hover { transform: scale(1.03); }
+
+                /* ---- Back cards (depth visual) ---- */
+                .but1-card {
+                  position: absolute;
+                  width: 200px;
+                  height: 148px;
+                  border-radius: 7px;
+                  box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+                }
+                .but1-card--back2 {
+                  background: #adb5bd;
+                  transform: rotate(-5deg);
+                  top: 12px; left: 14px;
+                }
+                .but1-card--back1 {
+                  background: #ced4da;
+                  transform: rotate(-2.5deg);
+                  top: 6px; left: 7px;
+                }
+
+                /* ---- Top card (preview image) ---- */
+                .but1-card--top {
+                  overflow: hidden;
+                  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+                  top: 0; left: 0;
+                }
+                .but1-card--top img {
+                  width: 100%; height: 100%;
+                  object-fit: cover;
+                  display: block;
+                }
+                .but1-card__label {
+                  position: absolute;
+                  bottom: 0; left: 0; right: 0;
+                  background: rgba(5, 99, 187, 0.88);
+                  color: #fff;
+                  text-align: center;
+                  padding: 7px 6px 6px;
+                  font-size: 12px;
+                  font-weight: 600;
+                  line-height: 1.4;
+                }
+
+                /* ---- Modal overlay ---- */
+                .but1-modal {
+                  display: none;
+                  position: fixed;
+                  inset: 0;
+                  background: rgba(0,0,0,0.88);
+                  z-index: 9999;
+                  overflow-y: auto;
+                  padding: 30px 16px 60px;
+                }
+                .but1-modal__inner {
+                  max-width: 780px;
+                  margin: 0 auto;
+                }
+                .but1-modal__header {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  color: #fff;
+                  font-size: 15px;
+                  font-weight: 600;
+                  margin-bottom: 20px;
+                }
+                .but1-modal__close {
+                  background: transparent;
+                  border: 2px solid rgba(255,255,255,0.5);
+                  color: #fff;
+                  border-radius: 50%;
+                  width: 36px; height: 36px;
+                  font-size: 16px;
+                  cursor: pointer;
+                  transition: background 0.2s;
+                }
+                .but1-modal__close:hover { background: rgba(255,255,255,0.15); }
+                .but1-modal__pages img {
+                  width: 100%;
+                  border-radius: 8px;
+                  margin-bottom: 18px;
+                  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+                  display: block;
+                }
+              </style>
+
+              <script>
+                document.getElementById('but1StackTrigger').addEventListener('click', function () {
+                  var modal = document.getElementById('but1Modal');
+                  modal.style.display = 'block';
+                  document.body.style.overflow = 'hidden';
+                });
+                function closeBut1Modal() {
+                  document.getElementById('but1Modal').style.display = 'none';
+                  document.body.style.overflow = '';
+                }
+                document.addEventListener('keydown', function(e) {
+                  if (e.key === 'Escape') closeBut1Modal();
+                });
+              </script>
             </div>
 
             <div class="resume-item">
