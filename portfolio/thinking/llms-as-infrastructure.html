@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LLMs Are Infrastructure, Not Just APIs</title>
+    <link href="../../assets/img/favicon.ico" rel="icon" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:300,400,500,600,700|Poppins:300,400,500,600,700" rel="stylesheet" />
+    <link href="../../assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="../../assets/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main id="main">
+      <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+          <div class="row gy-4 justify-content-center">
+            <div class="col-lg-8">
+              <div class="portfolio-description">
+
+                <span class="badge bg-warning bg-opacity-10 text-warning mb-3 p-2"><i class="bi bi-layers me-1"></i> Architecture</span>
+                <h2 class="fw-bold mb-1">LLMs Are Infrastructure, Not Just APIs</h2>
+                <small class="text-muted d-block mb-4">By Jules Cesar Junior Ndayisenga</small>
+
+                <div style="font-size: 15.5px; line-height: 1.85; color: #333;">
+
+                  <p>
+                    The default mental model for LLMs in production is simple: call the API, get a 
+                    response, display it. OpenAI's Chat Completions endpoint. Anthropic's Messages API. 
+                    A simple HTTP request. The LLM is treated as an external service, a black box you 
+                    query and forget.
+                  </p>
+                  <p>
+                    This mental model is dangerous for production systems.
+                  </p>
+
+                  <h4 class="fw-bold mt-4 mb-2" style="color: #0563bb;">APIs Break in Production</h4>
+                  <p>
+                    When you treat an LLM as just another API, you inherit all the fragility of 
+                    external dependencies, plus new failure modes unique to language models:
+                  </p>
+                  <ul>
+                    <li><strong>Latency variance</strong>: the same prompt can take 500ms or 15 seconds depending on load. Your timeout strategy matters more than your prompt engineering.</li>
+                    <li><strong>Output instability</strong>: the same input produces different outputs across calls. Deterministic workflows need guardrails, retries, and validation layers.</li>
+                    <li><strong>Cost explosion</strong>: an unconstrained agent loop can burn through your API budget in minutes. Rate limiting and token budgets aren't optional.</li>
+                    <li><strong>Vendor lock-in</strong>: building directly against OpenAI's SDK couples your architecture to a single provider's pricing and availability.</li>
+                  </ul>
+
+                  <h4 class="fw-bold mt-4 mb-2" style="color: #2e7d32;">The Infrastructure Mindset</h4>
+                  <p>
+                    Treating LLMs as infrastructure means applying the same engineering discipline 
+                    we use for databases, message queues, and caching layers:
+                  </p>
+                  <ul>
+                    <li><strong>Abstraction layers</strong>: wrap LLM calls behind an interface. Swap providers without touching business logic.</li>
+                    <li><strong>Circuit breakers</strong>: when the LLM service degrades, fallback to cached responses, simpler models, or rule-based logic.</li>
+                    <li><strong>Observability</strong>: log every prompt, response, latency, and token count. You can't optimize what you can't measure.</li>
+                    <li><strong>Semantic caching</strong>: similar prompts should return cached results. Not every call needs to hit the model.</li>
+                    <li><strong>Output validation</strong>: structured output parsing (JSON schemas, Pydantic models) ensures the model's response is usable by downstream systems.</li>
+                  </ul>
+
+                  <h4 class="fw-bold mt-4 mb-2" style="color: #e65100;">What Changes When You Think This Way</h4>
+                  <p>
+                    At Asyst, I build AI systems that serve real users: chatbots, interview simulators, 
+                    automation tools. The difference between a demo and a production system is entirely 
+                    in how you treat the LLM layer. The prompt is 10% of the work. The other 90% is 
+                    error handling, retry logic, cost control, output validation, and graceful degradation.
+                  </p>
+                  <p>
+                    The industry will mature past the "just call the API" phase. The engineers who 
+                    treat LLMs as infrastructure today will be the ones trusted to build the systems 
+                    that run in production tomorrow.
+                  </p>
+                  <p class="fst-italic text-muted mt-4">
+                    Production AI isn't about the model. It's about everything around it.
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="preloader"></div>
+    <script src="../../assets/vendor/aos/aos.js"></script>
+    <script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

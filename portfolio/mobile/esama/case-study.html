@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>E-Sama POS | Case Study</title>
+    <meta content="Case study: building an offline-first POS system for Burundian merchants" name="description" />
+
+    <link href="../../../assets/img/favicon.ico" rel="icon" />
+    <link href="../../../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:300,400,500,600,700|Poppins:300,400,500,600,700" rel="stylesheet" />
+    <link href="../../../assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="../../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="../../../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="../../../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="../../../assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <main id="main">
+      <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+          <div class="row gy-4">
+
+            <div class="col-lg-12">
+              <div class="portfolio-description">
+
+                <div class="d-flex align-items-center mb-4">
+                  <span class="badge bg-success bg-opacity-10 text-success me-3 p-2" style="font-size: 1.2rem;"><i class="bi bi-currency-dollar"></i></span>
+                  <div>
+                    <h2 class="mb-0">E-Sama POS | Case Study</h2>
+                    <small class="text-muted">2024 – Present | Solo Developer &amp; Product Owner</small>
+                  </div>
+                </div>
+
+                <h4 class="fw-bold text-danger mb-2">The Problem</h4>
+                <p>
+                  Small merchants in Burundi manage inventory, sales, and finances entirely on paper or using 
+                  expensive tools designed for Western markets. Internet connectivity is unreliable and costly. 
+                  Existing POS solutions require constant server access, making them useless during outages, 
+                  which happen daily. Merchants needed an <strong>affordable, offline-first</strong> solution 
+                  that works without any internet dependency.
+                </p>
+
+                <h4 class="fw-bold mb-2" style="color: #0563bb;">The Solution</h4>
+                <p>I designed, built, and shipped a complete POS and business management app from scratch:</p>
+                <ul>
+                  <li><strong>100% offline-first architecture</strong>: Hive NoSQL local database with AES-256 encryption. Zero server dependency. The app works immediately out of the box, even without a SIM card.</li>
+                  <li><strong>Three store types in one app</strong>: Retail (barcode scanning, wholesale pricing, parked sales), Restaurant (menu management, ingredient tracking), and Rental (equipment rental with hourly/daily/weekly/monthly tracking, deposits, overdue detection).</li>
+                  <li><strong>Complete POS system</strong>: Touch-optimized cart, per-item and global discounts, multi-payment support (Cash + Mobile Money + Credit), automatic wholesale pricing by quantity thresholds.</li>
+                  <li><strong>Built-in CRM &amp; loyalty</strong>: Client profiles, credit system with configurable limits, debt tracking with WhatsApp reminders, loyalty points per purchase.</li>
+                  <li><strong>Real-time analytics dashboard</strong>: Revenue, profit, expenses, average margin, break-even analysis, stock valuation, top/dormant products, all computed locally.</li>
+                  <li><strong>Bluetooth thermal printing</strong>: ESC/POS protocol for professional receipts. PDF invoice generation with WhatsApp sharing.</li>
+                  <li><strong>Multi-store management</strong>: Up to unlimited stores (Premium tier), with data isolation and quick switching.</li>
+                  <li><strong>Remote control infrastructure</strong>: GitHub Gist-based remote config for version updates, kill switch, admin messages, and pricing, with no backend server needed.</li>
+                </ul>
+
+                <h4 class="fw-bold text-success mb-3">Measurable Results</h4>
+                <div class="row text-center mb-4 g-3">
+                  <div class="col-6 col-md-3">
+                    <div class="p-3 bg-light rounded">
+                      <h3 class="fw-bold mb-0" style="color: #2e7d32;">16+</h3>
+                      <small class="text-muted">Paying Users</small>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <div class="p-3 bg-light rounded">
+                      <h3 class="fw-bold mb-0" style="color: #2e7d32;">3</h3>
+                      <small class="text-muted">Store Types</small>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <div class="p-3 bg-light rounded">
+                      <h3 class="fw-bold mb-0" style="color: #2e7d32;">$0</h3>
+                      <small class="text-muted">Server Cost</small>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <div class="p-3 bg-light rounded">
+                      <h3 class="fw-bold mb-0" style="color: #2e7d32;">3</h3>
+                      <small class="text-muted">Languages</small>
+                    </div>
+                  </div>
+                </div>
+
+                <h4 class="fw-bold mb-2" style="color: #6f42c1;">Key Technical Decisions</h4>
+                <ul>
+                  <li><strong>Hive over SQLite</strong>: Hive's pure Dart implementation provides faster read/write for the document-style data model (products, sales, clients) without native bridging overhead.</li>
+                  <li><strong>AES-256 encryption at rest</strong>: Sensitive financial data (sales, expenses, client debts) is encrypted locally using keys stored in platform keychain/keystore, protecting merchants even if the device is lost.</li>
+                  <li><strong>GitHub Gist as remote config</strong>: Instead of maintaining a backend server, all remote operations (version checking, kill switch, admin messages, pricing updates) are driven by a single JSON file on GitHub Gist. Zero hosting cost, instant updates.</li>
+                  <li><strong>SHA-256 license activation</strong>: Offline license validation using device-bound activation codes, with anti-cheat detection for clock manipulation.</li>
+                  <li><strong>Provider pattern over BLoC</strong>: Chose ChangeNotifier/Provider for faster iteration and lower complexity, given the app's state management needs.</li>
+                  <li><strong>ESC/POS Bluetooth printing</strong>: Direct thermal printer integration via Bluetooth, supporting the affordable receipt printers available in East African markets.</li>
+                </ul>
+
+                <h4 class="fw-bold mb-2" style="color: #e65100;">Why This Matters</h4>
+                <p class="mb-0">
+                  E-Sama is not a prototype. It's a <strong>revenue-generating product with real paying users</strong>. 
+                  It proves that production software can be built for emerging markets with zero infrastructure cost, 
+                  using creative engineering to overcome connectivity and hardware constraints. The subscription model 
+                  (Standard / Business / Premium) validates the business viability, and the multi-language support 
+                  (English, French, Kiswahili) positions it for expansion across East Africa.
+                </p>
+
+                <div class="card border-0 shadow-sm mt-4">
+                  <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3" style="color: #0563bb;"><i class="bi bi-stack me-2"></i>Tech Stack</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                      <span class="badge bg-primary bg-opacity-10 text-primary p-2">Flutter</span>
+                      <span class="badge bg-primary bg-opacity-10 text-primary p-2">Dart</span>
+                      <span class="badge bg-primary bg-opacity-10 text-primary p-2">Hive</span>
+                      <span class="badge bg-primary bg-opacity-10 text-primary p-2">AES-256</span>
+                      <span class="badge bg-primary bg-opacity-10 text-primary p-2">Provider</span>
+                      <span class="badge bg-primary bg-opacity-10 text-primary p-2">ESC/POS</span>
+                      <span class="badge bg-primary bg-opacity-10 text-primary p-2">Bluetooth</span>
+                      <span class="badge bg-primary bg-opacity-10 text-primary p-2">PDF Generation</span>
+                      <span class="badge bg-primary bg-opacity-10 text-primary p-2">GitHub Gist</span>
+                      <span class="badge bg-primary bg-opacity-10 text-primary p-2">fl_chart</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <script src="../../../assets/vendor/aos/aos.js"></script>
+    <script src="../../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../../../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../../../assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../../../assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+  </body>
+</html>

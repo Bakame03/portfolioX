@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Why Africa Needs Offline-First AI</title>
+    <link href="../../assets/img/favicon.ico" rel="icon" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:300,400,500,600,700|Poppins:300,400,500,600,700" rel="stylesheet" />
+    <link href="../../assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="../../assets/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main id="main">
+      <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+          <div class="row gy-4 justify-content-center">
+            <div class="col-lg-8">
+              <div class="portfolio-description">
+
+                <span class="badge bg-success bg-opacity-10 text-success mb-3 p-2"><i class="bi bi-wifi-off me-1"></i> Infrastructure</span>
+                <h2 class="fw-bold mb-1">Why Africa Needs Offline-First AI</h2>
+                <small class="text-muted d-block mb-4">By Jules Cesar Junior Ndayisenga</small>
+
+                <div style="font-size: 15.5px; line-height: 1.85; color: #333;">
+
+                  <p>
+                    Most AI systems are designed with an implicit assumption: the user has a stable, 
+                    always-on internet connection. In much of Sub-Saharan Africa, this assumption 
+                    fails daily. Power outages are routine. Mobile data is expensive. Wi-Fi is a 
+                    privilege, not a given. Yet these are the same markets where AI could have the 
+                    most transformative impact, in agriculture, healthcare, education, and commerce.
+                  </p>
+
+                  <p>
+                    The disconnect is architectural. Cloud-native AI sends every request to a remote 
+                    server, waits for a response, and renders it. When the network drops, even for 
+                    30 seconds, the user experience collapses. For a merchant in Bujumbura trying to 
+                    process a sale, or a health worker in a rural clinic accessing a diagnostic tool, 
+                    "try again later" is not an acceptable answer.
+                  </p>
+
+                  <h4 class="fw-bold mt-4 mb-2" style="color: #0563bb;">The Offline-First Principle</h4>
+                  <p>
+                    Offline-first doesn't mean "no internet." It means <strong>the system works without 
+                    it by default</strong> and syncs when connectivity is available. The core logic, data 
+                    storage, and user interface must function entirely on the device. The network is an 
+                    enhancement, not a dependency.
+                  </p>
+                  <p>
+                    This has deep architectural implications:
+                  </p>
+                  <ul>
+                    <li><strong>Local-first storage</strong>: data lives on the device (Hive, SQLite, IndexedDB) with encryption at rest. No cloud database required.</li>
+                    <li><strong>Edge inference</strong>: lightweight models (quantized, distilled) run on-device instead of calling remote APIs.</li>
+                    <li><strong>Conflict resolution</strong>: when multiple offline edits sync later, the system needs deterministic merge strategies.</li>
+                    <li><strong>Progressive enhancement</strong>: features degrade gracefully. Online features are additive, not foundational.</li>
+                  </ul>
+
+                  <h4 class="fw-bold mt-4 mb-2" style="color: #2e7d32;">What I've Learned Building This Way</h4>
+                  <p>
+                    With <strong>E-Sama POS</strong>, I built a complete point-of-sale system for Burundian 
+                    merchants that runs entirely offline, with AES-256 encrypted local storage, Bluetooth thermal 
+                    printing, and real-time analytics computed on-device. With <strong>Ijwi ry'Ikirundi AI</strong>, 
+                    the contribution platform works on GitHub Pages with a serverless backend, zero hosting 
+                    cost, zero server dependency.
+                  </p>
+                  <p>
+                    The pattern is consistent: <strong>design for the constraint, not around it</strong>. 
+                    Africa's infrastructure limitations aren't bugs to be patched with better connectivity. 
+                    They're architectural constraints that demand fundamentally different design choices. And 
+                    those choices often produce systems that are more resilient, more private, and more 
+                    cost-effective than their cloud-dependent alternatives.
+                  </p>
+
+                  <h4 class="fw-bold mt-4 mb-2" style="color: #e65100;">The Opportunity</h4>
+                  <p>
+                    The next wave of AI adoption in Africa won't be powered by GPT-4 API calls over 5G. 
+                    It will be powered by <strong>small models running on affordable phones</strong>, 
+                    <strong>local databases that never lose data</strong>, and <strong>architectures that 
+                    treat connectivity as optional</strong>. Engineers who understand this, who build for 
+                    the bottom of the connectivity stack rather than the top, will define AI's impact on the continent.
+                  </p>
+                  <p class="fst-italic text-muted mt-4">
+                    Offline-first isn't a limitation. It's a design philosophy for the real world.
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="preloader"></div>
+    <script src="../../assets/vendor/aos/aos.js"></script>
+    <script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Agentic Systems in Low-Infrastructure Environments</title>
+    <link href="../../assets/img/favicon.ico" rel="icon" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:300,400,500,600,700|Poppins:300,400,500,600,700" rel="stylesheet" />
+    <link href="../../assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="../../assets/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main id="main">
+      <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+          <div class="row gy-4 justify-content-center">
+            <div class="col-lg-8">
+              <div class="portfolio-description">
+
+                <span class="badge bg-primary bg-opacity-10 text-primary mb-3 p-2"><i class="bi bi-robot me-1"></i> Agentic AI</span>
+                <h2 class="fw-bold mb-1">Agentic Systems in Low-Infrastructure Environments</h2>
+                <small class="text-muted d-block mb-4">By Jules Cesar Junior Ndayisenga</small>
+
+                <div style="font-size: 15.5px; line-height: 1.85; color: #333;">
+
+                  <p>
+                    The agentic AI revolution, autonomous systems that plan, reason, and execute 
+                    multi-step tasks, is being built for cloud-native environments with unlimited 
+                    compute, low-latency APIs, and reliable orchestration layers. CrewAI, LangGraph, 
+                    AutoGen: all assume your agent can make dozens of LLM calls per task, maintain 
+                    persistent WebSocket connections, and store state in managed databases.
+                  </p>
+                  <p>
+                    What happens when none of that is available?
+                  </p>
+
+                  <h4 class="fw-bold mt-4 mb-2" style="color: #0563bb;">The Infrastructure Gap</h4>
+                  <p>
+                    In low-infrastructure contexts (rural Africa, offline-first applications, 
+                    resource-constrained edge devices), the fundamental assumptions of agentic 
+                    architectures break down:
+                  </p>
+                  <ul>
+                    <li><strong>Latency tolerance</strong>: a 5-second API round-trip is unusable when your user expects sub-second responses at a checkout counter.</li>
+                    <li><strong>Cost per inference</strong>: GPT-4 calls at $0.03/1K tokens are prohibitive when your target user earns $2/day.</li>
+                    <li><strong>State persistence</strong>: cloud databases require connectivity. Local state needs conflict-free replication strategies.</li>
+                    <li><strong>Failure recovery</strong>: agents that crash mid-task need graceful degradation, not "Error: network timeout."</li>
+                  </ul>
+
+                  <h4 class="fw-bold mt-4 mb-2" style="color: #2e7d32;">Design Patterns That Work</h4>
+                  <p>
+                    Through building multi-agent systems and deploying AI in Burundi, I've identified 
+                    patterns that bridge the gap:
+                  </p>
+                  <ul>
+                    <li><strong>Tiered intelligence</strong>: simple rules handle 80% of decisions locally. The LLM is reserved for the 20% that actually needs reasoning.</li>
+                    <li><strong>Batch-and-sync agents</strong>: instead of real-time orchestration, agents accumulate tasks offline and execute when connectivity appears.</li>
+                    <li><strong>Deterministic fallbacks</strong>: every AI-powered feature has a non-AI fallback. The system never depends entirely on inference.</li>
+                    <li><strong>Compressed context</strong>: instead of sending full conversation history, agents work with pre-summarized state to minimize token usage.</li>
+                  </ul>
+
+                  <h4 class="fw-bold mt-4 mb-2" style="color: #e65100;">The Bigger Picture</h4>
+                  <p>
+                    The agentic future won't reach emerging markets through bigger models and faster 
+                    GPUs. It will arrive through <strong>smarter architectures that respect constraints</strong>. 
+                    The engineers who can make an agent useful on a $100 Android phone with intermittent 
+                    2G connectivity are solving a harder, and ultimately more important, problem than 
+                    those optimizing inference on A100 clusters.
+                  </p>
+                  <p class="fst-italic text-muted mt-4">
+                    The real test of an AI architect isn't what they can build with unlimited resources. 
+                    It's what they can build without them.
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="preloader"></div>
+    <script src="../../assets/vendor/aos/aos.js"></script>
+    <script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>
