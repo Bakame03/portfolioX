@@ -477,6 +477,131 @@
               </p>
             </div>
 
+            <h3 class="resume-title">🏆 Prizes &amp; Achievements</h3>
+
+            <div class="resume-item" style="border-left: 3px solid #f7b731; background: linear-gradient(135deg, #fffdf1 0%, #fff 100%); border-radius: 0 8px 8px 0; padding: 16px 18px;">
+
+              <!-- Header row -->
+              <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                <h4 style="margin:0;">DevArt 2026 — Prix du Jury 🥇</h4>
+                <span style="background:#f7b731; color:#333; font-weight:700; font-size:11px; padding:4px 10px; border-radius:20px; white-space:nowrap;">
+                  1st Place · Feb 12–13, 2026
+                </span>
+              </div>
+              <h5>IUT d'Arles, Aix-Marseille Université — 32h Hackathon</h5>
+
+              <!-- Team -->
+              <p style="margin-bottom:8px;">
+                <strong>Team Nebula</strong> &nbsp;·&nbsp; 4 members:
+                <em>Mamadou Bailo BARRY, Aminata CAMARA, Aldo Alex NGANJI, Djawad TOURE ISSAHOU</em>
+                <span style="font-size:11px; color:#888;"> — BUT Informatique, 1ère année</span>
+              </p>
+
+              <!-- Project description -->
+              <p style="margin-bottom: 6px;">
+                Theme: <strong>"L'Écho"</strong>. We built an AI interface that creates a direct echo between
+                digital usage and natural resource consumption. The more complex the user's request,
+                the more the interface triggers <strong>visual and sound alerts</strong> simulating
+                deforestation and water consumption from server cooling — turning abstract data into
+                a concrete, militant emotional experience.
+              </p>
+              <p style="font-size: 13px; color: #555; margin-bottom: 10px;">
+                <i class="bi bi-people-fill me-1"></i> 10 teams competed · 32h non-stop ·
+                Jury composed of local industry professionals
+              </p>
+
+              <!-- Stacked photo preview -->
+              <div class="devart-stack-wrapper" id="devartStackTrigger" title="Click to view hackathon photos">
+                <div class="devart-card devart-card--back2"></div>
+                <div class="devart-card devart-card--back1"></div>
+                <div class="devart-card devart-card--top">
+                  <img src="assets/img/devart/a.jpg" alt="DevArt 2026 Preview">
+                  <div class="devart-card__label">
+                    <i class="bi bi-camera me-1"></i> Hackathon Photos &nbsp;·&nbsp; 10 shots
+                    <br><small style="font-weight:400; opacity:0.85;">Click to view</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Full-screen scrollable modal -->
+              <div id="devartModal" class="devart-modal" onclick="if(event.target===this){closeDevartModal()}">
+                <div class="devart-modal__inner">
+                  <div class="devart-modal__header">
+                    <span><i class="bi bi-trophy me-2" style="color:#f7b731;"></i>DevArt 2026 — Prix du Jury · 10 photos</span>
+                    <button class="devart-modal__close" onclick="closeDevartModal()">&#x2715;</button>
+                  </div>
+                  <div class="devart-modal__pages">
+                    <img src="assets/img/devart/a.jpg" alt="Photo 1">
+                    <img src="assets/img/devart/b.jpg" alt="Photo 2">
+                    <img src="assets/img/devart/c.jpg" alt="Photo 3">
+                    <img src="assets/img/devart/d.JPG" alt="Photo 4">
+                    <img src="assets/img/devart/e.JPG" alt="Photo 5">
+                    <img src="assets/img/devart/f.JPG" alt="Photo 6">
+                    <img src="assets/img/devart/g.JPG" alt="Photo 7">
+                    <img src="assets/img/devart/h.JPG" alt="Photo 8">
+                    <img src="assets/img/devart/i.JPG" alt="Photo 9">
+                    <img src="assets/img/devart/j.JPG" alt="Photo 10">
+                  </div>
+                </div>
+              </div>
+
+              <style>
+                .devart-stack-wrapper {
+                  position: relative; width: 220px; height: 165px;
+                  margin: 12px 0 20px 0; cursor: pointer; transition: transform 0.2s;
+                }
+                .devart-stack-wrapper:hover { transform: scale(1.03); }
+                .devart-card {
+                  position: absolute; width: 200px; height: 148px;
+                  border-radius: 7px; box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+                }
+                .devart-card--back2 { background: #f9ca5a; transform: rotate(-5deg); top: 12px; left: 14px; }
+                .devart-card--back1 { background: #f7d77a; transform: rotate(-2.5deg); top: 6px; left: 7px; }
+                .devart-card--top   { overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.25); top: 0; left: 0; }
+                .devart-card--top img { width: 100%; height: 100%; object-fit: cover; display: block; }
+                .devart-card__label {
+                  position: absolute; bottom: 0; left: 0; right: 0;
+                  background: rgba(180, 120, 0, 0.88); color: #fff;
+                  text-align: center; padding: 7px 6px 6px;
+                  font-size: 12px; font-weight: 600; line-height: 1.4;
+                }
+                .devart-modal {
+                  display: none; position: fixed; inset: 0;
+                  background: rgba(0,0,0,0.9); z-index: 9999;
+                  overflow-y: auto; padding: 30px 16px 60px;
+                }
+                .devart-modal__inner { max-width: 780px; margin: 0 auto; }
+                .devart-modal__header {
+                  display: flex; justify-content: space-between; align-items: center;
+                  color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 20px;
+                }
+                .devart-modal__close {
+                  background: transparent; border: 2px solid rgba(255,255,255,0.5);
+                  color: #fff; border-radius: 50%; width: 36px; height: 36px;
+                  font-size: 16px; cursor: pointer; transition: background 0.2s;
+                }
+                .devart-modal__close:hover { background: rgba(255,255,255,0.15); }
+                .devart-modal__pages img {
+                  width: 100%; border-radius: 8px; margin-bottom: 18px;
+                  box-shadow: 0 4px 24px rgba(0,0,0,0.5); display: block;
+                }
+              </style>
+
+              <script>
+                document.getElementById('devartStackTrigger').addEventListener('click', function () {
+                  document.getElementById('devartModal').style.display = 'block';
+                  document.body.style.overflow = 'hidden';
+                });
+                function closeDevartModal() {
+                  document.getElementById('devartModal').style.display = 'none';
+                  document.body.style.overflow = '';
+                }
+                document.addEventListener('keydown', function(e) {
+                  if (e.key === 'Escape') closeDevartModal();
+                });
+              </script>
+            </div>
+
             <h3 class="resume-title">Training &amp; Certifications</h3>
 
             <div class="resume-item">
