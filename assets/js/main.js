@@ -383,17 +383,35 @@
    */
   const themeToggle = select('#theme-toggle');
   const body = select('body');
-  
+  const ghStats = select('#gh-card-stats');
+  const ghLangs = select('#gh-card-languages');
+  const ghStreak = select('#gh-card-streak');
+
+  function updateGitHubCards(theme) {
+    if (!ghStats || !ghLangs || !ghStreak) return;
+    
+    const textColor = theme === 'dark' ? 'f1f1f1' : '45505b';
+    const titleColor = '0563bb';
+    const iconColor = '0563bb';
+    
+    ghStats.src = `https://github-readme-stats.vercel.app/api?username=Bakame03&show_icons=true&theme=transparent&hide_border=true&title_color=${titleColor}&icon_color=${iconColor}&text_color=${textColor}`;
+    ghLangs.src = `https://github-readme-stats.vercel.app/api/top-langs/?username=Bakame03&layout=compact&theme=transparent&hide_border=true&title_color=${titleColor}&text_color=${textColor}`;
+    ghStreak.src = `https://github-readme-streak-stats.herokuapp.com/?user=Bakame03&theme=transparent&hide_border=true&stroke=${titleColor}&ring=${titleColor}&fire=${titleColor}&currStreakNum=${titleColor}&sideTexts=${textColor}`;
+  }
+
   if (themeToggle) {
-    // Check for saved theme
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+    let initialTheme = 'light';
+
     if (savedTheme) {
-      body.setAttribute('data-theme', savedTheme);
+      initialTheme = savedTheme;
     } else if (systemPrefersDark) {
-      body.setAttribute('data-theme', 'dark');
+      initialTheme = 'dark';
     }
+    
+    body.setAttribute('data-theme', initialTheme);
+    updateGitHubCards(initialTheme);
 
     themeToggle.addEventListener('click', () => {
       const currentTheme = body.getAttribute('data-theme');
@@ -401,8 +419,51 @@
       
       body.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
+      updateGitHubCards(newTheme);
     });
   }
+
+  /**
+   * GitHub Live Repositories Fetch
+   */
+  async function fetchGitHubActivity() {
+    const repoList = select('#github-repo-list');
+    if (!repoList) return;
+
+    try {
+      const response = await fetch('https://api.github.com/users/Bakame03/repos?sort=updated&per_page=3');
+      if (!response.ok) throw new Error('Failed to fetch repos');
+      
+      const repos = await response.json();
+      repoList.innerHTML = ''; // Clear spinner
+
+      repos.forEach(repo => {
+        const repoItem = document.createElement('a');
+        repoItem.href = repo.html_url;
+        repoItem.target = '_blank';
+        repoItem.className = 'repo-item';
+        repoItem.innerHTML = `
+          <h6><i class="bi bi-folder2"></i>${repo.name}</h6>
+          <p>${repo.description || 'No description provided.'}</p>
+          <div class="repo-meta">
+            <span><i class="bi bi-star-fill"></i>${repo.stargazers_count}</span>
+            <span><i class="bi bi-diagram-2"></i>${repo.forks_count}</span>
+            <span><i class="bi bi-circle-fill" style="color: #0563bb; font-size: 8px;"></i>${repo.language || 'Code'}</span>
+          </div>
+        `;
+        repoList.appendChild(repoItem);
+      });
+    } catch (error) {
+      console.error('GitHub API Error:', error);
+      repoList.innerHTML = `
+        <div class="col-12 text-center text-muted">
+          <p>Unable to load live activity. <a href="https://github.com/Bakame03" target="_blank">View profile on GitHub</a></p>
+        </div>
+      `;
+    }
+  }
+  
+  fetchGitHubActivity();
 
   /**
    * Scroll Progress Bar
