@@ -379,21 +379,61 @@
   });
 
   /**
-   * Initiate Pure Counter 
+   * Theme Toggle (Dark/Light Mode)
    */
-  new PureCounter();
+  const themeToggle = select('#theme-toggle');
+  const body = select('body');
+  
+  if (themeToggle) {
+    // Check for saved theme
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme) {
+      body.setAttribute('data-theme', savedTheme);
+    } else if (systemPrefersDark) {
+      body.setAttribute('data-theme', 'dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  }
+
+  /**
+   * Scroll Progress Bar
+   */
+  const scrollProgress = select('#scroll-progress');
+  if (scrollProgress) {
+    window.addEventListener('scroll', () => {
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      scrollProgress.style.width = scrolled + '%';
+    });
+  }
 
 })()
 
 let a = new Date().getFullYear();
-document.getElementById("current_year").innerText = a;
-document.getElementById("myAge").innerText = a - 2002; //my age
-var elements = document.querySelectorAll('.it_experience');
-    elements.forEach(function(element){
-        element.innerText = a - 2022;
-    }); //my it experience
-var elements = document.querySelectorAll('.currentYear');
-    elements.forEach(function(element){
-        element.innerText = a;
-    });
+
+const currentYearEl = document.getElementById("current_year");
+if (currentYearEl) currentYearEl.innerText = a;
+
+const myAgeEl = document.getElementById("myAge");
+if (myAgeEl) myAgeEl.innerText = a - 2002;
+
+const itExperienceEls = document.querySelectorAll('.it_experience');
+itExperienceEls.forEach(el => {
+    el.innerText = a - 2022;
+});
+
+const currentYearEls = document.querySelectorAll('.currentYear');
+currentYearEls.forEach(el => {
+    el.innerText = a;
+});
+
 
