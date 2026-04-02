@@ -62,7 +62,7 @@
         <li><a href="#resume" class="nav-link scrollto active"><i class="bx bx-file"></i> <span>Resume</span></a></li>
         <li><a href="#projects" class="nav-link scrollto"><i class="bi bi-code"></i> <span>Projects</span></a></li>
         <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
-        <li><a href="#thinking" class="nav-link scrollto"><i class="bi bi-pen"></i> <span>Thinking</span></a></li>
+        <li><a href="#thinking" class="nav-link scrollto"><i class="bi bi-pen"></i> <span>Testimonials</span></a></li>
         <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
       </ul>
     </nav><!-- .nav-menu -->
@@ -205,12 +205,41 @@
 
         </div>
 
-        <div class="row mt-5" data-aos="fade-up" data-aos-delay="200">
+        <!-- ======= GitHub Activity Dashboard ======= -->
+        <div class="row github-dashboard" data-aos="fade-up" data-aos-delay="200">
           <div class="col-12 text-center">
-            <h5 class="fw-bold mb-3" style="color: var(--primary-color);"><i class="bi bi-github me-2"></i>GitHub Activity</h5>
-            <img src="https://ghchart.rshah.org/0563bb/Bakame03" alt="GitHub Contribution Graph" style="width: 100%; max-width: 800px; border-radius: 8px;">
+            <h5><i class="bi bi-github me-2"></i>GitHub Live Activity</h5>
+            
+            <div class="github-stats-grid">
+              <div class="github-card-item">
+                <img id="gh-card-stats" src="https://github-readme-stats.vercel.app/api?username=Bakame03&show_icons=true&theme=transparent&hide_border=true&title_color=0563bb&icon_color=0563bb&text_color=45505b" alt="GitHub Stats">
+              </div>
+              <div class="github-card-item">
+                <img id="gh-card-languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Bakame03&layout=compact&theme=transparent&hide_border=true&title_color=0563bb&text_color=45505b" alt="Top Languages">
+              </div>
+              <div class="github-card-item">
+                <img id="gh-card-streak" src="https://github-readme-streak-stats.herokuapp.com/?user=Bakame03&theme=transparent&hide_border=true&stroke=0563bb&ring=0563bb&fire=0563bb&currStreakNum=0563bb&sideTexts=45505b" alt="GitHub Streak">
+              </div>
+            </div>
+
+            <h5 class="mt-4"><i class="bi bi-journal-code me-2"></i>Recently Updated Repositories</h5>
+            <div id="github-repo-list" class="github-live-list">
+              <!-- Repos will be injected here by main.js -->
+              <div class="col-12 text-center py-4">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center mt-5">
+              <a href="https://github.com/Bakame03" target="_blank" class="btn-show-more">
+                View Full Profile <i class="bi bi-box-arrow-up-right ms-2"></i>
+              </a>
+            </div>
           </div>
         </div>
+
 
       </div>
     </section><!-- End Facts Section -->
