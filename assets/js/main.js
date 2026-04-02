@@ -394,8 +394,8 @@
     const titleColor = '0563bb';
     const iconColor = '0563bb';
     
-    ghStats.src = `https://github-readme-stats.vercel.app/api?username=Bakame03&show_icons=true&theme=transparent&hide_border=true&title_color=${titleColor}&icon_color=${iconColor}&text_color=${textColor}`;
-    ghLangs.src = `https://github-readme-stats.vercel.app/api/top-langs/?username=Bakame03&layout=compact&theme=transparent&hide_border=true&title_color=${titleColor}&text_color=${textColor}`;
+    ghStats.src = `https://readme-stats-fast.vercel.app/api?username=Bakame03&show_icons=true&theme=transparent&hide_border=true&title_color=${titleColor}&icon_color=${iconColor}&text_color=${textColor}`;
+    ghLangs.src = `https://readme-stats-fast.vercel.app/api/top-langs/?username=Bakame03&layout=compact&theme=transparent&hide_border=true&title_color=${titleColor}&text_color=${textColor}`;
     ghStreak.src = `https://github-readme-streak-stats.herokuapp.com/?user=Bakame03&theme=transparent&hide_border=true&stroke=${titleColor}&ring=${titleColor}&fire=${titleColor}&currStreakNum=${titleColor}&sideTexts=${textColor}`;
   }
 
