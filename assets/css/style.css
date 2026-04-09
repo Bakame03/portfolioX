@@ -27,6 +27,72 @@
   --form-status-bg: #eef7ff;
 }
 
+/*--------------------------------------------------------------
+# Custom Cursor
+--------------------------------------------------------------*/
+* { cursor: none !important; }
+
+#cursor-dot,
+#cursor-glow {
+  display: none; /* shown by JS only on desktop */
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  border-radius: 50%;
+  will-change: transform;
+  transition: opacity 0.3s ease;
+}
+
+/* The precise dot */
+#cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #0563bb;
+  margin-left: -4px;
+  margin-top: -4px;
+  transition: width 0.2s ease, height 0.2s ease,
+              margin 0.2s ease, background 0.2s ease,
+              opacity 0.3s ease;
+}
+
+/* The trailing glow ring */
+#cursor-glow {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(5, 99, 187, 0.5);
+  background: rgba(5, 99, 187, 0.07);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  margin-left: -20px;
+  margin-top: -20px;
+  transition: width 0.25s ease, height 0.25s ease,
+              margin 0.25s ease, border-color 0.25s ease,
+              background 0.25s ease, opacity 0.3s ease;
+}
+
+/* Grow state on interactive elements */
+#cursor-dot.cursor-grow {
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  margin-top: -7px;
+  background: #ffbb2c;
+}
+
+#cursor-glow.cursor-grow {
+  width: 60px;
+  height: 60px;
+  margin-left: -30px;
+  margin-top: -30px;
+  border-color: rgba(255, 187, 44, 0.6);
+  background: rgba(255, 187, 44, 0.08);
+}
+
+/* Restore default cursor on iframes (maps, etc.) */
+iframe { cursor: auto !important; }
+
 [data-theme="dark"] {
   --bg-color: #111111;
   --text-color: #f1f1f1;
