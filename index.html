@@ -45,6 +45,10 @@
 
   <div id="scroll-progress"></div>
 
+  <!-- ======= Custom Cursor ======= -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-glow"></div>
+
   <!-- ======= Theme Toggle ======= -->
   <div class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
     <i class="bi bi-moon-stars-fill"></i>
@@ -1299,6 +1303,66 @@
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- ======= Custom Cursor Script ======= -->
+  <script>
+    (function () {
+      // Only enable on non-touch devices
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const dot  = document.getElementById('cursor-dot');
+        const glow = document.getElementById('cursor-glow');
+
+        let mouseX = 0, mouseY = 0;
+        let glowX  = 0, glowY  = 0;
+        let raf;
+
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+
+          // Dot follows instantly
+          dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+
+          if (!raf) raf = requestAnimationFrame(animateGlow);
+        });
+
+        // Glow ring lags behind for a trailing feel
+        function animateGlow() {
+          glowX += (mouseX - glowX) * 0.12;
+          glowY += (mouseY - glowY) * 0.12;
+          glow.style.transform = `translate(${glowX}px, ${glowY}px)`;
+          raf = requestAnimationFrame(animateGlow);
+        }
+
+        // Grow cursor on interactive elements
+        const interactives = 'a, button, [data-cursor-grow], .project-card, .nav-menu a, input, textarea, .tech-chip, .btn-action';
+        document.querySelectorAll(interactives).forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            dot.classList.add('cursor-grow');
+            glow.classList.add('cursor-grow');
+          });
+          el.addEventListener('mouseleave', () => {
+            dot.classList.remove('cursor-grow');
+            glow.classList.remove('cursor-grow');
+          });
+        });
+
+        // Hide on mouse leave, show on enter
+        document.addEventListener('mouseleave', () => {
+          dot.style.opacity  = '0';
+          glow.style.opacity = '0';
+        });
+        document.addEventListener('mouseenter', () => {
+          dot.style.opacity  = '1';
+          glow.style.opacity = '1';
+        });
+
+        // Show cursors
+        dot.style.display  = 'block';
+        glow.style.display = 'block';
+      }
+    })();
+  </script>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
