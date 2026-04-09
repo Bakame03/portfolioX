@@ -93,6 +93,14 @@
 /* Restore default cursor on iframes (maps, etc.) */
 iframe { cursor: auto !important; }
 
+/* Magnetic icon base — needed for translate to not shift layout */
+#hero .social-links a,
+#footer .social-links a {
+  position: relative;
+  will-change: transform;
+  display: inline-block;
+}
+
 [data-theme="dark"] {
   --bg-color: #111111;
   --text-color: #f1f1f1;
