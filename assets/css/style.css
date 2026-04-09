@@ -555,6 +555,9 @@ section {
   background: #ddd;
   bottom: 1px;
   left: calc(50% - 60px);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
 }
 
 .section-title h2::after {
@@ -566,6 +569,18 @@ section {
   background: #0563bb;
   bottom: 0;
   left: calc(50% - 20px);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1) 0.7s;
+}
+
+/* Triggered by IntersectionObserver via JS */
+.section-title.title-visible h2::before {
+  transform: scaleX(1);
+}
+
+.section-title.title-visible h2::after {
+  transform: scaleX(1);
 }
 
 .section-title p {
