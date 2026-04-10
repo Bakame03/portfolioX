@@ -142,6 +142,42 @@
   border-radius: 6px;
 }
 
+/* Swiper Navigation Arrows */
+.projects-slider .swiper-button-next,
+.projects-slider .swiper-button-prev {
+  color: #0563bb;
+  background: var(--glass-bg);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+.projects-slider .swiper-button-next:hover,
+.projects-slider .swiper-button-prev:hover {
+  background: #0563bb;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.projects-slider .swiper-button-next::after,
+.projects-slider .swiper-button-prev::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Hide arrows on mobile for a cleaner look since they can just drag */
+@media (max-width: 768px) {
+  .projects-slider .swiper-button-next,
+  .projects-slider .swiper-button-prev {
+    display: none;
+  }
+}
+
 /* ===== Apple Liquid Glass Card ===== */
 .project-card {
   background: var(--glass-bg);
