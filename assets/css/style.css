@@ -446,12 +446,9 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background-image: url("../img/hero-bg.png");
-  background-position: right top;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: var(--bg-color); /* Fallback before WebGL loads / theme respects */
   position: relative;
-  will-change: background-position;
+  z-index: 1;
 }
 
 @media (min-width: 992px) {
