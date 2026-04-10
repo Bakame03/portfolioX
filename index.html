@@ -1518,6 +1518,42 @@
     })();
   </script>
 
+  <!-- ======= 3D Tilt Effect on Project Cards (Feature #7) ======= -->
+  <script>
+    (function () {
+      // Only enable on non-touch devices
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+      const cards = document.querySelectorAll('.project-card');
+      const maxTilt = 8; // Max rotation in degrees
+
+      cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          // Calculate mouse position relative to the center of the card
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          // Convert position to degrees (opposite direction for natural tilt)
+          const rotateY = (x / (rect.width / 2)) * maxTilt;
+          const rotateX = -(y / (rect.height / 2)) * maxTilt;
+
+          // Apply rotation, plus a subtle lift
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02) translateY(-5px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          // Reset card on leave with a smooth snap back
+          card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0)`;
+          setTimeout(() => {
+            // Remove style to allow CSS hover states to take over if needed
+             card.style.transform = '';
+          }, 300);
+        });
+      });
+    })();
+  </script>
+
   <!-- ======= Page Load Intro Sequence (Feature #6) ======= -->
   <script>
     (function() {
