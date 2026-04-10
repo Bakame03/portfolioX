@@ -759,23 +759,13 @@
           </p>
         </div>
 
-        <div class="row">
-          <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active"><i class="bi bi-grid-3x3-gap"></i> All <span class="filter-count">5</span></li>
-              <li data-filter=".filter-ai"><i class="bi bi-robot"></i> AI &amp; Creative <span class="filter-count">1</span></li>
-              <li data-filter=".filter-web"><i class="bi bi-code-slash"></i> Engineering <span class="filter-count">4</span></li>
-            </ul>
-          </div>
-        </div>
+        <div class="projects-slider swiper" data-aos="fade-up" data-aos-delay="200">
+          <div class="swiper-wrapper">
 
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-          <div class="portfolio-sizer"></div>
-
-          <!-- ===== VISIBLE BY DEFAULT (6 projects) ===== -->
+          <!-- ===== VISIBLE BY DEFAULT (5 projects) ===== -->
 
           <!-- 1. FLAGSHIP: HYPOXIA (Wide) -->
-          <div class="portfolio-item filter-ai item-wide">
+          <div class="swiper-slide portfolio-item filter-ai item-wide">
             <div class="project-card">
               <div class="project-card__image">
                 <img src="assets/img/portfolio/web/hypoxia.png" alt="HYPOXIA — L'Écho Numérique">
@@ -805,7 +795,7 @@
           </div>
 
           <!-- 2. Eat Well (Omnifood) -->
-          <div class="portfolio-item filter-web">
+          <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
                 <img src="assets/img/portfolio/web/eatwell.png" alt="Eat Well (Omnifood)">
@@ -834,7 +824,7 @@
           </div>
 
           <!-- 3. Unified Service Ecosystem -->
-          <div class="portfolio-item filter-web">
+          <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
                 <img src="assets/img/portfolio/web/services.png" alt="Unified Service Ecosystem">
@@ -863,7 +853,7 @@
           </div>
 
           <!-- 4. Budget Tracker -->
-          <div class="portfolio-item filter-web">
+          <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
                 <img src="assets/img/portfolio/web/budget.png" alt="Budget Tracker">
@@ -892,7 +882,7 @@
           </div>
 
           <!-- 5. Modern Web Calculator -->
-          <div class="portfolio-item filter-web">
+          <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
                 <img src="assets/img/portfolio/web/calculator.png" alt="Web Calculator">
@@ -919,27 +909,14 @@
             </div>
           </div>
 
-          <!-- ===== HIDDEN (View All Projects to reveal) ===== -->
+          <!-- ===== End of Swiper Slides ===== -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-
+          </div> <!-- End swiper-wrapper -->
+          <div class="swiper-pagination"></div>
+        </div> <!-- End projects-slider -->
 
       </div>
+
     </section> <!-- End Projects Section -->
 
 
@@ -1476,80 +1453,6 @@
       // Recalculate hero height on resize
       window.addEventListener('resize', function () {
         heroH = hero.offsetHeight;
-      });
-    })();
-  </script>
-
-  <!-- ======= Staggered Project Card Entrance (Feature #5) ======= -->
-  <script>
-    (function () {
-      var container = document.querySelector('#projects .portfolio-container');
-      if (!container) return;
-      if (!('IntersectionObserver' in window)) return;
-
-      // Target inner .project-card elements — NOT .portfolio-item (owned by Isotope)
-      var cards = container.querySelectorAll('.project-card');
-      cards.forEach(function (card) {
-        card.classList.add('stagger-card');
-      });
-
-      var triggered = false;
-
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting && !triggered) {
-            triggered = true;
-
-            cards.forEach(function (card, index) {
-              // CSS custom property sets the individual delay per card
-              card.style.setProperty('--stagger-delay', (index * 90) + 'ms');
-              // 16ms timeout ensures CSS var is painted before class triggers animation
-              setTimeout(function () {
-                card.classList.add('stagger-ready');
-              }, 16);
-            });
-
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      observer.observe(container);
-    })();
-  </script>
-
-  <!-- ======= 3D Tilt Effect on Project Cards (Feature #7) ======= -->
-  <script>
-    (function () {
-      // Only enable on non-touch devices
-      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-      const cards = document.querySelectorAll('.project-card');
-      const maxTilt = 8; // Max rotation in degrees
-
-      cards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const rect = card.getBoundingClientRect();
-          // Calculate mouse position relative to the center of the card
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-
-          // Convert position to degrees (opposite direction for natural tilt)
-          const rotateY = (x / (rect.width / 2)) * maxTilt;
-          const rotateX = -(y / (rect.height / 2)) * maxTilt;
-
-          // Apply rotation, plus a subtle lift
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02) translateY(-5px)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-          // Reset card on leave with a smooth snap back
-          card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0)`;
-          setTimeout(() => {
-            // Remove style to allow CSS hover states to take over if needed
-             card.style.transform = '';
-          }, 300);
-        });
       });
     })();
   </script>

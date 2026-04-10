@@ -100,58 +100,46 @@
   color: #fff;
 }
 
-/* ===== Masonry Grid (Isotope) ===== */
-#projects .portfolio-container {
-  margin: 0 -10px;
-  display: block;
+/* ===== Coverflow Swiper Layout ===== */
+.projects-slider {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 70px; /* space for pagination */
+  overflow: visible; /* Allows shadow bleed */
 }
 
-#projects .portfolio-item {
-  width: 33.333%;
-  padding: 10px;
-  margin-bottom: 0;
+.projects-slider .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 320px;
+  /* Card maintains proportions */
+  height: auto;
 }
 
-#projects .portfolio-item.item-wide {
-  width: 66.666%;
-}
-
-#projects .portfolio-sizer {
-  width: 33.333%;
-}
-
-/* Responsive */
-@media (max-width: 991px) {
-  #projects .portfolio-item {
-    width: 50%;
-  }
-  #projects .portfolio-item.item-wide {
-    width: 100%;
-  }
-  #projects .portfolio-sizer {
-    width: 50%;
+@media (min-width: 768px) {
+  .projects-slider .swiper-slide {
+    width: 440px;
   }
 }
 
-@media (max-width: 575px) {
-  #projects .portfolio-item,
-  #projects .portfolio-item.item-wide {
-    width: 100%;
-  }
-  #projects .portfolio-sizer {
-    width: 100%;
-  }
-  #projects #portfolio-flters {
-    flex-wrap: wrap;
-    justify-content: center;
-    border-radius: 16px;
-    gap: 4px;
-    padding: 8px;
-  }
-  #projects #portfolio-flters li {
-    padding: 8px 14px;
-    font-size: 11px;
-  }
+/* Swiper Pagination Styling */
+.projects-slider .swiper-pagination {
+  bottom: 10px;
+}
+
+.projects-slider .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: var(--text-color);
+  opacity: 0.2;
+  transition: all 0.3s ease;
+}
+
+.projects-slider .swiper-pagination-bullet-active {
+  background-color: #0563bb;
+  opacity: 1;
+  width: 24px;
+  border-radius: 6px;
 }
 
 /* ===== Apple Liquid Glass Card ===== */
@@ -168,11 +156,6 @@
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-sm);
-  /* Feature #7: 3D Tilt properties */
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  /* Will be modified by JS for tilt, removing standard transform transition prevents fighting */
-  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.1s ease-out;
 }
 
 .project-card::before {
@@ -191,8 +174,8 @@
   pointer-events: none;
 }
 
+/* Let the coverflow effect handle the main transforms, hover just adds a nice glow */
 .project-card:hover {
-  transform: translateY(-8px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04),
               0 12px 32px rgba(5, 99, 187, 0.1),
               0 24px 60px rgba(0, 0, 0, 0.06),
@@ -607,29 +590,4 @@
               inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-/* ===== Card entrance animations (AOS compatible) ===== */
-#projects .portfolio-item {
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
 
-/* ===== Feature #5: Staggered Card Entrance ===== */
-@keyframes cardSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(38px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Initial hidden state — applied to inner card so Isotope's .portfolio-item positioning is untouched */
-.project-card.stagger-card {
-  opacity: 0;
-}
-
-.project-card.stagger-card.stagger-ready {
-  animation: cardSlideUp 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: var(--stagger-delay, 0ms);
-}
