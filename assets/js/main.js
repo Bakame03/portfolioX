@@ -210,96 +210,29 @@
    * Projects section - Isotope masonry layout with show-more
    */
   window.addEventListener('load', () => {
-    let projectsContainer = select('#projects .portfolio-container');
-    if (projectsContainer) {
-      let projectsIsotope = new Isotope(projectsContainer, {
-        itemSelector: '.portfolio-item',
-        layoutMode: 'masonry',
-        masonry: {
-          columnWidth: '.portfolio-sizer',
-          gutter: 0
+    let projectsSlider = select('.projects-slider');
+    if (projectsSlider) {
+      new Swiper('.projects-slider', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        initialSlide: 1, // Start on the second slide (often the main project)
+        coverflowEffect: {
+          rotate: 30, // Angle of rotation
+          stretch: -30, // Space between slides
+          depth: 250, // Depth perspective
+          modifier: 1, // Multiplier
+          slideShadows: true, // Show 3D shadows dropping off
         },
-        percentPosition: true,
-        transitionDuration: '0.6s',
-        filter: function(itemElem) {
-          return !itemElem.classList.contains('hidden-item');
-        }
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        keyboard: {
+          enabled: true,
+        },
       });
-
-      let projectFilters = select('#projects #portfolio-flters li', true);
-
-      on('click', '#projects #portfolio-flters li', function(e) {
-        e.preventDefault();
-        projectFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
-
-        let filterValue = this.getAttribute('data-filter');
-
-        if (filterValue === '*') {
-          projectsIsotope.arrange({ filter: function(itemElem) {
-            if (itemElem.classList.contains('hidden-item') && !itemElem.classList.contains('show-item')) {
-              return false;
-            }
-            return true;
-          }});
-        } else {
-          projectsIsotope.arrange({ filter: function(itemElem) {
-            let matchesFilter = itemElem.classList.contains(filterValue.replace('.', ''));
-            if (itemElem.classList.contains('hidden-item') && !itemElem.classList.contains('show-item')) {
-              return false;
-            }
-            return matchesFilter;
-          }});
-        }
-
-        projectsIsotope.on('arrangeComplete', function() {
-          AOS.refresh();
-        });
-      }, true);
-
-      let btnShowMore = select('#btnShowMore');
-      if (btnShowMore) {
-        let expanded = false;
-        btnShowMore.addEventListener('click', function() {
-          expanded = !expanded;
-          let hiddenItems = select('#projects .hidden-item', true);
-
-          hiddenItems.forEach(function(item) {
-            if (expanded) {
-              item.classList.add('show-item');
-            } else {
-              item.classList.remove('show-item');
-            }
-          });
-
-          this.classList.toggle('expanded', expanded);
-          this.querySelector('span').textContent = expanded ? 'Show Less' : 'View All Projects';
-
-          let activeFilter = select('#projects #portfolio-flters li.filter-active');
-          let filterValue = activeFilter ? activeFilter.getAttribute('data-filter') : '*';
-
-          if (filterValue === '*') {
-            projectsIsotope.arrange({ filter: function(itemElem) {
-              if (itemElem.classList.contains('hidden-item') && !itemElem.classList.contains('show-item')) {
-                return false;
-              }
-              return true;
-            }});
-          } else {
-            projectsIsotope.arrange({ filter: function(itemElem) {
-              let matchesFilter = itemElem.classList.contains(filterValue.replace('.', ''));
-              if (itemElem.classList.contains('hidden-item') && !itemElem.classList.contains('show-item')) {
-                return false;
-              }
-              return matchesFilter;
-            }});
-          }
-
-          AOS.refresh();
-        });
-      }
     }
   });
 
