@@ -75,10 +75,11 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center">
-    <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h2><strong>Aldo Alex NGANJI</strong></h2>
-      <p>I'm <span class="typed" data-typed-items="Back End Developer, Python Engineer, AI Enthusiast"></span></p>
-      <div class="social-links">
+    <!-- Removed data-aos from container to manually control the sequence -->
+    <div class="container hero-intro-container">
+      <h2 class="hero-intro-elem hero-name"><strong>Aldo Alex NGANJI</strong></h2>
+      <p class="hero-intro-elem hero-role">I'm <span class="typed" data-typed-items="Back End Developer, Python Engineer, AI Enthusiast"></span></p>
+      <div class="social-links hero-intro-elem hero-socials">
         <a href="https://x.com/bakame03" class="twitter" target="_blank"><i class="bi bi-twitter-x"></i></a>
         <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
         <a href="https://wa.me/+33758806942" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
@@ -1514,6 +1515,23 @@
       }, { threshold: 0.1 });
 
       observer.observe(container);
+    })();
+  </script>
+
+  <!-- ======= Page Load Intro Sequence (Feature #6) ======= -->
+  <script>
+    (function() {
+      // Create a small delay after load to trigger the sequence,
+      // aligning with when the preloader vanishes.
+      window.addEventListener('load', function() {
+        var preloaderDelay = 500; // Let the preloader fade out slightly
+        setTimeout(function() {
+          var container = document.querySelector('.hero-intro-container');
+          if (container) {
+            container.classList.add('hero-intro-ready');
+          }
+        }, preloaderDelay);
+      });
     })();
   </script>
 
