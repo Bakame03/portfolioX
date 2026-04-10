@@ -75,6 +75,15 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center">
+    
+    <!-- Feature #10: Fluid Distortion SVG Filter Definition -->
+    <svg style="width:0; height:0; position:absolute; z-index:-1;">
+      <filter id="liquidRipple" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" id="rippleNoise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" id="rippleDisplacement" />
+      </filter>
+    </svg>
+
     <!-- Removed data-aos from container to manually control the sequence -->
     <div class="container hero-intro-container">
       <h2 class="hero-intro-elem hero-name"><strong>Aldo Alex NGANJI</strong></h2>
@@ -1480,6 +1489,69 @@
         }
       }, 100); // 100ms
     });
+  </script>
+
+  <!-- ======= Fluid Image Distortion for Projects (Feature #10) ======= -->
+  <script>
+    (function() {
+      // Only enable on non-touch devices
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+      var filterTarget = document.getElementById('rippleDisplacement');
+      var baseFrequencyTarget = document.getElementById('rippleNoise');
+      if (!filterTarget || !baseFrequencyTarget) return;
+
+      var currentScale = 0;
+      var targetScale = 0;
+      var currentFreq = 0.015;
+      var reqFrame;
+
+      // Animate the SVG filter properties smoothly
+      function animateDistortion() {
+        // LERP for smooth spring-like acceleration/deceleration
+        currentScale += (targetScale - currentScale) * 0.1;
+        
+        // If we're hovering, add a slight noise shift to simulate moving water
+        if (targetScale > 0) {
+           currentFreq += 0.0005; 
+           if (currentFreq > 0.035) currentFreq = 0.015;
+           baseFrequencyTarget.setAttribute('baseFrequency', currentFreq);
+        }
+
+        filterTarget.setAttribute('scale', currentScale);
+        
+        // Keep animating while changing
+        if (Math.abs(targetScale - currentScale) > 0.5 || targetScale > 0) {
+          reqFrame = requestAnimationFrame(animateDistortion);
+        } else {
+          // Snap to 0 to prevent micro-calculations
+          filterTarget.setAttribute('scale', 0);
+        }
+      }
+
+      document.querySelectorAll('.project-card').forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+          // Apply filter dynamically to the image wrapping
+          var imgWrapper = this.querySelector('.project-card__image');
+          if (imgWrapper) {
+            imgWrapper.style.filter = "url(#liquidRipple)";
+          }
+          currentFreq = 0.015; // Reset frequency
+          targetScale = 85;    // Distort amount
+          cancelAnimationFrame(reqFrame);
+          animateDistortion();
+        });
+
+        card.addEventListener('mouseleave', function() {
+          targetScale = 0;
+          var imgWrapper = this.querySelector('.project-card__image');
+          // Wait for animation to finish before removing CSS filter entirely
+          setTimeout(function() {
+             if (imgWrapper && targetScale === 0) imgWrapper.style.filter = "none";
+          }, 400); 
+        });
+      });
+    })();
   </script>
 
   <!-- Chatbot --> 
