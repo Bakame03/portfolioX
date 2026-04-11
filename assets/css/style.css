@@ -690,6 +690,24 @@ section .container {
 }
 
 /*--------------------------------------------------------------
+# Velocity-Based Fluid Divider (Feature #14)
+--------------------------------------------------------------*/
+.fluid-divider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  transform: translateY(-90%); /* Pull it up specifically into the Hero section visually */
+  z-index: 10;
+  pointer-events: none;
+}
+
+.fluid-divider path {
+  transition: d 0.1s;
+}
+
+/*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
 .about .content h3 {
