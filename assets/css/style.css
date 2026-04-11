@@ -556,6 +556,12 @@ section {
   padding: 60px 0;
   overflow: hidden;
   background-color: var(--bg-color);
+  position: relative;
+}
+
+section .container {
+  position: relative;
+  z-index: 1; /* Content above kinetic text */
 }
 
 .section-title {
@@ -612,6 +618,25 @@ section {
 
 .section-title p {
   margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Kinetic Background Typography (Feature #11)
+--------------------------------------------------------------*/
+.kinetic-text {
+  position: absolute;
+  top: 15%;
+  left: -5%; /* Start slightly off-screen */
+  font-size: clamp(8rem, 15vw, 20rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--subtitle-color);
+  opacity: 0.05;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0; /* Place behind section content */
+  will-change: transform; /* Hinting for performance */
 }
 
 /*--------------------------------------------------------------
