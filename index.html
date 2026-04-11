@@ -103,6 +103,7 @@
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
+      <div class="kinetic-text" data-speed="0.2">ALDO ALEX NGANJI</div>
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>About</h2>
@@ -232,6 +233,7 @@
 
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills section-bg">
+      <div class="kinetic-text" data-speed="-0.15">ENGINEERING</div>
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -1609,6 +1611,38 @@
           setCounter('counter-repos', data.public_repos || 0);
         })
         .catch(function () {});
+    })();
+  </script>
+
+  <!-- ======= Kinetic Background Typography (Feature #11) ======= -->
+  <script>
+    (function() {
+      // Find all kinetic text elements
+      const kineticTexts = document.querySelectorAll('.kinetic-text');
+      if (kineticTexts.length === 0) return;
+
+      var ticking = false;
+
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            var scrollY = window.scrollY;
+            
+            kineticTexts.forEach(function(textEl) {
+              // Get the speed multiplier from the data-speed attribute
+              // Positive speed moves right, negative moves left
+              var speed = parseFloat(textEl.getAttribute('data-speed')) || 0.1;
+              var offset = scrollY * speed;
+              
+              // Apply horizontal translation
+              textEl.style.transform = 'translate3d(' + offset + 'px, 0, 0)';
+            });
+
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
     })();
   </script>
 
