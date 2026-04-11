@@ -640,6 +640,35 @@ section .container {
 }
 
 /*--------------------------------------------------------------
+# Flashlight Mask Reveal (Feature #12)
+--------------------------------------------------------------*/
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.flashlight-section {
+  position: relative;
+}
+
+.flashlight-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* Behind the main content, but shines through */
+  background: linear-gradient(45deg, #0563bb, #00FFCC, #FF0055, #0563bb);
+  background-size: 400% 400%;
+  animation: gradientFlow 10s ease infinite;
+  
+  /* Mask tracked dynamically by JS */
+  mask-image: radial-gradient(circle 250px at var(--mouse-x, -500px) var(--mouse-y, -500px), black 10%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle 250px at var(--mouse-x, -500px) var(--mouse-y, -500px), black 10%, transparent 80%);
+  
+  opacity: 0.15; /* Subtly illuminates the background */
+  pointer-events: none;
+}
+
+/*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
 .about .content h3 {
