@@ -100,6 +100,12 @@
   </section><!-- End Hero -->
 
   <main id="main">
+    
+    <!-- ======= Velocity-Based Fluid Divider (Feature #14) ======= -->
+    <svg class="fluid-divider" preserveAspectRatio="none" viewBox="0 0 100 100" width="100%" height="60px">
+      <!-- The 'd' attribute will be dynamically manipulated by JS -->
+      <path id="fluidPath" fill="var(--bg-color)" d="M0,100 L100,100 L100,50 Q50,50 0,50 Z" />
+    </svg>
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about flashlight-section">
@@ -1672,6 +1678,53 @@
           section.style.setProperty('--mouse-y', '-500px');
         });
       });
+    })();
+  </script>
+  <!-- ======= Velocity-Based Fluid Divider (Feature #14) ======= -->
+  <script>
+    (function() {
+      const path = document.getElementById('fluidPath');
+      if (!path) return;
+
+      let scrollY = window.scrollY;
+      let targetY = 50;
+      let currentY = 50;
+      let velocity = 0;
+
+      function render() {
+        // Calculate raw velocity
+        let deltaY = window.scrollY - scrollY;
+        scrollY = window.scrollY;
+
+        // Add velocity to the curve target
+        // Capped so it doesn't break entirely if scrolled too fast
+        velocity = Math.min(Math.max(deltaY * 0.8, -40), 40);
+        
+        // Target is neutral (50) plus the opposite velocity (stretching effect)
+        targetY = 50 + velocity;
+
+        // Spring physics interpolation
+        // currentY gracefully interpolates towards targetY
+        currentY += (targetY - currentY) * 0.1;
+
+        // Constantly pull target back to neutral 50
+        targetY += (50 - targetY) * 0.1;
+
+        // Apply to the SVG path
+        // M 0 100 -> Bottom left
+        // L 100 100 -> Bottom right
+        // L 100 50 -> Top right edge
+        // Q 50 currentY -> Quadratic curve control point in the center
+        // 0 50 -> Top left edge
+        if (path) {
+          path.setAttribute('d', `M0,100 L100,100 L100,50 Q50,${currentY} 0,50 Z`);
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      // Kick off the loop
+      requestAnimationFrame(render);
     })();
   </script>
 
