@@ -102,8 +102,9 @@
   <main id="main">
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <section id="about" class="about flashlight-section">
       <div class="kinetic-text" data-speed="0.2">ALDO ALEX NGANJI</div>
+      <div class="flashlight-layer"></div>
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>About</h2>
@@ -1642,6 +1643,34 @@
           });
           ticking = true;
         }
+      });
+    })();
+  </script>
+  <!-- ======= Flashlight Mask Reveal (Feature #12) ======= -->
+  <script>
+    (function() {
+      // Only enable on non-touch devices
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+      const flashlightSections = document.querySelectorAll('.flashlight-section');
+      
+      flashlightSections.forEach(function(section) {
+        section.addEventListener('mousemove', function(e) {
+          const rect = section.getBoundingClientRect();
+          // Calculate relative mouse position inside the section
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          // Update CSS custom properties for the mask-image position
+          section.style.setProperty('--mouse-x', x + 'px');
+          section.style.setProperty('--mouse-y', y + 'px');
+        });
+        
+        section.addEventListener('mouseleave', function() {
+          // Hide it off-screen when leaving
+          section.style.setProperty('--mouse-x', '-500px');
+          section.style.setProperty('--mouse-y', '-500px');
+        });
       });
     })();
   </script>
