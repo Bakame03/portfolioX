@@ -177,11 +177,11 @@
    * Hero type effect
    */
   const typed = select('.typed')
-  if (typed) {
-    let typed_strings = typed.getAttribute('data-typed-items')
-    typed_strings = typed_strings.split(',')
-    new Typed('.typed', {
-      strings: typed_strings,
+  let heroTyped;
+  const initHeroTyped = (strings) => {
+    if (heroTyped) heroTyped.destroy();
+    heroTyped = new Typed('.typed', {
+      strings: strings,
       loop: true,
       typeSpeed: 100,
       backSpeed: 50,
@@ -189,22 +189,27 @@
     });
   }
 
-  /**
-   * Skills animation
-   */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        });
-      }
-    })
+  if (typed) {
+    let typed_strings = typed.getAttribute('data-typed-items');
+    initHeroTyped(typed_strings.split(','));
   }
+
+  /**
+   * About Section - Languages type effect
+   */
+  const langTypedEl = select('.lang-typed');
+  let langTyped;
+  const initLangTyped = (strings) => {
+    if (langTyped) langTyped.destroy();
+    langTyped = new Typed('.lang-typed', {
+      strings: strings,
+      typeSpeed: 80,
+      backSpeed: 40,
+      backDelay: 2000,
+      loop: true
+    });
+  }
+
 
   /**
    * Projects section - Isotope masonry layout with show-more
@@ -240,17 +245,6 @@
     }
   });
 
-  /**
-   * CV section - basic Isotope (no masonry needed)
-   */
-  window.addEventListener('load', () => {
-    let cvContainer = select('#portfolio .portfolio-container');
-    if (cvContainer) {
-      new Isotope(cvContainer, {
-        itemSelector: '.portfolio-item'
-      });
-    }
-  });
 
   /**
    * Initiate portfolio lightbox 
@@ -358,6 +352,59 @@
       localStorage.setItem('theme', newTheme);
       updateGitHubCards(newTheme);
     });
+  }
+
+  /**
+   * Language Switcher
+   */
+  const langToggle = select('#lang-toggle');
+  
+  function updateLanguage(lang) {
+    if (!window.translations) return;
+    const dictionary = window.translations[lang];
+    if (!dictionary) return;
+
+    // Update all elements with data-i18n
+    select('[data-i18n]', true).forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const translation = dictionary[key];
+      if (translation) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = translation;
+        } else if (key === 'hero_roles') {
+          el.setAttribute('data-typed-items', translation);
+          initHeroTyped(translation.split(','));
+        } else if (key === 'about_languages_val') {
+          initLangTyped(translation.split(','));
+        } else {
+          el.innerHTML = translation;
+        }
+      }
+    });
+
+    // Update Toggle Button Text
+    if (langToggle) {
+      langToggle.innerText = lang.toUpperCase();
+    }
+
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
+  }
+
+  if (langToggle) {
+    const savedLang = localStorage.getItem('lang') || 'en';
+    updateLanguage(savedLang);
+
+    langToggle.addEventListener('click', () => {
+      const currentLang = localStorage.getItem('lang') || 'en';
+      const newLang = currentLang === 'en' ? 'fr' : 'en';
+      updateLanguage(newLang);
+    });
+  } else {
+    // If toggle not found (e.g. before it's injected), still try to init
+    const savedLang = localStorage.getItem('lang') || 'en';
+    // Small delay to ensure translations.js is loaded if script order is tricky
+    setTimeout(() => updateLanguage(savedLang), 100);
   }
 
   /**
