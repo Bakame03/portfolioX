@@ -49,10 +49,11 @@
   <div id="cursor-dot"></div>
   <div id="cursor-glow"></div>
 
-  <!-- ======= Theme Toggle ======= -->
+  <!-- ======= Theme & Lang Toggles ======= -->
   <div class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
     <i class="bi bi-moon-stars-fill"></i>
   </div>
+  <div class="lang-toggle" id="lang-toggle" title="Switch Language">EN</div>
 
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
@@ -61,13 +62,13 @@
 
     <nav id="navbar" class="navbar nav-menu">
       <ul>
-        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user-circle"></i> <span>About</span></a></li>
-        <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-card"></i> <span>Skills</span></a></li>
-        <li><a href="#resume" class="nav-link scrollto active"><i class="bx bx-file"></i> <span>Resume</span></a></li>
-        <li><a href="#projects" class="nav-link scrollto"><i class="bi bi-code"></i> <span>Projects</span></a></li>
-        <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
-        <li><a href="#thinking" class="nav-link scrollto"><i class="bi bi-pen"></i> <span>Testimonials</span></a></li>
-        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user-circle"></i> <span data-i18n="nav_about">About</span></a></li>
+        <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-card"></i> <span data-i18n="nav_skills">Skills</span></a></li>
+        <li><a href="#resume" class="nav-link scrollto active"><i class="bx bx-file"></i> <span data-i18n="nav_resume">Resume</span></a></li>
+        <li><a href="#projects" class="nav-link scrollto"><i class="bi bi-code"></i> <span data-i18n="nav_projects">Projects</span></a></li>
+        <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span data-i18n="nav_services">Services</span></a></li>
+        <li><a href="#thinking" class="nav-link scrollto"><i class="bi bi-pen"></i> <span data-i18n="nav_testimonials">Testimonials</span></a></li>
+        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span data-i18n="nav_contact">Contact</span></a></li>
       </ul>
     </nav><!-- .nav-menu -->
 
@@ -87,7 +88,7 @@
     <!-- Removed data-aos from container to manually control the sequence -->
     <div class="container hero-intro-container">
       <h2 class="hero-intro-elem hero-name glitch-hover"><strong>Aldo Alex NGANJI</strong></h2>
-      <p class="hero-intro-elem hero-role">I'm <span class="typed" data-typed-items="Back End Developer, Python Engineer, AI Enthusiast"></span></p>
+      <p class="hero-intro-elem hero-role"><span data-i18n="hero_iam">I'm</span> <span class="typed" data-i18n="hero_roles" data-typed-items="Back End Developer, Python Engineer, AI Enthusiast"></span></p>
       <div class="social-links hero-intro-elem hero-socials">
         <a href="https://x.com/bakame03" class="twitter" target="_blank"><i class="bi bi-twitter-x"></i></a>
         <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
@@ -113,8 +114,8 @@
       <div class="flashlight-layer"></div>
       <div class="container" data-aos="fade-up">
         <div class="section-title">
-          <h2>About</h2>
-          <p>
+          <h2 data-i18n="about_title">About</h2>
+          <p data-i18n="about_subtitle">
             I am passionate about building robust and scalable backend systems,
             and I am now expanding my horizons into Artificial Intelligence.
           </p>
@@ -125,8 +126,8 @@
             <img src="assets/img/aldo_alex_nganji.jpeg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <h3>Back End Developer | Python &amp; NestJS | AI Enthusiast</h3>
-            <p class="fst-italic"> 
+            <h3 data-i18n="about_bio_role">Back End Developer | Python &amp; NestJS | AI Enthusiast</h3>
+            <p class="fst-italic" data-i18n="about_bio_p1"> 
               Passionate about building robust and scalable backend systems. Currently studying Computer Science at 
               <span style="font-family: 'Raleway', sans-serif; color: #0563bb; font-weight: 600;">Aix-Marseille University</span>, 
               and a graduate of Université du Lac Tanganyika in Software Engineering.
@@ -140,32 +141,20 @@
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-globe"></i> <strong>Website:</strong> <a href="https://bakame03.github.io/Portfolio/"><span>My Website</span></a></li>
-                  <li><i class="bi bi-geo-alt"></i> <strong>City:</strong> <span>Arles, France</span></li>
-                  <li><i class="bi bi-translate"></i> <strong>Languages:</strong> <span class="lang-typed" style="color: var(--primary-color); font-weight: 500;"></span>
-                    <script>
-                      document.addEventListener('DOMContentLoaded', function () {
-                        new Typed('.lang-typed', {
-                          strings: ['Fran\u00e7ais', 'English', 'Kirundi'],
-                          typeSpeed: 70,
-                          backSpeed: 35,
-                          backDelay: 1800,
-                          loop: true
-                        });
-                      });
-                    </script>
-                  </li>
+                  <li><i class="bi bi-globe"></i> <strong data-i18n="about_website">Website:</strong> <a href="https://bakame03.github.io/Portfolio/"><span data-i18n="about_my_website">My Website</span></a></li>
+                  <li><i class="bi bi-geo-alt"></i> <strong data-i18n="about_city">City:</strong> <span data-i18n="about_city_val">Arles, France</span></li>
+                  <li><i class="bi bi-translate"></i> <strong data-i18n="about_languages">Languages:</strong> <span class="lang-typed" data-i18n="about_languages_val" style="color: var(--primary-color); font-weight: 500;"></span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-journal-check"></i> <strong>Degree:</strong> <span>Bachelor</span></li>
-                  <li><i class="bi bi-envelope-at"></i> <strong>Email:</strong> <span>nganjialdoalex@gmail.com</span></li>
-                  <li><i class="bi bi-people"></i> <strong>Available for:</strong> <span>Freelance / Internship / Apprenticeship</span></li>
+                  <li><i class="bi bi-journal-check"></i> <strong data-i18n="about_degree">Degree:</strong> <span data-i18n="about_degree_val">Bachelor</span></li>
+                  <li><i class="bi bi-envelope-at"></i> <strong data-i18n="about_email">Email:</strong> <span>nganjialdoalex@gmail.com</span></li>
+                  <li><i class="bi bi-people"></i> <strong data-i18n="about_available">Available for:</strong> <span data-i18n="about_available_val">Freelance / Internship / Apprenticeship</span></li>
                 </ul>
               </div>
             </div>
-            <p>
+            <p data-i18n="about_bio_p2">
               I started programming in 2020 with no idea what computer science truly was — I honestly thought 
               it was just Word, Excel, and PowerPoint. Coming from a scientific high school background where 
               I once dreamed of medical school, life had other plans. The moment I discovered real programming, 
@@ -178,7 +167,7 @@
             </p>
             <div class="mt-3">
               <a href="https://github.com/Bakame03" target="_blank" class="btn btn-outline-primary btn-sm me-2">
-                <i class="bi bi-github me-1"></i> View GitHub Activity
+                <i class="bi bi-github me-1"></i> <span data-i18n="about_btn_github">View GitHub Activity</span>
               </a>
             </div>
           </div>
@@ -193,8 +182,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Impact</h2>
-          <p>
+          <h2 data-i18n="impact_title">Impact</h2>
+          <p data-i18n="impact_subtitle">
             Key milestones from my coding journey and engineering work.
           </p>
          </div>
@@ -228,7 +217,7 @@
 
             <div class="text-center mt-5">
               <a href="https://github.com/Bakame03" target="_blank" class="btn-show-more">
-                View Full Profile <i class="bi bi-box-arrow-up-right ms-2"></i>
+                <span data-i18n="gh_view_profile">View Full Profile</span> <i class="bi bi-box-arrow-up-right ms-2"></i>
               </a>
             </div>
           </div>
@@ -244,15 +233,15 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Skills</h2>
-          <p>
+          <h2 data-i18n="skills_title">Skills</h2>
+          <p data-i18n="skills_subtitle">
             Core technologies I work with daily, from backend systems to the tools that power them.
           </p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="h5 mb-3" style="color: #0563bb; font-weight: 700; border-bottom: 2px solid #eef7ff; padding-bottom: 10px;">
+            <h3 class="h5 mb-3" style="color: #0563bb; font-weight: 700; border-bottom: 2px solid #eef7ff; padding-bottom: 10px;" data-i18n="skills_cat_prog">
               <i class="bi bi-code-square me-2"></i> Programming Languages
             </h3>
             <div class="d-flex flex-wrap gap-2">
@@ -265,7 +254,7 @@
           </div>
 
           <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="h5 mb-3" style="color: #0563bb; font-weight: 700; border-bottom: 2px solid #eef7ff; padding-bottom: 10px;">
+            <h3 class="h5 mb-3" style="color: #0563bb; font-weight: 700; border-bottom: 2px solid #eef7ff; padding-bottom: 10px;" data-i18n="skills_cat_backend">
               <i class="bi bi-server me-2"></i> Backend &amp; Frameworks
             </h3>
             <div class="d-flex flex-wrap gap-2">
@@ -277,14 +266,14 @@
           </div>
 
           <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-            <h3 class="h5 mb-3" style="color: #0563bb; font-weight: 700; border-bottom: 2px solid #eef7ff; padding-bottom: 10px;">
+            <h3 class="h5 mb-3" style="color: #0563bb; font-weight: 700; border-bottom: 2px solid #eef7ff; padding-bottom: 10px;" data-i18n="skills_cat_tools">
               <i class="bi bi-tools me-2"></i> Tools &amp; Learning
             </h3>
             <div class="d-flex flex-wrap gap-2">
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bx bxl-git me-1" style="color: #f05032;"></i> Git</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bx bxl-docker me-1" style="color: #2496ed;"></i> Docker</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bx bxl-tux me-1"></i> Linux</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-robot me-1" style="color: #ff9900;"></i> AI / ML <small class="text-muted">(learning)</small></span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-robot me-1" style="color: #ff9900;"></i> AI / ML <small class="text-muted" data-i18n="skills_learning">(learning)</small></span>
             </div>
           </div>
         </div>
@@ -298,8 +287,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Resume</h2>
-          <p>
+          <h2 data-i18n="resume_title">Resume</h2>
+          <p data-i18n="resume_subtitle">
             From discovering programming in <strong>2020</strong> to contributing as a
             <strong>Back End Developer at Asyst</strong>, and now expanding into
             <strong>Artificial Intelligence</strong> at Aix-Marseille University —
@@ -307,7 +296,7 @@
           </p>
           <div class="cv-downloads">
             <!-- CV Modal Trigger -->
-            <button onclick="openCvModal()" class="cv-badge cv-badge--primary glitch-hover" style="border:none; cursor:pointer;">
+            <button onclick="openCvModal()" class="cv-badge cv-badge--primary glitch-hover" style="border:none; cursor:pointer;" data-i18n="resume_view_cv">
               <i class="bi bi-file-earmark-text"></i> View CV
             </button>
           </div>
@@ -316,9 +305,9 @@
           <div id="cvModal" class="cv-modal" onclick="if(event.target===this){closeCvModal()}">
             <div class="cv-modal__inner">
               <div class="cv-modal__header">
-                <span><i class="bi bi-file-earmark-text me-2"></i>Curriculum Vitae — Aldo Alex NGANJI</span>
+                <span data-i18n="resume_cv_title"><i class="bi bi-file-earmark-text me-2"></i>Curriculum Vitae — Aldo Alex NGANJI</span>
                 <div class="d-flex gap-2 align-items-center">
-                  <a href="assets/img/portfolio/cv.pdf" download class="cv-modal__download" title="Download CV">
+                  <a href="assets/img/portfolio/cv.pdf" download class="cv-modal__download" title="Download CV" data-i18n="resume_download">
                     <i class="bi bi-download"></i> Download
                   </a>
                   <button class="cv-modal__close" onclick="closeCvModal()">&#x2715;</button>
@@ -383,30 +372,30 @@
 
         <div class="row">
           <div class="col-lg-6">
-            <h3 class="resume-title">Summary</h3>
+            <h3 class="resume-title" data-i18n="resume_sec_summary">Summary</h3>
             <div class="resume-item pb-0">
               <h4>Aldo Alex NGANJI</h4>
               <p>
-                <em>
+                <em data-i18n="about_bio_role">
                   <strong>Back End Developer</strong> skilled in Python and NestJS, expanding into Artificial Intelligence.
                   Graduate of Université du Lac Tanganyika in Software Engineering, currently studying Computer Science
                   at Aix-Marseille University. Former Back End Developer at Asyst Resources LTD.
                 </em>
               </p>
               <ul>
-                <li>Arles, France</li>
+                <li data-i18n="about_city_val">Arles, France</li>
                 <li>+33 7 58 80 69 42</li>
                 <li>nganjialdoalex@gmail.com</li>
               </ul>
             </div>
 
-            <h3 class="resume-title">Education</h3>
+            <h3 class="resume-title" data-i18n="resume_sec_education">Education</h3>
 
             <div class="resume-item">
-              <h4>Computer Science — BUT (B.U.T.) Informatique</h4>
+              <h4 data-i18n="resume_role_cs">Computer Science — BUT (B.U.T.) Informatique</h4>
               <h5>Sept 2025 – Present</h5>
-              <p><em>Aix-Marseille Université — IUT d'Arles, France</em></p>
-              <p>
+              <p><em data-i18n="resume_role_cs_loc">Aix-Marseille Université — IUT d'Arles, France</em></p>
+              <p data-i18n="resume_role_cs_desc">
                 Currently pursuing a B.U.T. (Bachelor Universitaire de Technologie) in Computer Science,
                 deepening expertise in algorithms, systems architecture, and Artificial Intelligence.
               </p>
@@ -420,8 +409,8 @@
                 <div class="but1-card but1-card--top">
                   <img src="assets/img/dossiers/but1_s1-1.png" alt="BUT1 Semester 1 Preview">
                   <div class="but1-card__label">
-                    <i class="bi bi-images me-1"></i> Semester 1 Results &nbsp;·&nbsp; 8 pages
-                    <br><small style="font-weight:400; opacity:0.85;">Click to view</small>
+                    <i class="bi bi-images me-1"></i> <span data-i18n="resume_s1_label">Semester 1 Results &nbsp;·&nbsp; 8 pages</span>
+                    <br><small style="font-weight:400; opacity:0.85;" data-i18n="resume_click_view">Click to view</small>
                   </div>
                 </div>
               </div>
@@ -430,7 +419,7 @@
               <div id="but1Modal" class="but1-modal" onclick="if(event.target===this){closeBut1Modal()}">
                 <div class="but1-modal__inner">
                   <div class="but1-modal__header">
-                    <span><i class="bi bi-bar-chart-line me-2"></i>BUT1 — Semestre 1 &nbsp;·&nbsp; 8 pages</span>
+                    <span data-i18n="resume_s1_label"><i class="bi bi-bar-chart-line me-2"></i>BUT1 — Semestre 1 &nbsp;·&nbsp; 8 pages</span>
                     <button class="but1-modal__close" onclick="closeBut1Modal()">&#x2715;</button>
                   </div>
                   <div class="but1-modal__pages">
@@ -562,54 +551,54 @@
             </div>
 
             <div class="resume-item">
-              <h4>Bachelor in Software Engineering</h4>
+              <h4 data-i18n="resume_role_bachelor">Bachelor in Software Engineering</h4>
               <h5>2020 – 2024</h5>
-              <p><em>Université du Lac Tanganyika, Bujumbura, Burundi</em></p>
-              <p>
+              <p><em data-i18n="resume_role_bachelor_loc">Université du Lac Tanganyika, Bujumbura, Burundi</em></p>
+              <p data-i18n="resume_role_bachelor_desc">
                 Graduated with a degree equivalent to <strong>Licence +3</strong> (recognized in France).
                 Focused on software development, backend systems, databases, and software architecture.
               </p>
             </div>
 
             <div class="resume-item">
-              <h4>Baccalauréat Scientifique B</h4>
+              <h4 data-i18n="resume_role_highschool">Baccalauréat Scientifique B</h4>
               <h5>2017 – 2020</h5>
-              <p><em>Lycée Clarté Notre Dame de Vugizo, Bujumbura, Burundi</em></p>
-              <p>
+              <p><em data-i18n="resume_role_highschool_loc">Lycée Clarté Notre Dame de Vugizo, Bujumbura, Burundi</em></p>
+              <p data-i18n="resume_role_highschool_desc">
                 Major: <strong>Maths, Biologie, Chimie &amp; Sciences de la Terre</strong>.
                 Graduated with <strong>Mention : Fruit</strong>.
               </p>
             </div>
 
-            <h3 class="resume-title">🏆 Prizes &amp; Achievements</h3>
+            <h3 class="resume-title" data-i18n="resume_sec_prizes">🏆 Prizes &amp; Achievements</h3>
 
             <div class="resume-item resume-item--highlight">
 
               <!-- Header row -->
               <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
-                <h4 style="margin:0;">DevArt 2026 — Prix du Jury 🥇</h4>
+                <h4 style="margin:0;" data-i18n="resume_prize_devart_title">DevArt 2026 — Prix du Jury 🥇</h4>
                 <span style="background:#f7b731; color:#333; font-weight:700; font-size:11px; padding:4px 10px; border-radius:20px; white-space:nowrap;">
                   1st Place · Feb 12–13, 2026
                 </span>
               </div>
-              <h5>IUT d'Arles, Aix-Marseille Université — 32h Hackathon</h5>
+              <h5 data-i18n="resume_prize_devart_subtitle">IUT d'Arles, Aix-Marseille Université — 32h Hackathon</h5>
 
               <!-- Team -->
               <p style="margin-bottom:8px;">
-                <strong>Team Nebula</strong> &nbsp;·&nbsp; 4 members:
-                <em>Mamadou Bailo BARRY, Aminata Sita CAMARA, Aldo Alex NGANJI, Djawad TOURE ISSAHOU</em>
+                <strong data-i18n="resume_prize_devart_team">Team Nebula &nbsp;·&nbsp; 4 members:</strong>
+                <em data-i18n="resume_prize_devart_members">Mamadou Bailo BARRY, Aminata Sita CAMARA, Aldo Alex NGANJI, Djawad TOURE ISSAHOU</em>
                 <span style="font-size:11px; opacity: 0.7;"> — BUT Informatique, 1ère année</span>
               </p>
 
               <!-- Project description -->
-              <p style="margin-bottom: 6px;">
+              <p style="margin-bottom: 6px;" data-i18n="resume_prize_devart_p1">
                 Theme: <strong>"L'Écho"</strong>. We built an AI interface that creates a direct echo between
                 digital usage and natural resource consumption. The more complex the user's request,
                 the more the interface triggers <strong>visual and sound alerts</strong> simulating
                 deforestation and water consumption from server cooling — turning abstract data into
                 a concrete, militant emotional experience.
               </p>
-              <p class="mb-2">
+              <p class="mb-2" data-i18n="resume_prize_devart_p2">
                 <i class="bi bi-people-fill me-1"></i> 10 teams competed · 32h non-stop ·
                 Jury composed of local industry professionals
               </p>
@@ -621,8 +610,8 @@
                 <div class="devart-card devart-card--top">
                   <img src="assets/img/devart/a.jpg" alt="DevArt 2026 Preview">
                   <div class="devart-card__label">
-                    <i class="bi bi-camera me-1"></i> Hackathon Photos &nbsp;·&nbsp; 10 shots
-                    <br><small style="font-weight:400; opacity:0.85;">Click to view</small>
+                    <i class="bi bi-camera me-1"></i> <span data-i18n="resume_hackathon_photos">Hackathon Photos &nbsp;·&nbsp; 10 shots</span>
+                    <br><small style="font-weight:400; opacity:0.85;" data-i18n="resume_click_view">Click to view</small>
                   </div>
                 </div>
               </div>
@@ -631,7 +620,7 @@
               <div class="devart-modal" id="devartModal" onclick="if(event.target===this){closeDevartModal()}">
                 <div class="devart-modal__inner">
                   <div class="devart-modal__header">
-                    <span><i class="bi bi-trophy me-2" style="color:#f7b731;"></i>DevArt 2026 — Prix du Jury · 10 photos</span>
+                    <span data-i18n="resume_hackathon_photos"><i class="bi bi-trophy me-2" style="color:#f7b731;"></i>DevArt 2026 — Prix du Jury · 10 photos</span>
                     <button class="devart-modal__close" onclick="closeDevartModal()">&#x2715;</button>
                   </div>
                   <div class="devart-modal__pages">
@@ -707,23 +696,23 @@
               </script>
             </div>
 
-            <h3 class="resume-title">Training &amp; Certifications</h3>
+            <h3 class="resume-title" data-i18n="resume_sec_training">Training &amp; Certifications</h3>
 
             <div class="resume-item">
-              <h4>Formation en Informatique — Niveau 2</h4>
+              <h4 data-i18n="resume_training_db">Formation en Informatique — Niveau 2</h4>
               <h5>2023</h5>
-              <p><em>Higher Life Foundation, Bujumbura, Burundi</em></p>
-              <p>
+              <p><em data-i18n="resume_training_db_loc">Higher Life Foundation, Bujumbura, Burundi</em></p>
+              <p data-i18n="resume_training_db_desc">
                 Système de gestion de base de données — <strong>Microsoft Access</strong>.
                 Obtained with <strong>Note : A+</strong>.
               </p>
             </div>
 
             <div class="resume-item">
-              <h4>Formation en Informatique — Niveau 1</h4>
+              <h4 data-i18n="resume_training_basic">Formation en Informatique — Niveau 1</h4>
               <h5>2022</h5>
-              <p><em>Higher Life Foundation, Bujumbura, Burundi</em></p>
-              <p>
+              <p><em data-i18n="resume_training_basic_loc">Higher Life Foundation, Bujumbura, Burundi</em></p>
+              <p data-i18n="resume_training_basic_desc">
                 Initiation en informatique — <strong>Microsoft Word, Excel, PowerPoint &amp; Internet</strong>.
                 Obtained with <strong>Note : A+</strong>.
               </p>
@@ -732,28 +721,28 @@
           </div>
 
           <div class="col-lg-6">
-            <h3 class="resume-title">Professional Experience</h3>
+            <h3 class="resume-title" data-i18n="resume_sec_exp">Professional Experience</h3>
 
             <div class="resume-item">
-              <h4>Back End Developer</h4>
+              <h4 data-i18n="resume_exp_backend_role">Back End Developer</h4>
               <h5>May 2025 – Aug 2025</h5>
-              <p><em><a href="#" target="_blank">Asyst Resources LTD</a> | Bujumbura, Burundi</em></p>
+              <p><em data-i18n="resume_exp_backend_loc">Asyst Resources LTD | Bujumbura, Burundi</em></p>
               <ul>
-                <li>Hired full-time following the internship to continue contributing to backend systems.</li>
-                <li>Designed and maintained REST APIs using <strong>NestJS</strong> and <strong>TypeScript</strong> for production-grade backend infrastructure.</li>
-                <li>Worked on scalable <strong>microservices</strong> and <strong>SaaS</strong> architecture patterns.</li>
-                <li>Collaborated on backend features used by real clients in production environments.</li>
+                <li data-i18n="resume_exp_backend_p1">Hired full-time following the internship to continue contributing to backend systems.</li>
+                <li data-i18n="resume_exp_backend_p2">Designed and maintained REST APIs using <strong>NestJS</strong> and <strong>TypeScript</strong> for production-grade backend infrastructure.</li>
+                <li data-i18n="resume_exp_backend_p3">Worked on scalable <strong>microservices</strong> and <strong>SaaS</strong> architecture patterns.</li>
+                <li data-i18n="resume_exp_backend_p4">Collaborated on backend features used by real clients in production environments.</li>
               </ul>
             </div>
 
             <div class="resume-item">
-              <h4>Back End Developer — Internship</h4>
+              <h4 data-i18n="resume_exp_intern_role">Back End Developer — Internship</h4>
               <h5>Feb 2025 – Apr 2025</h5>
-              <p><em><a href="#" target="_blank">Asyst Resources LTD</a> | Bujumbura, Burundi</em></p>
+              <p><em data-i18n="resume_exp_backend_loc">Asyst Resources LTD | Bujumbura, Burundi</em></p>
               <ul>
-                <li>Gained hands-on experience with modern backend development using <strong>NestJS</strong>, <strong>Python</strong>, and <strong>TypeScript</strong>.</li>
-                <li>Discovered and applied enterprise patterns including microservices and event-driven architecture.</li>
-                <li>Contributed to real-world backend projects in a professional team environment.</li>
+                <li data-i18n="resume_exp_intern_p1">Gained hands-on experience with modern backend development using <strong>NestJS</strong>, <strong>Python</strong>, and <strong>TypeScript</strong>.</li>
+                <li data-i18n="resume_exp_intern_p2">Discovered and applied enterprise patterns including microservices and event-driven architecture.</li>
+                <li data-i18n="resume_exp_intern_p3">Contributed to real-world backend projects in a professional team environment.</li>
               </ul>
             </div>
 
@@ -771,8 +760,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Projects</h2>
-          <p>
+          <h2 data-i18n="projects_title">Projects</h2>
+          <p data-i18n="projects_subtitle">
             Production systems, open-source infrastructure, and applied AI. Explore my engineering work below.
           </p>
         </div>
@@ -787,26 +776,20 @@
             <div class="project-card">
               <div class="project-card__image">
                 <img src="assets/img/portfolio/web/hypoxia.png" alt="HYPOXIA — L'Écho Numérique">
-                <span class="project-badge project-badge--flagship"><i class="bi bi-trophy"></i> Prix du Jury (DevArt)</span>
-                <span class="project-badge project-badge--status">Awarded</span>
-                <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/hypoxia.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="HYPOXIA — L'Écho Numérique"><i class="bx bx-fullscreen"></i></a>
-                </div>
+                <span class="project-badge project-badge--flagship" data-i18n="project_badge_flagship"><i class="bi bi-trophy"></i> Prix du Jury (DevArt)</span>
+                <span class="project-badge project-badge--status" data-i18n="project_badge_awarded">Awarded</span>
+...
               </div>
               <div class="project-card__body">
                 <span class="project-card__category">3D / Creative Web / AI Environment</span>
-                <h4 class="project-card__title">HYPOXIA — L'Écho Numérique</h4>
-                <p class="project-card__desc"><strong>Problem:</strong> The environmental cost of AI is invisible by design which creates a disconnection between digital action and physical outcome.<br>
+                <h4 class="project-card__title" data-i18n="project_hypoxia_title">HYPOXIA — L'Écho Numérique</h4>
+                <p class="project-card__desc" data-i18n="project_hypoxia_desc"><strong>Problem:</strong> The environmental cost of AI is invisible by design which creates a disconnection between digital action and physical outcome.<br>
                 <strong>Architecture:</strong> **Next.js 14** + **React Three Fiber**. Engineered with React Postprocessing shaders and **Zustand** for persistent environmental "scars".<br>
                 <strong>Outcome:</strong> Award-winning immersive experience where typing a prompt directly burns and suffocates the digital world in real-time.</p>
-                <div class="project-card__tags">
-                  <span class="tech-chip">Next.js</span>
-                  <span class="tech-chip">Three.js</span>
-                  <span class="tech-chip">WebGL</span>
-                </div>
+...
                 <div class="project-card__actions">
-                  <a href="https://nebula-gray-seven.vercel.app/" target="_blank" class="btn-action btn-action--demo glitch-hover"><i class="bx bx-play-circle"></i> Live Demo</a>
-                  <a href="https://github.com/Bakame03/Nebula_DevArt_2026_Project_-HYPOXIA-" target="_blank" class="btn-action btn-action--ghost glitch-hover"><i class="bx bx-code-alt"></i> Code</a>
+                  <a href="..." class="..." data-i18n="project_btn_demo"><i class="bx bx-play-circle"></i> Live Demo</a>
+                  <a href="..." class="..." data-i18n="project_btn_code"><i class="bx bx-code-alt"></i> Code</a>
                 </div>
               </div>
             </div>
@@ -948,8 +931,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Services</h2>
-          <p>
+          <h2 data-i18n="services_title">Services</h2>
+          <p data-i18n="services_subtitle">
             Crafting robust full-stack applications and creative digital experiences that bridge technical complexity with intuitive design.
           </p>
         </div>
@@ -959,39 +942,31 @@
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box iconbox-blue">
               <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
-                </svg>
+...
                 <i class="bi bi-code-slash"></i>
               </div>
-              <h4>Full-Stack Web Dev</h4>
-              <p>Architecting scalable solutions using PHP, Node.js, and Django, integrated with robust PostgreSQL databases.</p>
+              <h4 data-i18n="service_web_title">Full-Stack Web Dev</h4>
+              <p data-i18n="service_web_desc">Architecting scalable solutions using PHP, Node.js, and Django, integrated with robust PostgreSQL databases.</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box iconbox-orange">
               <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,582.0697525312426C382.5290701553225,586.8405444964366,449.9789794690241,525.3245884688669,502.5850820975895,461.55621195738473C556.606425686781,396.0723002908107,615.8543463187945,314.28637112970534,586.6730223649479,234.56875336149918C558.9533121215079,158.8439757836574,454.9685369536778,164.00468322053177,381.49747125262974,130.76875717737553C312.15926192815925,99.40240125094834,248.97055460311594,18.661163978235184,179.8680185752513,50.54337015887873C110.5421016452524,82.52863877960104,119.82277516462835,180.83849132639028,109.12597500060166,256.43424936330496C100.08760227029461,320.3096726198365,92.17705696193138,384.0621239912766,124.79988738764834,439.7174275375508C164.83382741302287,508.01625554203684,220.96474134820875,577.5009287672846,300,582.0697525312426"></path>
-                </svg>
+...
                 <i class="bi bi-brush"></i>
               </div>
-              <h4>UI/UX & Creative UI</h4>
-              <p>Designing immersive digital experiences with vanilla CSS, interactive animations, and a focus on visual excellence.</p>
+              <h4 data-i18n="service_ui_title">UI/UX &amp; Creative UI</h4>
+              <p data-i18n="service_ui_desc">Designing immersive digital experiences with vanilla CSS, interactive animations, and a focus on visual excellence.</p>
             </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+...
             <div class="icon-box iconbox-pink">
               <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
-                </svg>
+...
                 <i class="bi bi-gear-wide-connected"></i>
               </div>
-              <h4>API & Integrations</h4>
-              <p>Building unified ecosystems by integrating Stripe, Twilio, and Weather APIs for seamless user services.</p>
+              <h4 data-i18n="service_api_title">API &amp; Integrations</h4>
+              <p data-i18n="service_api_desc">Building unified ecosystems by integrating Stripe, Twilio, and Weather APIs for seamless user services.</p>
             </div>
           </div>
 
@@ -1004,7 +979,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Testimonials</h2>
+          <h2 data-i18n="testimonials_title">Testimonials</h2>
         </div>
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -1018,9 +993,9 @@
                 <h4>Software Engineer</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Aldo architected a critical microservices backend that cut our API response times significantly. 
+                  <span data-i18n="testimonial_1">Aldo architected a critical microservices backend that cut our API response times significantly. 
                   His ability to decompose complex problems into clean, scalable modules made him the go-to person 
-                  for our most technically challenging features.
+                  for our most technically challenging features.</span>
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -1034,9 +1009,9 @@
                 
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Aldo built the entire offline-sync engine for our web apps when connectivity 
+                  <span data-i18n="testimonial_2">Aldo built the entire offline-sync engine for our web apps when connectivity 
                   was unreliable. His persistence in solving edge cases around data conflicts 
-                  was remarkable. The feature became the most praised part of the product by our users.
+                  was remarkable. The feature became the most praised part of the product by our users.</span>
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -1049,10 +1024,10 @@
                 <h4>Web Developer</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Aldo mentored me through building my first full-stack project from scratch, 
+                  <span data-i18n="testimonial_3">Aldo mentored me through building my first full-stack project from scratch, 
                   from database schema design to deploying on a live server. His patient, 
                   hands-on guidance in both frontend and backend fundamentals accelerated my 
-                  growth as a developer more than any course could.
+                  growth as a developer more than any course could.</span>
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -1070,8 +1045,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Contact</h2>
-          <p>Open for collaborations on <strong>Full-Stack Web Development</strong>, <strong>UI/UX Design</strong>, and <strong>Creative Digital Ecosystems</strong>.</p>
+          <h2 data-i18n="contact_title">Contact</h2>
+          <p data-i18n="contact_subtitle">Open for collaborations on <strong>Full-Stack Web Development</strong>, <strong>UI/UX Design</strong>, and <strong>Creative Digital Ecosystems</strong>.</p>
         </div>
 
         <div class="row mt-1">
@@ -1080,19 +1055,19 @@
             <div class="info">
               <div class="address">
                 <a href="https://maps.app.goo.gl/BSvoa3FUnJphKDiu8"><i class="bi bi-geo-alt"></i></i></a>
-                <h4>Location:</h4>
-                <p>Arles, France</p>
+                <h4 data-i18n="contact_location">Location:</h4>
+                <p data-i18n="about_city_val">Arles, France</p>
               </div>
 
               <div class="email">
                 <a href="mailto:nganjialdoalex@gmail.com" class="google-plus"><i class="bi bi-envelope-at"></i></a>
-                <h4>Email:</h4>
+                <h4 data-i18n="contact_email">Email:</h4>
                 <p>nganjialdoalex@gmail.com</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
+                <h4 data-i18n="contact_call">Call:</h4>
                 <p>+33 7 58 80 69 42</p>
               </div>
               <iframe
@@ -1110,22 +1085,22 @@
             <form id="contactForm" action="https://formspree.io/f/mgopwjyq" method="POST" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-i18n="contact_name_placeholder" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-i18n="contact_email_placeholder" required>
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-i18n="contact_subject_placeholder" required>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" data-i18n="contact_message_placeholder" required></textarea>
               </div>
               <div class="my-3">
                 <div id="form-status"></div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" data-i18n="contact_btn_send">Send Message</button></div>
             </form>
 
             <script>
@@ -1173,8 +1148,8 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
-      <h3>Aldo Alex NGANJI</h3>
-      <p>
+      <h3 data-i18n="Aldo Alex NGANJI">Aldo Alex NGANJI</h3>
+      <p data-i18n="footer_quote">
         "Design is not just what it looks like and feels like. It's how it works."
       </p>
       <div class="social-links">
@@ -1187,7 +1162,7 @@
       <div class="copyright">
         &copy; <strong><span id="current_year"></span> Aldo Alex NGANJI</strong>.
       </div>
-      <div class="credits">
+      <div class="credits" data-i18n="footer_credits">
         Designed by Aldo Alex NGANJI - AKA Bakame03
       </div>
     </div>
@@ -1355,12 +1330,16 @@
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+
   <script src="assets/vendor/typed.js/typed.umd.js"></script>
   <!-- Vanta.js & Three.js Dependencies (Feature #9) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+  <!-- Translations Dictionary -->
+  <script src="assets/js/translations.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
