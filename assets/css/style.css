@@ -347,6 +347,13 @@ h6 {
     border-right: 1px solid var(--glass-border);
     left: -300px;
   }
+
+  /* Fix 1: Move hamburger to LEFT so it never overlaps the theme/lang toggles on the right */
+  .mobile-nav-toggle {
+    left: 15px;
+    right: auto;
+    top: 12px;
+  }
 }
 
 @media (min-width: 991px) {
@@ -1970,6 +1977,80 @@ section .container {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+/*--------------------------------------------------------------
+# Responsive Fixes — Mobile-First Audit (2026)
+--------------------------------------------------------------*/
+
+/* Fix 3 — Section padding too large on mobile */
+@media (max-width: 767px) {
+  section {
+    padding: 40px 0;
+  }
+}
+
+/* Fix 4 — Hero font sizes: add small-phone breakpoint */
+@media (max-width: 576px) {
+  #hero h1 {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  #hero p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+/* Fix 5 — Resume timeline left padding crushes content on mobile */
+@media (max-width: 767px) {
+  .resume .resume-item {
+    padding: 0 0 25px 18px;
+  }
+}
+
+/* Fix 6 — Back-to-top button too high on mobile (85px → 25px from bottom) */
+@media (max-width: 767px) {
+  .back-to-top {
+    bottom: 25px;
+  }
+}
+
+/* Fix 7 — Services icon box too large + excessive padding on mobile */
+@media (max-width: 767px) {
+  .services .icon-box {
+    padding: 40px 20px 50px 20px;
+  }
+
+  .services .icon-box .icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .services .icon-box .icon i {
+    font-size: 28px;
+  }
+}
+
+/* Fix 8 — CV modal max-width: prevent horizontal scroll on small phones */
+.cv-modal__inner {
+  max-width: min(900px, calc(100vw - 32px)) !important;
+}
+
+/* Fix 9 — Project card Swiper: add intermediate width for 480px–767px phones */
+@media (min-width: 480px) and (max-width: 767px) {
+  .projects-slider .swiper-slide {
+    width: 380px;
+  }
+}
+
+/* Fix 10 — Skills badges: tighter padding on very small screens */
+@media (max-width: 576px) {
+  .badge {
+    padding: 0.3rem 0.5rem !important;
+    font-size: 0.7rem !important;
+  }
 }
 
 
