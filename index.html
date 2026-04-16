@@ -1539,6 +1539,94 @@
       });
     })();
   </script>
+
+  <!-- ======= GSAP + ScrollTrigger CDN ======= -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- ======= GSAP Split Text — Section Title Reveal ======= -->
+  <script>
+    (function () {
+      gsap.registerPlugin(ScrollTrigger);
+
+      /* ── Split an h2's plain text into individual .char spans ─── */
+      function splitH2(h2) {
+        var raw = h2.textContent.trim();
+        h2.innerHTML = raw.split('').map(function (ch) {
+          return ch === ' '
+            ? '<span class="char char--space">&nbsp;</span>'
+            : '<span class="char">' + ch + '</span>';
+        }).join('');
+        h2.dataset.split = 'true';
+      }
+
+      /* ── Wire one h2 to a ScrollTrigger animation ─────────────── */
+      function animateTitle(h2) {
+        splitH2(h2);
+        gsap.from(h2.querySelectorAll('.char'), {
+          scrollTrigger: {
+            trigger: h2,
+            start: 'top 88%',
+            once: true
+          },
+          opacity: 0,
+          y: 55,
+          rotateX: -90,
+          transformOrigin: '50% 100% -20px',
+          stagger: 0.03,
+          duration: 0.65,
+          ease: 'back.out(1.7)'
+        });
+      }
+
+      /* ── Fade-up the subtitle paragraph ───────────────────────── */
+      function animateSubtitle(p) {
+        delete p.dataset.gsapDone;
+        gsap.from(p, {
+          scrollTrigger: {
+            trigger: p,
+            start: 'top 90%',
+            once: true
+          },
+          opacity: 0,
+          y: 22,
+          duration: 0.8,
+          ease: 'power3.out',
+          delay: 0.35
+        });
+        p.dataset.gsapDone = 'true';
+      }
+
+      /* ── Full init: split all titles + register animations ─────── */
+      function initTitles() {
+        document.querySelectorAll('.section-title h2').forEach(animateTitle);
+        document.querySelectorAll('.section-title p').forEach(animateSubtitle);
+      }
+
+      /* ── Boot after translations.js has applied its first pass ─── */
+      document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(initTitles, 160);
+
+        /* Re-init after language change — i18n rewrites innerHTML,
+           destroying .char spans, so we must re-split and re-animate */
+        var langBtn = document.getElementById('lang-toggle');
+        if (langBtn) {
+          langBtn.addEventListener('click', function () {
+            setTimeout(function () {
+              /* Kill any existing ScrollTriggers inside .section-title */
+              ScrollTrigger.getAll().forEach(function (st) {
+                if (st.trigger && st.trigger.closest && st.trigger.closest('.section-title')) {
+                  st.kill();
+                }
+              });
+              initTitles();
+            }, 90);
+          });
+        }
+      });
+    })();
+  </script>
+
   <!-- ======= Velocity-Based Fluid Divider (Feature #14) ======= -->
   <script>
     (function() {
