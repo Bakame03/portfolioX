@@ -626,4 +626,22 @@
               inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
+/* ===== VanillaTilt — Glare Layer ===== */
+/* VanillaTilt injects .js-tilt-glare > .js-tilt-glare-inner into the card.
+   overflow: hidden on .project-card already clips it to the card shape.
+   We just need the glare to be fully transparent to pointer events. */
+.project-card .js-tilt-glare {
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.project-card .js-tilt-glare-inner {
+  border-radius: inherit;
+}
+
+/* GPU hint — VanillaTilt manipulates transform on every mousemove */
+.project-card {
+  will-change: transform;
+}
+
 

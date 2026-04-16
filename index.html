@@ -1627,6 +1627,35 @@
     })();
   </script>
 
+  <!-- ======= VanillaTilt — 3D Card Tilt + Glare ======= -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script>
+    (function () {
+      function initTilt() {
+        var cards = document.querySelectorAll('.project-card');
+        if (!cards.length || typeof VanillaTilt === 'undefined') return;
+
+        VanillaTilt.init(cards, {
+          max:          10,       /* max tilt rotation in degrees */
+          speed:        500,      /* transition speed on mouse-leave */
+          perspective:  1200,     /* 3D depth — higher = subtler perspective */
+          glare:        true,     /* enable the shine reflection */
+          'max-glare':  0.15,     /* glare opacity cap (0–1); 0.15 = subtle */
+          gyroscope:    false,    /* off — Swiper handles mobile touch */
+          scale:        1.02,     /* slight zoom on hover */
+          reset:        true      /* smoothly reset on mouse-leave */
+        });
+      }
+
+      /* Run after Swiper has initialised the slides */
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTilt);
+      } else {
+        initTilt();
+      }
+    })();
+  </script>
+
   <!-- ======= Velocity-Based Fluid Divider (Feature #14) ======= -->
   <script>
     (function() {
