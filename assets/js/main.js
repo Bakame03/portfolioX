@@ -123,6 +123,22 @@
       toggleIcon();
     });
     window.addEventListener('resize', toggleIcon);
+
+    // Explicit scroll handler — a bare href="#" doesn't re-scroll once the URL
+    // already ends in "#", so the button silently stopped working. This always
+    // scrolls reliably, keeps the mobile dual behaviour (down-to-About when at
+    // the top, up-to-top when scrolled), and honours reduced-motion.
+    backtotop.addEventListener('click', (e) => {
+      e.preventDefault();
+      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+      const goDownToAbout = window.innerWidth <= 768 && window.scrollY <= 100;
+      const about = document.querySelector('#about');
+      if (goDownToAbout && about) {
+        window.scrollTo({ top: about.offsetTop, behavior });
+      } else {
+        window.scrollTo({ top: 0, behavior });
+      }
+    });
   }
 
   /**
