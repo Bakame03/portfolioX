@@ -81,7 +81,7 @@
   <section id="hero" class="d-flex flex-column justify-content-center">
     
     <!-- Feature #10: Fluid Distortion SVG Filter Definition -->
-    <svg style="width:0; height:0; position:absolute; z-index:-1;">
+    <svg class="svg-defs">
       <filter id="liquidRipple" color-interpolation-filters="sRGB">
         <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" id="rippleNoise"/>
         <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" id="rippleDisplacement" />
@@ -135,13 +135,13 @@
             <h3 data-i18n="about_bio_role">Back End Developer | Python &amp; NestJS | AI Enthusiast</h3>
             <p class="fst-italic" data-i18n="about_bio_p1"> 
               Passionate about building robust and scalable backend systems. Currently studying Computer Science at 
-              <span style="font-family: 'Poppins', sans-serif; color: #0563bb; font-weight: 600;">Aix-Marseille University</span>, 
+              <span class="text-accent">Aix-Marseille University</span>, 
               and a graduate of Université du Lac Tanganyika in Software Engineering.
               Recently contributed as a Back End Developer at 
-              <strong><a href="https://asyst.io" target="_blank" style="color: var(--primary-color);">Asyst Resources LTD</a></strong>, 
+              <strong><a href="https://asyst.io" target="_blank" rel="noopener" class="link-accent">Asyst Resources LTD</a></strong>, 
               working with NestJS, Python, and modern backend architectures. 
               Now expanding into 
-              <span style="font-family: 'Poppins', sans-serif; color: #0563bb; font-weight: 600;">Artificial Intelligence</span> 
+              <span class="text-accent">Artificial Intelligence</span> 
               to build smarter, more impactful systems.
             </p>
             <div class="row">
@@ -149,7 +149,7 @@
                 <ul>
                   <li><i class="bi bi-globe"></i> <strong data-i18n="about_website">Website:</strong> <a href="https://bakame03.github.io/portfolioX/"><span data-i18n="about_my_website">My Website</span></a></li>
                   <li><i class="bi bi-geo-alt"></i> <strong data-i18n="about_city">City:</strong> <span data-i18n="about_city_val">Arles, France</span></li>
-                  <li><i class="bi bi-translate"></i> <strong data-i18n="about_languages">Languages:</strong> <span class="lang-typed" data-i18n="about_languages_val" style="color: var(--primary-color); font-weight: 500;"></span></li>
+                  <li><i class="bi bi-translate"></i> <strong data-i18n="about_languages">Languages:</strong> <span class="lang-typed lang-typed-val" data-i18n="about_languages_val"></span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
@@ -247,39 +247,39 @@
 
         <div class="row">
           <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="h5 mb-3" style="color: #0563bb; font-weight: 700; border-bottom: 2px solid #eef7ff; padding-bottom: 10px;" data-i18n="skills_cat_prog">
+            <h3 class="h5 mb-3 skills-cat-title" data-i18n="skills_cat_prog">
               <i class="bi bi-code-square me-2"></i> Programming Languages
             </h3>
             <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-py me-1" style="color: #3776ab;"></i> Python</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-tsx me-1" style="color: #3178c6;"></i> TypeScript</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1" style="color: #00599C;"></i> C</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1" style="color: #f34b7d;"></i> C++</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-html me-1" style="color: #e34f26;"></i> HTML / CSS</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-py me-1 ic-python"></i> Python</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-tsx me-1 ic-typescript"></i> TypeScript</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1 ic-c"></i> C</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1 ic-cpp"></i> C++</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-html me-1 ic-html"></i> HTML / CSS</span>
             </div>
           </div>
 
           <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="h5 mb-3" style="color: #0563bb; font-weight: 700; border-bottom: 2px solid #eef7ff; padding-bottom: 10px;" data-i18n="skills_cat_backend">
+            <h3 class="h5 mb-3 skills-cat-title" data-i18n="skills_cat_backend">
               <i class="bi bi-server me-2"></i> Backend &amp; Frameworks
             </h3>
             <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hexagon-fill me-1" style="color: #e0234e;"></i> NestJS</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-database me-1" style="color: #336791;"></i> SQL</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-shuffle me-1" style="color: #FF6600;"></i> REST APIs</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hdd-network me-1" style="color: #333;"></i> Microservices</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hexagon-fill me-1 ic-nestjs"></i> NestJS</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-database me-1 ic-sql"></i> SQL</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-shuffle me-1 ic-rest"></i> REST APIs</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hdd-network me-1 ic-micro"></i> Microservices</span>
             </div>
           </div>
 
           <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-            <h3 class="h5 mb-3" style="color: #0563bb; font-weight: 700; border-bottom: 2px solid #eef7ff; padding-bottom: 10px;" data-i18n="skills_cat_tools">
+            <h3 class="h5 mb-3 skills-cat-title" data-i18n="skills_cat_tools">
               <i class="bi bi-tools me-2"></i> Tools &amp; Learning
             </h3>
             <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-git me-1" style="color: #f05032;"></i> Git</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-box-seam me-1" style="color: #2496ed;"></i> Docker</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-git me-1 ic-git"></i> Git</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-box-seam me-1 ic-docker"></i> Docker</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-terminal me-1"></i> Linux</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-robot me-1" style="color: #ff9900;"></i> AI / ML <small class="text-muted" data-i18n="skills_learning">(learning)</small></span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-robot me-1 ic-aiml"></i> AI / ML <small class="text-muted" data-i18n="skills_learning">(learning)</small></span>
             </div>
           </div>
         </div>
@@ -302,78 +302,26 @@
           </p>
           <div class="cv-downloads">
             <!-- CV Modal Trigger -->
-            <button onclick="openCvModal()" class="cv-badge cv-badge--primary glitch-hover" style="border:none; cursor:pointer;" data-i18n="resume_view_cv">
+            <button type="button" data-modal-open="#cvModal" class="cv-badge cv-badge--primary glitch-hover" data-i18n="resume_view_cv">
               <i class="bi bi-file-earmark-text"></i> View CV
             </button>
           </div>
 
-          <!-- ===== CV PDF Modal ===== -->
-          <div id="cvModal" class="cv-modal" onclick="if(event.target===this){closeCvModal()}">
-            <div class="cv-modal__inner">
-              <div class="cv-modal__header">
+          <!-- ===== CV PDF Modal (reusable .modal-lite component) ===== -->
+          <div id="cvModal" class="modal-lite modal-lite--doc" role="dialog" aria-modal="true" aria-label="Curriculum Vitae">
+            <div class="modal-lite__inner">
+              <div class="modal-lite__header">
                 <span data-i18n="resume_cv_title"><i class="bi bi-file-earmark-text me-2"></i>Curriculum Vitae — Aldo Alex NGANJI</span>
                 <div class="d-flex gap-2 align-items-center">
-                  <a href="assets/img/portfolio/cv.pdf" download class="cv-modal__download" title="Download CV" data-i18n="resume_download">
+                  <a href="assets/img/portfolio/cv.pdf" download class="modal-lite__download" title="Download CV" data-i18n="resume_download">
                     <i class="bi bi-download"></i> Download
                   </a>
-                  <button class="cv-modal__close" onclick="closeCvModal()">&#x2715;</button>
+                  <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                 </div>
               </div>
-              <iframe src="assets/img/portfolio/cv.pdf" class="cv-modal__frame" title="CV Aldo Alex NGANJI"></iframe>
+              <iframe src="assets/img/portfolio/cv.pdf" class="modal-lite__frame" title="CV Aldo Alex NGANJI" loading="lazy"></iframe>
             </div>
           </div>
-
-          <style>
-            .cv-modal {
-              display: none; position: fixed; inset: 0;
-              background: rgba(0,0,0,0.88); z-index: 9999;
-              padding: 24px 16px; box-sizing: border-box;
-            }
-            .cv-modal__inner {
-              background: #1e1e2e; border-radius: 12px;
-              max-width: 900px; height: 100%; margin: 0 auto;
-              display: flex; flex-direction: column; overflow: hidden;
-              box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            }
-            .cv-modal__header {
-              display: flex; justify-content: space-between; align-items: center;
-              padding: 14px 20px; background: var(--section-bg);
-              color: var(--text-color); font-size: 14px; font-weight: 600;
-              border-bottom: 1px solid var(--glass-border);
-              flex-shrink: 0;
-            }
-            .cv-modal__download {
-              background: #0563bb; color: #fff; border: none;
-              border-radius: 6px; padding: 6px 14px; font-size: 13px;
-              font-weight: 600; cursor: pointer; text-decoration: none;
-              transition: background 0.2s;
-            }
-            .cv-modal__download:hover { background: #0452a0; color:#fff; }
-            .cv-modal__close {
-              background: transparent; border: 2px solid rgba(255,255,255,0.4);
-              color: #fff; border-radius: 50%; width: 34px; height: 34px;
-              font-size: 15px; cursor: pointer; transition: background 0.2s;
-              flex-shrink: 0;
-            }
-            .cv-modal__close:hover { background: rgba(255,255,255,0.12); }
-            .cv-modal__frame {
-              flex: 1; width: 100%; border: none; background: #fff;
-            }
-          </style>
-
-          <script>
-            function openCvModal() {
-              document.getElementById('cvModal').style.display = 'block';
-              document.body.style.overflow = 'hidden';
-            }
-            function closeCvModal() {
-              document.getElementById('cvModal').style.display = 'none';
-              document.body.style.overflow = '';
-            }
-            document.addEventListener('keydown', function(e) {
-              if (e.key === 'Escape') closeCvModal();
-            });
-          </script>
         </div>
 
         <div class="row">
@@ -406,30 +354,30 @@
                 deepening expertise in algorithms, systems architecture, and Artificial Intelligence.
               </p>
 
-              <!-- ===== BUT1 Stacked Photo Preview ===== -->
-              <div class="but1-stack-wrapper" id="but1StackTrigger" title="Click to view my Semester 1 results">
+              <!-- ===== BUT1 Stacked Photo Preview (reusable .stack-wrapper) ===== -->
+              <button type="button" class="stack-wrapper" data-modal-open="#but1Modal" aria-label="View my BUT1 Semester 1 results (8 pages)">
                 <!-- Back shadow cards (for depth effect) -->
-                <div class="but1-card but1-card--back2"></div>
-                <div class="but1-card but1-card--back1"></div>
+                <span class="stack-card stack-card--back2"></span>
+                <span class="stack-card stack-card--back1"></span>
                 <!-- Top card with real preview image -->
-                <div class="but1-card but1-card--top">
+                <span class="stack-card stack-card--top">
                   <img src="assets/img/dossiers/but1_s1-1.webp" alt="Preview of BUT1 Semester 1 results" width="200" height="148" loading="lazy">
-                  <div class="but1-card__label">
+                  <span class="stack-card__label">
                     <i class="bi bi-images me-1"></i> <span data-i18n="resume_s1_label">Semester 1 Results &nbsp;·&nbsp; 8 pages</span>
-                    <br><small style="font-weight:400; opacity:0.85;" data-i18n="resume_click_view">Click to view</small>
-                  </div>
-                </div>
-              </div>
+                    <br><small data-i18n="resume_click_view">Click to view</small>
+                  </span>
+                </span>
+              </button>
 
               <!-- ===== BUT1 Full-Screen Scrollable Modal ===== -->
-              <div id="but1Modal" class="but1-modal" onclick="if(event.target===this){closeBut1Modal()}">
-                <div class="but1-modal__inner">
-                  <div class="but1-modal__header">
+              <div id="but1Modal" class="modal-lite" role="dialog" aria-modal="true" aria-label="BUT1 Semester 1 results">
+                <div class="modal-lite__inner">
+                  <div class="modal-lite__header">
                     <span data-i18n="resume_s1_label"><i class="bi bi-bar-chart-line me-2"></i>BUT1 — Semestre 1 &nbsp;·&nbsp; 8 pages</span>
-                    <button class="but1-modal__close" onclick="closeBut1Modal()">&#x2715;</button>
+                    <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
-                  <div class="but1-modal__pages">
-                    <img src="assets/img/dossiers/but1_s1-1.png" alt="Page 1">
+                  <div class="modal-lite__pages">
+                    <img src="assets/img/dossiers/but1_s1-1.png" alt="Page 1" loading="lazy">
                     <img src="assets/img/dossiers/but1_s1-2.png" alt="Page 2" loading="lazy">
                     <img src="assets/img/dossiers/but1_s1-3.png" alt="Page 3" loading="lazy">
                     <img src="assets/img/dossiers/but1_s1-4.png" alt="Page 4" loading="lazy">
@@ -440,120 +388,6 @@
                   </div>
                 </div>
               </div>
-
-              <style>
-                /* ---- Stack wrapper ---- */
-                .but1-stack-wrapper {
-                  position: relative;
-                  width: 220px;
-                  height: 165px;
-                  margin: 14px 0 28px 0;
-                  cursor: pointer;
-                  transition: transform 0.2s;
-                }
-                .but1-stack-wrapper:hover { transform: scale(1.03); }
-
-                /* ---- Back cards (depth visual) ---- */
-                .but1-card {
-                  position: absolute;
-                  width: 200px;
-                  height: 148px;
-                  border-radius: 7px;
-                  box-shadow: 0 3px 10px rgba(0,0,0,0.18);
-                }
-                .but1-card--back2 {
-                  background: var(--card-border);
-                  transform: rotate(-5deg);
-                  top: 12px; left: 14px;
-                }
-                .but1-card--back1 {
-                  background: var(--card-border);
-                  transform: rotate(-2.5deg);
-                  top: 6px; left: 7px;
-                }
-
-                /* ---- Top card (preview image) ---- */
-                .but1-card--top {
-                  overflow: hidden;
-                  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-                  top: 0; left: 0;
-                }
-                .but1-card--top img {
-                  width: 100%; height: 100%;
-                  object-fit: cover;
-                  display: block;
-                }
-                .but1-card__label {
-                  position: absolute;
-                  bottom: 0; left: 0; right: 0;
-                  background: var(--primary-color);
-                  opacity: 0.9;
-                  color: #fff;
-                  text-align: center;
-                  padding: 7px 6px 6px;
-                  font-size: 12px;
-                  font-weight: 600;
-                  line-height: 1.4;
-                }
-
-                /* ---- Modal overlay ---- */
-                .but1-modal {
-                  display: none;
-                  position: fixed;
-                  inset: 0;
-                  background: rgba(0,0,0,0.9);
-                  z-index: 9999;
-                  overflow-y: auto;
-                  padding: 30px 16px 60px;
-                  backdrop-filter: blur(10px);
-                }
-                .but1-modal__inner {
-                  max-width: 780px;
-                  margin: 0 auto;
-                }
-                .but1-modal__header {
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  color: #fff;
-                  font-size: 15px;
-                  font-weight: 600;
-                  margin-bottom: 20px;
-                }
-                .but1-modal__close {
-                  background: transparent;
-                  border: 2px solid rgba(255,255,255,0.5);
-                  color: #fff;
-                  border-radius: 50%;
-                  width: 36px; height: 36px;
-                  font-size: 16px;
-                  cursor: pointer;
-                  transition: background 0.2s;
-                }
-                .but1-modal__close:hover { background: rgba(255,255,255,0.15); }
-                .but1-modal__pages img {
-                  width: 100%;
-                  border-radius: 8px;
-                  margin-bottom: 18px;
-                  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
-                  display: block;
-                }
-              </style>
-
-              <script>
-                document.getElementById('but1StackTrigger').addEventListener('click', function () {
-                  var modal = document.getElementById('but1Modal');
-                  modal.style.display = 'block';
-                  document.body.style.overflow = 'hidden';
-                });
-                function closeBut1Modal() {
-                  document.getElementById('but1Modal').style.display = 'none';
-                  document.body.style.overflow = '';
-                }
-                document.addEventListener('keydown', function(e) {
-                  if (e.key === 'Escape') closeBut1Modal();
-                });
-              </script>
             </div>
 
             <div class="resume-item">
@@ -582,22 +416,22 @@
 
               <!-- Header row -->
               <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
-                <h4 style="margin:0;" data-i18n="resume_prize_devart_title">DevArt 2026 — Prix du Jury 🥇</h4>
-                <span style="background:#f7b731; color:#333; font-weight:700; font-size:11px; padding:4px 10px; border-radius:20px; white-space:nowrap;">
+                <h4 class="prize-header" data-i18n="resume_prize_devart_title">DevArt 2026 — Prix du Jury 🥇</h4>
+                <span class="prize-pill">
                   1st Place · Feb 12–13, 2026
                 </span>
               </div>
               <h5 data-i18n="resume_prize_devart_subtitle">IUT d'Arles, Aix-Marseille Université — 32h Hackathon</h5>
 
               <!-- Team -->
-              <p style="margin-bottom:8px;">
+              <p class="prize-team">
                 <strong data-i18n="resume_prize_devart_team">Team Nebula &nbsp;·&nbsp; 4 members:</strong>
                 <em data-i18n="resume_prize_devart_members">Mamadou Bailo BARRY, Aminata Sita CAMARA, Aldo Alex NGANJI, Djawad TOURE ISSAHOU</em>
-                <span style="font-size:11px; opacity: 0.7;"> — BUT Informatique, 1ère année</span>
+                <span class="prize-team-note"> — BUT Informatique, 1ère année</span>
               </p>
 
               <!-- Project description -->
-              <p style="margin-bottom: 6px;" data-i18n="resume_prize_devart_p1">
+              <p class="prize-desc" data-i18n="resume_prize_devart_p1">
                 Theme: <strong>"L'Écho"</strong>. We built an AI interface that creates a direct echo between
                 digital usage and natural resource consumption. The more complex the user's request,
                 the more the interface triggers <strong>visual and sound alerts</strong> simulating
@@ -609,27 +443,27 @@
                 Jury composed of local industry professionals
               </p>
 
-              <!-- Stacked photo preview -->
-              <div class="devart-stack-wrapper" id="devartStackTrigger" title="Click to view hackathon photos">
-                <div class="devart-card devart-card--back2"></div>
-                <div class="devart-card devart-card--back1"></div>
-                <div class="devart-card devart-card--top">
+              <!-- Stacked photo preview (reusable .stack-wrapper) -->
+              <button type="button" class="stack-wrapper" data-modal-open="#devartModal" aria-label="View DevArt 2026 hackathon photos (10 shots)">
+                <span class="stack-card stack-card--back2"></span>
+                <span class="stack-card stack-card--back1"></span>
+                <span class="stack-card stack-card--top">
                   <img src="assets/img/devart/a.webp" alt="DevArt 2026 hackathon — Team Nebula" width="200" height="148" loading="lazy">
-                  <div class="devart-card__label">
+                  <span class="stack-card__label stack-card__label--gold">
                     <i class="bi bi-camera me-1"></i> <span data-i18n="resume_hackathon_photos">Hackathon Photos &nbsp;·&nbsp; 10 shots</span>
-                    <br><small style="font-weight:400; opacity:0.85;" data-i18n="resume_click_view">Click to view</small>
-                  </div>
-                </div>
-              </div>
+                    <br><small data-i18n="resume_click_view">Click to view</small>
+                  </span>
+                </span>
+              </button>
 
               <!-- Full-screen scrollable modal -->
-              <div class="devart-modal" id="devartModal" onclick="if(event.target===this){closeDevartModal()}">
-                <div class="devart-modal__inner">
-                  <div class="devart-modal__header">
-                    <span data-i18n="resume_hackathon_photos"><i class="bi bi-trophy me-2" style="color:#f7b731;"></i>DevArt 2026 — Prix du Jury · 10 photos</span>
-                    <button class="devart-modal__close" onclick="closeDevartModal()">&#x2715;</button>
+              <div class="modal-lite" id="devartModal" role="dialog" aria-modal="true" aria-label="DevArt 2026 hackathon photos">
+                <div class="modal-lite__inner">
+                  <div class="modal-lite__header">
+                    <span data-i18n="resume_hackathon_photos"><i class="bi bi-trophy me-2 text-gold"></i>DevArt 2026 — Prix du Jury · 10 photos</span>
+                    <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
-                  <div class="devart-modal__pages">
+                  <div class="modal-lite__pages">
                     <img src="assets/img/devart/a.jpg" alt="Photo 1" loading="lazy">
                     <img src="assets/img/devart/b.jpg" alt="Photo 2" loading="lazy">
                     <img src="assets/img/devart/c.jpg" alt="Photo 3" loading="lazy">
@@ -643,63 +477,6 @@
                   </div>
                 </div>
               </div>
-
-              <style>
-                .devart-stack-wrapper {
-                  position: relative; width: 220px; height: 165px;
-                  margin: 12px 0 20px 0; cursor: pointer; transition: transform 0.2s;
-                }
-                .devart-stack-wrapper:hover { transform: scale(1.03); }
-                .devart-card {
-                  position: absolute; width: 200px; height: 148px;
-                  border-radius: 7px; box-shadow: 0 3px 10px rgba(0,0,0,0.18);
-                }
-                .devart-card--back2 { background: var(--card-border); transform: rotate(-5deg); top: 12px; left: 14px; }
-                .devart-card--back1 { background: var(--card-border); transform: rotate(-2.5deg); top: 6px; left: 7px; }
-                .devart-card--top   { overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.25); top: 0; left: 0; }
-                .devart-card--top img { width: 100%; height: 100%; object-fit: cover; display: block; }
-                .devart-card__label {
-                  position: absolute; bottom: 0; left: 0; right: 0;
-                  background: rgba(180, 120, 0, 0.88); color: #fff;
-                  text-align: center; padding: 7px 6px 6px;
-                  font-size: 12px; font-weight: 600; line-height: 1.4;
-                }
-                .devart-modal {
-                  display: none; position: fixed; inset: 0;
-                  background: rgba(0,0,0,0.9); z-index: 9999;
-                  overflow-y: auto; padding: 30px 16px 60px;
-                  backdrop-filter: blur(10px);
-                }
-                .devart-modal__inner { max-width: 780px; margin: 0 auto; }
-                .devart-modal__header {
-                  display: flex; justify-content: space-between; align-items: center;
-                  color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 20px;
-                }
-                .devart-modal__close {
-                  background: transparent; border: 2px solid rgba(255,255,255,0.5);
-                  color: #fff; border-radius: 50%; width: 36px; height: 36px;
-                  font-size: 16px; cursor: pointer; transition: background 0.2s;
-                }
-                .devart-modal__close:hover { background: rgba(255,255,255,0.15); }
-                .devart-modal__pages img {
-                  width: 100%; border-radius: 8px; margin-bottom: 18px;
-                  box-shadow: 0 4px 24px rgba(0,0,0,0.5); display: block;
-                }
-              </style>
-
-              <script>
-                document.getElementById('devartStackTrigger').addEventListener('click', function () {
-                  document.getElementById('devartModal').style.display = 'block';
-                  document.body.style.overflow = 'hidden';
-                });
-                function closeDevartModal() {
-                  document.getElementById('devartModal').style.display = 'none';
-                  document.body.style.overflow = '';
-                }
-                document.addEventListener('keydown', function(e) {
-                  if (e.key === 'Escape') closeDevartModal();
-                });
-              </script>
             </div>
 
             <h3 class="resume-title" data-i18n="resume_sec_training">Training &amp; Certifications</h3>
@@ -1035,7 +812,7 @@
               </div>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.000654985455!2d4.627964499999999!3d43.6689562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b676689eae0017%3A0xe62f0eb7477f8399!2s1%20Rue%20Maurice%20Utrillo%2C%2013200%20Arles!5e0!3m2!1sfr!2sfr!4v1774447652496!5m2!1sfr!2sfr" 
-                frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy"
+                frameborder="0" class="contact-map" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
               </iframe>
 

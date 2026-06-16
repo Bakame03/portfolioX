@@ -441,7 +441,7 @@
           <div class="repo-meta">
             <span><i class="bi bi-star-fill"></i>${repo.stargazers_count}</span>
             <span><i class="bi bi-diagram-2"></i>${repo.forks_count}</span>
-            <span><i class="bi bi-circle-fill" style="color: #0563bb; font-size: 8px;"></i>${repo.language || 'Code'}</span>
+            <span><i class="bi bi-circle-fill repo-lang-dot"></i>${repo.language || 'Code'}</span>
           </div>
         `;
         repoList.appendChild(repoItem);
@@ -469,6 +469,44 @@
       scrollProgress.style.width = scrolled + '%';
     });
   }
+
+  /**
+   * Reusable lightweight modal controller (data-attribute driven).
+   * Replaces the three near-identical CV / BUT1 / DevArt inline scripts.
+   *   Open:  any element with [data-modal-open="#modalId"]
+   *   Close: [data-modal-close], a backdrop click, or the Escape key
+   */
+  (function initModalLite() {
+    const openModal = (modal) => {
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeModal = (modal) => {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
+
+    select('[data-modal-open]', true).forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const modal = select(trigger.getAttribute('data-modal-open'));
+        if (modal) openModal(modal);
+      });
+    });
+
+    select('.modal-lite', true).forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal || (e.target.closest && e.target.closest('[data-modal-close]'))) {
+          closeModal(modal);
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        select('.modal-lite.is-open', true).forEach(closeModal);
+      }
+    });
+  })();
 
 })()
 
