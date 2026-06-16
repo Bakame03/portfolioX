@@ -1086,9 +1086,6 @@
 
 
   <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <!-- Vanta.js & Three.js Dependencies (Feature #9) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
   <!-- Translations Dictionary -->
   <script src="assets/js/translations.js"></script>
@@ -1096,14 +1093,28 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- ======= WebGL 3D Background - Vanta Net (Feature #9) ======= -->
+  <!-- ======= WebGL 3D Hero Background — Vanta Net (Feature #9) ======= -->
   <script>
-    window.addEventListener('load', function() {
-      // Respect reduced-motion: skip the animated WebGL background
+    window.addEventListener('load', function () {
+      // Signature effect — skipped entirely under reduced-motion.
+      // three.js + Vanta are loaded dynamically (non-blocking) and version-pinned,
+      // and the hero keeps its CSS background if the CDN is ever unavailable.
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      // Small delay ensures layout is final before canvas calculation
-      setTimeout(function() {
-        if (window.VANTA && document.getElementById('hero')) {
+      if (!document.getElementById('hero')) return;
+
+      function loadScript(src) {
+        return new Promise(function (resolve, reject) {
+          var s = document.createElement('script');
+          s.src = src; s.async = true;
+          s.onload = resolve; s.onerror = reject;
+          document.head.appendChild(s);
+        });
+      }
+
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js')
+        .then(function () { return loadScript('https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js'); })
+        .then(function () {
+          if (!window.VANTA) return;
           VANTA.NET({
             el: "#hero",
             mouseControls: true,
@@ -1120,8 +1131,8 @@
             spacing: 18.00,
             showDots: true
           });
-        }
-      }, 100); // 100ms
+        })
+        .catch(function () { /* CDN unavailable — hero keeps its CSS background */ });
     });
   </script>
 
