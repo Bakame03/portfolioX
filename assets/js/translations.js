@@ -26,6 +26,7 @@ window.translations = {
     about_languages_val: "English,French",
     about_degree: "Degree:",
     about_degree_val: "Bachelor",
+    about_email: "Email:",
     about_available: "Available for:",
     about_available_val: "Freelance / Internship / Apprenticeship",
     about_bio_p2: "I started programming in 2020 with no idea what computer science truly was — I honestly thought it was just Word, Excel, and PowerPoint. Coming from a scientific high school background where I once dreamed of medical school, life had other plans. The moment I discovered real programming, I fell in love. After graduating from Université du Lac Tanganyika in 2024, I landed an internship at Asyst Resources LTD in early 2025, where I discovered modern backend depth: microservices, SaaS architectures, and scalable systems. They hired me as their backend developer after the internship. In September 2025, I moved to France to continue my education at Aix-Marseille University. My goal is simple: build things that genuinely help the people around me — because I believe that is the very purpose that gives life its meaning.",
@@ -133,13 +134,13 @@ window.translations = {
 
     // Services
     services_title: "Services",
-    services_subtitle: "Crafting robust full-stack applications and creative digital experiences that bridge technical complexity with intuitive design.",
+    services_subtitle: "Engineering robust, scalable backend systems and APIs — complemented by full-stack web development and clean, creative interfaces.",
+    service_backend_title: "Backend & API Engineering",
+    service_backend_desc: "Designing scalable backend systems and REST APIs with NestJS, Python, and Django — backed by PostgreSQL, microservices, and third-party integrations (Stripe, Twilio).",
     service_web_title: "Full-Stack Web Dev",
-    service_web_desc: "Architecting scalable solutions using PHP, Node.js, and Django, integrated with robust PostgreSQL databases.",
+    service_web_desc: "Building complete web applications with Node.js and Django, integrated with robust PostgreSQL databases.",
     service_ui_title: "UI/UX & Creative UI",
     service_ui_desc: "Designing immersive digital experiences with vanilla CSS, interactive animations, and a focus on visual excellence.",
-    service_api_title: "API & Integrations",
-    service_api_desc: "Building unified ecosystems by integrating Stripe, Twilio, and Weather APIs for seamless user services.",
 
     // Testimonials
     testimonials_title: "Testimonials",
@@ -149,7 +150,7 @@ window.translations = {
 
     // Contact
     contact_title: "Contact",
-    contact_subtitle: "Open for collaborations on <strong>Full-Stack Web Development</strong>, <strong>UI/UX Design</strong>, and <strong>Creative Digital Ecosystems</strong>.",
+    contact_subtitle: "Open for collaborations on <strong>Backend & API Engineering</strong>, <strong>AI-driven systems</strong>, and <strong>Full-Stack Web Development</strong>.",
     contact_location: "Location:",
     contact_email: "Email:",
     contact_call: "Call:",
@@ -192,6 +193,7 @@ window.translations = {
     about_languages_val: "Anglais,Français",
     about_degree: "Diplôme:",
     about_degree_val: "Licence",
+    about_email: "E-mail :",
     about_available: "Disponible pour:",
     about_available_val: "Freelance / Stage / Apprentissage",
     about_bio_p2: "J'ai commencé la programmation en 2020 sans savoir ce qu'était réellement l'informatique — je pensais honnêtement que c'était juste Word, Excel et PowerPoint. Venant d'un parcours scientifique au lycée où je rêvais autrefois de l'école de médecine, la vie avait d'autres plans. Dès que j'ai découvert la vraie programmation, j'en suis tombé amoureux. Après avoir été diplômé de l'Université du Lac Tanganyika en 2024, j'ai décroché un stage chez Asyst Resources LTD début 2025, où j'ai découvert la profondeur du backend moderne : microservices, architectures SaaS et systèmes évolutifs. Ils m'ont embauché comme développeur backend après le stage. En septembre 2025, j'ai emménagé en France pour poursuivre mes études à l'Aix-Marseille Université. Mon objectif est simple : construire des choses qui aident vraiment les gens autour de moi — car je crois que c'est ce but précis qui donne son sens à la vie.",
@@ -299,13 +301,13 @@ window.translations = {
 
     // Services
     services_title: "Services",
-    services_subtitle: "Création d'applications full-stack robustes et d'expériences numériques créatives qui font le pont entre la complexité technique et le design intuitif.",
+    services_subtitle: "Ingénierie de systèmes backend et d'API robustes et évolutifs — complétée par le développement web full-stack et des interfaces créatives et soignées.",
+    service_backend_title: "Backend & Ingénierie d'API",
+    service_backend_desc: "Conception de systèmes backend évolutifs et d'API REST avec NestJS, Python et Django — appuyés sur PostgreSQL, des microservices et des intégrations tierces (Stripe, Twilio).",
     service_web_title: "Dév Web Full-Stack",
-    service_web_desc: "Conception de solutions évolutives utilisant PHP, Node.js et Django, intégrées à des bases de données PostgreSQL robustes.",
+    service_web_desc: "Création d'applications web complètes avec Node.js et Django, intégrées à des bases de données PostgreSQL robustes.",
     service_ui_title: "UI/UX & Design Créatif",
     service_ui_desc: "Conception d'expériences numériques immersives avec CSS pur, animations interactives et souci de l'excellence visuelle.",
-    service_api_title: "API & Intégrations",
-    service_api_desc: "Construction d'écosystèmes unifiés en intégrant les API Stripe, Twilio et Weather pour des services utilisateur fluides.",
 
     // Testimonials
     testimonials_title: "Témoignages",
@@ -315,7 +317,7 @@ window.translations = {
 
     // Contact
     contact_title: "Contact",
-    contact_subtitle: "Ouvert aux collaborations sur le <strong>Développement Web Full-Stack</strong>, le <strong>Design UI/UX</strong> et les <strong>Écosystèmes Numériques Créatifs</strong>.",
+    contact_subtitle: "Ouvert aux collaborations en <strong>Ingénierie Backend & API</strong>, <strong>systèmes pilotés par l'IA</strong> et <strong>Développement Web Full-Stack</strong>.",
     contact_location: "Localisation :",
     contact_email: "E-mail :",
     contact_call: "Téléphone :",

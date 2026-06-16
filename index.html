@@ -67,7 +67,9 @@
         <li><a href="#resume" class="nav-link scrollto active"><i class="bx bx-file"></i> <span data-i18n="nav_resume">Resume</span></a></li>
         <li><a href="#projects" class="nav-link scrollto"><i class="bi bi-code"></i> <span data-i18n="nav_projects">Projects</span></a></li>
         <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span data-i18n="nav_services">Services</span></a></li>
+        <!-- Testimonials nav hidden until real testimonials are added:
         <li><a href="#testimonials" class="nav-link scrollto"><i class="bi bi-pen"></i> <span data-i18n="nav_testimonials">Testimonials</span></a></li>
+        -->
         <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span data-i18n="nav_contact">Contact</span></a></li>
       </ul>
     </nav><!-- .nav-menu -->
@@ -933,7 +935,7 @@
         <div class="section-title">
           <h2 data-i18n="services_title">Services</h2>
           <p data-i18n="services_subtitle">
-            Crafting robust full-stack applications and creative digital experiences that bridge technical complexity with intuitive design.
+            Engineering robust, scalable backend systems and APIs — complemented by full-stack web development and clean, creative interfaces.
           </p>
         </div>
 
@@ -942,15 +944,25 @@
           <div class="col-lg-4 col-md-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box iconbox-blue">
               <div class="icon">
-                <i class="bi bi-code-slash"></i>
+                <i class="bi bi-server"></i>
               </div>
-              <h4 data-i18n="service_web_title">Full-Stack Web Dev</h4>
-              <p data-i18n="service_web_desc">Architecting scalable solutions using PHP, Node.js, and Django, integrated with robust PostgreSQL databases.</p>
+              <h4 data-i18n="service_backend_title">Backend &amp; API Engineering</h4>
+              <p data-i18n="service_backend_desc">Designing scalable backend systems and REST APIs with NestJS, Python, and Django — backed by PostgreSQL, microservices, and third-party integrations (Stripe, Twilio).</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-4 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box iconbox-orange">
+              <div class="icon">
+                <i class="bi bi-code-slash"></i>
+              </div>
+              <h4 data-i18n="service_web_title">Full-Stack Web Dev</h4>
+              <p data-i18n="service_web_desc">Building complete web applications with Node.js and Django, integrated with robust PostgreSQL databases.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box iconbox-pink">
               <div class="icon">
                 <i class="bi bi-brush"></i>
               </div>
@@ -959,85 +971,18 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-4 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon-box iconbox-pink">
-              <div class="icon">
-                <i class="bi bi-gear-wide-connected"></i>
-              </div>
-              <h4 data-i18n="service_api_title">API &amp; Integrations</h4>
-              <p data-i18n="service_api_desc">Building unified ecosystems by integrating Stripe, Twilio, and Weather APIs for seamless user services.</p>
-            </div>
-          </div>
-
         </div>
       </div>
     </section><!-- End Services Section -->
 
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2 data-i18n="testimonials_title">Testimonials</h2>
-        </div>
-
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/vazkez.jpg" class="testimonial-img" alt="">
-                <h3>Arsene IRUMVA</h3>
-                <h4>Software Engineer</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  <span data-i18n="testimonial_1">Aldo architected a critical microservices backend that cut our API response times significantly. 
-                  His ability to decompose complex problems into clean, scalable modules made him the go-to person 
-                  for our most technically challenging features.</span>
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!--End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/fernet.jpg" class="testimonial-img" alt="">
-                <h3>Fernet</h3>
-                <h4>Mobile Developer</h4>
-                
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  <span data-i18n="testimonial_2">Aldo built the entire offline-sync engine for our web apps when connectivity 
-                  was unreliable. His persistence in solving edge cases around data conflicts 
-                  was remarkable. The feature became the most praised part of the product by our users.</span>
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div> <!-- End testimonial item -->
-              
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/Bazagod.jpg" class="testimonial-img" alt="">
-                <h3>Bazagod</h3>
-                <h4>Web Developer</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  <span data-i18n="testimonial_3">Aldo mentored me through building my first full-stack project from scratch, 
-                  from database schema design to deploying on a live server. His patient, 
-                  hands-on guidance in both frontend and backend fundamentals accelerated my 
-                  growth as a developer more than any course could.</span>
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
+    <!-- ======= Testimonials Section (HIDDEN) =======
+         Temporarily removed: previous entries were placeholders, not real
+         attributable testimonials. Restore with genuine quotes (name, role,
+         company, optional LinkedIn). Original markup is preserved in git
+         history (see commit before this one). The i18n keys testimonial_1..3
+         and testimonials_title remain in translations.js for reuse.
+         The nav "Testimonials" link is commented out accordingly.
+    ====================================================== -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -1045,7 +990,7 @@
 
         <div class="section-title">
           <h2 data-i18n="contact_title">Contact</h2>
-          <p data-i18n="contact_subtitle">Open for collaborations on <strong>Full-Stack Web Development</strong>, <strong>UI/UX Design</strong>, and <strong>Creative Digital Ecosystems</strong>.</p>
+          <p data-i18n="contact_subtitle">Open for collaborations on <strong>Backend &amp; API Engineering</strong>, <strong>AI-driven systems</strong>, and <strong>Full-Stack Web Development</strong>.</p>
         </div>
 
         <div class="row mt-1">
