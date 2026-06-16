@@ -109,22 +109,8 @@ body::after {
   background-repeat: repeat;
   background-size: 180px 180px;
   opacity: 0.032;
-  animation: grain 0.4s steps(1) infinite;
+  /* Static grain — the continuous repaint animation was removed (perf/battery). */
   mix-blend-mode: overlay;
-}
-
-@keyframes grain {
-  0%   { transform: translate(0px,   0px);   }
-  10%  { transform: translate(-2%,  -3%);    }
-  20%  { transform: translate(3%,    2%);    }
-  30%  { transform: translate(-1%,   4%);    }
-  40%  { transform: translate(4%,   -1%);    }
-  50%  { transform: translate(-3%,   1%);    }
-  60%  { transform: translate(1%,   -4%);    }
-  70%  { transform: translate(-4%,   2%);    }
-  80%  { transform: translate(2%,    3%);    }
-  90%  { transform: translate(-1%,  -2%);    }
-  100% { transform: translate(0px,   0px);   }
 }
 
 /* Magnetic icon base — needed for translate to not shift layout */
@@ -503,7 +489,7 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background-color: var(--bg-color); /* Fallback before WebGL loads / theme respects */
+  background-color: #080811; /* Static dark hero; Vanta WebGL overlays this on desktop only */
   position: relative;
   z-index: 1;
 }
@@ -530,18 +516,23 @@ h6 {
   font-size: 64px;
   font-weight: 700;
   line-height: 56px;
-  color: #45505b;
+  color: #f4f6fb;
+}
+
+/* Hero name reads on the dark hero (overrides the default heading colour) */
+.hero-name {
+  color: #f4f6fb;
 }
 
 #hero p {
-  color: #45505b;
+  color: #cfd6e2;
   margin: 15px 0 0 0;
   font-size: 26px;
   font-family: "Poppins", sans-serif;
 }
 
 #hero p span {
-  color: #0563bb;
+  color: #4ba3ff;
   letter-spacing: 1px;
 }
 
@@ -552,14 +543,14 @@ h6 {
 #hero .social-links a {
   font-size: 24px;
   display: inline-block;
-  color: #45505b;
+  color: #cfd6e2;
   line-height: 1;
   margin-right: 20px;
   transition: 0.3s;
 }
 
 #hero .social-links a:hover {
-  color: #0563bb;
+  color: #4ba3ff;
 }
 
 /* Feature #6: Intro Sequence Initial States */

@@ -79,14 +79,6 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center">
-    
-    <!-- Feature #10: Fluid Distortion SVG Filter Definition -->
-    <svg class="svg-defs">
-      <filter id="liquidRipple" color-interpolation-filters="sRGB">
-        <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" id="rippleNoise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" id="rippleDisplacement" />
-      </filter>
-    </svg>
 
     <!-- Removed data-aos from container to manually control the sequence -->
     <div class="container hero-intro-container">
@@ -580,10 +572,8 @@
                   <span class="tech-chip">Zustand</span>
                 </div>
                 <div class="project-card__actions">
-                  <!-- TODO: paste HYPOXIA Live Demo + GitHub repo URLs, then uncomment:
-                  <a href="DEMO_URL" target="_blank" rel="noopener" class="btn-action btn-action--demo glitch-hover" data-i18n="project_btn_demo"><i class="bi bi-play-circle"></i> Live Demo</a>
-                  <a href="REPO_URL" target="_blank" rel="noopener" class="btn-action btn-action--ghost glitch-hover" data-i18n="project_btn_code"><i class="bi bi-code-slash"></i> Code</a>
-                  -->
+                  <a href="https://nebula-gray-seven.vercel.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo glitch-hover" data-i18n="project_btn_demo"><i class="bi bi-play-circle"></i> Live Demo</a>
+                  <a href="https://github.com/Bakame03/Nebula_DevArt_2026_Project_-HYPOXIA-" target="_blank" rel="noopener" class="btn-action btn-action--ghost glitch-hover" data-i18n="project_btn_code"><i class="bi bi-code-slash"></i> Code</a>
                 </div>
               </div>
             </div>
@@ -1096,10 +1086,12 @@
   <!-- ======= WebGL 3D Hero Background — Vanta Net (Feature #9) ======= -->
   <script>
     window.addEventListener('load', function () {
-      // Signature effect — skipped entirely under reduced-motion.
-      // three.js + Vanta are loaded dynamically (non-blocking) and version-pinned,
-      // and the hero keeps its CSS background if the CDN is ever unavailable.
+      // Signature effect — desktop only (the hero has a static dark CSS background
+      // everywhere, so mobile never downloads three.js (~600 KB) or runs the canvas).
+      // Skipped under reduced-motion; degrades gracefully if the CDN is unavailable.
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      if (window.matchMedia('(max-width: 991px)').matches) return;
       if (!document.getElementById('hero')) return;
 
       function loadScript(src) {
@@ -1136,72 +1128,8 @@
     });
   </script>
 
-  <!-- ======= Fluid Image Distortion for Projects (Feature #10) ======= -->
-  <script>
-    (function() {
-      // Respect reduced-motion: no liquid ripple distortion
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      // Only enable on non-touch devices
-      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-      var filterTarget = document.getElementById('rippleDisplacement');
-      var baseFrequencyTarget = document.getElementById('rippleNoise');
-      if (!filterTarget || !baseFrequencyTarget) return;
-
-      var currentScale = 0;
-      var targetScale = 0;
-      var currentFreq = 0.015;
-      var reqFrame;
-
-      // Animate the SVG filter properties smoothly
-      function animateDistortion() {
-        // LERP for smooth spring-like acceleration/deceleration
-        currentScale += (targetScale - currentScale) * 0.1;
-        
-        // If we're hovering, add a slight noise shift to simulate moving water
-        if (targetScale > 0) {
-           currentFreq += 0.0005; 
-           if (currentFreq > 0.035) currentFreq = 0.015;
-           baseFrequencyTarget.setAttribute('baseFrequency', currentFreq);
-        }
-
-        filterTarget.setAttribute('scale', currentScale);
-        
-        // Keep animating while changing
-        if (Math.abs(targetScale - currentScale) > 0.5 || targetScale > 0) {
-          reqFrame = requestAnimationFrame(animateDistortion);
-        } else {
-          // Snap to 0 to prevent micro-calculations
-          filterTarget.setAttribute('scale', 0);
-        }
-      }
-
-      document.querySelectorAll('.project-card').forEach(function(card) {
-        card.addEventListener('mouseenter', function() {
-          // Apply filter dynamically to the image wrapping
-          var imgWrapper = this.querySelector('.project-card__image');
-          if (imgWrapper) {
-            imgWrapper.style.filter = "url(#liquidRipple)";
-          }
-          currentFreq = 0.015; // Reset frequency
-          targetScale = 85;    // Distort amount
-          cancelAnimationFrame(reqFrame);
-          animateDistortion();
-        });
-
-        card.addEventListener('mouseleave', function() {
-          targetScale = 0;
-          var imgWrapper = this.querySelector('.project-card__image');
-          // Wait for animation to finish before removing CSS filter entirely
-          setTimeout(function() {
-             if (imgWrapper && targetScale === 0) imgWrapper.style.filter = "none";
-          }, 400); 
-        });
-      });
-    })();
-  </script>
-
-
+  <!-- (Liquid-ripple SVG distortion removed — it stacked a 3rd GPU-heavy effect
+       on the project-card hover; cards keep tilt + scale.) -->
 
   <!-- Typed -->
   <script>
