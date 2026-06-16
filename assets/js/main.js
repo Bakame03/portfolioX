@@ -132,6 +132,8 @@
     select('body').classList.toggle('mobile-nav-active')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
+    this.setAttribute('aria-expanded',
+      document.body.classList.contains('mobile-nav-active') ? 'true' : 'false')
   })
 
   /**
@@ -147,6 +149,7 @@
         let navbarToggle = select('.mobile-nav-toggle')
         navbarToggle.classList.toggle('bi-list')
         navbarToggle.classList.toggle('bi-x')
+        navbarToggle.setAttribute('aria-expanded', 'false')
       }
       scrollto(this.hash)
     }
@@ -307,7 +310,11 @@
       duration: 1000,
       easing: 'ease-in-out',
       once: true,
-      mirror: false
+      mirror: false,
+      // Respect reduced-motion: show content instantly, no reveal animation
+      disable: function () {
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      }
     })
   });
 

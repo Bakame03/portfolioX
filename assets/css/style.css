@@ -180,7 +180,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: var(--subtitle-color);
 }
 
@@ -206,8 +206,10 @@ h6 {
   cursor: pointer;
   transition: var(--transition);
   box-shadow: var(--shadow-sm);
+  font-family: inherit;
   font-weight: 700;
   font-size: 14px;
+  padding: 0;
   user-select: none;
 }
 
@@ -477,6 +479,7 @@ h6 {
   padding: 5px;
 }
 
+.mobile-nav-toggle,
 .mobile-nav-toggle i {
   color: #45505b;
 }
@@ -864,7 +867,7 @@ section .container {
 .facts .count-box p {
   padding: 0;
   margin: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
 }
 
@@ -1913,9 +1916,60 @@ section .container {
   border-color: var(--primary-color);
 }
 
+.github-card-item {
+  /* Reserve space + show a skeleton shimmer until the third-party image loads */
+  min-height: 140px;
+  position: relative;
+}
+
+.github-card-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(100deg,
+    rgba(150, 165, 185, 0.10) 30%,
+    rgba(150, 165, 185, 0.22) 50%,
+    rgba(150, 165, 185, 0.10) 70%);
+  background-size: 200% 100%;
+  animation: gh-skeleton 1.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Hide the skeleton once the image has loaded */
+.github-card-item:has(.gh-stat-img.is-loaded)::after {
+  display: none;
+}
+
 .github-card-item img {
   max-width: 100%;
   height: auto;
+}
+
+.gh-stat-img {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gh-stat-img.is-loaded {
+  opacity: 1;
+}
+
+/* A dead third-party service never shows a broken image */
+.github-card-item.gh-card-failed {
+  display: none;
+}
+
+@keyframes gh-skeleton {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .github-card-item::after { animation: none; }
+  .gh-stat-img { transition: none; }
 }
 
 /* Live Repositories List */
@@ -2054,3 +2108,62 @@ section .container {
 }
 
 
+
+/*--------------------------------------------------------------
+# Reduced Motion — calm fallback (a11y / WCAG 2.3.3)
+# Gates the custom cursor, glitch, liquid ripple, flashlight,
+# kinetic parallax, AOS reveals and other large motion.
+# JS-driven effects are additionally short-circuited in the
+# inline scripts and main.js (matchMedia check).
+--------------------------------------------------------------*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html { scroll-behavior: auto !important; }
+
+  /* Custom cursor off — restore the native pointer (overrides the
+     global `* { cursor: none }` so users keep a visible cursor) */
+  #cursor-dot,
+  #cursor-glow { display: none !important; }
+  *,
+  *::before,
+  *::after { cursor: auto !important; }
+  a, button, [role="button"], .scrollto, label, summary { cursor: pointer !important; }
+
+  /* Stop the animated film-grain overlay */
+  body::after { animation: none !important; }
+
+  /* AOS / GSAP reveals: show content immediately, no offset */
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .section-title h2 .char {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Kinetic background typography: freeze in place */
+  .kinetic-text { transform: none !important; }
+
+  /* Flashlight mask reveal: disable the spotlight layer */
+  .flashlight-layer { display: none !important; }
+
+  /* Glitch hover: no glitch */
+  .glitch-hover:hover,
+  .glitch-hover::before,
+  .glitch-hover::after { animation: none !important; }
+
+  /* Liquid ripple SVG distortion: never apply the filter */
+  .project-card__image { filter: none !important; }
+
+  /* 3D card tilt: keep cards flat */
+  .project-card { transform: none !important; }
+}

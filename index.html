@@ -25,8 +25,10 @@
   <link href="assets/img/favicon.ico" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <!-- Google Fonts (2 families, only used weights, swap to avoid FOIT) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@500;600;700;900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -34,7 +36,6 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet"> <!-- for portfolio -->
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> <!-- for testimonials -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -50,27 +51,27 @@
   <div id="cursor-glow"></div>
 
   <!-- ======= Theme & Lang Toggles ======= -->
-  <div class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
-    <i class="bi bi-moon-stars-fill"></i>
-  </div>
-  <div class="lang-toggle" id="lang-toggle" title="Switch Language">EN</div>
+  <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark / light mode" title="Toggle Dark/Light Mode">
+    <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+  </button>
+  <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Switch language (English / French)" title="Switch Language">EN</button>
 
   <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
+  <button type="button" class="bi bi-list mobile-nav-toggle d-lg-none" aria-label="Toggle navigation menu" aria-expanded="false"></button>
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex flex-column justify-content-center">
 
     <nav id="navbar" class="navbar nav-menu">
       <ul>
-        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user-circle"></i> <span data-i18n="nav_about">About</span></a></li>
-        <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-card"></i> <span data-i18n="nav_skills">Skills</span></a></li>
-        <li><a href="#resume" class="nav-link scrollto active"><i class="bx bx-file"></i> <span data-i18n="nav_resume">Resume</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bi bi-person-circle"></i> <span data-i18n="nav_about">About</span></a></li>
+        <li><a href="#skills" class="nav-link scrollto"><i class="bi bi-card-checklist"></i> <span data-i18n="nav_skills">Skills</span></a></li>
+        <li><a href="#resume" class="nav-link scrollto active"><i class="bi bi-file-earmark-text"></i> <span data-i18n="nav_resume">Resume</span></a></li>
         <li><a href="#projects" class="nav-link scrollto"><i class="bi bi-code"></i> <span data-i18n="nav_projects">Projects</span></a></li>
-        <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span data-i18n="nav_services">Services</span></a></li>
+        <li><a href="#services" class="nav-link scrollto"><i class="bi bi-server"></i> <span data-i18n="nav_services">Services</span></a></li>
         <!-- Testimonials nav hidden until real testimonials are added:
         <li><a href="#testimonials" class="nav-link scrollto"><i class="bi bi-pen"></i> <span data-i18n="nav_testimonials">Testimonials</span></a></li>
         -->
-        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span data-i18n="nav_contact">Contact</span></a></li>
+        <li><a href="#contact" class="nav-link scrollto"><i class="bi bi-envelope"></i> <span data-i18n="nav_contact">Contact</span></a></li>
       </ul>
     </nav><!-- .nav-menu -->
 
@@ -92,12 +93,12 @@
       <h2 class="hero-intro-elem hero-name glitch-hover"><strong>Aldo Alex NGANJI</strong></h2>
       <p class="hero-intro-elem hero-role"><span data-i18n="hero_iam">I'm</span> <span class="typed" data-i18n="hero_roles" data-typed-items="Back End Developer, Python Engineer, AI Enthusiast"></span></p>
       <div class="social-links hero-intro-elem hero-socials">
-        <a href="https://x.com/bakame03" class="twitter" target="_blank"><i class="bi bi-twitter-x"></i></a>
-        <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-        <a href="https://wa.me/+33758806942" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
-        <a href="https://www.linkedin.com/in/aldo-alex-nganji-550072383" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
-        <a href="mailto:nganjialdoalex@gmail.com" class="google-plus" target="_blank"><i class="bi bi-envelope-at"></i></a>
-        <a href="https://github.com/Bakame03" class="github" target="_blank"><i class="bi bi-github"></i></a>
+        <a href="https://x.com/bakame03" class="twitter" target="_blank" rel="noopener" aria-label="X (Twitter) profile"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank" rel="noopener" aria-label="Instagram profile"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+        <a href="https://wa.me/+33758806942" class="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/aldo-alex-nganji-550072383" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+        <a href="mailto:nganjialdoalex@gmail.com" class="google-plus" aria-label="Send an email"><i class="bi bi-envelope-at" aria-hidden="true"></i></a>
+        <a href="https://github.com/Bakame03" class="github" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="bi bi-github" aria-hidden="true"></i></a>
       </div>
     </div>
   </section><!-- End Hero -->
@@ -125,19 +126,22 @@
 
         <div class="row">
           <div class="col-lg-4">
-            <img src="assets/img/aldo_alex_nganji.jpeg" class="img-fluid" alt="">
+            <picture>
+              <source srcset="assets/img/aldo_alex_nganji.webp" type="image/webp">
+              <img src="assets/img/aldo_alex_nganji.jpeg" class="img-fluid" alt="Portrait of Aldo Alex NGANJI" width="400" height="400" loading="lazy">
+            </picture>
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
             <h3 data-i18n="about_bio_role">Back End Developer | Python &amp; NestJS | AI Enthusiast</h3>
             <p class="fst-italic" data-i18n="about_bio_p1"> 
               Passionate about building robust and scalable backend systems. Currently studying Computer Science at 
-              <span style="font-family: 'Raleway', sans-serif; color: #0563bb; font-weight: 600;">Aix-Marseille University</span>, 
+              <span style="font-family: 'Poppins', sans-serif; color: #0563bb; font-weight: 600;">Aix-Marseille University</span>, 
               and a graduate of Université du Lac Tanganyika in Software Engineering.
               Recently contributed as a Back End Developer at 
               <strong><a href="https://asyst.io" target="_blank" style="color: var(--primary-color);">Asyst Resources LTD</a></strong>, 
               working with NestJS, Python, and modern backend architectures. 
               Now expanding into 
-              <span style="font-family: 'Raleway', sans-serif; color: #0563bb; font-weight: 600;">Artificial Intelligence</span> 
+              <span style="font-family: 'Poppins', sans-serif; color: #0563bb; font-weight: 600;">Artificial Intelligence</span> 
               to build smarter, more impactful systems.
             </p>
             <div class="row">
@@ -197,13 +201,13 @@
             
             <div class="github-stats-grid">
               <div class="github-card-item">
-                <img id="gh-card-stats" src="https://readme-stats-fast.vercel.app/api?username=Bakame03&show_icons=true&theme=transparent&hide_border=true&title_color=0563bb&icon_color=0563bb&text_color=45505b" alt="GitHub Stats">
+                <img id="gh-card-stats" src="https://readme-stats-fast.vercel.app/api?username=Bakame03&show_icons=true&theme=transparent&hide_border=true&title_color=0563bb&icon_color=0563bb&text_color=45505b" alt="GitHub Stats" loading="lazy" class="gh-stat-img" onload="this.classList.add('is-loaded')" onerror="this.closest('.github-card-item').classList.add('gh-card-failed')">
               </div>
               <div class="github-card-item">
-                <img id="gh-card-languages" src="https://readme-stats-fast.vercel.app/api/top-langs/?username=Bakame03&layout=compact&theme=transparent&hide_border=true&title_color=0563bb&text_color=45505b" alt="Top Languages">
+                <img id="gh-card-languages" src="https://readme-stats-fast.vercel.app/api/top-langs/?username=Bakame03&layout=compact&theme=transparent&hide_border=true&title_color=0563bb&text_color=45505b" alt="Top Languages" loading="lazy" class="gh-stat-img" onload="this.classList.add('is-loaded')" onerror="this.closest('.github-card-item').classList.add('gh-card-failed')">
               </div>
               <div class="github-card-item">
-                <img id="gh-card-streak" src="https://github-readme-streak-stats.herokuapp.com/?user=Bakame03&theme=transparent&hide_border=true&stroke=0563bb&ring=0563bb&fire=0563bb&currStreakNum=0563bb&sideTexts=45505b" alt="GitHub Streak">
+                <img id="gh-card-streak" src="https://github-readme-streak-stats.herokuapp.com/?user=Bakame03&theme=transparent&hide_border=true&stroke=0563bb&ring=0563bb&fire=0563bb&currStreakNum=0563bb&sideTexts=45505b" alt="GitHub Streak" loading="lazy" class="gh-stat-img" onload="this.classList.add('is-loaded')" onerror="this.closest('.github-card-item').classList.add('gh-card-failed')">
               </div>
             </div>
 
@@ -247,11 +251,11 @@
               <i class="bi bi-code-square me-2"></i> Programming Languages
             </h3>
             <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bx bxl-python me-1" style="color: #3776ab;"></i> Python</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bx bxl-typescript me-1" style="color: #3178c6;"></i> TypeScript</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-py me-1" style="color: #3776ab;"></i> Python</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-tsx me-1" style="color: #3178c6;"></i> TypeScript</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1" style="color: #00599C;"></i> C</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1" style="color: #f34b7d;"></i> C++</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bx bxl-html5 me-1" style="color: #e34f26;"></i> HTML / CSS</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-html me-1" style="color: #e34f26;"></i> HTML / CSS</span>
             </div>
           </div>
 
@@ -260,7 +264,7 @@
               <i class="bi bi-server me-2"></i> Backend &amp; Frameworks
             </h3>
             <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bx bxl-nodejs me-1" style="color: #e0234e;"></i> NestJS</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hexagon-fill me-1" style="color: #e0234e;"></i> NestJS</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-database me-1" style="color: #336791;"></i> SQL</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-shuffle me-1" style="color: #FF6600;"></i> REST APIs</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hdd-network me-1" style="color: #333;"></i> Microservices</span>
@@ -272,9 +276,9 @@
               <i class="bi bi-tools me-2"></i> Tools &amp; Learning
             </h3>
             <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bx bxl-git me-1" style="color: #f05032;"></i> Git</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bx bxl-docker me-1" style="color: #2496ed;"></i> Docker</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bx bxl-tux me-1"></i> Linux</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-git me-1" style="color: #f05032;"></i> Git</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-box-seam me-1" style="color: #2496ed;"></i> Docker</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-terminal me-1"></i> Linux</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-robot me-1" style="color: #ff9900;"></i> AI / ML <small class="text-muted" data-i18n="skills_learning">(learning)</small></span>
             </div>
           </div>
@@ -409,7 +413,7 @@
                 <div class="but1-card but1-card--back1"></div>
                 <!-- Top card with real preview image -->
                 <div class="but1-card but1-card--top">
-                  <img src="assets/img/dossiers/but1_s1-1.png" alt="BUT1 Semester 1 Preview">
+                  <img src="assets/img/dossiers/but1_s1-1.webp" alt="Preview of BUT1 Semester 1 results" width="200" height="148" loading="lazy">
                   <div class="but1-card__label">
                     <i class="bi bi-images me-1"></i> <span data-i18n="resume_s1_label">Semester 1 Results &nbsp;·&nbsp; 8 pages</span>
                     <br><small style="font-weight:400; opacity:0.85;" data-i18n="resume_click_view">Click to view</small>
@@ -426,13 +430,13 @@
                   </div>
                   <div class="but1-modal__pages">
                     <img src="assets/img/dossiers/but1_s1-1.png" alt="Page 1">
-                    <img src="assets/img/dossiers/but1_s1-2.png" alt="Page 2">
-                    <img src="assets/img/dossiers/but1_s1-3.png" alt="Page 3">
-                    <img src="assets/img/dossiers/but1_s1-4.png" alt="Page 4">
-                    <img src="assets/img/dossiers/but1_s1-5.png" alt="Page 5">
-                    <img src="assets/img/dossiers/but1_s1-6.png" alt="Page 6">
-                    <img src="assets/img/dossiers/but1_s1-7.png" alt="Page 7">
-                    <img src="assets/img/dossiers/but1_s1-8.png" alt="Page 8">
+                    <img src="assets/img/dossiers/but1_s1-2.png" alt="Page 2" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-3.png" alt="Page 3" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-4.png" alt="Page 4" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-5.png" alt="Page 5" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-6.png" alt="Page 6" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-7.png" alt="Page 7" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-8.png" alt="Page 8" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -610,7 +614,7 @@
                 <div class="devart-card devart-card--back2"></div>
                 <div class="devart-card devart-card--back1"></div>
                 <div class="devart-card devart-card--top">
-                  <img src="assets/img/devart/a.jpg" alt="DevArt 2026 Preview">
+                  <img src="assets/img/devart/a.webp" alt="DevArt 2026 hackathon — Team Nebula" width="200" height="148" loading="lazy">
                   <div class="devart-card__label">
                     <i class="bi bi-camera me-1"></i> <span data-i18n="resume_hackathon_photos">Hackathon Photos &nbsp;·&nbsp; 10 shots</span>
                     <br><small style="font-weight:400; opacity:0.85;" data-i18n="resume_click_view">Click to view</small>
@@ -626,16 +630,16 @@
                     <button class="devart-modal__close" onclick="closeDevartModal()">&#x2715;</button>
                   </div>
                   <div class="devart-modal__pages">
-                    <img src="assets/img/devart/a.jpg" alt="Photo 1">
-                    <img src="assets/img/devart/b.jpg" alt="Photo 2">
-                    <img src="assets/img/devart/c.jpg" alt="Photo 3">
-                    <img src="assets/img/devart/d.JPG" alt="Photo 4">
-                    <img src="assets/img/devart/e.JPG" alt="Photo 5">
-                    <img src="assets/img/devart/f.JPG" alt="Photo 6">
-                    <img src="assets/img/devart/g.JPG" alt="Photo 7">
-                    <img src="assets/img/devart/h.JPG" alt="Photo 8">
-                    <img src="assets/img/devart/i.JPG" alt="Photo 9">
-                    <img src="assets/img/devart/j.JPG" alt="Photo 10">
+                    <img src="assets/img/devart/a.jpg" alt="Photo 1" loading="lazy">
+                    <img src="assets/img/devart/b.jpg" alt="Photo 2" loading="lazy">
+                    <img src="assets/img/devart/c.jpg" alt="Photo 3" loading="lazy">
+                    <img src="assets/img/devart/d.JPG" alt="Photo 4" loading="lazy">
+                    <img src="assets/img/devart/e.JPG" alt="Photo 5" loading="lazy">
+                    <img src="assets/img/devart/f.JPG" alt="Photo 6" loading="lazy">
+                    <img src="assets/img/devart/g.JPG" alt="Photo 7" loading="lazy">
+                    <img src="assets/img/devart/h.JPG" alt="Photo 8" loading="lazy">
+                    <img src="assets/img/devart/i.JPG" alt="Photo 9" loading="lazy">
+                    <img src="assets/img/devart/j.JPG" alt="Photo 10" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -777,7 +781,10 @@
           <div class="swiper-slide portfolio-item filter-ai item-wide">
             <div class="project-card">
               <div class="project-card__image">
-                <img src="assets/img/portfolio/web/hypoxia.png" alt="HYPOXIA — L'Écho Numérique">
+                <picture>
+                  <source srcset="assets/img/portfolio/web/hypoxia.webp" type="image/webp">
+                  <img src="assets/img/portfolio/web/hypoxia.png" alt="HYPOXIA — L'Écho Numérique" width="1100" height="600" loading="lazy">
+                </picture>
                 <span class="project-badge project-badge--flagship" data-i18n="project_badge_flagship"><i class="bi bi-trophy"></i> Prix du Jury (DevArt)</span>
                 <span class="project-badge project-badge--status" data-i18n="project_badge_awarded">Awarded</span>
 ...
@@ -790,8 +797,8 @@
                 <strong>Outcome:</strong> Award-winning immersive experience where typing a prompt directly burns and suffocates the digital world in real-time.</p>
 ...
                 <div class="project-card__actions">
-                  <a href="..." class="..." data-i18n="project_btn_demo"><i class="bx bx-play-circle"></i> Live Demo</a>
-                  <a href="..." class="..." data-i18n="project_btn_code"><i class="bx bx-code-alt"></i> Code</a>
+                  <a href="..." class="..." data-i18n="project_btn_demo"><i class="bi bi-play-circle"></i> Live Demo</a>
+                  <a href="..." class="..." data-i18n="project_btn_code"><i class="bi bi-code-slash"></i> Code</a>
                 </div>
               </div>
             </div>
@@ -801,10 +808,13 @@
           <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
-                <img src="assets/img/portfolio/web/eatwell.png" alt="Eat Well (Omnifood)">
+                <picture>
+                  <source srcset="assets/img/portfolio/web/eatwell.webp" type="image/webp">
+                  <img src="assets/img/portfolio/web/eatwell.png" alt="Eat Well (Omnifood)" width="1100" height="600" loading="lazy">
+                </picture>
                 <span class="project-badge project-badge--status">Production</span>
                 <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/eatwell.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Eat Well (Omnifood)"><i class="bx bx-fullscreen"></i></a>
+                  <a href="assets/img/portfolio/web/eatwell.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Eat Well (Omnifood)"><i class="bi bi-arrows-fullscreen"></i></a>
                 </div>
               </div>
               <div class="project-card__body">
@@ -819,8 +829,8 @@
                   <span class="tech-chip">Firebase</span>
                 </div>
                 <div class="project-card__actions">
-                  <a href="https://imaginative-cobbler-efa68f.netlify.app/" target="_blank" class="btn-action btn-action--demo glitch-hover"><i class="bx bx-play-circle"></i> Live Demo</a>
-                  <a href="https://github.com/Bakame03/Eat_Well" target="_blank" class="btn-action btn-action--ghost glitch-hover"><i class="bx bx-code-alt"></i> Code</a>
+                  <a href="https://imaginative-cobbler-efa68f.netlify.app/" target="_blank" class="btn-action btn-action--demo glitch-hover"><i class="bi bi-play-circle"></i> Live Demo</a>
+                  <a href="https://github.com/Bakame03/Eat_Well" target="_blank" class="btn-action btn-action--ghost glitch-hover"><i class="bi bi-code-slash"></i> Code</a>
                 </div>
               </div>
             </div>
@@ -830,10 +840,13 @@
           <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
-                <img src="assets/img/portfolio/web/services.png" alt="Unified Service Ecosystem">
+                <picture>
+                  <source srcset="assets/img/portfolio/web/services.webp" type="image/webp">
+                  <img src="assets/img/portfolio/web/services.png" alt="Unified Service Ecosystem" width="1100" height="600" loading="lazy">
+                </picture>
                 <span class="project-badge project-badge--status">API Focus</span>
                 <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/services.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Unified Service Ecosystem"><i class="bx bx-fullscreen"></i></a>
+                  <a href="assets/img/portfolio/web/services.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Unified Service Ecosystem"><i class="bi bi-arrows-fullscreen"></i></a>
                 </div>
               </div>
               <div class="project-card__body">
@@ -848,8 +861,8 @@
                   <span class="tech-chip">API Mashup</span>
                 </div>
                 <div class="project-card__actions">
-                  <a href="https://celadon-frangollo-6483f9.netlify.app/" target="_blank" class="btn-action btn-action--demo glitch-hover"><i class="bx bx-play-circle"></i> Live Demo</a>
-                  <a href="https://github.com/Bakame03/service_web_project" target="_blank" class="btn-action btn-action--ghost glitch-hover"><i class="bx bx-code-alt"></i> Code</a>
+                  <a href="https://celadon-frangollo-6483f9.netlify.app/" target="_blank" class="btn-action btn-action--demo glitch-hover"><i class="bi bi-play-circle"></i> Live Demo</a>
+                  <a href="https://github.com/Bakame03/service_web_project" target="_blank" class="btn-action btn-action--ghost glitch-hover"><i class="bi bi-code-slash"></i> Code</a>
                 </div>
               </div>
             </div>
@@ -859,10 +872,13 @@
           <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
-                <img src="assets/img/portfolio/web/budget.png" alt="Budget Tracker">
+                <picture>
+                  <source srcset="assets/img/portfolio/web/budget.webp" type="image/webp">
+                  <img src="assets/img/portfolio/web/budget.png" alt="Budget Tracker" width="1100" height="600" loading="lazy">
+                </picture>
                 <span class="project-badge project-badge--status">Full-Stack</span>
                 <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/budget.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Budget Tracker"><i class="bx bx-fullscreen"></i></a>
+                  <a href="assets/img/portfolio/web/budget.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Budget Tracker"><i class="bi bi-arrows-fullscreen"></i></a>
                 </div>
               </div>
               <div class="project-card__body">
@@ -877,8 +893,8 @@
                   <span class="tech-chip">PostgreSQL</span>
                 </div>
                 <div class="project-card__actions">
-                  <a href="https://budget-iu8r.onrender.com" target="_blank" class="btn-action btn-action--demo glitch-hover"><i class="bx bx-play-circle"></i> Live Demo</a>
-                  <a href="https://github.com/Bakame03/budget" target="_blank" class="btn-action btn-action--ghost glitch-hover"><i class="bx bx-code-alt"></i> Code</a>
+                  <a href="https://budget-iu8r.onrender.com" target="_blank" class="btn-action btn-action--demo glitch-hover"><i class="bi bi-play-circle"></i> Live Demo</a>
+                  <a href="https://github.com/Bakame03/budget" target="_blank" class="btn-action btn-action--ghost glitch-hover"><i class="bi bi-code-slash"></i> Code</a>
                 </div>
               </div>
             </div>
@@ -888,9 +904,12 @@
           <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
-                <img src="assets/img/portfolio/web/calculator.png" alt="Web Calculator">
+                <picture>
+                  <source srcset="assets/img/portfolio/web/calculator.webp" type="image/webp">
+                  <img src="assets/img/portfolio/web/calculator.png" alt="Web Calculator" width="1100" height="600" loading="lazy">
+                </picture>
                 <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/calculator.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Modern Web Calculator"><i class="bx bx-fullscreen"></i></a>
+                  <a href="assets/img/portfolio/web/calculator.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Modern Web Calculator"><i class="bi bi-arrows-fullscreen"></i></a>
                 </div>
               </div>
               <div class="project-card__body">
@@ -905,8 +924,8 @@
                   <span class="tech-chip">UI/UX</span>
                 </div>
                 <div class="project-card__actions">
-                  <a href="https://cool-hotteok-83ed4b.netlify.app/" target="_blank" class="btn-action btn-action--demo glitch-hover"><i class="bx bx-play-circle"></i> Live Demo</a>
-                  <a href="https://github.com/Bakame03/CalculatorApp" target="_blank" class="btn-action btn-action--ghost glitch-hover"><i class="bx bx-code-alt"></i> Code</a>
+                  <a href="https://cool-hotteok-83ed4b.netlify.app/" target="_blank" class="btn-action btn-action--demo glitch-hover"><i class="bi bi-play-circle"></i> Live Demo</a>
+                  <a href="https://github.com/Bakame03/CalculatorApp" target="_blank" class="btn-action btn-action--ghost glitch-hover"><i class="bi bi-code-slash"></i> Code</a>
                 </div>
               </div>
             </div>
@@ -998,19 +1017,19 @@
           <div class="col-lg-4">
             <div class="info">
               <div class="address">
-                <a href="https://maps.app.goo.gl/BSvoa3FUnJphKDiu8"><i class="bi bi-geo-alt"></i></i></a>
+                <a href="https://maps.app.goo.gl/BSvoa3FUnJphKDiu8" target="_blank" rel="noopener" aria-label="Open location in Google Maps"><i class="bi bi-geo-alt" aria-hidden="true"></i></a>
                 <h4 data-i18n="contact_location">Location:</h4>
                 <p data-i18n="about_city_val">Arles, France</p>
               </div>
 
               <div class="email">
-                <a href="mailto:nganjialdoalex@gmail.com" class="google-plus"><i class="bi bi-envelope-at"></i></a>
+                <a href="mailto:nganjialdoalex@gmail.com" class="google-plus" aria-label="Send an email"><i class="bi bi-envelope-at" aria-hidden="true"></i></a>
                 <h4 data-i18n="contact_email">Email:</h4>
                 <p>nganjialdoalex@gmail.com</p>
               </div>
 
               <div class="phone">
-                <i class="bi bi-phone"></i>
+                <i class="bi bi-phone" aria-hidden="true"></i>
                 <h4 data-i18n="contact_call">Call:</h4>
                 <p>+33 7 58 80 69 42</p>
               </div>
@@ -1097,11 +1116,11 @@
         "Design is not just what it looks like and feels like. It's how it works."
       </p>
       <div class="social-links">
-        <a href="https://x.com/bakame03" class="twitter" target="_blank"><i class="bi bi-twitter-x"></i></a>
-        <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-        <a href="https://wa.me/+33758806942" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
-        <a href="https://www.linkedin.com/in/aldo-alex-nganji-550072383" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
-        <a href="https://github.com/Bakame03" class="github" target="_blank"><i class="bi bi-github"></i></a>
+        <a href="https://x.com/bakame03" class="twitter" target="_blank" rel="noopener" aria-label="X (Twitter) profile"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank" rel="noopener" aria-label="Instagram profile"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+        <a href="https://wa.me/+33758806942" class="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/aldo-alex-nganji-550072383" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+        <a href="https://github.com/Bakame03" class="github" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="bi bi-github" aria-hidden="true"></i></a>
       </div>
       <div class="copyright">
         &copy; <strong><span id="current_year"></span> Aldo Alex NGANJI</strong>.
@@ -1113,11 +1132,13 @@
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Back to top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>
 
   <!-- ======= Custom Cursor Script ======= -->
   <script>
     (function () {
+      // Respect reduced-motion: keep the native cursor, skip the custom one
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       // Only enable on non-touch devices
       if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         const dot  = document.getElementById('cursor-dot');
@@ -1178,6 +1199,8 @@
   <!-- ======= Magnetic Social Icons Script ======= -->
   <script>
     (function () {
+      // Respect reduced-motion
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       // Only on non-touch devices
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
@@ -1291,6 +1314,8 @@
   <!-- ======= WebGL 3D Background - Vanta Net (Feature #9) ======= -->
   <script>
     window.addEventListener('load', function() {
+      // Respect reduced-motion: skip the animated WebGL background
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       // Small delay ensures layout is final before canvas calculation
       setTimeout(function() {
         if (window.VANTA && document.getElementById('hero')) {
@@ -1318,6 +1343,8 @@
   <!-- ======= Fluid Image Distortion for Projects (Feature #10) ======= -->
   <script>
     (function() {
+      // Respect reduced-motion: no liquid ripple distortion
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       // Only enable on non-touch devices
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
@@ -1427,6 +1454,8 @@
   <!-- ======= Kinetic Background Typography (Feature #11) ======= -->
   <script>
     (function() {
+      // Respect reduced-motion: freeze kinetic parallax typography
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       // Find all kinetic text elements
       const kineticTexts = document.querySelectorAll('.kinetic-text');
       if (kineticTexts.length === 0) return;
@@ -1458,6 +1487,8 @@
   <!-- ======= Flashlight Mask Reveal (Feature #12) ======= -->
   <script>
     (function() {
+      // Respect reduced-motion: no flashlight spotlight
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       // Only enable on non-touch devices
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
@@ -1491,6 +1522,8 @@
   <!-- ======= GSAP Split Text — Section Title Reveal ======= -->
   <script>
     (function () {
+      // Respect reduced-motion: leave section titles static & visible
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       gsap.registerPlugin(ScrollTrigger);
 
       /* ── Split an h2's plain text into individual .char spans ─── */
@@ -1575,6 +1608,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
   <script>
     (function () {
+      // Respect reduced-motion: no 3D card tilt
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       function initTilt() {
         var cards = document.querySelectorAll('.project-card');
         if (!cards.length || typeof VanillaTilt === 'undefined') return;
@@ -1603,6 +1638,8 @@
   <!-- ======= Velocity-Based Fluid Divider (Feature #14) ======= -->
   <script>
     (function() {
+      // Respect reduced-motion: static divider, no velocity spring
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const path = document.getElementById('fluidPath');
       if (!path) return;
 
