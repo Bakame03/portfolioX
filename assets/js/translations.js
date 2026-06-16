@@ -71,7 +71,7 @@ window.translations = {
 
     resume_role_highschool: "Baccalauréat Scientifique B",
     resume_role_highschool_loc: "Lycée Clarté Notre Dame de Vugizo, Bujumbura, Burundi",
-    resume_role_highschool_desc: "Major: <strong>Maths, Biologie, Chimie & Sciences de la Terre</strong>. Graduated with <strong>Mention : Fruit</strong>.",
+    resume_role_highschool_desc: "Major: <strong>Maths, Biologie, Chimie & Sciences de la Terre</strong>. Graduated with <strong>Mention : Bien</strong>.",
 
     resume_prize_devart_title: "DevArt 2026 — Prix du Jury 🥇",
     resume_prize_devart_subtitle: "IUT d'Arles, Aix-Marseille Université — 32h Hackathon",
@@ -237,7 +237,7 @@ window.translations = {
 
     resume_role_highschool: "Baccalauréat Scientifique B",
     resume_role_highschool_loc: "Lycée Clarté Notre Dame de Vugizo, Bujumbura, Burundi",
-    resume_role_highschool_desc: "Majeure : <strong>Maths, Biologie, Chimie & Sciences de la Terre</strong>. Diplômé avec la <strong>Mention : Fruit</strong>.",
+    resume_role_highschool_desc: "Majeure : <strong>Maths, Biologie, Chimie & Sciences de la Terre</strong>. Diplômé avec la <strong>Mention : Bien</strong>.",
 
     resume_prize_devart_title: "DevArt 2026 — Prix du Jury 🥇",
     resume_prize_devart_subtitle: "IUT d'Arles, Aix-Marseille Université — 32h Hackathon",
