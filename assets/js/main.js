@@ -1,10 +1,3 @@
-/**
-* Template Name: MyResume
-* Updated: Jan 09 2024 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 (function() {
   "use strict";
 
@@ -32,13 +25,6 @@
         selectEl.addEventListener(type, listener)
       }
     }
-  }
-
-  /**
-   * Easy on scroll event listener
-   */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
   }
 
   /**
