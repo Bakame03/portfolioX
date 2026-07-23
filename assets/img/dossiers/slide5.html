@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="slides.css">
+  <style>
+    .synth { margin-top: 34px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 46px; align-items: start; }
+    .synth__p { font-size: 26px; line-height: 1.62; color: var(--navy); font-weight: 500; }
+    .synth__p b { color: var(--ink); font-weight: 700; }
+    .synth__p .hl { color: var(--orange-dk); font-weight: 700; }
+    .keys { display: flex; flex-direction: column; gap: 16px; }
+    .keys h3 { font-size: 20px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+    .key { display: flex; gap: 16px; align-items: flex-start;
+           border:1.5px solid var(--line); border-radius:12px; background:rgba(255,255,255,.4); padding:18px 20px; }
+    .key__dot { width: 12px; height: 12px; border-radius: 50%; background: var(--orange); margin-top: 8px; flex-shrink: 0; }
+    .key__txt { font-size: 20px; color: var(--ink); font-weight: 600; line-height: 1.35; }
+    .key__txt small { display:block; color: var(--muted); font-weight: 500; font-size: 16px; margin-top: 3px; }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h1 class="slide__title">Synthèse <span class="accent">Analytique</span></h1>
+
+    <div class="synth">
+      <p class="synth__p">
+        Profil technique à forte dimension <b>analytique et humaine</b>. Aldo se distingue par une
+        capacité remarquable à <span class="hl">identifier et formaliser les besoins métiers</span> des
+        clients — <b>1ᵉʳ sur 48</b> de sa promotion sur cette compétence — doublée d'excellentes aptitudes
+        en communication, gestion de projet et développement web.
+        <br><br>
+        La validation des <b>6 compétences</b> et des <b>60 crédits ECTS</b>, avec une progression
+        régulière sur les deux semestres, confirme un socle solide pour la deuxième année et une
+        orientation naturelle vers l'<b>ingénierie backend</b> et les systèmes pilotés par les besoins réels.
+      </p>
+
+      <div class="keys">
+        <h3>Points clés</h3>
+        <div class="key"><span class="key__dot"></span><div class="key__txt">Année BUT1 validée<small>Admis · 60 ECTS · 6/6 compétences</small></div></div>
+        <div class="key"><span class="key__dot"></span><div class="key__txt">Leader de promotion<small>1ᵉʳ / 48 en analyse des besoins métiers</small></div></div>
+        <div class="key"><span class="key__dot"></span><div class="key__txt">Atouts transverses<small>Communication · gestion de projet · web</small></div></div>
+        <div class="key"><span class="key__dot"></span><div class="key__txt">Cap sur la BUT2<small>Socle solide, orientation backend &amp; IA</small></div></div>
+      </div>
+    </div>
+
+    <div class="slide__foot">Aix-Marseille Université · Notes &amp; Résultats</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="slides.css">
+  <style>
+    .radar-wrap { margin-top: 30px; display: grid; grid-template-columns: 680px 1fr; gap: 30px; align-items: center; }
+    #radar { width: 680px; height: 600px; }
+    .clist { display: flex; flex-direction: column; gap: 13px; }
+    .crow { display: flex; align-items: center; justify-content: space-between; gap: 18px;
+            border: 1.5px solid var(--line); border-radius: 12px; padding: 15px 22px; background: rgba(255,255,255,.4); }
+    .crow__name { font-weight: 600; font-size: 21px; color: var(--ink); }
+    .crow__name small { display:block; color: var(--muted); font-weight: 500; font-size: 15px; margin-top: 2px; }
+    .crow__right { display: flex; align-items: center; gap: 14px; }
+    .crow__score { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 24px; color: var(--navy); }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h1 class="slide__title">Cartographie des <span class="accent">6 Compétences</span></h1>
+    <p class="slide__sub">Moyennes par compétence (RCP) · niveau 1 · toutes validées</p>
+
+    <div class="radar-wrap">
+      <svg id="radar" viewBox="0 0 680 600"></svg>
+      <div class="clist" id="clist"></div>
+    </div>
+    <div class="slide__foot">Aix-Marseille Université · Notes &amp; Résultats</div>
+  </div>
+
+  <script>
+    const COMPS = [
+      { key:'Réaliser',    full:'Réaliser un développement',        v:14.312 },
+      { key:'Optimiser',   full:'Optimiser des applications',       v:11.652 },
+      { key:'Administrer', full:'Administrer des systèmes',         v:13.993 },
+      { key:'Gérer',       full:'Gérer des données',               v:12.331 },
+      { key:'Conduire',    full:'Conduire un projet',               v:14.457 },
+      { key:'Collaborer',  full:'Collaborer en équipe',             v:14.395 },
+    ];
+    const cx=320, cy=300, maxR=205, MAX=20;
+    const svgNS='http://www.w3.org/2000/svg';
+    const svg=document.getElementById('radar');
+    const ORANGE='#E9682B', NAVY='#1B2A4A', GRID='rgba(27,42,74,.16)', MUTED='#6A7180';
+
+    function el(n,a){const e=document.createElementNS(svgNS,n);for(const k in a)e.setAttribute(k,a[k]);return e;}
+    function pt(i,r){const ang=(-90+i*60)*Math.PI/180;return[cx+r*Math.cos(ang),cy+r*Math.sin(ang)];}
+
+    // grid rings
+    [5,10,15,20].forEach(rv=>{
+      const r=rv/MAX*maxR;
+      let d=COMPS.map((_,i)=>{const[x,y]=pt(i,r);return (i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}).join(' ')+' Z';
+      svg.appendChild(el('path',{d,fill:'none',stroke:GRID,'stroke-width':1.2}));
+    });
+    // spokes + labels
+    COMPS.forEach((c,i)=>{
+      const[ex,ey]=pt(i,maxR);
+      svg.appendChild(el('line',{x1:cx,y1:cy,x2:ex,y2:ey,stroke:GRID,'stroke-width':1.2}));
+      const[lx,ly]=pt(i,maxR+30);
+      const cos=Math.cos((-90+i*60)*Math.PI/180);
+      const anchor=cos>0.25?'start':cos<-0.25?'end':'middle';
+      const t=el('text',{x:lx.toFixed(1),y:ly.toFixed(1),'text-anchor':anchor,'font-family':'Poppins','font-weight':700,'font-size':21,fill:NAVY});
+      t.textContent=c.key;
+      svg.appendChild(t);
+      const s=el('text',{x:lx.toFixed(1),y:(ly+24).toFixed(1),'text-anchor':anchor,'font-family':'Roboto Mono','font-weight':500,'font-size':17,fill:ORANGE});
+      s.textContent=c.v.toFixed(2);
+      svg.appendChild(s);
+    });
+    // data polygon
+    let d=COMPS.map((c,i)=>{const[x,y]=pt(i,c.v/MAX*maxR);return (i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}).join(' ')+' Z';
+    svg.appendChild(el('path',{d,fill:'rgba(233,104,43,.22)',stroke:ORANGE,'stroke-width':3,'stroke-linejoin':'round'}));
+    COMPS.forEach((c,i)=>{const[x,y]=pt(i,c.v/MAX*maxR);
+      svg.appendChild(el('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:6,fill:ORANGE,stroke:'#F3F3EF','stroke-width':2}));});
+
+    // right-side list
+    const clist=document.getElementById('clist');
+    COMPS.forEach(c=>{
+      const row=document.createElement('div'); row.className='crow';
+      row.innerHTML='<div class="crow__name">'+c.key+'<small>'+c.full+'</small></div>'+
+        '<div class="crow__right"><span class="crow__score">'+c.v.toFixed(2)+'</span><span class="tag">✓ VALIDÉ</span></div>';
+      clist.appendChild(row);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="slides.css">
+  <style>
+    .cover { display: grid; grid-template-columns: 360px 1fr; gap: 54px; align-items: start; margin-top: 40px; }
+    .cover__photo { width: 360px; height: 430px; object-fit: cover; border-radius: 16px; }
+    .cover__left { display: flex; flex-direction: column; gap: 30px; align-items: flex-start; }
+    .cover__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .cover__grid .span2 { grid-column: 1 / -1; }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h1 class="slide__title">Profil Analytique &amp; Bilan de Compétences :<br><span class="accent">BUT1 — Année Complète</span></h1>
+
+    <div class="cover">
+      <div class="cover__left">
+        <img class="cover__photo" src="file:///home/bakame03/Documents/portfolioX/assets/img/aldo_alex_nganji.webp" alt="Aldo Alex Nganji">
+        <div class="pill"><span class="check">✓</span> BUT1 Validé · 60 ECTS</div>
+      </div>
+
+      <div class="cover__grid">
+        <div class="card">
+          <div class="card__label">Nom du Profil</div>
+          <div class="card__value">Aldo Alex Nganji</div>
+        </div>
+        <div class="card">
+          <div class="card__label">ID Étudiant</div>
+          <div class="card__value">25031167</div>
+        </div>
+        <div class="card span2">
+          <div class="card__label">Programme</div>
+          <div class="card__value">BUT Informatique (Année 2025/2026)</div>
+        </div>
+        <div class="card">
+          <div class="card__label">Établissement</div>
+          <div class="card__value">IUT d'Aix-Marseille<br>(Site d'Arles)</div>
+        </div>
+        <div class="card">
+          <div class="card__label">Statut Final</div>
+          <div class="card__value">Admis — <span style="color:var(--green-dk)">ADM</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide__foot">Aix-Marseille Université · Notes &amp; Résultats</div>
+  </div>
+</body>
+</html>
