@@ -40,7 +40,7 @@
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet"> <!-- for portfolio -->
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> <!-- for testimonials -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -1118,17 +1118,19 @@
       if (window.matchMedia('(max-width: 991px)').matches) return;
       if (!document.getElementById('hero')) return;
 
-      function loadScript(src) {
+      function loadScript(src, integrity) {
         return new Promise(function (resolve, reject) {
           var s = document.createElement('script');
           s.src = src; s.async = true;
+          // SRI: reject the script if the CDN bytes don't match the expected hash.
+          if (integrity) { s.integrity = integrity; s.crossOrigin = 'anonymous'; }
           s.onload = resolve; s.onerror = reject;
           document.head.appendChild(s);
         });
       }
 
-      loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js')
-        .then(function () { return loadScript('https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js'); })
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js', 'sha384-9EQoUIJYrv09/oYhSxnw1VpLcfPw3BM9dE7+D/3wGUPeLLa7F9Z6OAoD+i/M6FK9')
+        .then(function () { return loadScript('https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js', 'sha384-L0sjdcIWJ156WmvbxIBHx79j1WrCqANCyw456nl/aPWSYiHNywEU2VIAcbSJeIiX'); })
         .then(function () {
           if (!window.VANTA) return;
           VANTA.NET({
@@ -1220,8 +1222,8 @@
   </script>
 
   <!-- ======= GSAP + ScrollTrigger CDN ======= -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" defer></script>
 
   <!-- ======= GSAP Split Text — Section Title Reveal ======= -->
   <script>
@@ -1312,7 +1314,7 @@
   </script>
 
   <!-- ======= VanillaTilt — 3D Card Tilt + Glare ======= -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha384-0k1dj5tm+KUH/4vkNk/i90XsjDA8Ltmt+ybcrFoH4t0dgv/WZsPpVBnkhcroX8UL" crossorigin="anonymous" defer></script>
   <script>
     (function () {
       // Respect reduced-motion: no 3D card tilt
