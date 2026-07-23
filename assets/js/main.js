@@ -187,9 +187,10 @@
    */
   let preloader = select('#preloader');
   if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove()
-    });
+    const removePreloader = () => preloader.remove();
+    window.addEventListener('load', removePreloader);
+    // Failsafe: never let a slow/hung asset trap users behind the overlay.
+    setTimeout(removePreloader, 3000);
   }
 
   /**

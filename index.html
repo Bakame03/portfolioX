@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- Flip no-js → js before render so JS-gated states (hero reveal, preloader)
+       only apply when JS is actually available. Content stays visible otherwise. -->
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
   <title>Aldo Alex NGANJI - Back End Developer & AI Enthusiast</title>
   <meta content="Portfolio of Aldo Alex NGANJI, Back End Developer skilled in Python and NestJS. Student at Aix-Marseille University and graduate of Université du Lac Tanganyika in Software Engineering. Expanding into Artificial Intelligence." name="description">
@@ -369,14 +373,14 @@
                     <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
-                    <img src="assets/img/dossiers/but1_s1-1.png" alt="Page 1" loading="lazy">
-                    <img src="assets/img/dossiers/but1_s1-2.png" alt="Page 2" loading="lazy">
-                    <img src="assets/img/dossiers/but1_s1-3.png" alt="Page 3" loading="lazy">
-                    <img src="assets/img/dossiers/but1_s1-4.png" alt="Page 4" loading="lazy">
-                    <img src="assets/img/dossiers/but1_s1-5.png" alt="Page 5" loading="lazy">
-                    <img src="assets/img/dossiers/but1_s1-6.png" alt="Page 6" loading="lazy">
-                    <img src="assets/img/dossiers/but1_s1-7.png" alt="Page 7" loading="lazy">
-                    <img src="assets/img/dossiers/but1_s1-8.png" alt="Page 8" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-1.webp" alt="Page 1" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-2.webp" alt="Page 2" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-3.webp" alt="Page 3" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-4.webp" alt="Page 4" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-5.webp" alt="Page 5" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-6.webp" alt="Page 6" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-7.webp" alt="Page 7" loading="lazy">
+                    <img src="assets/img/dossiers/but1_s1-8.webp" alt="Page 8" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -456,16 +460,16 @@
                     <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
-                    <img src="assets/img/devart/a.jpg" alt="Photo 1" loading="lazy">
-                    <img src="assets/img/devart/b.jpg" alt="Photo 2" loading="lazy">
-                    <img src="assets/img/devart/c.jpg" alt="Photo 3" loading="lazy">
-                    <img src="assets/img/devart/d.JPG" alt="Photo 4" loading="lazy">
-                    <img src="assets/img/devart/e.JPG" alt="Photo 5" loading="lazy">
-                    <img src="assets/img/devart/f.JPG" alt="Photo 6" loading="lazy">
-                    <img src="assets/img/devart/g.JPG" alt="Photo 7" loading="lazy">
-                    <img src="assets/img/devart/h.JPG" alt="Photo 8" loading="lazy">
-                    <img src="assets/img/devart/i.JPG" alt="Photo 9" loading="lazy">
-                    <img src="assets/img/devart/j.JPG" alt="Photo 10" loading="lazy">
+                    <img src="assets/img/devart/a.webp" alt="Photo 1" loading="lazy">
+                    <img src="assets/img/devart/b.webp" alt="Photo 2" loading="lazy">
+                    <img src="assets/img/devart/c.webp" alt="Photo 3" loading="lazy">
+                    <img src="assets/img/devart/d.webp" alt="Photo 4" loading="lazy">
+                    <img src="assets/img/devart/e.webp" alt="Photo 5" loading="lazy">
+                    <img src="assets/img/devart/f.webp" alt="Photo 6" loading="lazy">
+                    <img src="assets/img/devart/g.webp" alt="Photo 7" loading="lazy">
+                    <img src="assets/img/devart/h.webp" alt="Photo 8" loading="lazy">
+                    <img src="assets/img/devart/i.webp" alt="Photo 9" loading="lazy">
+                    <img src="assets/img/devart/j.webp" alt="Photo 10" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -550,10 +554,7 @@
           <div class="swiper-slide portfolio-item filter-ai item-wide">
             <div class="project-card">
               <div class="project-card__image">
-                <picture>
-                  <source srcset="assets/img/portfolio/web/hypoxia.webp" type="image/webp">
-                  <img src="assets/img/portfolio/web/hypoxia.png" alt="HYPOXIA — L'Écho Numérique" width="1100" height="600" loading="lazy">
-                </picture>
+                <img src="assets/img/portfolio/web/hypoxia.webp" alt="HYPOXIA — L'Écho Numérique" width="1100" height="600" loading="lazy">
                 <span class="project-badge project-badge--flagship" data-i18n="project_badge_flagship"><i class="bi bi-trophy"></i> Prix du Jury (DevArt)</span>
                 <span class="project-badge project-badge--status" data-i18n="project_badge_awarded">Awarded</span>
                 <div class="project-card__overlay">
@@ -583,10 +584,7 @@
           <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
-                <picture>
-                  <source srcset="assets/img/portfolio/web/eatwell.webp" type="image/webp">
-                  <img src="assets/img/portfolio/web/eatwell.png" alt="Eat Well (Omnifood)" width="1100" height="600" loading="lazy">
-                </picture>
+                <img src="assets/img/portfolio/web/eatwell.webp" alt="Eat Well (Omnifood)" width="1100" height="600" loading="lazy">
                 <span class="project-badge project-badge--status">Production</span>
                 <div class="project-card__overlay">
                   <a href="assets/img/portfolio/web/eatwell.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Eat Well (Omnifood)"><i class="bi bi-arrows-fullscreen"></i></a>
@@ -615,10 +613,7 @@
           <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
-                <picture>
-                  <source srcset="assets/img/portfolio/web/services.webp" type="image/webp">
-                  <img src="assets/img/portfolio/web/services.png" alt="Unified Service Ecosystem" width="1100" height="600" loading="lazy">
-                </picture>
+                <img src="assets/img/portfolio/web/services.webp" alt="Unified Service Ecosystem" width="1100" height="600" loading="lazy">
                 <span class="project-badge project-badge--status">API Focus</span>
                 <div class="project-card__overlay">
                   <a href="assets/img/portfolio/web/services.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Unified Service Ecosystem"><i class="bi bi-arrows-fullscreen"></i></a>
@@ -647,10 +642,7 @@
           <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
-                <picture>
-                  <source srcset="assets/img/portfolio/web/budget.webp" type="image/webp">
-                  <img src="assets/img/portfolio/web/budget.png" alt="Budget Tracker" width="1100" height="600" loading="lazy">
-                </picture>
+                <img src="assets/img/portfolio/web/budget.webp" alt="Budget Tracker" width="1100" height="600" loading="lazy">
                 <span class="project-badge project-badge--status">Full-Stack</span>
                 <div class="project-card__overlay">
                   <a href="assets/img/portfolio/web/budget.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Budget Tracker"><i class="bi bi-arrows-fullscreen"></i></a>
@@ -679,10 +671,7 @@
           <div class="swiper-slide portfolio-item filter-web">
             <div class="project-card">
               <div class="project-card__image">
-                <picture>
-                  <source srcset="assets/img/portfolio/web/calculator.webp" type="image/webp">
-                  <img src="assets/img/portfolio/web/calculator.png" alt="Web Calculator" width="1100" height="600" loading="lazy">
-                </picture>
+                <img src="assets/img/portfolio/web/calculator.webp" alt="Web Calculator" width="1100" height="600" loading="lazy">
                 <div class="project-card__overlay">
                   <a href="assets/img/portfolio/web/calculator.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Modern Web Calculator"><i class="bi bi-arrows-fullscreen"></i></a>
                 </div>
@@ -1054,17 +1043,20 @@
   <!-- ======= Page Load Intro Sequence (Feature #6) ======= -->
   <script>
     (function() {
-      // Create a small delay after load to trigger the sequence,
-      // aligning with when the preloader vanishes.
+      var revealed = false;
+      function revealHero() {
+        if (revealed) return;
+        revealed = true;
+        var container = document.querySelector('.hero-intro-container');
+        if (container) container.classList.add('hero-intro-ready');
+      }
+      // Reveal just after load, aligning with the preloader fade-out.
       window.addEventListener('load', function() {
-        var preloaderDelay = 500; // Let the preloader fade out slightly
-        setTimeout(function() {
-          var container = document.querySelector('.hero-intro-container');
-          if (container) {
-            container.classList.add('hero-intro-ready');
-          }
-        }, preloaderDelay);
+        setTimeout(revealHero, 400);
       });
+      // Failsafe: a slow or hung asset (CDN image, map iframe) must never keep
+      // the hero hidden — reveal regardless once the DOM is ready + a short beat.
+      setTimeout(revealHero, 2500);
     })();
   </script>
 

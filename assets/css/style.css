@@ -555,11 +555,22 @@ h6 {
 
 /* Feature #6: Intro Sequence Initial States */
 .hero-intro-elem {
+  /* Default smooth transition */
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Only hide the hero for the staggered reveal when JS is actually running.
+   Without JS (or if the reveal never fires) the hero stays fully visible. */
+.js .hero-intro-elem {
   opacity: 0;
   transform: translateY(30px);
-  /* Default smooth transition */
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-              transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Without JS the preloader can never be removed (it's torn down in JS on load),
+   so hide it up front to avoid a permanent white overlay. */
+.no-js #preloader {
+  display: none;
 }
 
 .hero-intro-ready .hero-name {
