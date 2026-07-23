@@ -60,9 +60,11 @@ window.translations = {
     resume_sec_exp: "Professional Experience",
 
     // Resume Details
-    resume_role_cs: "Computer Science — BUT (B.U.T.) Informatique",
+    resume_role_cs2: "Computer Science — BUT2 Informatique",
+    resume_role_cs2_desc: "Currently in the second year (BUT2) of the B.U.T. in Computer Science, building on a fully validated first year — deepening algorithms, systems architecture, databases, and Artificial Intelligence.",
+    resume_role_cs: "Computer Science — BUT1 Informatique",
     resume_role_cs_loc: "Aix-Marseille Université — IUT d'Arles, France",
-    resume_role_cs_desc: "Currently pursuing a B.U.T. (Bachelor Universitaire de Technologie) in Computer Science, deepening expertise in algorithms, systems architecture, and Artificial Intelligence.",
+    resume_role_cs_desc: "Completed the first year (BUT1) — Admis with all 60 ECTS and 6/6 competencies validated. Foundations in development, algorithms, databases, systems, and client needs analysis.",
     resume_s1_label: "BUT1 — Final Results &nbsp;·&nbsp; 5 pages",
     resume_click_view: "Click to view",
     
@@ -227,9 +229,11 @@ window.translations = {
     resume_sec_exp: "Expérience Professionnelle",
 
     // Resume Details
-    resume_role_cs: "BUT Informatique",
+    resume_role_cs2: "BUT2 Informatique",
+    resume_role_cs2_desc: "Actuellement en deuxième année (BUT2) du B.U.T. Informatique, en m'appuyant sur une première année entièrement validée — approfondissement des algorithmes, de l'architecture des systèmes, des bases de données et de l'Intelligence Artificielle.",
+    resume_role_cs: "BUT1 Informatique",
     resume_role_cs_loc: "Aix-Marseille Université — IUT d'Arles, France",
-    resume_role_cs_desc: "Actuellement en préparation d'un B.U.T. (Bachelor Universitaire de Technologie) en Informatique, approfondissant l'expertise en algorithmes, architecture de systèmes et Intelligence Artificielle.",
+    resume_role_cs_desc: "Première année (BUT1) validée — Admis avec 60 ECTS et 6/6 compétences acquises. Bases solides en développement, algorithmes, bases de données, systèmes et analyse des besoins.",
     resume_s1_label: "BUT1 — Résultats Finaux &nbsp;·&nbsp; 5 pages",
     resume_click_view: "Cliquez pour voir",
     
