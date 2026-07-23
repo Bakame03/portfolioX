@@ -517,25 +517,47 @@
    * Replaces the three near-identical CV / BUT1 / DevArt inline scripts.
    *   Open:  any element with [data-modal-open="#modalId"]
    *   Close: [data-modal-close], a backdrop click, or the Escape key
+   *
+   * Implements the ARIA dialog pattern: focus moves into the dialog on open,
+   * Tab is trapped inside it, and focus returns to the trigger on close.
    */
   (function initModalLite() {
-    const openModal = (modal) => {
+    const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input:not([disabled]), select:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])';
+    let lastTrigger = null;
+
+    // Visible, focusable elements within a modal (getClientRects is robust for
+    // the modal's position:fixed context, where offsetParent is unreliable).
+    const focusable = (modal) =>
+      Array.prototype.slice.call(modal.querySelectorAll(FOCUSABLE))
+        .filter(el => el.getClientRects().length > 0);
+
+    const openModal = (modal, trigger) => {
+      lastTrigger = trigger || document.activeElement;
       modal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
+      // Move focus into the dialog: the close button if present, else the dialog.
+      const target = modal.querySelector('.modal-lite__close') || modal;
+      target.focus();
     };
+
     const closeModal = (modal) => {
       modal.classList.remove('is-open');
       document.body.style.overflow = '';
+      // Return focus to whatever opened the dialog.
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+      lastTrigger = null;
     };
 
     select('[data-modal-open]', true).forEach(trigger => {
       trigger.addEventListener('click', () => {
         const modal = select(trigger.getAttribute('data-modal-open'));
-        if (modal) openModal(modal);
+        if (modal) openModal(modal, trigger);
       });
     });
 
     select('.modal-lite', true).forEach(modal => {
+      // Allow the dialog itself to receive focus as a fallback.
+      if (!modal.hasAttribute('tabindex')) modal.setAttribute('tabindex', '-1');
       modal.addEventListener('click', (e) => {
         if (e.target === modal || (e.target.closest && e.target.closest('[data-modal-close]'))) {
           closeModal(modal);
@@ -544,8 +566,31 @@
     });
 
     document.addEventListener('keydown', (e) => {
+      const modal = select('.modal-lite.is-open');
+      if (!modal) return;
+
       if (e.key === 'Escape') {
-        select('.modal-lite.is-open', true).forEach(closeModal);
+        closeModal(modal);
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        const items = focusable(modal);
+        if (items.length === 0) {
+          e.preventDefault();
+          modal.focus();
+          return;
+        }
+        const first = items[0];
+        const last = items[items.length - 1];
+        const active = document.activeElement;
+        if (e.shiftKey && (active === first || !modal.contains(active))) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && (active === last || !modal.contains(active))) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     });
   })();
