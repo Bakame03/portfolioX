@@ -353,7 +353,7 @@
     
     ghStats.src = `https://readme-stats-fast.vercel.app/api?username=Bakame03&show_icons=true&theme=transparent&hide_border=true&title_color=${titleColor}&icon_color=${iconColor}&text_color=${textColor}`;
     ghLangs.src = `https://readme-stats-fast.vercel.app/api/top-langs/?username=Bakame03&layout=compact&theme=transparent&hide_border=true&title_color=${titleColor}&text_color=${textColor}`;
-    ghStreak.src = `https://github-readme-streak-stats.herokuapp.com/?user=Bakame03&theme=transparent&hide_border=true&stroke=${titleColor}&ring=${titleColor}&fire=${titleColor}&currStreakNum=${titleColor}&sideTexts=${textColor}`;
+    ghStreak.src = `https://streak-stats.demolab.com/?user=Bakame03&theme=transparent&hide_border=true&stroke=${titleColor}&ring=${titleColor}&fire=${titleColor}&currStreakNum=${titleColor}&sideTexts=${textColor}`;
   }
 
   if (themeToggle) {
@@ -440,36 +440,61 @@
     const repoList = select('#github-repo-list');
     if (!repoList) return;
 
-    try {
-      const response = await fetch('https://api.github.com/users/Bakame03/repos?sort=updated&per_page=3');
-      if (!response.ok) throw new Error('Failed to fetch repos');
-      
-      const repos = await response.json();
-      repoList.innerHTML = ''; // Clear spinner
+    const CACHE_KEY = 'gh_repos_v1';
+    const TTL = 30 * 60 * 1000; // 30 minutes
 
+    // Escape repo-supplied strings before they hit innerHTML.
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+
+    const render = (repos) => {
+      repoList.innerHTML = ''; // Clear spinner
       repos.forEach(repo => {
         const repoItem = document.createElement('a');
         repoItem.href = repo.html_url;
         repoItem.target = '_blank';
+        repoItem.rel = 'noopener';
         repoItem.className = 'repo-item';
         repoItem.innerHTML = `
-          <h6><i class="bi bi-folder2"></i>${repo.name}</h6>
-          <p>${repo.description || 'No description provided.'}</p>
+          <h6><i class="bi bi-folder2"></i>${esc(repo.name)}</h6>
+          <p>${esc(repo.description) || 'No description provided.'}</p>
           <div class="repo-meta">
-            <span><i class="bi bi-star-fill"></i>${repo.stargazers_count}</span>
-            <span><i class="bi bi-diagram-2"></i>${repo.forks_count}</span>
-            <span><i class="bi bi-circle-fill repo-lang-dot"></i>${repo.language || 'Code'}</span>
+            <span><i class="bi bi-star-fill"></i>${Number(repo.stargazers_count) || 0}</span>
+            <span><i class="bi bi-diagram-2"></i>${Number(repo.forks_count) || 0}</span>
+            <span><i class="bi bi-circle-fill repo-lang-dot"></i>${esc(repo.language) || 'Code'}</span>
           </div>
         `;
         repoList.appendChild(repoItem);
       });
+    };
+
+    let cached = null;
+    try { cached = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) {}
+    const hasCache = cached && Array.isArray(cached.data) && cached.data.length;
+
+    // Paint cached data instantly; if it's still fresh, skip the network entirely.
+    if (hasCache) {
+      render(cached.data);
+      if (Date.now() - cached.t < TTL) return;
+    }
+
+    try {
+      const response = await fetch('https://api.github.com/users/Bakame03/repos?sort=updated&per_page=3');
+      if (!response.ok) throw new Error('GitHub API ' + response.status);
+      const repos = await response.json();
+      render(repos);
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data: repos })); } catch (e) {}
     } catch (error) {
       console.error('GitHub API Error:', error);
-      repoList.innerHTML = `
-        <div class="col-12 text-center text-muted">
-          <p>Unable to load live activity. <a href="https://github.com/Bakame03" target="_blank">View profile on GitHub</a></p>
-        </div>
-      `;
+      // Keep stale cached data on screen; only show the fallback if we have nothing.
+      if (!hasCache) {
+        repoList.innerHTML = `
+          <div class="col-12 text-center text-muted">
+            <p>Unable to load live activity. <a href="https://github.com/Bakame03" target="_blank" rel="noopener">View profile on GitHub</a></p>
+          </div>
+        `;
+      }
     }
   }
   
