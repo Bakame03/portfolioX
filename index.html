@@ -7,7 +7,16 @@
 
   <!-- Flip no-js → js before render so JS-gated states (hero reveal, preloader)
        only apply when JS is actually available. Content stays visible otherwise. -->
-  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+  <script>
+    var _d = document.documentElement;
+    _d.className = _d.className.replace('no-js', 'js');
+    /* Apply the saved language before first paint so returning French visitors
+       don't get an EN-labelled flash + a lang/content mismatch for screen readers. */
+    try { var _l = localStorage.getItem('lang'); if (_l) _d.lang = _l; } catch (e) {}
+  </script>
+
+  <!-- Colours the mobile browser chrome; kept in sync with the active theme by JS. -->
+  <meta name="theme-color" content="#080811">
 
   <title>Aldo Alex NGANJI - Back End Developer & AI Enthusiast</title>
   <meta content="Portfolio of Aldo Alex NGANJI, Back End Developer skilled in Python and NestJS. Student at Aix-Marseille University and graduate of Université du Lac Tanganyika in Software Engineering. Expanding into Artificial Intelligence." name="description">
@@ -34,7 +43,9 @@
   <!-- Google Fonts (2 families, only used weights, swap to avoid FOIT) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@500;600;700;900&display=swap" rel="stylesheet">
+  <!-- Load font CSS off the critical path (media=print → all on load); noscript fallback keeps it working without JS. -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@500;600;700;900&display=swap" rel="stylesheet"></noscript>
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -501,16 +512,16 @@
                     <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
-                    <img src="assets/img/devart/a.webp" alt="Photo 1" loading="lazy">
-                    <img src="assets/img/devart/b.webp" alt="Photo 2" loading="lazy">
-                    <img src="assets/img/devart/c.webp" alt="Photo 3" loading="lazy">
-                    <img src="assets/img/devart/d.webp" alt="Photo 4" loading="lazy">
-                    <img src="assets/img/devart/e.webp" alt="Photo 5" loading="lazy">
-                    <img src="assets/img/devart/f.webp" alt="Photo 6" loading="lazy">
-                    <img src="assets/img/devart/g.webp" alt="Photo 7" loading="lazy">
-                    <img src="assets/img/devart/h.webp" alt="Photo 8" loading="lazy">
-                    <img src="assets/img/devart/i.webp" alt="Photo 9" loading="lazy">
-                    <img src="assets/img/devart/j.webp" alt="Photo 10" loading="lazy">
+                    <img src="assets/img/devart/a.webp" alt="Team Nebula gathered at their workstation during the DevArt 2026 hackathon" loading="lazy">
+                    <img src="assets/img/devart/b.webp" alt="Selfie collage of Team Nebula members at the DevArt 2026 hackathon" loading="lazy">
+                    <img src="assets/img/devart/c.webp" alt="Team Nebula presenting on stage in front of the Aix-Marseille Université banner" loading="lazy">
+                    <img src="assets/img/devart/d.webp" alt="Two Team Nebula members coding on laptops during the hackathon" loading="lazy">
+                    <img src="assets/img/devart/e.webp" alt="Team Nebula collaborating around a workstation during the hackathon" loading="lazy">
+                    <img src="assets/img/devart/f.webp" alt="Late-night coding at a lamp-lit desk during the 32-hour hackathon" loading="lazy">
+                    <img src="assets/img/devart/g.webp" alt="Wide view of the DevArt 2026 hackathon room with competing teams at IUT d'Arles" loading="lazy">
+                    <img src="assets/img/devart/h.webp" alt="A Team Nebula developer focused on coding at the hackathon" loading="lazy">
+                    <img src="assets/img/devart/i.webp" alt="Cluttered workstation during the overnight stretch of the 32-hour hackathon" loading="lazy">
+                    <img src="assets/img/devart/j.webp" alt="Team Nebula, four members, in front of the Aix-Marseille Université banner at DevArt 2026" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -838,11 +849,16 @@
                 <h4 data-i18n="contact_call">Call:</h4>
                 <p>+33 7 58 80 69 42</p>
               </div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.000654985455!2d4.627964499999999!3d43.6689562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b676689eae0017%3A0xe62f0eb7477f8399!2s1%20Rue%20Maurice%20Utrillo%2C%2013200%20Arles!5e0!3m2!1sfr!2sfr!4v1774447652496!5m2!1sfr!2sfr" 
-                frameborder="0" class="contact-map" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
+              <!-- Click-to-load map facade: no request to Google until the user opts in. -->
+              <button type="button" class="map-facade" id="mapFacade"
+                data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.000654985455!2d4.627964499999999!3d43.6689562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b676689eae0017%3A0xe62f0eb7477f8399!2s1%20Rue%20Maurice%20Utrillo%2C%2013200%20Arles!5e0!3m2!1sfr!2sfr!4v1774447652496!5m2!1sfr!2sfr"
+                aria-label="Load the interactive map of Arles, France">
+                <span class="map-facade__inner">
+                  <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                  <span data-i18n="contact_load_map">Click to load the map</span>
+                  <small>1 Rue Maurice Utrillo, Arles</small>
+                </span>
+              </button>
 
             </div>
 
@@ -866,7 +882,7 @@
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" data-i18n="contact_message_placeholder" required></textarea>
               </div>
               <div class="my-3">
-                <div id="form-status"></div>
+                <div id="form-status" role="status" aria-live="polite"></div>
               </div>
               <div class="text-center"><button type="submit" data-i18n="contact_btn_send">Send Message</button></div>
             </form>

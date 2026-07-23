@@ -372,6 +372,12 @@
     ghStreak.src = `https://streak-stats.demolab.com/?user=Bakame03&theme=transparent&hide_border=true&stroke=${titleColor}&ring=${titleColor}&fire=${titleColor}&currStreakNum=${titleColor}&sideTexts=${textColor}`;
   }
 
+  // Keep the mobile browser-chrome colour in sync with the active theme.
+  function updateThemeColor(theme) {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#111111' : '#ffffff');
+  }
+
   if (themeToggle) {
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -385,6 +391,7 @@
     
     body.setAttribute('data-theme', initialTheme);
     updateGitHubCards(initialTheme);
+    updateThemeColor(initialTheme);
 
     themeToggle.addEventListener('click', () => {
       const currentTheme = body.getAttribute('data-theme');
@@ -393,6 +400,7 @@
       body.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
       updateGitHubCards(newTheme);
+      updateThemeColor(newTheme);
     });
   }
 
@@ -526,6 +534,25 @@
       const scrolled = (window.scrollY / windowHeight) * 100;
       scrollProgress.style.width = scrolled + '%';
     }), { passive: true });
+  }
+
+  /**
+   * Contact map — click-to-load facade: no request to Google is made until the
+   * user opts in (privacy + one fewer heavy third-party embed on load).
+   */
+  const mapFacade = select('#mapFacade');
+  if (mapFacade) {
+    mapFacade.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = mapFacade.getAttribute('data-map-src');
+      iframe.className = 'contact-map';
+      iframe.title = 'Map of Arles, France';
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('loading', 'lazy');
+      iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+      mapFacade.replaceWith(iframe);
+    });
   }
 
   /**

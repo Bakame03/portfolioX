@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bakame03.github.io/portfolioX/sitemap.xml

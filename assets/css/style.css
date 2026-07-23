@@ -2375,6 +2375,33 @@ section .container {
 .svg-defs { width: 0; height: 0; position: absolute; z-index: -1; }
 .contact-map { border: 0; width: 100%; height: 270px; }
 
+/* Click-to-load map facade (Fix #7) */
+.map-facade {
+  width: 100%;
+  height: 270px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0d1b33, #08111f);
+  color: #cfe0ff;
+  transition: filter 0.25s ease;
+}
+.map-facade:hover { filter: brightness(1.18); }
+.map-facade__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  pointer-events: none;
+}
+.map-facade__inner i { font-size: 34px; color: #4ba3ff; }
+.map-facade__inner span { font-weight: 600; font-size: 16px; }
+.map-facade__inner small { color: #8aa0c0; font-size: 13px; }
+
 /* Skills category headings */
 .skills-cat-title {
   color: #0563bb;
