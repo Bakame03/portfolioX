@@ -63,7 +63,7 @@ window.translations = {
     resume_role_cs: "Computer Science — BUT (B.U.T.) Informatique",
     resume_role_cs_loc: "Aix-Marseille Université — IUT d'Arles, France",
     resume_role_cs_desc: "Currently pursuing a B.U.T. (Bachelor Universitaire de Technologie) in Computer Science, deepening expertise in algorithms, systems architecture, and Artificial Intelligence.",
-    resume_s1_label: "Semester 1 Results &nbsp;·&nbsp; 8 pages",
+    resume_s1_label: "BUT1 — Final Results &nbsp;·&nbsp; 5 pages",
     resume_click_view: "Click to view",
     
     resume_role_bachelor: "Bachelor in Software Engineering",
@@ -230,7 +230,7 @@ window.translations = {
     resume_role_cs: "BUT Informatique",
     resume_role_cs_loc: "Aix-Marseille Université — IUT d'Arles, France",
     resume_role_cs_desc: "Actuellement en préparation d'un B.U.T. (Bachelor Universitaire de Technologie) en Informatique, approfondissant l'expertise en algorithmes, architecture de systèmes et Intelligence Artificielle.",
-    resume_s1_label: "Résultats Semestre 1 &nbsp;·&nbsp; 8 pages",
+    resume_s1_label: "BUT1 — Résultats Finaux &nbsp;·&nbsp; 5 pages",
     resume_click_view: "Cliquez pour voir",
     
     resume_role_bachelor: "Licence en Génie Logiciel",
