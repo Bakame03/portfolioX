@@ -153,6 +153,22 @@
   })
 
   /**
+   * Tap the dim scrim (anywhere outside the drawer) to close the mobile nav.
+   */
+  document.addEventListener('click', function (e) {
+    const body = select('body')
+    if (!body.classList.contains('mobile-nav-active')) return
+    if (e.target.closest('#header') || e.target.closest('.mobile-nav-toggle')) return
+    body.classList.remove('mobile-nav-active')
+    const toggle = select('.mobile-nav-toggle')
+    if (toggle) {
+      toggle.classList.add('bi-list')
+      toggle.classList.remove('bi-x')
+      toggle.setAttribute('aria-expanded', 'false')
+    }
+  })
+
+  /**
    * Scrool with ofset on links with a class name .scrollto
    */
   on('click', '.scrollto', function(e) {

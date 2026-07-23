@@ -121,6 +121,29 @@ body::after {
   display: inline-block;
 }
 
+/* Fix #5: guarantee a ≥44px touch target for the icon links without changing
+   the visual icon size or shifting the layout (links are position:relative). */
+#hero .social-links a::after,
+#footer .social-links a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+/* Fix #6: remove the grey tap flash on mobile and stop modal scroll from
+   chaining to the page behind it. */
+a, button, .nav-link, .mobile-nav-toggle, .stack-wrapper, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+.modal-lite__pages,
+.modal-lite__inner {
+  overscroll-behavior: contain;
+}
+
 [data-theme="dark"] {
   --bg-color: #111111;
   --text-color: #f1f1f1;
@@ -176,7 +199,7 @@ h6 {
 .theme-toggle,
 .lang-toggle {
   position: fixed;
-  top: 15px;
+  top: calc(15px + env(safe-area-inset-top));
   z-index: 9999;
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
@@ -200,11 +223,11 @@ h6 {
 }
 
 .theme-toggle {
-  right: 20px;
+  right: calc(20px + env(safe-area-inset-right));
 }
 
 .lang-toggle {
-  right: 75px;
+  right: calc(75px + env(safe-area-inset-right));
 }
 
 .theme-toggle:hover,
@@ -231,8 +254,8 @@ h6 {
   position: fixed;
   visibility: hidden;
   opacity: 0;
-  right: 15px;
-  bottom: 85px;
+  right: calc(15px + env(safe-area-inset-right));
+  bottom: calc(85px + env(safe-area-inset-bottom));
   z-index: 996;
   background: #0563bb;
   width: 40px;
@@ -334,13 +357,6 @@ h6 {
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border-right: 1px solid var(--glass-border);
     left: -300px;
-  }
-
-  /* Fix 1: Move hamburger to LEFT so it never overlaps the theme/lang toggles on the right */
-  .mobile-nav-toggle {
-    left: 15px;
-    right: auto;
-    top: 12px;
   }
 }
 
@@ -451,18 +467,29 @@ h6 {
 */
 .mobile-nav-toggle {
   position: fixed;
-  right: 10px;
-  top: 10px;
+  /* Top-left glass button: a distinct control that never collides with the
+     centered section titles (toggles sit top-right, hamburger top-left). */
+  left: calc(12px + env(safe-area-inset-left));
+  right: auto;
+  top: calc(12px + env(safe-area-inset-top));
   z-index: 9998;
-  border: 0;
-  background: none;
-  font-size: 28px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  font-size: 22px;
   transition: all 0.4s;
   outline: none !important;
   line-height: 0;
   cursor: pointer;
-  border-radius: 50px;
-  padding: 5px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  padding: 0;
 }
 
 .mobile-nav-toggle,
@@ -478,6 +505,24 @@ h6 {
   left: 0;
 }
 
+/* Fix #4: dim scrim behind the mobile nav drawer so the page content doesn't
+   show through on the right and the menu reads as a focused overlay. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 9996;   /* below #header (9997), above page content */
+  pointer-events: none;
+}
+body.mobile-nav-active::after {
+  opacity: 1;
+  visibility: visible;
+}
+
 .mobile-nav-active .mobile-nav-toggle {
   color: #fff;
   background-color: #0563bb;
@@ -488,7 +533,8 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 100vh;
+  height: 100vh;   /* fallback for browsers without svh support */
+  height: 100svh;  /* fits the *visible* viewport on mobile Safari — no toolbar overflow/jump */
   background-color: #080811; /* Static dark hero; Vanta WebGL overlays this on desktop only */
   position: relative;
   z-index: 1;
@@ -2286,7 +2332,8 @@ section .container {
   background: #1e1e2e;
   border-radius: 12px;
   max-width: 900px;
-  height: calc(100vh - 48px);
+  height: calc(100vh - 48px);   /* fallback */
+  height: calc(100dvh - 48px);  /* tracks the dynamic viewport on mobile */
   display: flex;
   flex-direction: column;
   overflow: hidden;
