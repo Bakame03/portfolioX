@@ -35,11 +35,25 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
   }
+
+  /**
+   * requestAnimationFrame throttle — coalesces bursty events (e.g. scroll) into
+   * at most one call per frame, so handlers that read layout don't thrash.
+   */
+  const rafThrottle = (fn) => {
+    let queued = false;
+    return function () {
+      if (queued) return;
+      queued = true;
+      const ctx = this, args = arguments;
+      requestAnimationFrame(() => { queued = false; fn.apply(ctx, args); });
+    };
+  };
 
   /**
    * Navbar links active state on scroll
@@ -59,7 +73,7 @@
     })
   }
   window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
+  document.addEventListener('scroll', rafThrottle(navbarlinksActive), { passive: true })
 
   /**
    * Scrolls to an element with header offset
@@ -118,10 +132,10 @@
       handleScroll();
       toggleIcon();
     });
-    onscroll(document, () => {
+    document.addEventListener('scroll', rafThrottle(() => {
       handleScroll();
       toggleIcon();
-    });
+    }), { passive: true });
     window.addEventListener('resize', toggleIcon);
 
     // Explicit scroll handler — a bare href="#" doesn't re-scroll once the URL
@@ -505,11 +519,11 @@
    */
   const scrollProgress = select('#scroll-progress');
   if (scrollProgress) {
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', rafThrottle(() => {
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (window.scrollY / windowHeight) * 100;
       scrollProgress.style.width = scrolled + '%';
-    });
+    }), { passive: true });
   }
 
   /**
