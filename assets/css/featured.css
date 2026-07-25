@@ -1,8 +1,8 @@
 /*--------------------------------------------------------------
 # Projects Section — responsive card grid
 # Calm, editorial cards on the warm-paper palette: solid surfaces,
-# hairline borders, one gentle lift on hover. 1 column on phones,
-# 2 on tablets, 3 on wide screens; the flagship card spans the row.
+# hairline borders, springy lift on hover. 1 column on phones,
+# 2 from tablets up; the flagship project gets a scroll-driven story.
 --------------------------------------------------------------*/
 
 /* ===== Section ===== */
@@ -10,7 +10,9 @@
   background: var(--bg-color);
   padding: 80px 0 60px;
   position: relative;
-  overflow: hidden;
+  /* Must stay visible: any overflow clip on an ancestor disables the
+     position: sticky pinning of the flagship story visual. */
+  overflow: visible;
 }
 
 #projects .section-title p strong {
@@ -28,16 +30,6 @@
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .item-wide {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (min-width: 1200px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 
 /* ===== Card ===== */
@@ -51,14 +43,14 @@
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.3s cubic-bezier(0.25, 0.6, 0.3, 1),
+  transition: transform 0.35s var(--ease-spring),
               box-shadow 0.3s ease,
               border-color 0.3s ease;
 }
 
 .project-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lift);
   border-color: rgba(193, 95, 60, 0.35);
 }
 
@@ -68,12 +60,6 @@
   overflow: hidden;
   aspect-ratio: 16 / 10;
   background: var(--section-bg);
-}
-
-@media (min-width: 640px) {
-  .item-wide .project-card__image {
-    aspect-ratio: 21 / 9;
-  }
 }
 
 .project-card__image img {
@@ -116,7 +102,7 @@
   justify-content: center;
   color: var(--subtitle-color);
   font-size: 20px;
-  transition: color 0.25s ease, transform 0.25s ease;
+  transition: color 0.25s ease, transform 0.3s var(--ease-spring);
   box-shadow: var(--shadow-sm);
 }
 
@@ -190,10 +176,6 @@
   font-family: var(--font-serif);
 }
 
-.item-wide .project-card__title {
-  font-size: 22px;
-}
-
 .project-card__desc {
   font-size: 14px;
   color: var(--text-color);
@@ -201,9 +183,8 @@
   margin: 0;
 }
 
-/* Clamp long descriptions on the narrow cards only — the wide flagship
-   card has room to show its full story. */
-.portfolio-item:not(.item-wide) .project-card__desc {
+/* Clamp long descriptions so all cards stay the same height */
+.portfolio-item .project-card__desc {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   line-clamp: 4;
@@ -255,7 +236,7 @@
 
 .btn-action i {
   font-size: 14px;
-  transition: transform 0.25s ease;
+  transition: transform 0.3s var(--ease-spring);
 }
 
 .btn-action:hover i {
@@ -314,7 +295,7 @@
   border-radius: 50px;
   cursor: pointer;
   transition: border-color 0.25s ease, color 0.25s ease,
-              transform 0.25s ease, box-shadow 0.25s ease;
+              transform 0.3s var(--ease-spring), box-shadow 0.25s ease;
   box-shadow: var(--shadow-sm);
 }
 
@@ -322,7 +303,7 @@
   border-color: var(--accent);
   color: var(--accent-strong);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lift);
 }
 
 .btn-show-more i {
@@ -334,15 +315,146 @@
   transform: translateX(2px);
 }
 
-/* ===== Flagship Card Accent ===== */
-.item-wide .project-card::after {
-  content: "";
+/* ===== Featured project — scroll-driven story ===== */
+.flagship-story {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+.flagship-story__frame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-lift);
+  background: var(--section-bg);
+}
+
+.flagship-story__frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Progressive enhancement: the pinned visual slowly zooms as the story
+   scrolls by (CSS scroll-driven animation; no JS, no effect elsewhere). */
+@supports (animation-timeline: view()) {
+  .flagship-story__frame img {
+    animation: story-zoom linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+@keyframes story-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+.flagship-story__zoom {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
+  right: 14px;
+  bottom: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  color: var(--subtitle-color);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-sm);
+  font-size: 18px;
+  transition: color 0.25s var(--ease-spring), transform 0.25s var(--ease-spring);
+}
+
+.flagship-story__zoom:hover {
+  color: var(--accent-strong);
+  transform: scale(1.08);
+}
+
+.story-step + .story-step {
+  margin-top: 40px;
+}
+
+.story-step__eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: var(--accent-strong);
+  margin-bottom: 10px;
+}
+
+.story-step__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--subtitle-color);
+  margin: 0 0 10px;
+}
+
+.story-step__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--accent-strong);
+  margin-bottom: 10px;
+}
+
+.story-step__label::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
   background: var(--accent);
-  border-radius: 16px 16px 0 0;
-  z-index: 5;
+}
+
+.story-step p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  margin: 0 0 14px;
+}
+
+@media (min-width: 992px) {
+  .flagship-story {
+    grid-template-columns: 1.15fr 1fr;
+    gap: 56px;
+    /* Columns stretch to the tallest (the steps), giving the sticky
+       frame room to travel while the story scrolls. */
+  }
+
+  .flagship-story__visual {
+    height: 100%;
+  }
+
+  .flagship-story__frame {
+    position: sticky;
+    top: 90px;
+  }
+
+  .story-step {
+    min-height: 38vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .story-step:first-child {
+    min-height: 24vh;
+  }
+
+  .story-step + .story-step {
+    margin-top: 0;
+  }
 }

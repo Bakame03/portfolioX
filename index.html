@@ -92,14 +92,16 @@
 
   <div id="scroll-progress"></div>
 
-  <!-- ======= Theme & Lang Toggles ======= -->
-  <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark / light mode" title="Toggle Dark/Light Mode">
-    <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
-  </button>
-  <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Switch language (English / French)" title="Switch Language">EN</button>
-
-  <!-- ======= Mobile nav toggle button ======= -->
-  <button type="button" class="bi bi-list mobile-nav-toggle d-lg-none" aria-label="Toggle navigation menu" aria-expanded="false"></button>
+  <!-- ======= Floating control dock (hamburger · language · theme) =======
+       One frosted pill on mobile; separate buttons on desktop. Shrinks on
+       scroll-down (body.controls-hidden), hides while a modal is open. -->
+  <div class="control-dock">
+    <button type="button" class="bi bi-list mobile-nav-toggle d-lg-none" aria-label="Toggle navigation menu" aria-expanded="false"></button>
+    <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Switch language (English / French)" title="Switch Language">EN</button>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark / light mode" title="Toggle Dark/Light Mode">
+      <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+    </button>
+  </div>
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex flex-column justify-content-center">
 
@@ -592,37 +594,48 @@
           </p>
         </div>
 
-        <div class="projects-grid">
+        <!-- ===== Featured project: scroll-driven story (Apple product-page
+             style) — the visual stays pinned while the narrative advances ===== -->
+        <div class="flagship-story">
+          <div class="flagship-story__visual">
+            <div class="flagship-story__frame">
+              <img src="assets/img/portfolio/web/hypoxia.webp" alt="HYPOXIA — L'Écho Numérique" width="1100" height="600" loading="lazy">
+              <span class="project-badge project-badge--flagship" data-i18n="project_badge_flagship"><i class="bi bi-trophy"></i> Prix du Jury (DevArt)</span>
+              <a href="assets/img/portfolio/web/hypoxia.webp" data-gallery="portfolioGallery" class="portfolio-lightbox flagship-story__zoom" title="HYPOXIA — L'Écho Numérique" aria-label="View HYPOXIA full image"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></a>
+            </div>
+          </div>
 
-          <!-- 1. FLAGSHIP: HYPOXIA (Wide) -->
-          <div class="portfolio-item item-wide" data-aos="fade-up">
-            <div class="project-card">
-              <div class="project-card__image">
-                <img src="assets/img/portfolio/web/hypoxia.webp" alt="HYPOXIA — L'Écho Numérique" width="1100" height="600" loading="lazy">
-                <span class="project-badge project-badge--flagship" data-i18n="project_badge_flagship"><i class="bi bi-trophy"></i> Prix du Jury (DevArt)</span>
-                <span class="project-badge project-badge--status" data-i18n="project_badge_awarded">Awarded</span>
-                <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/hypoxia.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="HYPOXIA — L'Écho Numérique" aria-label="View HYPOXIA full image"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></a>
-                </div>
+          <div class="flagship-story__steps">
+            <div class="story-step" data-aos="fade-up">
+              <span class="story-step__eyebrow" data-i18n="story_label">Featured project</span>
+              <h3 class="story-step__title" data-i18n="project_hypoxia_title">HYPOXIA — L'Écho Numérique</h3>
+              <span class="project-card__category">3D / Creative Web / AI Environment</span>
+            </div>
+            <div class="story-step" data-aos="fade-up">
+              <span class="story-step__label" data-i18n="story_step_problem">The problem</span>
+              <p data-i18n="hypoxia_problem">The environmental cost of AI is invisible by design — creating a disconnection between digital action and physical outcome.</p>
+            </div>
+            <div class="story-step" data-aos="fade-up">
+              <span class="story-step__label" data-i18n="story_step_arch">The architecture</span>
+              <p data-i18n="hypoxia_arch"><strong>Next.js 14</strong> + <strong>React Three Fiber</strong>, with React Postprocessing shaders and <strong>Zustand</strong> powering persistent environmental "scars".</p>
+              <div class="project-card__tags">
+                <span class="tech-chip">Next.js 14</span>
+                <span class="tech-chip">React Three Fiber</span>
+                <span class="tech-chip">Zustand</span>
               </div>
-              <div class="project-card__body">
-                <span class="project-card__category">3D / Creative Web / AI Environment</span>
-                <h3 class="project-card__title" data-i18n="project_hypoxia_title">HYPOXIA — L'Écho Numérique</h3>
-                <p class="project-card__desc" data-i18n="project_hypoxia_desc"><strong>Problem:</strong> The environmental cost of AI is invisible by design which creates a disconnection between digital action and physical outcome.<br>
-                <strong>Architecture:</strong> <strong>Next.js 14</strong> + <strong>React Three Fiber</strong>. Engineered with React Postprocessing shaders and <strong>Zustand</strong> for persistent environmental "scars".<br>
-                <strong>Outcome:</strong> Award-winning immersive experience where typing a prompt directly burns and suffocates the digital world in real-time.</p>
-                <div class="project-card__tags">
-                  <span class="tech-chip">Next.js 14</span>
-                  <span class="tech-chip">React Three Fiber</span>
-                  <span class="tech-chip">Zustand</span>
-                </div>
-                <div class="project-card__actions">
-                  <a href="https://nebula-gray-seven.vercel.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo" data-i18n="project_btn_demo"><i class="bi bi-play-circle"></i> Live Demo</a>
-                  <a href="https://github.com/Bakame03/Nebula_DevArt_2026_Project_-HYPOXIA-" target="_blank" rel="noopener" class="btn-action btn-action--ghost" data-i18n="project_btn_code"><i class="bi bi-code-slash"></i> Code</a>
-                </div>
+            </div>
+            <div class="story-step" data-aos="fade-up">
+              <span class="story-step__label" data-i18n="story_step_outcome">The outcome</span>
+              <p data-i18n="hypoxia_outcome">An award-winning immersive experience where typing a prompt directly burns and suffocates the digital world in real time.</p>
+              <div class="project-card__actions">
+                <a href="https://nebula-gray-seven.vercel.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo" data-i18n="project_btn_demo"><i class="bi bi-play-circle"></i> Live Demo</a>
+                <a href="https://github.com/Bakame03/Nebula_DevArt_2026_Project_-HYPOXIA-" target="_blank" rel="noopener" class="btn-action btn-action--ghost" data-i18n="project_btn_code"><i class="bi bi-code-slash"></i> Code</a>
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="projects-grid">
 
           <!-- 2. Eat Well (Omnifood) -->
           <div class="portfolio-item" data-aos="fade-up">
