@@ -383,7 +383,7 @@
         repoItem.rel = 'noopener';
         repoItem.className = 'repo-item';
         repoItem.innerHTML = `
-          <h6><i class="bi bi-folder2"></i>${esc(repo.name)}</h6>
+          <h4><i class="bi bi-folder2"></i>${esc(repo.name)}</h4>
           <p>${esc(repo.description) || 'No description provided.'}</p>
           <div class="repo-meta">
             <span><i class="bi bi-star-fill"></i>${Number(repo.stargazers_count) || 0}</span>

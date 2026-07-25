@@ -11,6 +11,8 @@ window.translations = {
 
     // Hero
     hero_iam: "I'm",
+    hero_cta_projects: "View my projects",
+    hero_cta_contact: "Get in touch",
     hero_roles: "Back End Developer,Python Engineer,AI Enthusiast",
 
     // About
@@ -166,6 +168,9 @@ window.translations = {
     contact_subject_placeholder: "Subject",
     contact_message_placeholder: "Message",
     contact_btn_send: "Send Message",
+    contact_status_sending: "Sending…",
+    contact_status_success: "Thanks for your message! I'll get back to you soon.",
+    contact_status_error: "Oops! There was a problem sending your message. Please try again.",
     contact_success: "Thanks for your submission!",
     contact_error: "Oops! There was a problem submitting your form",
 
@@ -185,6 +190,8 @@ window.translations = {
 
     // Hero
     hero_iam: "Je suis",
+    hero_cta_projects: "Voir mes projets",
+    hero_cta_contact: "Me contacter",
     hero_roles: "Développeur Back-End,Ingénieur Python,Passionné d'IA",
 
     // About
@@ -340,6 +347,9 @@ window.translations = {
     contact_subject_placeholder: "Sujet",
     contact_message_placeholder: "Message",
     contact_btn_send: "Envoyer le Message",
+    contact_status_sending: "Envoi…",
+    contact_status_success: "Merci pour votre message ! Je vous répondrai très vite.",
+    contact_status_error: "Oups ! Un problème est survenu lors de l'envoi. Veuillez réessayer.",
     contact_success: "Merci pour votre message !",
     contact_error: "Oups ! Il y a eu un problème lors de l'envoi de votre formulaire",
 

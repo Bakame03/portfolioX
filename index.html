@@ -41,13 +41,10 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
 
-  <!-- Google Fonts (2 families, only used weights, swap to avoid FOIT):
-       Source Serif 4 for headings (editorial serif), Inter for body text. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Load font CSS off the critical path (media=print → all on load); noscript fallback keeps it working without JS. -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet"></noscript>
+  <!-- Fonts are self-hosted (assets/fonts, @font-face in style.css) — no
+       request to Google. Preload the two latin files used above the fold. -->
+  <link rel="preload" href="assets/fonts/source-serif-4-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.subset.min.css" rel="stylesheet">
@@ -136,6 +133,10 @@
         <a href="https://www.linkedin.com/in/aldo-alex-nganji-550072383" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
         <a href="mailto:nganjialdoalex@gmail.com" class="google-plus" aria-label="Send an email"><i class="bi bi-envelope-at" aria-hidden="true"></i></a>
         <a href="https://github.com/Bakame03" class="github" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="bi bi-github" aria-hidden="true"></i></a>
+      </div>
+      <div class="hero-intro-elem hero-cta">
+        <a href="#projects" class="btn-hero btn-hero--primary scrollto"><span data-i18n="hero_cta_projects">View my projects</span> <i class="bi bi-arrow-down" aria-hidden="true"></i></a>
+        <a href="#contact" class="btn-hero btn-hero--ghost scrollto"><span data-i18n="hero_cta_contact">Get in touch</span></a>
       </div>
     </div>
   </section><!-- End Hero -->
@@ -226,7 +227,7 @@
         <!-- ======= GitHub Activity Dashboard ======= -->
         <div class="row github-dashboard" data-aos="fade-up" data-aos-delay="200">
           <div class="col-12 text-center">
-            <h5><i class="bi bi-github me-2"></i>GitHub Live Activity</h5>
+            <h3 class="gh-heading"><i class="bi bi-github me-2"></i>GitHub Live Activity</h3>
             
             <!-- Self-styled stat tiles fed by the GitHub API (main.js) — values
                  stay "–" if the API is unreachable, no broken images. -->
@@ -249,7 +250,7 @@
               </div>
             </div>
 
-            <h5 class="mt-4"><i class="bi bi-journal-code me-2"></i>Recently Updated Repositories</h5>
+            <h3 class="gh-heading mt-4"><i class="bi bi-journal-code me-2"></i>Recently Updated Repositories</h3>
             <div id="github-repo-list" class="github-live-list">
               <!-- Repos will be injected here by main.js -->
               <div class="col-12 text-center py-4">
@@ -606,7 +607,7 @@
               </div>
               <div class="project-card__body">
                 <span class="project-card__category">3D / Creative Web / AI Environment</span>
-                <h4 class="project-card__title" data-i18n="project_hypoxia_title">HYPOXIA — L'Écho Numérique</h4>
+                <h3 class="project-card__title" data-i18n="project_hypoxia_title">HYPOXIA — L'Écho Numérique</h3>
                 <p class="project-card__desc" data-i18n="project_hypoxia_desc"><strong>Problem:</strong> The environmental cost of AI is invisible by design which creates a disconnection between digital action and physical outcome.<br>
                 <strong>Architecture:</strong> <strong>Next.js 14</strong> + <strong>React Three Fiber</strong>. Engineered with React Postprocessing shaders and <strong>Zustand</strong> for persistent environmental "scars".<br>
                 <strong>Outcome:</strong> Award-winning immersive experience where typing a prompt directly burns and suffocates the digital world in real-time.</p>
@@ -635,7 +636,7 @@
               </div>
               <div class="project-card__body">
                 <span class="project-card__category">Web Engineering / Frontend</span>
-                <h4 class="project-card__title">Eat Well (Omnifood)</h4>
+                <h3 class="project-card__title">Eat Well (Omnifood)</h3>
                 <p class="project-card__desc"><strong>Problem:</strong> People lack the time to effectively meal-prep and navigate complex nutritional needs daily.<br>
                 <strong>Architecture:</strong> Fully responsive SPA built with <strong>Vanilla HTML/CSS/JS</strong> and <strong>Firebase</strong> for backend form handling and user storage.<br>
                 <strong>Outcome:</strong> A sleek, high-conversion product landing page with dynamic UI components (modals, galleries) and a working signup pipeline.</p>
@@ -664,7 +665,7 @@
               </div>
               <div class="project-card__body">
                 <span class="project-card__category">Service Engineering / API Integration</span>
-                <h4 class="project-card__title">Unified Service Ecosystem</h4>
+                <h3 class="project-card__title">Unified Service Ecosystem</h3>
                 <p class="project-card__desc"><strong>Problem:</strong> Fragmented user experiences when moving between external services for payments, messaging, and real-time data.<br>
                 <strong>Architecture:</strong> Orchestrates enterprise APIs: <strong>Stripe</strong> (Payments), <strong>Twilio</strong> (SMS), <strong>OpenWeatherMap</strong> (Data), and <strong>Firebase</strong> (Rtdb).<br>
                 <strong>Outcome:</strong> A cohesive "Super-App" prototype that simplifies complex business operations into a single, unified web portal.</p>
@@ -693,7 +694,7 @@
               </div>
               <div class="project-card__body">
                 <span class="project-card__category">Web Development / Finance</span>
-                <h4 class="project-card__title">Budget Tracker</h4>
+                <h3 class="project-card__title">Budget Tracker</h3>
                 <p class="project-card__desc"><strong>Problem:</strong> Managing personal finances is overwhelming without a centralized, easy-to-use tool to track every expense accurately.<br>
                 <strong>Architecture:</strong> Robust Full-Stack app built with <strong>Django (Python)</strong>. Relational data management on <strong>PostgreSQL</strong> (Render integration).<br>
                 <strong>Outcome:</strong> Working financial tool providing users with an immediate balance overview and spend support.</p>
@@ -721,7 +722,7 @@
               </div>
               <div class="project-card__body">
                 <span class="project-card__category">Web Tools</span>
-                <h4 class="project-card__title">Modern Web Calculator</h4>
+                <h3 class="project-card__title">Modern Web Calculator</h3>
                 <p class="project-card__desc"><strong>Problem:</strong> Need for a fast, zero-dependency calculation tool that works seamlessly across all devices with instant load times.<br>
                 <strong>Architecture:</strong> <strong>Vanilla JS</strong> logic + <strong>CSS3 Flexbox</strong>. Features a custom lightweight <strong>Node.js</strong> server implementation for file serving.<br>
                 <strong>Outcome:</strong> High-performance utility with instant responsiveness and a premium glass-morphic interface design.</p>
@@ -764,7 +765,7 @@
               <div class="icon">
                 <i class="bi bi-server"></i>
               </div>
-              <h4 data-i18n="service_backend_title">Backend &amp; API Engineering</h4>
+              <h3 class="icon-box__title" data-i18n="service_backend_title">Backend &amp; API Engineering</h3>
               <p data-i18n="service_backend_desc">Designing scalable backend systems and REST APIs with NestJS, Python, and Django — backed by PostgreSQL, microservices, and third-party integrations (Stripe, Twilio).</p>
             </div>
           </div>
@@ -774,7 +775,7 @@
               <div class="icon">
                 <i class="bi bi-code-slash"></i>
               </div>
-              <h4 data-i18n="service_web_title">Full-Stack Web Dev</h4>
+              <h3 class="icon-box__title" data-i18n="service_web_title">Full-Stack Web Dev</h3>
               <p data-i18n="service_web_desc">Building complete web applications with Node.js and Django, integrated with robust PostgreSQL databases.</p>
             </div>
           </div>
@@ -784,7 +785,7 @@
               <div class="icon">
                 <i class="bi bi-brush"></i>
               </div>
-              <h4 data-i18n="service_ui_title">UI/UX &amp; Creative UI</h4>
+              <h3 class="icon-box__title" data-i18n="service_ui_title">UI/UX &amp; Creative UI</h3>
               <p data-i18n="service_ui_desc">Designing immersive digital experiences with vanilla CSS, interactive animations, and a focus on visual excellence.</p>
             </div>
           </div>
@@ -817,19 +818,19 @@
             <div class="info">
               <div class="address">
                 <a href="https://maps.app.goo.gl/BSvoa3FUnJphKDiu8" target="_blank" rel="noopener" aria-label="Open location in Google Maps"><i class="bi bi-geo-alt" aria-hidden="true"></i></a>
-                <h4 data-i18n="contact_location">Location:</h4>
+                <h3 class="info-label" data-i18n="contact_location">Location:</h3>
                 <p data-i18n="about_city_val">Arles, France</p>
               </div>
 
               <div class="email">
                 <a href="mailto:nganjialdoalex@gmail.com" class="google-plus" aria-label="Send an email"><i class="bi bi-envelope-at" aria-hidden="true"></i></a>
-                <h4 data-i18n="contact_email">Email:</h4>
+                <h3 class="info-label" data-i18n="contact_email">Email:</h3>
                 <p>nganjialdoalex@gmail.com</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone" aria-hidden="true"></i>
-                <h4 data-i18n="contact_call">Call:</h4>
+                <h3 class="info-label" data-i18n="contact_call">Call:</h3>
                 <p>+33 7 58 80 69 42</p>
               </div>
               <!-- Click-to-load map facade: no request to Google until the user opts in. -->
@@ -871,36 +872,52 @@
             </form>
 
             <script>
-              var form = document.getElementById("contactForm");
-              
-              async function handleSubmit(event) {
-                event.preventDefault();
+              (function () {
+                var form = document.getElementById("contactForm");
                 var status = document.getElementById("form-status");
-                var data = new FormData(event.target);
-                fetch(event.target.action, {
-                  method: form.method,
-                  body: data,
-                  headers: {
-                      'Accept': 'application/json'
-                  }
-                }).then(response => {
-                  if (response.ok) {
-                    status.innerHTML = "Thanks for your submission!";
-                    form.reset()
-                  } else {
-                    response.json().then(data => {
-                      if (Object.hasOwn(data, 'errors')) {
-                        status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-                      } else {
-                        status.innerHTML = "Oops! There was a problem submitting your form"
-                      }
-                    })
-                  }
-                }).catch(error => {
-                  status.innerHTML = "Oops! There was a problem submitting your form"
-                });
-              }
-              form.addEventListener("submit", handleSubmit)
+                var submitBtn = form.querySelector('button[type="submit"]');
+
+                // Status messages come from translations.js in the active language.
+                function t(key, fallback) {
+                  var lang = localStorage.getItem('lang') || 'en';
+                  var dict = window.translations && window.translations[lang];
+                  return (dict && dict[key]) || fallback;
+                }
+
+                function setStatus(kind, message) {
+                  status.textContent = message;
+                  status.className = kind ? 'form-status--' + kind : '';
+                }
+
+                function handleSubmit(event) {
+                  event.preventDefault();
+                  var data = new FormData(event.target);
+                  var btnLabel = submitBtn.textContent;
+                  submitBtn.disabled = true;
+                  submitBtn.textContent = t('contact_status_sending', 'Sending…');
+                  setStatus('', '');
+
+                  fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                  }).then(function (response) {
+                    if (response.ok) {
+                      setStatus('success', t('contact_status_success', 'Thanks for your message!'));
+                      form.reset();
+                    } else {
+                      setStatus('error', t('contact_status_error', 'Oops! There was a problem sending your message.'));
+                    }
+                  }).catch(function () {
+                    setStatus('error', t('contact_status_error', 'Oops! There was a problem sending your message.'));
+                  }).finally(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = btnLabel;
+                  });
+                }
+
+                form.addEventListener("submit", handleSubmit);
+              })();
             </script>
 
           </div>
