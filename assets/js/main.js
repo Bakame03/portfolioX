@@ -142,6 +142,30 @@
   }
 
   /**
+   * Auto-hide the floating controls (hamburger, theme & lang toggles) on
+   * small screens: slide away when scrolling down, return when scrolling up.
+   * Desktop keeps them always visible; the open nav drawer pins them too.
+   */
+  const smallScreen = window.matchMedia('(max-width: 991px)');
+  let lastControlsY = window.scrollY;
+  document.addEventListener('scroll', rafThrottle(() => {
+    const body = document.body;
+    if (!smallScreen.matches) {
+      body.classList.remove('controls-hidden');
+      lastControlsY = window.scrollY;
+      return;
+    }
+    if (body.classList.contains('mobile-nav-active')) return;
+    const y = window.scrollY;
+    if (y > lastControlsY + 5 && y > 120) {
+      body.classList.add('controls-hidden');
+    } else if (y < lastControlsY - 5 || y <= 120) {
+      body.classList.remove('controls-hidden');
+    }
+    lastControlsY = y;
+  }), { passive: true });
+
+  /**
    * Mobile nav toggle
    */
   on('click', '.mobile-nav-toggle', function(e) {
@@ -236,6 +260,10 @@
   const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'
   });
+
+  // Hide the floating controls behind the lightbox overlay too.
+  portfolioLightbox.on('open', () => document.body.classList.add('modal-open'));
+  portfolioLightbox.on('close', () => document.body.classList.remove('modal-open'));
 
   /**
    * Scroll reveal — lightweight AOS replacement.
@@ -554,6 +582,9 @@
       lastTrigger = trigger || document.activeElement;
       modal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
+      // Hide the floating controls (toggles, hamburger, back-to-top) so the
+      // modal's close button is unobstructed.
+      document.body.classList.add('modal-open');
       // Move focus into the dialog: the close button if present, else the dialog.
       const target = modal.querySelector('.modal-lite__close') || modal;
       target.focus();
@@ -562,6 +593,7 @@
     const closeModal = (modal) => {
       modal.classList.remove('is-open');
       document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
       // Return focus to whatever opened the dialog.
       if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
       lastTrigger = null;

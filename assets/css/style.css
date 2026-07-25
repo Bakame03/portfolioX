@@ -228,6 +228,39 @@ h6 {
   content: "\f494"; /* sun icon using bootstrap icons */
 }
 
+/*--------------------------------------------------------------
+# Floating controls visibility
+# .controls-hidden — small screens, scrolling down (main.js)
+# .modal-open — any modal/lightbox open: clear the way to its ✕
+--------------------------------------------------------------*/
+.theme-toggle,
+.lang-toggle,
+.mobile-nav-toggle {
+  transition: transform 0.3s ease, opacity 0.3s ease,
+              background 0.3s ease, color 0.3s ease,
+              visibility 0.3s ease;
+}
+
+@media (max-width: 991px) {
+  body.controls-hidden .theme-toggle,
+  body.controls-hidden .lang-toggle,
+  body.controls-hidden .mobile-nav-toggle {
+    transform: translateY(-150%);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+body.modal-open .theme-toggle,
+body.modal-open .lang-toggle,
+body.modal-open .mobile-nav-toggle,
+body.modal-open .back-to-top,
+body.modal-open #scroll-progress {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 
 
 /*--------------------------------------------------------------
@@ -2042,6 +2075,110 @@ section .container {
 
 /* Repo language dot (injected by main.js) */
 .repo-lang-dot { color: var(--accent); font-size: 8px; }
+
+/*--------------------------------------------------------------
+# Print — clean read of the page (About + Resume especially):
+# no interactive chrome, no fixed elements, everything revealed.
+--------------------------------------------------------------*/
+@media print {
+  /* Paper is always light — override both themes' variables so a visitor
+     printing from dark mode doesn't get pale-on-white headings. */
+  :root,
+  [data-theme="dark"] {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --subtitle-color: #111111;
+    --section-bg: #ffffff;
+    --card-bg: #ffffff;
+    --card-border: #cccccc;
+    --accent: #c15f3c;
+    --accent-strong: #9a4a2c;
+    --accent-soft: rgba(193, 95, 60, 0.08);
+    --glass-bg: #ffffff;
+    --glass-border: #cccccc;
+    --highlight-bg: #ffffff;
+    --form-status-bg: #ffffff;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .typed-cursor {
+    display: none !important;
+  }
+
+  /* Interactive / dynamic chrome has no meaning on paper */
+  #header,
+  .theme-toggle,
+  .lang-toggle,
+  .mobile-nav-toggle,
+  .back-to-top,
+  #scroll-progress,
+  #preloader,
+  #hero .social-links,
+  .hero-cta,
+  .stack-wrapper,
+  .modal-lite,
+  .map-facade,
+  .php-email-form,
+  .github-dashboard,
+  .project-card__actions,
+  .project-card__overlay,
+  .btn-show-more,
+  .cv-downloads,
+  .about .btn-outline-primary,
+  #footer .social-links {
+    display: none !important;
+  }
+
+  #main {
+    margin-left: 0 !important;
+  }
+
+  /* Scroll-reveal elements may not have animated yet — force them visible */
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-intro-elem {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  #hero {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 40px 0 0 !important;
+    background-image: none !important;
+  }
+
+  section {
+    padding: 24px 0 !important;
+    background: #fff !important;
+  }
+
+  /* Keep résumé entries and cards on one page each where possible */
+  .resume-item,
+  .project-card,
+  .icon-box {
+    break-inside: avoid;
+  }
+
+  a {
+    color: #000 !important;
+  }
+}
 
 /* Skill-badge brand icon colors */
 .ic-python      { color: #3776ab; }

@@ -1007,6 +1007,19 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js" defer></script>
   <script src="assets/vendor/typed.js/typed.umd.js" defer></script>
 
+  <!-- Privacy-friendly analytics (GoatCounter): no cookies, no personal data,
+       GDPR-safe without a consent banner. Dashboard: bakame03.goatcounter.com -->
+  <script data-goatcounter="https://bakame03.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+  <!-- Service worker: offline support + instant repeat visits (sw.js) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function () { /* no-op */ });
+      });
+    }
+  </script>
+
   <!-- Translations Dictionary -->
   <script src="assets/js/translations.js" defer></script>
 
