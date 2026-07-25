@@ -9,7 +9,7 @@
  *
  * Bump CACHE_VERSION when you want to force-drop every cached asset.
  */
-const CACHE_VERSION = 'portfolioX-v1';
+const CACHE_VERSION = 'portfolioX-v2';
 
 const PRECACHE = [
   './',
@@ -33,7 +33,9 @@ const PRECACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_VERSION)
-      .then((cache) => cache.addAll(PRECACHE))
+      // cache: 'reload' bypasses the HTTP cache — otherwise the install could
+      // pin stale copies of assets the browser cached before the deploy.
+      .then((cache) => cache.addAll(PRECACHE.map((url) => new Request(url, { cache: 'reload' }))))
       .then(() => self.skipWaiting())
   );
 });
@@ -69,10 +71,12 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets: stale-while-revalidate.
+  // Static assets: stale-while-revalidate. The background refresh uses
+  // cache: 'no-cache' so it revalidates with the server instead of quietly
+  // re-reading the browser's HTTP cache (which may itself be stale).
   event.respondWith(
     caches.match(request).then((hit) => {
-      const refresh = fetch(request)
+      const refresh = fetch(new Request(request, { cache: 'no-cache' }))
         .then((response) => {
           if (response && response.ok) {
             const copy = response.clone();
