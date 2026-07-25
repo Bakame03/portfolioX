@@ -231,151 +231,57 @@
   }
 
   /**
-   * About Section - Languages type effect
-   */
-  const langTypedEl = select('.lang-typed');
-  let langTyped;
-  const initLangTyped = (strings) => {
-    if (langTyped) langTyped.destroy();
-    langTyped = new Typed('.lang-typed', {
-      strings: strings,
-      typeSpeed: 80,
-      backSpeed: 40,
-      backDelay: 2000,
-      loop: true
-    });
-  }
-
-
-  /**
-   * Projects section - Isotope masonry layout with show-more
-   */
-  window.addEventListener('load', () => {
-    let projectsSlider = select('.projects-slider');
-    if (projectsSlider) {
-      new Swiper('.projects-slider', {
-        effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        initialSlide: 1, // Start on the second slide (often the main project)
-        coverflowEffect: {
-          rotate: 30, // Angle of rotation
-          stretch: -30, // Space between slides
-          depth: 250, // Depth perspective
-          modifier: 1, // Multiplier
-          slideShadows: true, // Show 3D shadows dropping off
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        keyboard: {
-          enabled: true,
-        },
-      });
-    }
-  });
-
-
-  /**
-   * Initiate portfolio lightbox 
+   * Initiate portfolio lightbox
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'
   });
 
   /**
-   * Initiate portfolio details lightbox 
+   * Scroll reveal — lightweight AOS replacement.
+   * Elements with [data-aos] start hidden (CSS) and get .aos-animate when
+   * they enter the viewport; [data-aos-delay] becomes a transition-delay.
+   * Reduced motion / missing IntersectionObserver: reveal everything at once.
    */
-  const portfolioDetailsLightbox = GLightbox({
-    selector: '.portfolio-details-lightbox',
-    width: '90%',
-    height: '90vh'
-  });
+  (function initScrollReveal() {
+    const els = select('[data-aos]', true);
+    if (!els.length) return;
 
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
+    const revealAll = () => els.forEach(el => el.classList.add('aos-animate'));
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)) {
+      revealAll();
+      return;
     }
-  });
 
-  /**
-   * Testimonials slider (only inits if the section is present)
-   */
-  if (select('.testimonials-slider')) {
-    new Swiper('.testimonials-slider', {
-      speed: 600,
-      loop: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false
-      },
-      slidesPerView: 'auto',
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true
-      }
+    els.forEach(el => {
+      const delay = parseInt(el.getAttribute('data-aos-delay'), 10);
+      if (delay) el.style.transitionDelay = (delay / 1000) + 's';
     });
-  }
 
-  /**
-   * Animation on scroll
-   */
-  window.addEventListener('load', () => {
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false,
-      // Respect reduced-motion: show content instantly, no reveal animation
-      disable: function () {
-        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      }
-    })
-  });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('aos-animate');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach(el => observer.observe(el));
+  })();
 
   /**
    * Theme Toggle (Dark/Light Mode)
    */
   const themeToggle = select('#theme-toggle');
   const body = select('body');
-  const ghStats = select('#gh-card-stats');
-  const ghLangs = select('#gh-card-languages');
-  const ghStreak = select('#gh-card-streak');
-
-  function updateGitHubCards(theme) {
-    if (!ghStats || !ghLangs || !ghStreak) return;
-    
-    const textColor = theme === 'dark' ? 'f1f1f1' : '45505b';
-    const titleColor = '0563bb';
-    const iconColor = '0563bb';
-    
-    ghStats.src = `https://readme-stats-fast.vercel.app/api?username=Bakame03&show_icons=true&theme=transparent&hide_border=true&title_color=${titleColor}&icon_color=${iconColor}&text_color=${textColor}`;
-    ghLangs.src = `https://readme-stats-fast.vercel.app/api/top-langs/?username=Bakame03&layout=compact&theme=transparent&hide_border=true&title_color=${titleColor}&text_color=${textColor}`;
-    ghStreak.src = `https://streak-stats.demolab.com/?user=Bakame03&theme=transparent&hide_border=true&stroke=${titleColor}&ring=${titleColor}&fire=${titleColor}&currStreakNum=${titleColor}&sideTexts=${textColor}`;
-  }
 
   // Keep the mobile browser-chrome colour in sync with the active theme.
   function updateThemeColor(theme) {
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#111111' : '#ffffff');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#262624' : '#faf9f5');
   }
 
   if (themeToggle) {
@@ -388,18 +294,16 @@
     } else if (systemPrefersDark) {
       initialTheme = 'dark';
     }
-    
+
     body.setAttribute('data-theme', initialTheme);
-    updateGitHubCards(initialTheme);
     updateThemeColor(initialTheme);
 
     themeToggle.addEventListener('click', () => {
       const currentTheme = body.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
+
       body.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
-      updateGitHubCards(newTheme);
       updateThemeColor(newTheme);
     });
   }
@@ -424,8 +328,6 @@
         } else if (key === 'hero_roles') {
           el.setAttribute('data-typed-items', translation);
           initHeroTyped(translation.split(','));
-        } else if (key === 'about_languages_val') {
-          initLangTyped(translation.split(','));
         } else {
           el.innerHTML = translation;
         }
@@ -525,6 +427,80 @@
   fetchGitHubActivity();
 
   /**
+   * GitHub profile stat tiles — replaces the three third-party stat images
+   * (readme-stats / streak-stats): no slow external image services, and the
+   * tiles inherit the site theme automatically.
+   */
+  async function fetchGitHubStats() {
+    const tiles = {
+      repos: select('#stat-repos'),
+      stars: select('#stat-stars'),
+      followers: select('#stat-followers'),
+      langs: select('#stat-langs')
+    };
+    if (!tiles.repos && !tiles.langs) return;
+
+    const CACHE_KEY = 'gh_profile_stats_v1';
+    const TTL = 30 * 60 * 1000; // 30 minutes
+
+    const render = (s) => {
+      if (tiles.repos) tiles.repos.textContent = s.repos;
+      if (tiles.stars) tiles.stars.textContent = s.stars;
+      if (tiles.followers) tiles.followers.textContent = s.followers;
+      if (tiles.langs && Array.isArray(s.langs)) {
+        tiles.langs.innerHTML = '';
+        s.langs.forEach(lang => {
+          const chip = document.createElement('span');
+          chip.className = 'stat-tile__lang';
+          chip.textContent = lang;
+          tiles.langs.appendChild(chip);
+        });
+      }
+    };
+
+    let cached = null;
+    try { cached = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) {}
+    if (cached && cached.data) {
+      render(cached.data);
+      if (Date.now() - cached.t < TTL) return;
+    }
+
+    try {
+      const [userRes, reposRes] = await Promise.all([
+        fetch('https://api.github.com/users/Bakame03'),
+        fetch('https://api.github.com/users/Bakame03/repos?per_page=100')
+      ]);
+      if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API error');
+      const user = await userRes.json();
+      const repos = await reposRes.json();
+
+      const langCount = {};
+      let stars = 0;
+      repos.forEach(r => {
+        stars += Number(r.stargazers_count) || 0;
+        if (r.language) langCount[r.language] = (langCount[r.language] || 0) + 1;
+      });
+      const langs = Object.keys(langCount)
+        .sort((a, b) => langCount[b] - langCount[a])
+        .slice(0, 4);
+
+      const data = {
+        repos: Number(user.public_repos) || 0,
+        followers: Number(user.followers) || 0,
+        stars: stars,
+        langs: langs
+      };
+      render(data);
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data })); } catch (e) {}
+    } catch (error) {
+      console.error('GitHub stats error:', error);
+      // Tiles keep their placeholders (or stale cached values) — no broken UI.
+    }
+  }
+
+  fetchGitHubStats();
+
+  /**
    * Scroll Progress Bar
    */
   const scrollProgress = select('#scroll-progress');
@@ -594,7 +570,18 @@
     select('[data-modal-open]', true).forEach(trigger => {
       trigger.addEventListener('click', () => {
         const modal = select(trigger.getAttribute('data-modal-open'));
-        if (modal) openModal(modal, trigger);
+        if (!modal) return;
+        // PDF-in-iframe modals are unusable on touch devices (iOS Safari
+        // renders only the first page, no scroll) — open the file directly.
+        if (modal.classList.contains('modal-lite--doc') &&
+            window.matchMedia('(pointer: coarse)').matches) {
+          const doc = modal.querySelector('.modal-lite__download');
+          if (doc) {
+            window.open(doc.getAttribute('href'), '_blank', 'noopener');
+            return;
+          }
+        }
+        openModal(modal, trigger);
       });
     });
 

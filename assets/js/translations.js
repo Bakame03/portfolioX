@@ -23,7 +23,7 @@ window.translations = {
     about_city: "City:",
     about_city_val: "Arles, France",
     about_languages: "Languages:",
-    about_languages_val: "English,French",
+    about_languages_val: "English, French",
     about_degree: "Degree:",
     about_degree_val: "Bachelor",
     about_email: "Email:",
@@ -38,6 +38,10 @@ window.translations = {
     gh_live_activity: "GitHub Live Activity",
     gh_recent_repos: "Recently Updated Repositories",
     gh_view_profile: "View Full Profile",
+    gh_stat_repos: "Public repositories",
+    gh_stat_stars: "Stars earned",
+    gh_stat_followers: "Followers",
+    gh_stat_langs: "Top languages",
 
     // Skills
     skills_title: "Skills",
@@ -193,7 +197,7 @@ window.translations = {
     about_city: "Ville:",
     about_city_val: "Arles, France",
     about_languages: "Langues:",
-    about_languages_val: "Anglais,Français",
+    about_languages_val: "Anglais, Français",
     about_degree: "Diplôme:",
     about_degree_val: "Licence",
     about_email: "E-mail :",
@@ -208,6 +212,10 @@ window.translations = {
     gh_live_activity: "Activité GitHub en direct",
     gh_recent_repos: "Dépôts récemment mis à jour",
     gh_view_profile: "Voir le profil complet",
+    gh_stat_repos: "Dépôts publics",
+    gh_stat_stars: "Étoiles reçues",
+    gh_stat_followers: "Abonnés",
+    gh_stat_langs: "Langages principaux",
 
     // Skills
     skills_title: "Compétences",
