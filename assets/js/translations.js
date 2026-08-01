@@ -146,6 +146,11 @@ window.translations = {
     project_badge_production: "Production",
     project_badge_api: "API Focus",
     project_badge_fullstack: "Full-Stack",
+    project_cat_hypoxia: "3D / Creative Web / AI Environment",
+    project_cat_eatwell: "Web Engineering / Frontend",
+    project_cat_services: "Service Engineering / API Integration",
+    project_cat_budget: "Web Development / Finance",
+    project_cat_calc: "Web Tools",
 
     // Services
     services_title: "Services",
@@ -332,6 +337,11 @@ window.translations = {
     project_badge_production: "En Production",
     project_badge_api: "Focus API",
     project_badge_fullstack: "Full-Stack",
+    project_cat_hypoxia: "3D / Web Créatif / Environnement IA",
+    project_cat_eatwell: "Ingénierie Web / Frontend",
+    project_cat_services: "Ingénierie de Services / Intégration d'API",
+    project_cat_budget: "Développement Web / Finance",
+    project_cat_calc: "Outils Web",
 
     // Services
     services_title: "Services",
