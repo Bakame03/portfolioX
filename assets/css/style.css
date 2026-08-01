@@ -180,6 +180,37 @@ a:hover {
   text-decoration: none;
 }
 
+/* Keyboard focus: one consistent accent ring across every interactive element.
+   :focus-visible only fires for keyboard/assistive navigation, so mouse users
+   never see it. Individual components may override with a tighter style. */
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+
+/* Programmatic focus targets (skip-link destination) are not interactive —
+   no ring around a full-viewport section. */
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
+/* The Bootstrap subset ships its own focus styles (blue ring, outline:0) at
+   higher specificity than the global rule above — re-point them at the
+   site accent so keyboard focus looks the same everywhere. */
+.nav-link:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.contact .php-email-form input:focus-visible,
+.contact .php-email-form textarea:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
 h1,
 h2,
 h3,
@@ -535,7 +566,6 @@ body.modal-open #scroll-progress {
   font-size: 22px;
   transition: transform 0.3s var(--ease-spring), background 0.3s ease,
               color 0.3s ease;
-  outline: none !important;
   line-height: 0;
   cursor: pointer;
   border-radius: 50%;
