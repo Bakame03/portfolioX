@@ -649,22 +649,8 @@
 
 })()
 
-let a = new Date().getFullYear();
-
+// Footer copyright year.
 const currentYearEl = document.getElementById("current_year");
-if (currentYearEl) currentYearEl.innerText = a;
-
-const myAgeEl = document.getElementById("myAge");
-if (myAgeEl) myAgeEl.innerText = a - 2002;
-
-const itExperienceEls = document.querySelectorAll('.it_experience');
-itExperienceEls.forEach(el => {
-    el.innerText = a - 2022;
-});
-
-const currentYearEls = document.querySelectorAll('.currentYear');
-currentYearEls.forEach(el => {
-    el.innerText = a;
-});
+if (currentYearEl) currentYearEl.innerText = new Date().getFullYear();
 
 
