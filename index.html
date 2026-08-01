@@ -5,6 +5,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
 
+  <!-- Colours the mobile browser chrome; kept in sync with the active theme
+       by the inline script below and by the toggle in main.js. -->
+  <meta name="theme-color" content="#faf9f5">
+
   <!-- Flip no-js → js before render so JS-gated states (hero reveal, preloader)
        only apply when JS is actually available. Content stays visible otherwise. -->
   <script>
@@ -13,6 +17,15 @@
     /* Apply the saved language before first paint so returning French visitors
        don't get an EN-labelled flash + a lang/content mismatch for screen readers. */
     try { var _l = localStorage.getItem('lang'); if (_l) _d.lang = _l; } catch (e) {}
+    /* Apply the theme before first paint too — main.js loads deferred, so
+       setting it there gave dark-mode visitors a light flash on every load. */
+    try {
+      var _t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      _d.setAttribute('data-theme', _t);
+      var _m = document.querySelector('meta[name="theme-color"]');
+      if (_m) _m.setAttribute('content', _t === 'dark' ? '#262624' : '#faf9f5');
+    } catch (e) {}
   </script>
 
   <!-- GitHub Pages can't send response headers, so the policy ships in the
@@ -32,9 +45,6 @@
     form-action https://formspree.io;
     base-uri 'self'; object-src 'none'; frame-ancestors 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-
-  <!-- Colours the mobile browser chrome; kept in sync with the active theme by JS. -->
-  <meta name="theme-color" content="#faf9f5">
 
   <title>Aldo Alex NGANJI - Back End Developer & AI Enthusiast</title>
   <meta content="Portfolio of Aldo Alex NGANJI, Back End Developer skilled in Python and NestJS. Student at Aix-Marseille University and graduate of Université du Lac Tanganyika in Software Engineering. Expanding into Artificial Intelligence." name="description">

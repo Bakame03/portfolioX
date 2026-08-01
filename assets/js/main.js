@@ -304,7 +304,6 @@
    * Theme Toggle (Dark/Light Mode)
    */
   const themeToggle = select('#theme-toggle');
-  const body = select('body');
 
   // Keep the mobile browser-chrome colour in sync with the active theme.
   function updateThemeColor(theme) {
@@ -313,25 +312,16 @@
   }
 
   if (themeToggle) {
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    let initialTheme = 'light';
-
-    if (savedTheme) {
-      initialTheme = savedTheme;
-    } else if (systemPrefersDark) {
-      initialTheme = 'dark';
-    }
-
-    body.setAttribute('data-theme', initialTheme);
-    updateThemeColor(initialTheme);
+    // The theme attribute lives on <html> and is applied by the inline head
+    // script before first paint (no dark-mode flash); this only wires the toggle.
+    const root = document.documentElement;
 
     themeToggle.addEventListener('click', () => {
-      const currentTheme = body.getAttribute('data-theme');
+      const currentTheme = root.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-      body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
+      root.setAttribute('data-theme', newTheme);
+      try { localStorage.setItem('theme', newTheme); } catch (e) {}
       updateThemeColor(newTheme);
     });
   }
