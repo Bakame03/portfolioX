@@ -1,2 +1,5 @@
 drafts/
- 
+
+# Local file-manager metadata — never belongs in a published site.
+.DS_Store
+.comments/
