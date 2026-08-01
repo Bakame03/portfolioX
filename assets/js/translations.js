@@ -115,12 +115,8 @@ window.translations = {
     // Projects
     projects_title: "Projects",
     projects_subtitle: "Production systems, open-source infrastructure, and applied AI. Explore my engineering work below.",
-    filter_all: "All",
-    filter_ai: "AI",
-    filter_web: "Web",
-    
+
     project_hypoxia_title: "HYPOXIA — L'Écho Numérique",
-    project_hypoxia_desc: "<strong>Problem:</strong> The environmental cost of AI is invisible by design which creates a disconnection between digital action and physical outcome.<br><strong>Architecture:</strong> <strong>Next.js 14</strong> + <strong>React Three Fiber</strong>. Engineered with React Postprocessing shaders and <strong>Zustand</strong> for persistent environmental 'scars'.<br><strong>Outcome:</strong> Award-winning immersive experience where typing a prompt directly burns and suffocates the digital world in real-time.",
     
     project_eatwell_title: "Eat Well (Omnifood)",
     project_eatwell_desc: "<strong>Problem:</strong> People lack the time to effectively meal-prep and navigate complex nutritional needs daily.<br><strong>Architecture:</strong> Fully responsive SPA built with <strong>Vanilla HTML/CSS/JS</strong> and <strong>Firebase</strong> for backend form handling and user storage.<br><strong>Outcome:</strong> A sleek, high-conversion product landing page with dynamic UI components (modals, galleries) and a working signup pipeline.",
@@ -144,7 +140,6 @@ window.translations = {
     project_btn_demo: "Live Demo",
     project_btn_code: "Code",
     project_badge_flagship: "Prix du Jury (DevArt)",
-    project_badge_awarded: "Awarded",
     project_badge_production: "Production",
     project_badge_api: "API Focus",
     project_badge_fullstack: "Full-Stack",
@@ -185,8 +180,6 @@ window.translations = {
     contact_status_sending: "Sending…",
     contact_status_success: "Thanks for your message! I'll get back to you soon.",
     contact_status_error: "Oops! There was a problem sending your message. Please try again.",
-    contact_success: "Thanks for your submission!",
-    contact_error: "Oops! There was a problem submitting your form",
 
     // Footer
     footer_quote: '"Design is not just what it looks like and feels like. It\'s how it works."',
@@ -308,12 +301,8 @@ window.translations = {
     // Projects
     projects_title: "Projets",
     projects_subtitle: "Systèmes de production, infrastructure open-source et IA appliquée. Explorez mon travail d'ingénierie ci-dessous.",
-    filter_all: "Tous",
-    filter_ai: "IA",
-    filter_web: "Web",
     
     project_hypoxia_title: "HYPOXIA — L'Écho Numérique",
-    project_hypoxia_desc: "<strong>Problème :</strong> Le coût environnemental de l'IA est invisible par conception, ce qui crée une déconnexion entre l'action numérique et le résultat physique.<br><strong>Architecture :</strong> <strong>Next.js 14</strong> + <strong>React Three Fiber</strong>. Conçu avec des shaders React Postprocessing et <strong>Zustand</strong> pour des 'cicatrices' environnementales persistantes.<br><strong>Résultat :</strong> Expérience immersive primée où la saisie d'un prompt brûle et étouffe directement le monde numérique en temps réel.",
     
     project_eatwell_title: "Eat Well (Omnifood)",
     project_eatwell_desc: "<strong>Problème :</strong> Les gens manquent de temps pour préparer efficacement leurs repas et naviguer quotidiennement dans des besoins nutritionnels complexes.<br><strong>Architecture :</strong> SPA entièrement responsive construite avec <strong>Vanilla HTML/CSS/JS</strong> et <strong>Firebase</strong> pour la gestion des formulaires et le stockage des utilisateurs.<br><strong>Résultat :</strong> Une page de destination élégante et à haute conversion avec des composants UI dynamiques (modals, galeries) et un pipeline d'inscription fonctionnel.",
@@ -337,7 +326,6 @@ window.translations = {
     project_btn_demo: "Démo Live",
     project_btn_code: "Code",
     project_badge_flagship: "Prix du Jury (DevArt)",
-    project_badge_awarded: "Récompensé",
     project_badge_production: "En Production",
     project_badge_api: "Focus API",
     project_badge_fullstack: "Full-Stack",
@@ -378,8 +366,6 @@ window.translations = {
     contact_status_sending: "Envoi…",
     contact_status_success: "Merci pour votre message ! Je vous répondrai très vite.",
     contact_status_error: "Oups ! Un problème est survenu lors de l'envoi. Veuillez réessayer.",
-    contact_success: "Merci pour votre message !",
-    contact_error: "Oups ! Il y a eu un problème lors de l'envoi de votre formulaire",
 
     // Footer
     footer_quote: '"Le design, ce n\'est pas seulement ce à quoi ça ressemble ou ce qu\'on ressent. C\'est comment ça marche."',
