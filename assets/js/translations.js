@@ -1,6 +1,7 @@
 window.translations = {
   en: {
     // Navbar
+    skip_link: "Skip to main content",
     nav_about: "About",
     nav_skills: "Skills",
     nav_resume: "Resume",
@@ -67,7 +68,8 @@ window.translations = {
 
     // Resume Details
     resume_role_cs2: "Computer Science — BUT2 Informatique",
-    resume_role_cs2_desc: "Currently in the second year (BUT2) of the B.U.T. in Computer Science, building on a fully validated first year — deepening algorithms, systems architecture, databases, and Artificial Intelligence.",
+    resume_role_cs2_dates: "Incoming — Sept 2026",
+    resume_role_cs2_desc: "Entering the second year (BUT2) of the B.U.T. in Computer Science this September, building on a fully validated first year — deepening algorithms, systems architecture, databases, and Artificial Intelligence.",
     resume_role_cs: "Computer Science — BUT1 Informatique",
     resume_role_cs_loc: "Aix-Marseille Université — IUT d'Arles, France",
     resume_role_cs_desc: "Completed the first year (BUT1) — Admis with all 60 ECTS and 6/6 competencies validated. Foundations in development, algorithms, databases, systems, and client needs analysis.",
@@ -192,6 +194,7 @@ window.translations = {
   },
   fr: {
     // Navbar
+    skip_link: "Aller au contenu principal",
     nav_about: "À propos",
     nav_skills: "Compétences",
     nav_resume: "CV",
@@ -258,7 +261,8 @@ window.translations = {
 
     // Resume Details
     resume_role_cs2: "BUT2 Informatique",
-    resume_role_cs2_desc: "Actuellement en deuxième année (BUT2) du B.U.T. Informatique, en m'appuyant sur une première année entièrement validée — approfondissement des algorithmes, de l'architecture des systèmes, des bases de données et de l'Intelligence Artificielle.",
+    resume_role_cs2_dates: "Rentrée — Sept 2026",
+    resume_role_cs2_desc: "Admis en deuxième année (BUT2) du B.U.T. Informatique pour la rentrée de septembre, après une première année entièrement validée — approfondissement des algorithmes, de l'architecture des systèmes, des bases de données et de l'Intelligence Artificielle.",
     resume_role_cs: "BUT1 Informatique",
     resume_role_cs_loc: "Aix-Marseille Université — IUT d'Arles, France",
     resume_role_cs_desc: "Première année (BUT1) validée — Admis avec 60 ECTS et 6/6 compétences acquises. Bases solides en développement, algorithmes, bases de données, systèmes et analyse des besoins.",

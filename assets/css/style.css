@@ -2072,6 +2072,30 @@ section .container {
 .map-facade__inner span { font-weight: 600; font-size: 16px; }
 .map-facade__inner small { color: var(--text-color); opacity: 0.7; font-size: 13px; }
 
+/* Skip-to-content link: first tab stop on the page. Sits off-screen until
+   keyboard focus lands on it, then slides in above every fixed layer. */
+.skip-link {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 10000;
+  padding: 10px 20px;
+  background: var(--accent-strong);
+  color: #fff;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transform: translateY(calc(-100% - 20px));
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 /* Reading progress bar (top of viewport; width set by main.js) */
 #scroll-progress {
   position: fixed;
@@ -2170,6 +2194,7 @@ section .container {
   }
 
   /* Interactive / dynamic chrome has no meaning on paper */
+  .skip-link,
   #header,
   .control-dock,
   .theme-toggle,
