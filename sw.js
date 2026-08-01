@@ -9,7 +9,7 @@
  *
  * Bump CACHE_VERSION when you want to force-drop every cached asset.
  */
-const CACHE_VERSION = 'portfolioX-v2';
+const CACHE_VERSION = 'portfolioX-v3';
 
 const PRECACHE = [
   './',
@@ -18,6 +18,7 @@ const PRECACHE = [
   'manifest.json',
   'assets/css/style.css',
   'assets/css/featured.css',
+  'assets/css/icons.css',
   'assets/js/main.js',
   'assets/js/translations.js',
   'assets/vendor/bootstrap/css/bootstrap.subset.min.css',
@@ -26,6 +27,7 @@ const PRECACHE = [
   'assets/vendor/typed.js/typed.umd.js',
   'assets/fonts/inter-var-latin.woff2',
   'assets/fonts/source-serif-4-var-latin.woff2',
+  'assets/fonts/bootstrap-icons-subset.woff2',
   'assets/img/favicon.svg',
   'assets/img/aldo_alex_nganji.webp'
 ];
