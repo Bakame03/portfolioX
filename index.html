@@ -46,6 +46,14 @@
     base-uri 'self'; object-src 'none'; frame-ancestors 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
+  <!-- Both fire on every load (GitHub stats/repos fetch, analytics script) —
+       preconnect shaves the DNS+TCP+TLS handshake off that critical path.
+       api.github.com gets `crossorigin` because the fetch() calls in main.js
+       are cross-origin anonymous requests; the goatcounter <script> tag has
+       no crossorigin attribute, so its preconnect shouldn't either. -->
+  <link rel="preconnect" href="https://api.github.com" crossorigin>
+  <link rel="preconnect" href="https://gc.zgo.at">
+
   <title>Aldo Alex NGANJI - Back End Developer & AI Enthusiast</title>
   <meta content="Portfolio of Aldo Alex NGANJI, Back End Developer skilled in Python and NestJS. Student at Aix-Marseille University and graduate of Université du Lac Tanganyika in Software Engineering. Expanding into Artificial Intelligence." name="description">
   <meta content="Back End Developer, Python, NestJS, C, C++, Software Engineering, Artificial Intelligence, Aix-Marseille University, Université du Lac Tanganyika, Asyst Resources" name="keywords">
@@ -466,11 +474,11 @@
                     <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
-                    <img src="assets/img/dossiers/but1-1.webp" alt="BUT1 — Profil analytique et bilan de compétences (couverture)" loading="lazy">
-                    <img src="assets/img/dossiers/but1-2.webp" alt="BUT1 — Verdict final : Admis, 60 ECTS, moyennes par semestre" loading="lazy">
-                    <img src="assets/img/dossiers/but1-3.webp" alt="BUT1 — Cartographie radar des 6 compétences validées" loading="lazy">
-                    <img src="assets/img/dossiers/but1-4.webp" alt="BUT1 — Points forts et distinctions (1er sur 48 en UE1.5)" loading="lazy">
-                    <img src="assets/img/dossiers/but1-5.webp" alt="BUT1 — Synthèse analytique du profil" loading="lazy">
+                    <img src="assets/img/dossiers/but1-1.webp" alt="BUT1 — Profil analytique et bilan de compétences (couverture)" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-2.webp" alt="BUT1 — Verdict final : Admis, 60 ECTS, moyennes par semestre" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-3.webp" alt="BUT1 — Cartographie radar des 6 compétences validées" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-4.webp" alt="BUT1 — Points forts et distinctions (1er sur 48 en UE1.5)" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-5.webp" alt="BUT1 — Synthèse analytique du profil" width="1600" height="900" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -550,16 +558,16 @@
                     <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
-                    <img src="assets/img/devart/a.webp" alt="Team Nebula gathered at their workstation during the DevArt 2026 hackathon" loading="lazy">
-                    <img src="assets/img/devart/b.webp" alt="Selfie collage of Team Nebula members at the DevArt 2026 hackathon" loading="lazy">
-                    <img src="assets/img/devart/c.webp" alt="Team Nebula presenting on stage in front of the Aix-Marseille Université banner" loading="lazy">
-                    <img src="assets/img/devart/d.webp" alt="Two Team Nebula members coding on laptops during the hackathon" loading="lazy">
-                    <img src="assets/img/devart/e.webp" alt="Team Nebula collaborating around a workstation during the hackathon" loading="lazy">
-                    <img src="assets/img/devart/f.webp" alt="Late-night coding at a lamp-lit desk during the 32-hour hackathon" loading="lazy">
-                    <img src="assets/img/devart/g.webp" alt="Wide view of the DevArt 2026 hackathon room with competing teams at IUT d'Arles" loading="lazy">
-                    <img src="assets/img/devart/h.webp" alt="A Team Nebula developer focused on coding at the hackathon" loading="lazy">
-                    <img src="assets/img/devart/i.webp" alt="Cluttered workstation during the overnight stretch of the 32-hour hackathon" loading="lazy">
-                    <img src="assets/img/devart/j.webp" alt="Team Nebula, four members, in front of the Aix-Marseille Université banner at DevArt 2026" loading="lazy">
+                    <img src="assets/img/devart/a.webp" alt="Team Nebula gathered at their workstation during the DevArt 2026 hackathon" width="1600" height="1200" loading="lazy">
+                    <img src="assets/img/devart/b.webp" alt="Selfie collage of Team Nebula members at the DevArt 2026 hackathon" width="900" height="1600" loading="lazy">
+                    <img src="assets/img/devart/c.webp" alt="Team Nebula presenting on stage in front of the Aix-Marseille Université banner" width="1600" height="1200" loading="lazy">
+                    <img src="assets/img/devart/d.webp" alt="Two Team Nebula members coding on laptops during the hackathon" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/e.webp" alt="Team Nebula collaborating around a workstation during the hackathon" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/f.webp" alt="Late-night coding at a lamp-lit desk during the 32-hour hackathon" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/g.webp" alt="Wide view of the DevArt 2026 hackathon room with competing teams at IUT d'Arles" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/h.webp" alt="A Team Nebula developer focused on coding at the hackathon" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/i.webp" alt="Cluttered workstation during the overnight stretch of the 32-hour hackathon" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/j.webp" alt="Team Nebula, four members, in front of the Aix-Marseille Université banner at DevArt 2026" width="1600" height="900" loading="lazy">
                   </div>
                 </div>
               </div>

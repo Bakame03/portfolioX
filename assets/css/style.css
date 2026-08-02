@@ -68,6 +68,11 @@
 # General
 --------------------------------------------------------------*/
 :root {
+  /* Tells the browser which palette native UI (scrollbars, form controls,
+     <select> dropdowns) should render in — follows the manual data-theme
+     toggle, not just the OS preference, same as the theme-color meta below. */
+  color-scheme: light;
+
   /* Warm-paper palette (Anthropic-style): ivory background, warm ink text,
      terracotta accent. --accent for fills/large UI, --accent-strong for
      small text & links (darker, keeps WCAG contrast on ivory). */
@@ -136,6 +141,8 @@ a, button, .nav-link, .mobile-nav-toggle, .stack-wrapper, [role="button"] {
 }
 
 [data-theme="dark"] {
+  color-scheme: dark;
+
   /* Warm dark — charcoal with the same warm undertone, lighter terracotta
      accent for contrast on dark surfaces. */
   --accent: #d97757;
