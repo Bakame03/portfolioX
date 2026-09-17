@@ -223,22 +223,17 @@
   });
 
   /**
-   * Preloader
-   */
-  let preloader = select('#preloader');
-  if (preloader) {
-    const removePreloader = () => preloader.remove();
-    window.addEventListener('load', removePreloader);
-    // Failsafe: never let a slow/hung asset trap users behind the overlay.
-    setTimeout(removePreloader, 3000);
-  }
-
-  /**
    * Hero type effect
    */
   const typed = select('.typed')
   let heroTyped;
   const initHeroTyped = (strings) => {
+    // Vendor script may have failed to load — fall back to static text rather
+    // than throwing and taking down every initialiser below.
+    if (typeof Typed === 'undefined') {
+      if (typed && strings.length) typed.textContent = strings[0].trim();
+      return;
+    }
     if (heroTyped) heroTyped.destroy();
     heroTyped = new Typed('.typed', {
       strings: strings,
@@ -257,13 +252,17 @@
   /**
    * Initiate portfolio lightbox
    */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  });
+  // Guarded for the same reason as Typed above: without the vendor script the
+  // image links simply open normally instead of breaking the rest of the page.
+  if (typeof GLightbox !== 'undefined') {
+    const portfolioLightbox = GLightbox({
+      selector: '.portfolio-lightbox'
+    });
 
-  // Hide the floating controls behind the lightbox overlay too.
-  portfolioLightbox.on('open', () => document.body.classList.add('modal-open'));
-  portfolioLightbox.on('close', () => document.body.classList.remove('modal-open'));
+    // Hide the floating controls behind the lightbox overlay too.
+    portfolioLightbox.on('open', () => document.body.classList.add('modal-open'));
+    portfolioLightbox.on('close', () => document.body.classList.remove('modal-open'));
+  }
 
   /**
    * Scroll reveal — lightweight AOS replacement.
@@ -298,6 +297,10 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     els.forEach(el => observer.observe(el));
+
+    // Tells the inline failsafe in index.html that the reveal machinery is
+    // live, so it doesn't un-hide everything on a page that's working fine.
+    document.documentElement.classList.add('reveal-ready');
   })();
 
   /**

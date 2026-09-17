@@ -9,8 +9,9 @@
        by the inline script below and by the toggle in main.js. -->
   <meta name="theme-color" content="#faf9f5">
 
-  <!-- Flip no-js → js before render so JS-gated states (hero reveal, preloader)
-       only apply when JS is actually available. Content stays visible otherwise. -->
+  <!-- Flip no-js → js before render so JS-gated states (hero reveal, scroll
+       reveals) only apply when JS is actually available. Content stays visible
+       otherwise. -->
   <script>
     var _d = document.documentElement;
     _d.className = _d.className.replace('no-js', 'js');
@@ -1027,7 +1028,6 @@
     </div>
   </footer><!-- End Footer -->
 
-  <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Back to top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>
 
   <!-- ======= Section Title Underline Wipe (Feature #3) ======= -->
@@ -1068,13 +1068,25 @@
         var container = document.querySelector('.hero-intro-container');
         if (container) container.classList.add('hero-intro-ready');
       }
-      // Reveal just after load, aligning with the preloader fade-out.
-      window.addEventListener('load', function() {
-        setTimeout(revealHero, 400);
-      });
-      // Failsafe: a slow or hung asset (CDN image, map iframe) must never keep
-      // the hero hidden — reveal regardless once the DOM is ready + a short beat.
-      setTimeout(revealHero, 2500);
+      // Nothing above the fold waits on images, so don't wait for `load`.
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', revealHero);
+      } else {
+        revealHero();
+      }
+      // Failsafe: the hero must never stay hidden.
+      setTimeout(revealHero, 2000);
+
+      // Last-resort net for the scroll reveals: .js [data-aos] starts at
+      // opacity 0 and is un-hidden by main.js. If main.js never runs at all
+      // (404, parse error, blocked), show everything rather than a blank page.
+      // main.js adds .reveal-ready once its observer is attached, so a healthy
+      // page — where nothing below the fold has revealed yet — is left alone.
+      setTimeout(function () {
+        if (document.documentElement.classList.contains('reveal-ready')) return;
+        var els = document.querySelectorAll('[data-aos]');
+        for (var i = 0; i < els.length; i++) els[i].classList.add('aos-animate');
+      }, 3000);
     })();
   </script>
 

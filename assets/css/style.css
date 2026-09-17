@@ -383,44 +383,6 @@ body.modal-open #scroll-progress {
 }
 
 /*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-  overflow: hidden;
-  background: #faf9f5;
-}
-
-#preloader:before {
-  content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  border: 6px solid #c15f3c;
-  border-top-color: #faf9f5;
-  border-bottom-color: #faf9f5;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: animate-preloader 1s linear infinite;
-}
-
-@keyframes animate-preloader {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
@@ -680,45 +642,39 @@ body.mobile-nav-active::after {
 /* Feature #6: Intro Sequence Initial States */
 .hero-intro-elem {
   /* Default smooth transition */
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-              transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Only hide the hero for the staggered reveal when JS is actually running.
    Without JS (or if the reveal never fires) the hero stays fully visible. */
 .js .hero-intro-elem {
   opacity: 0;
-  transform: translateY(30px);
-}
-
-/* Without JS the preloader can never be removed (it's torn down in JS on load),
-   so hide it up front to avoid a permanent white overlay. */
-.no-js #preloader {
-  display: none;
+  transform: translateY(18px);
 }
 
 .hero-intro-ready .hero-name {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.1s;
+  transition-delay: 0s;
 }
 
 .hero-intro-ready .hero-role {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.4s;
+  transition-delay: 0.08s;
 }
 
 .hero-intro-ready .hero-socials {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.7s;
+  transition-delay: 0.16s;
 }
 
 .hero-intro-ready .hero-cta {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 1s;
+  transition-delay: 0.24s;
 }
 
 /* Hero call-to-action buttons */
@@ -915,85 +871,8 @@ section .container {
 
 
 /*--------------------------------------------------------------
-# Facts
---------------------------------------------------------------*/
-.facts .count-box {
-  padding: 30px 30px 25px 30px;
-  margin-top: 30px;
-  width: 100%;
-  position: relative;
-  text-align: center;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-}
-
-.facts .count-box:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
-}
-
-.facts .count-box i {
-  position: absolute;
-  top: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-}
-
-.facts .count-box span {
-  font-size: 36px;
-  display: block;
-  font-weight: 600;
-  color: var(--subtitle-color);
-}
-
-.facts .count-box p {
-  padding: 0;
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: 14px;
-}
-
-/*--------------------------------------------------------------
 # skills
 --------------------------------------------------------------*/
-.skills .progress {
-  height: 60px;
-  display: block;
-  background: none;
-  border-radius: 0;
-}
-
-.skills .progress .skill {
-  padding: 10px 0;
-  margin: 0;
-  text-transform: uppercase;
-  display: block;
-  font-weight: 600;
-  font-family: var(--font-sans);
-  color: var(--subtitle-color);
-}
-
-.skills .progress .skill .val {
-  float: right;
-  font-style: normal;
-}
-
-.skills .progress-bar-wrap {
-  background: var(--section-bg);
-}
-
 /* Skill chips: theme-aware override of the Bootstrap utility colours
    (bg-white/text-dark would stay white in dark mode). */
 .skills .badge {
@@ -1007,13 +886,6 @@ section .container {
 .skills .badge:hover {
   border-color: var(--accent) !important;
   transform: translateY(-2px);
-}
-
-.skills .progress-bar {
-  width: 1px;
-  height: 10px;
-  transition: 0.9s;
-  background-color: var(--accent);
 }
 
 /*--------------------------------------------------------------
@@ -1099,7 +971,7 @@ section .container {
   left: -8px;
   top: 0;
   background: var(--accent);
-  border: 3px solid #fff;
+  border: 3px solid var(--bg-color);
   box-shadow: 0 0 0 3px rgba(193, 95, 60, 0.2);
   transition: all 0.3s ease;
 }
@@ -1170,17 +1042,6 @@ section .container {
   position: relative;
 }
 
-.services .icon-box .icon svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.services .icon-box .icon svg path {
-  transition: 0.5s;
-  fill: #f5f5f5;
-}
-
 .services .icon-box h3 {
   font-weight: 600;
   margin: 10px 0 15px 0;
@@ -1226,114 +1087,6 @@ section .container {
 }
 
 /*--------------------------------------------------------------
-# System Architecture
---------------------------------------------------------------*/
-.architecture {
-  padding: 60px 0;
-}
-
-.architecture .card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 12px;
-}
-
-.architecture .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
-}
-
-.architecture .architecture-placeholder {
-  transition: border-color 0.3s ease;
-}
-
-.architecture .card:hover .architecture-placeholder {
-  border-color: var(--accent) !important;
-}
-
-/*--------------------------------------------------------------
-# Testimonials
---------------------------------------------------------------*/
-.testimonials .section-header {
-  margin-bottom: 40px;
-}
-
-.testimonials .testimonials-carousel,
-.testimonials .testimonials-slider {
-  overflow: hidden;
-}
-
-.testimonials .testimonial-item {
-  text-align: center;
-}
-
-.testimonials .testimonial-item .testimonial-img {
-  width: 120px;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  margin: 0 auto;
-}
-
-.testimonials .testimonial-item h3 {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px 0 5px 0;
-  color: var(--text-color);
-}
-
-.testimonials .testimonial-item h4 {
-  font-size: 14px;
-  color: #999;
-  margin: 0 0 15px 0;
-}
-
-.testimonials .testimonial-item .quote-icon-left,
-.testimonials .testimonial-item .quote-icon-right {
-  color: var(--accent);
-  font-size: 26px;
-}
-
-.testimonials .testimonial-item .quote-icon-left {
-  display: inline-block;
-  left: -5px;
-  position: relative;
-}
-
-.testimonials .testimonial-item .quote-icon-right {
-  display: inline-block;
-  right: -5px;
-  position: relative;
-  top: 10px;
-}
-
-.testimonials .testimonial-item p {
-  font-style: italic;
-  margin: 0 auto 15px auto;
-}
-
-.testimonials .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: #fff;
-  opacity: 1;
-  border: 1px solid var(--accent);
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--accent);
-}
-
-@media (min-width: 992px) {
-  .testimonials .testimonial-item p {
-    width: 80%;
-  }
-}
-
-/*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
 .contact .info {
@@ -1371,7 +1124,7 @@ section .container {
   padding: 0 0 0 60px;
   margin-bottom: 0;
   font-size: 14px;
-  color: #728394;
+  color: var(--text-color);
 }
 
 .contact .info .email,
@@ -1397,47 +1150,6 @@ section .container {
 
 .contact .php-email-form .form-group {
   padding-bottom: 8px;
-}
-
-.contact .php-email-form .error-message {
-  display: none;
-  color: #fff;
-  background: #ed3c0d;
-  text-align: left;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .error-message br+br {
-  margin-top: 25px;
-}
-
-.contact .php-email-form .sent-message {
-  display: none;
-  color: #fff;
-  background: #18d26e;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .loading {
-  display: none;
-  background: #fff;
-  text-align: center;
-  padding: 15px;
-}
-
-.contact .php-email-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
-  border-top-color: #eee;
-  animation: animate-loading 1s linear infinite;
 }
 
 .contact .php-email-form input,
@@ -1517,21 +1229,6 @@ section .container {
   cursor: wait;
 }
 
-.typedDatas {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-@keyframes animate-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -1554,7 +1251,7 @@ section .container {
 }
 
 #footer p {
-  font-size: 15;
+  font-size: 15px;
   font-style: italic;
   padding: 0;
   margin: 0 0 40px 0;
@@ -1582,7 +1279,7 @@ section .container {
 #footer .social-links a:hover {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 0 10px rgba(255, 187, 44, 0.5);
+  box-shadow: 0 4px 12px rgba(193, 95, 60, 0.35);
   transform: translateY(-3px);
 }
 
@@ -1594,26 +1291,6 @@ section .container {
   font-size: 13px;
 }
 /* Featured Project styles moved to featured.css */
-
-/*--------------------------------------------------------------
-# Live Counter Loading Pulse
---------------------------------------------------------------*/
-.live-counter.is-loading {
-  display: inline-block;
-  width: 50px;
-  height: 12px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #e0e7ef 25%, #f0f4f8 50%, #e0e7ef 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.4s ease-in-out infinite;
-  vertical-align: middle;
-  margin: 10px 0;
-}
-
-@keyframes shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
 
 /*--------------------------------------------------------------
 # CV Download Badges
@@ -1655,30 +1332,6 @@ section .container {
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(193, 95, 60, 0.35);
-}
-
-.cv-badge--outline {
-  background: transparent;
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.cv-badge--outline:hover {
-  background: var(--accent);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(193, 95, 60, 0.35);
-}
-
-/*--------------------------------------------------------------
-# Thinking Section
---------------------------------------------------------------*/
-.thinking {
-  padding: 60px 0;
-}
-
-.thinking .section-title {
-  padding-bottom: 20px;
 }
 
 /*--------------------------------------------------------------
@@ -2079,7 +1732,6 @@ section .container {
   font-weight: 500;
 }
 
-.svg-defs { width: 0; height: 0; position: absolute; z-index: -1; }
 .contact-map { border: 0; width: 100%; height: 270px; }
 
 /* Click-to-load map facade (Fix #7) */
@@ -2239,7 +1891,6 @@ section .container {
   .mobile-nav-toggle,
   .back-to-top,
   #scroll-progress,
-  #preloader,
   #hero .social-links,
   .hero-cta,
   .stack-wrapper,
