@@ -223,37 +223,12 @@
   });
 
   /**
-   * Hero type effect
-   */
-  const typed = select('.typed')
-  let heroTyped;
-  const initHeroTyped = (strings) => {
-    // Vendor script may have failed to load — fall back to static text rather
-    // than throwing and taking down every initialiser below.
-    if (typeof Typed === 'undefined') {
-      if (typed && strings.length) typed.textContent = strings[0].trim();
-      return;
-    }
-    if (heroTyped) heroTyped.destroy();
-    heroTyped = new Typed('.typed', {
-      strings: strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    });
-  }
-
-  if (typed) {
-    let typed_strings = typed.getAttribute('data-typed-items');
-    initHeroTyped(typed_strings.split(','));
-  }
-
-  /**
    * Initiate portfolio lightbox
    */
-  // Guarded for the same reason as Typed above: without the vendor script the
-  // image links simply open normally instead of breaking the rest of the page.
+  // Guarded because this is a deferred vendor script: if it fails to load, an
+  // unguarded call would throw and take down every initialiser below it,
+  // including the scroll reveal (which leaves [data-aos] stuck at opacity 0).
+  // Without GLightbox the image links simply open normally.
   if (typeof GLightbox !== 'undefined') {
     const portfolioLightbox = GLightbox({
       selector: '.portfolio-lightbox'
@@ -346,9 +321,6 @@
       if (translation) {
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
           el.placeholder = translation;
-        } else if (key === 'hero_roles') {
-          el.setAttribute('data-typed-items', translation);
-          initHeroTyped(translation.split(','));
         } else {
           el.innerHTML = translation;
         }
