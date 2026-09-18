@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------
-# Projects Section — responsive card grid
+# Projects Section - responsive card grid
 # Calm, editorial cards on the warm-paper palette: solid surfaces,
 # hairline borders, springy lift on hover. 1 column on phones,
 # 2 from tablets up; the flagship project gets a scroll-driven story.
@@ -314,7 +314,7 @@
   transform: translateX(2px);
 }
 
-/* ===== Featured project — scroll-driven story ===== */
+/* ===== Featured project - scroll-driven story ===== */
 .flagship-story {
   display: grid;
   grid-template-columns: 1fr;

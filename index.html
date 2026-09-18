@@ -9,7 +9,7 @@
        by the inline script below and by the toggle in main.js. -->
   <meta name="theme-color" content="#faf9f5">
 
-  <!-- Flip no-js → js before render so JS-gated states (hero reveal, scroll
+  <!-- Flip no-js -> js before render so JS-gated states (hero reveal, scroll
        reveals) only apply when JS is actually available. Content stays visible
        otherwise. -->
   <script>
@@ -18,7 +18,7 @@
     /* Apply the saved language before first paint so returning French visitors
        don't get an EN-labelled flash + a lang/content mismatch for screen readers. */
     try { var _l = localStorage.getItem('lang'); if (_l) _d.lang = _l; } catch (e) {}
-    /* Apply the theme before first paint too — main.js loads deferred, so
+    /* Apply the theme before first paint too - main.js loads deferred, so
        setting it there gave dark-mode visitors a light flash on every load. */
     try {
       var _t = localStorage.getItem('theme') ||
@@ -31,7 +31,7 @@
 
   <!-- GitHub Pages can't send response headers, so the policy ships in the
        document. 'unsafe-inline' is required by the inline scripts in this file;
-       the policy is still worth having — it pins script, frame, form and
+       the policy is still worth having - it pins script, frame, form and
        connect targets to the handful of origins this site actually uses.
        Hash-based script-src is the stricter follow-up, but it breaks on every
        inline-script edit, which is a poor trade for a hand-maintained page.
@@ -47,7 +47,7 @@
     base-uri 'self'; object-src 'none'; frame-ancestors 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <!-- Both fire on every load (GitHub stats/repos fetch, analytics script) —
+  <!-- Both fire on every load (GitHub stats/repos fetch, analytics script) -
        preconnect shaves the DNS+TCP+TLS handshake off that critical path.
        api.github.com gets `crossorigin` because the fetch() calls in main.js
        are cross-origin anonymous requests; the goatcounter <script> tag has
@@ -80,12 +80,12 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
 
-  <!-- Fonts are self-hosted (assets/fonts, @font-face in style.css) — no
+  <!-- Fonts are self-hosted (assets/fonts, @font-face in style.css) - no
        request to Google. Preload the two latin files used above the fold. -->
   <link rel="preload" href="assets/fonts/source-serif-4-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <!-- Icons are above the fold (control dock, hero socials) — preload the subset. -->
-  <link rel="preload" href="assets/fonts/bootstrap-icons-subset.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Icons are above the fold (control dock, hero socials) - preload the subset. -->
+  <link rel="preload" href="assets/fonts/bootstrap-icons-subset.b10a2789.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.subset.min.css" rel="stylesheet">
@@ -98,7 +98,7 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/featured.css" rel="stylesheet">
 
-  <!-- Structured Data (schema.org Person) — helps search engines build a
+  <!-- Structured Data (schema.org Person) - helps search engines build a
        rich knowledge panel for "Aldo Alex NGANJI". -->
   <script type="application/ld+json">
   {
@@ -116,7 +116,7 @@
       "addressCountry": "FR"
     },
     "alumniOf": [
-      { "@type": "CollegeOrUniversity", "name": "Aix-Marseille Université — IUT d'Arles" },
+      { "@type": "CollegeOrUniversity", "name": "Aix-Marseille Université - IUT d'Arles" },
       { "@type": "CollegeOrUniversity", "name": "Université du Lac Tanganyika" }
     ],
     "knowsAbout": ["Python", "NestJS", "Backend Development", "REST APIs", "PostgreSQL", "Artificial Intelligence", "C", "C++", "Software Engineering"],
@@ -140,7 +140,7 @@
 
   <div id="scroll-progress"></div>
 
-  <!-- ======= Floating control dock (hamburger · language · theme) =======
+  <!-- ======= Floating control dock (hamburger | language | theme) =======
        One frosted pill on mobile; separate buttons on desktop. Shrinks on
        scroll-down (body.controls-hidden), hides while a modal is open. -->
   <div class="control-dock">
@@ -219,14 +219,14 @@
           <div class="col-lg-8 pt-4 pt-lg-0 content">
             <h3 data-i18n="about_bio_role">Back End Developer | Python &amp; NestJS | AI Enthusiast</h3>
             <p class="about-lede" data-i18n="about_bio_p2">
-              I started programming in 2020 with no idea what computer science truly was — I honestly thought 
+              I started programming in 2020 with no idea what computer science truly was - I honestly thought 
               it was just Word, Excel, and PowerPoint. Coming from a scientific high school background where 
               I once dreamed of medical school, life had other plans. The moment I discovered real programming, 
               I fell in love. After graduating from Université du Lac Tanganyika in 2024, I landed an internship 
               at Asyst Resources LTD in early 2025, where I discovered modern backend depth: microservices, SaaS 
               architectures, and scalable systems. They hired me as their backend developer after the internship. 
               In September 2025, I moved to France to continue my education at Aix-Marseille University. 
-              My goal is simple: build things that genuinely help the people around me — because I believe 
+              My goal is simple: build things that genuinely help the people around me - because I believe 
               that is the very purpose that gives life its meaning.
             </p>
             <p class="fst-italic" data-i18n="about_bio_p1"> 
@@ -252,7 +252,7 @@
                 <ul>
                   <li><i class="bi bi-journal-check"></i> <strong data-i18n="about_degree">Degree:</strong> <span data-i18n="about_degree_val">Bachelor</span></li>
                   <li><i class="bi bi-envelope-at"></i> <strong data-i18n="about_email">Email:</strong> <span>nganjialdoalex@gmail.com</span></li>
-                  <li><i class="bi bi-people"></i> <strong data-i18n="about_available">Available for:</strong> <span data-i18n="about_available_val">3-month internship (stage) &mdash; from 29 March 2027</span></li>
+                  <li><i class="bi bi-people"></i> <strong data-i18n="about_available">Available for:</strong> <span data-i18n="about_available_val">3-month internship (stage) - from 29 March 2027</span></li>
                 </ul>
               </div>
             </div>
@@ -284,19 +284,19 @@
           <div class="col-12 text-center">
             <h3 class="gh-heading"><i class="bi bi-github me-2" aria-hidden="true"></i><span data-i18n="gh_live_activity">GitHub Live Activity</span></h3>
             
-            <!-- Self-styled stat tiles fed by the GitHub API (main.js) — values
-                 stay "–" if the API is unreachable, no broken images. -->
+            <!-- Self-styled stat tiles fed by the GitHub API (main.js) - values
+                 stay "-" if the API is unreachable, no broken images. -->
             <div class="github-stats-grid">
               <div class="stat-tile">
-                <span class="stat-tile__value" id="stat-repos">–</span>
+                <span class="stat-tile__value" id="stat-repos">-</span>
                 <span class="stat-tile__label" data-i18n="gh_stat_repos">Public repositories</span>
               </div>
               <div class="stat-tile">
-                <span class="stat-tile__value" id="stat-stars">–</span>
+                <span class="stat-tile__value" id="stat-stars">-</span>
                 <span class="stat-tile__label" data-i18n="gh_stat_stars">Stars earned</span>
               </div>
               <div class="stat-tile">
-                <span class="stat-tile__value" id="stat-followers">–</span>
+                <span class="stat-tile__value" id="stat-followers">-</span>
                 <span class="stat-tile__label" data-i18n="gh_stat_followers">Followers</span>
               </div>
               <div class="stat-tile stat-tile--langs">
@@ -390,7 +390,7 @@
           <p data-i18n="resume_subtitle">
             From discovering programming in <strong>2020</strong> to contributing as a
             <strong>Back End Developer at Asyst</strong>, and now expanding into
-            <strong>Artificial Intelligence</strong> at Aix-Marseille University —
+            <strong>Artificial Intelligence</strong> at Aix-Marseille University -
             my journey is defined by curiosity, discipline, and a drive to build things that matter.
           </p>
           <div class="cv-downloads">
@@ -404,7 +404,7 @@
           <div id="cvModal" class="modal-lite modal-lite--doc" role="dialog" aria-modal="true" aria-label="Curriculum Vitae">
             <div class="modal-lite__inner">
               <div class="modal-lite__header">
-                <span data-i18n="resume_cv_title"><i class="bi bi-file-earmark-text me-2"></i>Curriculum Vitae — Aldo Alex NGANJI</span>
+                <span data-i18n="resume_cv_title"><i class="bi bi-file-earmark-text me-2"></i>Curriculum Vitae - Aldo Alex NGANJI</span>
                 <div class="d-flex gap-2 align-items-center">
                   <a href="assets/img/portfolio/cv.pdf" download class="modal-lite__download" title="Download CV" data-i18n="resume_download">
                     <i class="bi bi-download"></i> Download
@@ -439,21 +439,21 @@
             <h3 class="resume-title" data-i18n="resume_sec_education">Education</h3>
 
             <div class="resume-item">
-              <h4 data-i18n="resume_role_cs2">Computer Science — BUT2 Informatique</h4>
-              <h5 data-i18n="resume_role_cs2_dates">Sept 2026 – 2027</h5>
-              <p><em data-i18n="resume_role_cs_loc">Aix-Marseille Université — IUT d'Arles, France</em></p>
+              <h4 data-i18n="resume_role_cs2">Computer Science - BUT2 Informatique</h4>
+              <h5 data-i18n="resume_role_cs2_dates">Sept 2026 - 2027</h5>
+              <p><em data-i18n="resume_role_cs_loc">Aix-Marseille Université - IUT d'Arles, France</em></p>
               <p data-i18n="resume_role_cs2_desc">
                 Now in the second year (BUT2) of the B.U.T. in Computer Science, building on a fully
-                validated first year — deepening algorithms, systems architecture, databases, and Artificial Intelligence.
+                validated first year - deepening algorithms, systems architecture, databases, and Artificial Intelligence.
               </p>
             </div>
 
             <div class="resume-item">
-              <h4 data-i18n="resume_role_cs">Computer Science — BUT1 Informatique</h4>
-              <h5>Sept 2025 – 2026</h5>
-              <p><em data-i18n="resume_role_cs_loc">Aix-Marseille Université — IUT d'Arles, France</em></p>
+              <h4 data-i18n="resume_role_cs">Computer Science - BUT1 Informatique</h4>
+              <h5>Sept 2025 - 2026</h5>
+              <p><em data-i18n="resume_role_cs_loc">Aix-Marseille Université - IUT d'Arles, France</em></p>
               <p data-i18n="resume_role_cs_desc">
-                Completed the first year (BUT1) — Admis with all 60 ECTS and 6/6 competencies validated.
+                Completed the first year (BUT1) - Admis with all 60 ECTS and 6/6 competencies validated.
                 Foundations in development, algorithms, databases, systems, and client needs analysis.
               </p>
 
@@ -466,7 +466,7 @@
                 <span class="stack-card stack-card--top">
                   <img src="assets/img/dossiers/but1-1.webp" alt="Preview of BUT1 final results summary" width="200" height="148" loading="lazy">
                   <span class="stack-card__label">
-                    <i class="bi bi-images me-1"></i> <span data-i18n="resume_s1_label">BUT1 — Final Results &nbsp;·&nbsp; 5 pages</span>
+                    <i class="bi bi-images me-1"></i> <span data-i18n="resume_s1_label">BUT1 - Final Results | 5 pages</span>
                     <br><small data-i18n="resume_click_view">Click to view</small>
                   </span>
                 </span>
@@ -476,15 +476,15 @@
               <div id="but1Modal" class="modal-lite" role="dialog" aria-modal="true" aria-label="BUT1 final results">
                 <div class="modal-lite__inner">
                   <div class="modal-lite__header">
-                    <span data-i18n="resume_s1_label"><i class="bi bi-bar-chart-line me-2"></i>BUT1 — Résultats Finaux &nbsp;·&nbsp; 5 pages</span>
+                    <span data-i18n="resume_s1_label"><i class="bi bi-bar-chart-line me-2"></i>BUT1 - Résultats Finaux | 5 pages</span>
                     <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
-                    <img src="assets/img/dossiers/but1-1.webp" alt="BUT1 — Profil analytique et bilan de compétences (couverture)" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/dossiers/but1-2.webp" alt="BUT1 — Verdict final : Admis, 60 ECTS, moyennes par semestre" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/dossiers/but1-3.webp" alt="BUT1 — Cartographie radar des 6 compétences validées" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/dossiers/but1-4.webp" alt="BUT1 — Points forts et distinctions (1er sur 48 en UE1.5)" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/dossiers/but1-5.webp" alt="BUT1 — Synthèse analytique du profil" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-1.webp" alt="BUT1 - Profil analytique et bilan de compétences (couverture)" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-2.webp" alt="BUT1 - Verdict final : Admis, 60 ECTS, moyennes par semestre" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-3.webp" alt="BUT1 - Cartographie radar des 6 compétences validées" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-4.webp" alt="BUT1 - Points forts et distinctions (1er sur 48 en UE1.5)" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-5.webp" alt="BUT1 - Synthèse analytique du profil" width="1600" height="900" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -492,7 +492,7 @@
 
             <div class="resume-item">
               <h4 data-i18n="resume_role_bachelor">Bachelor in Software Engineering</h4>
-              <h5>2020 – 2024</h5>
+              <h5>2020 - 2024</h5>
               <p><em data-i18n="resume_role_bachelor_loc">Université du Lac Tanganyika, Bujumbura, Burundi</em></p>
               <p data-i18n="resume_role_bachelor_desc">
                 Graduated with a degree equivalent to <strong>Licence +3</strong> (recognized in France).
@@ -502,7 +502,7 @@
 
             <div class="resume-item">
               <h4 data-i18n="resume_role_highschool">Baccalauréat Scientifique B</h4>
-              <h5>2017 – 2020</h5>
+              <h5>2017 - 2020</h5>
               <p><em data-i18n="resume_role_highschool_loc">Lycée Clarté Notre Dame de Vugizo, Bujumbura, Burundi</em></p>
               <p data-i18n="resume_role_highschool_desc">
                 Major: <strong>Maths, Biologie, Chimie &amp; Sciences de la Terre</strong>.
@@ -516,18 +516,18 @@
 
               <!-- Header row -->
               <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
-                <h4 class="prize-header" data-i18n="resume_prize_devart_title">DevArt 2026 — Prix du Jury 🥇</h4>
+                <h4 class="prize-header" data-i18n="resume_prize_devart_title">DevArt 2026 - Prix du Jury 🥇</h4>
                 <span class="prize-pill">
-                  1st Place · Feb 12–13, 2026
+                  1st Place | Feb 12-13, 2026
                 </span>
               </div>
-              <h5 data-i18n="resume_prize_devart_subtitle">IUT d'Arles, Aix-Marseille Université — 32h Hackathon</h5>
+              <h5 data-i18n="resume_prize_devart_subtitle">IUT d'Arles, Aix-Marseille Université - 32h Hackathon</h5>
 
               <!-- Team -->
               <p class="prize-team">
-                <strong data-i18n="resume_prize_devart_team">Team Nebula &nbsp;·&nbsp; 4 members:</strong>
+                <strong data-i18n="resume_prize_devart_team">Team Nebula | 4 members:</strong>
                 <em data-i18n="resume_prize_devart_members">Mamadou Bailo BARRY, Aminata Sita CAMARA, Aldo Alex NGANJI, Djawad TOURE ISSAHOU</em>
-                <span class="prize-team-note"> — BUT Informatique, 1ère année</span>
+                <span class="prize-team-note"> - BUT Informatique, 1ère année</span>
               </p>
 
               <!-- Project description -->
@@ -535,11 +535,11 @@
                 Theme: <strong>"L'Écho"</strong>. We built an AI interface that creates a direct echo between
                 digital usage and natural resource consumption. The more complex the user's request,
                 the more the interface triggers <strong>visual and sound alerts</strong> simulating
-                deforestation and water consumption from server cooling — turning abstract data into
+                deforestation and water consumption from server cooling - turning abstract data into
                 a concrete, militant emotional experience.
               </p>
               <p class="mb-2" data-i18n="resume_prize_devart_p2">
-                <i class="bi bi-people-fill me-1"></i> 10 teams competed · 32h non-stop ·
+                <i class="bi bi-people-fill me-1"></i> 10 teams competed | 32h non-stop |
                 Jury composed of local industry professionals
               </p>
 
@@ -548,9 +548,9 @@
                 <span class="stack-card stack-card--back2"></span>
                 <span class="stack-card stack-card--back1"></span>
                 <span class="stack-card stack-card--top">
-                  <img src="assets/img/devart/a.webp" alt="DevArt 2026 hackathon — Team Nebula" width="200" height="148" loading="lazy">
+                  <img src="assets/img/devart/a.webp" alt="DevArt 2026 hackathon - Team Nebula" width="200" height="148" loading="lazy">
                   <span class="stack-card__label stack-card__label--gold">
-                    <i class="bi bi-camera me-1"></i> <span data-i18n="resume_hackathon_photos">Hackathon Photos &nbsp;·&nbsp; 10 shots</span>
+                    <i class="bi bi-camera me-1"></i> <span data-i18n="resume_hackathon_photos">Hackathon Photos | 10 shots</span>
                     <br><small data-i18n="resume_click_view">Click to view</small>
                   </span>
                 </span>
@@ -560,7 +560,7 @@
               <div class="modal-lite" id="devartModal" role="dialog" aria-modal="true" aria-label="DevArt 2026 hackathon photos">
                 <div class="modal-lite__inner">
                   <div class="modal-lite__header">
-                    <span data-i18n="resume_hackathon_photos"><i class="bi bi-trophy me-2 text-gold"></i>DevArt 2026 — Prix du Jury · 10 photos</span>
+                    <span data-i18n="resume_hackathon_photos"><i class="bi bi-trophy me-2 text-gold"></i>DevArt 2026 - Prix du Jury | 10 photos</span>
                     <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
@@ -582,21 +582,21 @@
             <h3 class="resume-title" data-i18n="resume_sec_training">Training &amp; Certifications</h3>
 
             <div class="resume-item">
-              <h4 data-i18n="resume_training_db">Formation en Informatique — Niveau 2</h4>
+              <h4 data-i18n="resume_training_db">Formation en Informatique - Niveau 2</h4>
               <h5>2023</h5>
               <p><em data-i18n="resume_training_db_loc">Higher Life Foundation, Bujumbura, Burundi</em></p>
               <p data-i18n="resume_training_db_desc">
-                Système de gestion de base de données — <strong>Microsoft Access</strong>.
+                Système de gestion de base de données - <strong>Microsoft Access</strong>.
                 Obtained with <strong>Note : A+</strong>.
               </p>
             </div>
 
             <div class="resume-item">
-              <h4 data-i18n="resume_training_basic">Formation en Informatique — Niveau 1</h4>
+              <h4 data-i18n="resume_training_basic">Formation en Informatique - Niveau 1</h4>
               <h5>2022</h5>
               <p><em data-i18n="resume_training_basic_loc">Higher Life Foundation, Bujumbura, Burundi</em></p>
               <p data-i18n="resume_training_basic_desc">
-                Initiation en informatique — <strong>Microsoft Word, Excel, PowerPoint &amp; Internet</strong>.
+                Initiation en informatique - <strong>Microsoft Word, Excel, PowerPoint &amp; Internet</strong>.
                 Obtained with <strong>Note : A+</strong>.
               </p>
             </div>
@@ -608,7 +608,7 @@
 
             <div class="resume-item">
               <h4 data-i18n="resume_exp_backend_role">Back End Developer</h4>
-              <h5>May 2025 – Aug 2025</h5>
+              <h5>May 2025 - Aug 2025</h5>
               <p><em data-i18n="resume_exp_backend_loc">Asyst Resources LTD | Bujumbura, Burundi</em></p>
               <ul>
                 <li data-i18n="resume_exp_backend_p1">Hired full-time following the internship to continue contributing to backend systems.</li>
@@ -619,8 +619,8 @@
             </div>
 
             <div class="resume-item">
-              <h4 data-i18n="resume_exp_intern_role">Back End Developer — Internship</h4>
-              <h5>Feb 2025 – Apr 2025</h5>
+              <h4 data-i18n="resume_exp_intern_role">Back End Developer - Internship</h4>
+              <h5>Feb 2025 - Apr 2025</h5>
               <p><em data-i18n="resume_exp_backend_loc">Asyst Resources LTD | Bujumbura, Burundi</em></p>
               <ul>
                 <li data-i18n="resume_exp_intern_p1">Gained hands-on experience with modern backend development using <strong>NestJS</strong>, <strong>Python</strong>, and <strong>TypeScript</strong>.</li>
@@ -648,28 +648,28 @@
         </div>
 
         <!-- ===== Featured project: scroll-driven story (Apple product-page
-             style) — the visual stays pinned while the narrative advances ===== -->
+             style) - the visual stays pinned while the narrative advances ===== -->
         <div class="flagship-story">
           <div class="flagship-story__visual">
             <div class="flagship-story__frame">
               <img src="assets/img/portfolio/web/hypoxia.webp"
                 srcset="assets/img/portfolio/web/hypoxia-800.webp 800w, assets/img/portfolio/web/hypoxia.webp 1600w"
                 sizes="(min-width: 992px) 50vw, 100vw"
-                alt="HYPOXIA — L'Écho Numérique" width="1100" height="600" loading="lazy">
+                alt="HYPOXIA - L'Écho Numérique" width="1100" height="600" loading="lazy">
               <span class="project-badge project-badge--flagship"><i class="bi bi-trophy" aria-hidden="true"></i> <span data-i18n="project_badge_flagship">Prix du Jury (DevArt)</span></span>
-              <a href="assets/img/portfolio/web/hypoxia.webp" data-gallery="portfolioGallery" class="portfolio-lightbox flagship-story__zoom" title="HYPOXIA — L'Écho Numérique" aria-label="View HYPOXIA full image"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></a>
+              <a href="assets/img/portfolio/web/hypoxia.webp" data-gallery="portfolioGallery" class="portfolio-lightbox flagship-story__zoom" title="HYPOXIA - L'Écho Numérique" aria-label="View HYPOXIA full image"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></a>
             </div>
           </div>
 
           <div class="flagship-story__steps">
             <div class="story-step" data-aos="fade-up">
               <span class="story-step__eyebrow" data-i18n="story_label">Featured project</span>
-              <h3 class="story-step__title" data-i18n="project_hypoxia_title">HYPOXIA — L'Écho Numérique</h3>
+              <h3 class="story-step__title" data-i18n="project_hypoxia_title">HYPOXIA - L'Écho Numérique</h3>
               <span class="project-card__category" data-i18n="project_cat_hypoxia">3D / Creative Web / AI Environment</span>
             </div>
             <div class="story-step" data-aos="fade-up">
               <span class="story-step__label" data-i18n="story_step_problem">The problem</span>
-              <p data-i18n="hypoxia_problem">The environmental cost of AI is invisible by design — creating a disconnection between digital action and physical outcome.</p>
+              <p data-i18n="hypoxia_problem">The environmental cost of AI is invisible by design - creating a disconnection between digital action and physical outcome.</p>
             </div>
             <div class="story-step" data-aos="fade-up">
               <span class="story-step__label" data-i18n="story_step_arch">The architecture</span>
@@ -775,7 +775,7 @@
                 <h3 class="project-card__title" data-i18n="project_budget_title">Budget Tracker</h3>
                 <p class="project-card__desc" data-i18n="project_budget_desc"><strong>Problem:</strong> Tracking day-to-day income and spending needs something faster than a spreadsheet.<br>
                 <strong>Architecture:</strong> <strong>Django 5</strong> with Income/Expense models and server-side aggregation for balance, totals and spend ratio. Deployed on <strong>Render</strong> against <strong>PostgreSQL</strong> via dj-database-url.<br>
-                <strong>Outcome:</strong> A working single-ledger tracker — my first Django project taken end to end, from models and migrations to a live deployment.</p>
+                <strong>Outcome:</strong> A working single-ledger tracker - my first Django project taken end to end, from models and migrations to a live deployment.</p>
                 <div class="project-card__tags">
                   <span class="tech-chip">Django</span>
                   <span class="tech-chip">Python</span>
@@ -835,7 +835,7 @@
         <div class="section-title">
           <h2 data-i18n="services_title">Services</h2>
           <p data-i18n="services_subtitle">
-            Engineering robust, scalable backend systems and APIs — complemented by full-stack web development and clean, creative interfaces.
+            Engineering robust, scalable backend systems and APIs - complemented by full-stack web development and clean, creative interfaces.
           </p>
         </div>
 
@@ -847,7 +847,7 @@
                 <i class="bi bi-server"></i>
               </div>
               <h3 class="icon-box__title" data-i18n="service_backend_title">Backend &amp; API Engineering</h3>
-              <p data-i18n="service_backend_desc">Designing scalable backend systems and REST APIs with NestJS, Python, and Django — backed by PostgreSQL, microservices, and third-party integrations (Stripe, Twilio).</p>
+              <p data-i18n="service_backend_desc">Designing scalable backend systems and REST APIs with NestJS, Python, and Django - backed by PostgreSQL, microservices, and third-party integrations (Stripe, Twilio).</p>
             </div>
           </div>
 
@@ -975,7 +975,7 @@
                   var data = new FormData(event.target);
                   var btnLabel = submitBtn.textContent;
                   submitBtn.disabled = true;
-                  submitBtn.textContent = t('contact_status_sending', 'Sending…');
+                  submitBtn.textContent = t('contact_status_sending', 'Sending...');
                   setStatus('', '');
 
                   fetch(event.target.action, {
@@ -1086,7 +1086,7 @@
       // opacity 0 and is un-hidden by main.js. If main.js never runs at all
       // (404, parse error, blocked), show everything rather than a blank page.
       // main.js adds .reveal-ready once its observer is attached, so a healthy
-      // page — where nothing below the fold has revealed yet — is left alone.
+      // page - where nothing below the fold has revealed yet - is left alone.
       setTimeout(function () {
         if (document.documentElement.classList.contains('reveal-ready')) return;
         var els = document.querySelectorAll('[data-aos]');

@@ -28,7 +28,7 @@
   }
 
   /**
-   * requestAnimationFrame throttle — coalesces bursty events (e.g. scroll) into
+   * requestAnimationFrame throttle - coalesces bursty events (e.g. scroll) into
    * at most one call per frame, so handlers that read layout don't thrash.
    */
   const rafThrottle = (fn) => {
@@ -124,7 +124,7 @@
     }), { passive: true });
     window.addEventListener('resize', toggleIcon);
 
-    // Explicit scroll handler — a bare href="#" doesn't re-scroll once the URL
+    // Explicit scroll handler - a bare href="#" doesn't re-scroll once the URL
     // already ends in "#", so the button silently stopped working. This always
     // scrolls reliably, keeps the mobile dual behaviour (down-to-About when at
     // the top, up-to-top when scrolled), and honours reduced-motion.
@@ -228,7 +228,7 @@
   const typed = select('.typed')
   let heroTyped;
   const initHeroTyped = (strings) => {
-    // Vendor script may have failed to load — fall back to static text rather
+    // Vendor script may have failed to load - fall back to static text rather
     // than throwing and taking down every initialiser below.
     if (typeof Typed === 'undefined') {
       if (typed && strings.length) typed.textContent = strings[0].trim();
@@ -265,7 +265,7 @@
   }
 
   /**
-   * Scroll reveal — lightweight AOS replacement.
+   * Scroll reveal - lightweight AOS replacement.
    * Elements with [data-aos] start hidden (CSS) and get .aos-animate when
    * they enter the viewport; [data-aos-delay] becomes a transition-delay.
    * Reduced motion / missing IntersectionObserver: reveal everything at once.
@@ -448,7 +448,7 @@
   fetchGitHubActivity();
 
   /**
-   * GitHub profile stat tiles — replaces the three third-party stat images
+   * GitHub profile stat tiles - replaces the three third-party stat images
    * (readme-stats / streak-stats): no slow external image services, and the
    * tiles inherit the site theme automatically.
    */
@@ -515,7 +515,7 @@
       try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data })); } catch (e) {}
     } catch (error) {
       console.error('GitHub stats error:', error);
-      // Tiles keep their placeholders (or stale cached values) — no broken UI.
+      // Tiles keep their placeholders (or stale cached values) - no broken UI.
     }
   }
 
@@ -534,7 +534,7 @@
   }
 
   /**
-   * Contact map — click-to-load facade: no request to Google is made until the
+   * Contact map - click-to-load facade: no request to Google is made until the
    * user opts in (privacy + one fewer heavy third-party embed on load).
    */
   const mapFacade = select('#mapFacade');
@@ -597,7 +597,7 @@
         const modal = select(trigger.getAttribute('data-modal-open'));
         if (!modal) return;
         // PDF-in-iframe modals are unusable on touch devices (iOS Safari
-        // renders only the first page, no scroll) — open the file directly.
+        // renders only the first page, no scroll) - open the file directly.
         if (modal.classList.contains('modal-lite--doc') &&
             window.matchMedia('(pointer: coarse)').matches) {
           const doc = modal.querySelector('.modal-lite__download');

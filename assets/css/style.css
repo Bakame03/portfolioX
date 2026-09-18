@@ -8,7 +8,7 @@
 
 /*--------------------------------------------------------------
 # Self-hosted fonts (variable woff2, latin + latin-ext subsets)
-# No request to Google — faster first paint and GDPR-clean.
+# No request to Google - faster first paint and GDPR-clean.
 --------------------------------------------------------------*/
 @font-face {
   font-family: 'Inter';
@@ -69,7 +69,7 @@
 --------------------------------------------------------------*/
 :root {
   /* Tells the browser which palette native UI (scrollbars, form controls,
-     <select> dropdowns) should render in — follows the manual data-theme
+     <select> dropdowns) should render in - follows the manual data-theme
      toggle, not just the OS preference, same as the theme-color meta below. */
   color-scheme: light;
 
@@ -143,7 +143,7 @@ a, button, .nav-link, .mobile-nav-toggle, .stack-wrapper, [role="button"] {
 [data-theme="dark"] {
   color-scheme: dark;
 
-  /* Warm dark — charcoal with the same warm undertone, lighter terracotta
+  /* Warm dark - charcoal with the same warm undertone, lighter terracotta
      accent for contrast on dark surfaces. */
   --accent: #d97757;
   --accent-strong: #e29070;
@@ -195,14 +195,14 @@ a:hover {
   outline-offset: 3px;
 }
 
-/* Programmatic focus targets (skip-link destination) are not interactive —
+/* Programmatic focus targets (skip-link destination) are not interactive -
    no ring around a full-viewport section. */
 [tabindex="-1"]:focus-visible {
   outline: none;
 }
 
 /* The Bootstrap subset ships its own focus styles (blue ring, outline:0) at
-   higher specificity than the global rule above — re-point them at the
+   higher specificity than the global rule above - re-point them at the
    site accent so keyboard focus looks the same everywhere. */
 .nav-link:focus-visible,
 .btn:focus-visible {
@@ -304,8 +304,8 @@ h6 {
 
 /*--------------------------------------------------------------
 # Control dock visibility states
-# .controls-hidden — small screens, scrolling down: pill shrinks
-# .modal-open — any modal/lightbox open: clear the way to its ✕
+# .controls-hidden - small screens, scrolling down: pill shrinks
+# .modal-open - any modal/lightbox open: clear the way to its ✕
 --------------------------------------------------------------*/
 @media (max-width: 991px) {
   /* One frosted pill, centered like a dynamic island */
@@ -534,7 +534,7 @@ body.modal-open #scroll-progress {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  /* Lives inside .control-dock — no positioning of its own */
+  /* Lives inside .control-dock - no positioning of its own */
   width: 44px;
   height: 44px;
   display: flex;
@@ -596,9 +596,9 @@ body.mobile-nav-active::after {
 #hero {
   width: 100%;
   height: 100vh;   /* fallback for browsers without svh support */
-  height: 100svh;  /* fits the *visible* viewport on mobile Safari — no toolbar overflow/jump */
+  height: 100svh;  /* fits the *visible* viewport on mobile Safari - no toolbar overflow/jump */
   background-color: var(--bg-color);
-  /* Soft warm wash in the top-right corner — the hero's one quiet flourish */
+  /* Soft warm wash in the top-right corner - the hero's one quiet flourish */
   background-image: radial-gradient(ellipse 80% 60% at 85% 8%, var(--accent-soft), transparent 60%);
   position: relative;
   z-index: 1;
@@ -634,7 +634,7 @@ body.mobile-nav-active::after {
 }
 
 /* Availability pill above the name. Scoped with #hero so it out-specifies the
-   generic `#hero p` rule above — id + element would otherwise beat a bare
+   generic `#hero p` rule above - id + element would otherwise beat a bare
    class and impose the hero lede's size, margin and containment on it. */
 #hero .hero-status {
   display: inline-flex;
@@ -661,7 +661,7 @@ body.mobile-nav-active::after {
   border-radius: 50%;
   background: #4c9a68;
   flex-shrink: 0;
-  /* the label wraps to two lines on a narrow phone — keep the dot beside the
+  /* the label wraps to two lines on a narrow phone - keep the dot beside the
      first line rather than floating at the vertical centre */
   align-self: flex-start;
   margin-top: 5px;
@@ -874,7 +874,7 @@ section .container {
   margin-bottom: 20px;
 }
 
-/* The origin-story paragraph now opens the section — give it a touch more
+/* The origin-story paragraph now opens the section - give it a touch more
    size than the summary that follows so the order reads deliberately. */
 .about .content .about-lede {
   font-size: 1.05rem;
@@ -916,7 +916,7 @@ section .container {
   color: var(--accent);
 }
 
-/* Bootstrap outline button → palette accent */
+/* Bootstrap outline button -> palette accent */
 .about .btn-outline-primary {
   color: var(--accent-strong);
   border-color: var(--accent);
@@ -1126,7 +1126,7 @@ section .container {
   background: var(--card-bg);
 }
 
-/* One accent for every service icon — calm, consistent with the palette.
+/* One accent for every service icon - calm, consistent with the palette.
    The icon sits in a soft terracotta disc that fills in on hover. */
 .services .icon-box .icon {
   border-radius: 50%;
@@ -1532,17 +1532,17 @@ section .container {
 }
 
 /*--------------------------------------------------------------
-# Responsive Fixes — Mobile-First Audit (2026)
+# Responsive Fixes - Mobile-First Audit (2026)
 --------------------------------------------------------------*/
 
-/* Fix 3 — Section padding too large on mobile */
+/* Fix 3 - Section padding too large on mobile */
 @media (max-width: 767px) {
   section {
     padding: 40px 0;
   }
 }
 
-/* Fix 4 — Hero font sizes: add small-phone breakpoint */
+/* Fix 4 - Hero font sizes: add small-phone breakpoint */
 @media (max-width: 576px) {
   #hero h1 {
     font-size: 26px;
@@ -1555,21 +1555,21 @@ section .container {
   }
 }
 
-/* Fix 5 — Resume timeline left padding crushes content on mobile */
+/* Fix 5 - Resume timeline left padding crushes content on mobile */
 @media (max-width: 767px) {
   .resume .resume-item {
     padding: 0 0 25px 18px;
   }
 }
 
-/* Fix 6 — Back-to-top button too high on mobile (85px → 25px from bottom) */
+/* Fix 6 - Back-to-top button too high on mobile (85px -> 25px from bottom) */
 @media (max-width: 767px) {
   .back-to-top {
     bottom: 25px;
   }
 }
 
-/* Fix 7 — Services icon box too large + excessive padding on mobile */
+/* Fix 7 - Services icon box too large + excessive padding on mobile */
 @media (max-width: 767px) {
   .services .icon-box {
     padding: 40px 20px 50px 20px;
@@ -1585,7 +1585,7 @@ section .container {
   }
 }
 
-/* Fix 10 — Skills badges: tighter padding on very small screens */
+/* Fix 10 - Skills badges: tighter padding on very small screens */
 @media (max-width: 576px) {
   .badge {
     padding: 0.3rem 0.5rem !important;
@@ -1613,7 +1613,7 @@ section .container {
 }
 
 /*--------------------------------------------------------------
-# Reduced Motion — calm fallback (a11y / WCAG 2.3.3)
+# Reduced Motion - calm fallback (a11y / WCAG 2.3.3)
 # JS-driven effects are additionally short-circuited in main.js
 # (matchMedia check).
 --------------------------------------------------------------*/
@@ -1885,7 +1885,7 @@ section .container {
 .repo-lang-dot { color: var(--accent); font-size: 8px; }
 
 /*--------------------------------------------------------------
-# Press feedback — quick scale-down on tap/click, springs back
+# Press feedback - quick scale-down on tap/click, springs back
 --------------------------------------------------------------*/
 .btn-hero:active,
 .btn-action:active,
@@ -1903,11 +1903,11 @@ section .container {
 }
 
 /*--------------------------------------------------------------
-# Print — clean read of the page (About + Resume especially):
+# Print - clean read of the page (About + Resume especially):
 # no interactive chrome, no fixed elements, everything revealed.
 --------------------------------------------------------------*/
 @media print {
-  /* Paper is always light — override both themes' variables so a visitor
+  /* Paper is always light - override both themes' variables so a visitor
      printing from dark mode doesn't get pale-on-white headings. */
   :root,
   [data-theme="dark"] {
@@ -1971,7 +1971,7 @@ section .container {
     margin-left: 0 !important;
   }
 
-  /* Scroll-reveal elements may not have animated yet — force them visible */
+  /* Scroll-reveal elements may not have animated yet - force them visible */
   [data-aos] {
     opacity: 1 !important;
     transform: none !important;

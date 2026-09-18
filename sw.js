@@ -2,14 +2,14 @@
  * portfolioX service worker.
  * - Navigations: network-first (a deploy is picked up on the next visit),
  *   falling back to the cached shell when offline.
- * - Same-origin assets (css/js/fonts/images): stale-while-revalidate —
+ * - Same-origin assets (css/js/fonts/images): stale-while-revalidate -
  *   served instantly from cache while a background fetch refreshes it.
  * - Cross-origin requests (GitHub API, Formspree, analytics, CDN) are
  *   never intercepted.
  *
  * Bump CACHE_VERSION when you want to force-drop every cached asset.
  */
-const CACHE_VERSION = 'portfolioX-v10';
+const CACHE_VERSION = 'portfolioX-v11';
 
 const PRECACHE = [
   './',
@@ -27,7 +27,7 @@ const PRECACHE = [
   'assets/vendor/typed.js/typed.umd.js',
   'assets/fonts/inter-var-latin.woff2',
   'assets/fonts/source-serif-4-var-latin.woff2',
-  'assets/fonts/bootstrap-icons-subset.woff2',
+  'assets/fonts/bootstrap-icons-subset.b10a2789.woff2',
   'assets/img/favicon.svg',
   'assets/img/aldo_alex_nganji.webp'
 ];
@@ -35,7 +35,7 @@ const PRECACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_VERSION)
-      // cache: 'reload' bypasses the HTTP cache — otherwise the install could
+      // cache: 'reload' bypasses the HTTP cache - otherwise the install could
       // pin stale copies of assets the browser cached before the deploy.
       .then((cache) => cache.addAll(PRECACHE.map((url) => new Request(url, { cache: 'reload' }))))
       .then(() => self.skipWaiting())
