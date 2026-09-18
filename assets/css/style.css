@@ -613,52 +613,35 @@ body.mobile-nav-active::after {
 
 #hero h1 {
   margin: 0;
-  /* Retuned for a sentence rather than a two-word name (was 4.25rem). */
-  font-size: clamp(1.9rem, 4.6vw, 3.4rem);
+  font-size: clamp(2.5rem, 7vw, 4.25rem);
   font-weight: 600;
-  line-height: 1.12;
+  line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--subtitle-color);
 }
 
-#hero .hero-role {
+#hero p {
   color: var(--text-color);
+  contain: content;
+  min-height: 1.6em;
   margin: 18px 0 0 0;
-  max-width: 34em;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  line-height: 1.65;
+  font-size: clamp(1.1rem, 2.6vw, 1.55rem);
   font-family: var(--font-sans);
 }
 
-#hero .hero-role strong {
-  font-weight: 600;
+#hero p span {
   color: var(--accent-strong);
 }
 
-/*--------------------------------------------------------------
-# Hero layout — statement left, facts right (992px up)
---------------------------------------------------------------*/
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  align-items: center;
-}
-
-@media (min-width: 992px) {
-  .hero-grid {
-    grid-template-columns: 1.15fr 1fr;
-    gap: 56px;
-  }
-}
-
-/* Availability pill — the most actionable fact on the page, so it leads.
-   The green matches .project-badge--status in featured.css. */
-.hero-status {
+/* Availability pill above the name. Scoped with #hero so it out-specifies the
+   generic `#hero p` rule above — id + element would otherwise beat a bare
+   class and impose the hero lede's size, margin and containment on it. */
+#hero .hero-status {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 22px;
+  max-width: 100%;
+  margin: 0 0 20px;
   padding: 7px 16px;
   border-radius: 50px;
   background: var(--accent-soft);
@@ -667,83 +650,21 @@ body.mobile-nav-active::after {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.2px;
-  max-width: 100%;
+  line-height: 1.4;
+  contain: none;
+  min-height: 0;
 }
 
-.hero-status__dot {
+#hero .hero-status__dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: #4c9a68;
   flex-shrink: 0;
-  /* the label can wrap to two lines on a phone — keep the dot off the
-     vertical centre so it reads as a bullet, not a stray mark */
+  /* the label wraps to two lines on a narrow phone — keep the dot beside the
+     first line rather than floating at the vertical centre */
   align-self: flex-start;
-  margin-top: 6px;
-}
-
-/* "At a glance" card */
-.glance {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  box-shadow: var(--shadow-sm);
-  padding: 26px 28px;
-  text-align: left;
-}
-
-.glance__title {
-  margin: 0 0 20px;
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  color: var(--accent-strong);
-}
-
-.glance__list {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.glance__row {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--card-border);
-}
-
-.glance__row:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.glance__row dt {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--text-color);
-  /* 0.75 keeps this above 5:1 on both card backgrounds; 0.6 did not clear AA. */
-  opacity: 0.75;
-}
-
-.glance__row dd {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.45;
-  color: var(--subtitle-color);
-}
-
-.glance__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  margin-top: 5px;
 }
 
 #hero .social-links {
@@ -787,31 +708,25 @@ body.mobile-nav-active::after {
 .hero-intro-ready .hero-name {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.06s;
+  transition-delay: 0s;
 }
 
 .hero-intro-ready .hero-role {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.12s;
-}
-
-.hero-intro-ready .hero-glance {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.14s;
-}
-
-.hero-intro-ready .hero-cta {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.2s;
+  transition-delay: 0.08s;
 }
 
 .hero-intro-ready .hero-socials {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.26s;
+  transition-delay: 0.16s;
+}
+
+.hero-intro-ready .hero-cta {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.24s;
 }
 
 /* Hero call-to-action buttons */
@@ -884,16 +799,6 @@ body.mobile-nav-active::after {
 @media (max-width: 992px) {
   #hero {
     text-align: center;
-  }
-
-  /* max-width on the lede would otherwise defeat the centred text */
-  #hero .hero-role {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-status {
-    margin-bottom: 18px;
   }
 }
 
@@ -1640,11 +1545,11 @@ section .container {
 /* Fix 4 — Hero font sizes: add small-phone breakpoint */
 @media (max-width: 576px) {
   #hero h1 {
-    font-size: 27px;
-    line-height: 34px;
+    font-size: 26px;
+    line-height: 32px;
   }
 
-  #hero .hero-role {
+  #hero p {
     font-size: 16px;
     line-height: 22px;
   }
@@ -2031,6 +1936,10 @@ section .container {
   body {
     background: #fff !important;
     color: #000 !important;
+  }
+
+  .typed-cursor {
+    display: none !important;
   }
 
   /* Interactive / dynamic chrome has no meaning on paper */

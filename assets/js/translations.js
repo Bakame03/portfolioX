@@ -11,19 +11,11 @@ window.translations = {
     nav_contact: "Contact",
 
     // Hero
+    hero_iam: "I'm",
     hero_status: "Available for a 3-month internship from 29 March 2027",
-    hero_headline: "I design and ship backend systems.",
-    hero_lede: "REST APIs, microservices and data models in <strong>Python</strong>, <strong>NestJS</strong> and <strong>PostgreSQL</strong> — in production at Asyst Resources, and now at Aix-Marseille Université while I move into applied AI.",
     hero_cta_projects: "View my projects",
     hero_cta_contact: "Get in touch",
-    hero_glance_title: "At a glance",
-    hero_glance_now: "Now",
-    hero_glance_now_val: "BUT2 Informatique — IUT d’Arles, Aix-Marseille Université",
-    hero_glance_recently: "Recently",
-    hero_glance_recently_val: "Back end developer, Asyst Resources LTD",
-    hero_glance_award: "Award",
-    hero_glance_award_val: "Prix du Jury — DevArt 2026",
-    hero_glance_stack: "Stack",
+    hero_roles: "Back End Developer,Python Engineer,AI Enthusiast",
 
     // About
     about_title: "About",
@@ -206,19 +198,11 @@ window.translations = {
     nav_contact: "Contact",
 
     // Hero
+    hero_iam: "Je suis",
     hero_status: "Disponible pour un stage de 3 mois dès le 29 mars 2027",
-    hero_headline: "Je conçois et déploie des systèmes backend.",
-    hero_lede: "APIs REST, microservices et modèles de données en <strong>Python</strong>, <strong>NestJS</strong> et <strong>PostgreSQL</strong> — en production chez Asyst Resources, et maintenant à Aix-Marseille Université alors que je m’oriente vers l’IA appliquée.",
     hero_cta_projects: "Voir mes projets",
     hero_cta_contact: "Me contacter",
-    hero_glance_title: "En bref",
-    hero_glance_now: "Actuellement",
-    hero_glance_now_val: "BUT2 Informatique — IUT d’Arles, Aix-Marseille Université",
-    hero_glance_recently: "Récemment",
-    hero_glance_recently_val: "Développeur Back End, Asyst Resources LTD",
-    hero_glance_award: "Distinction",
-    hero_glance_award_val: "Prix du Jury — DevArt 2026",
-    hero_glance_stack: "Stack",
+    hero_roles: "Développeur Back-End,Ingénieur Python,Passionné d'IA",
 
     // About
     about_title: "À propos",

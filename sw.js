@@ -9,7 +9,7 @@
  *
  * Bump CACHE_VERSION when you want to force-drop every cached asset.
  */
-const CACHE_VERSION = 'portfolioX-v9';
+const CACHE_VERSION = 'portfolioX-v10';
 
 const PRECACHE = [
   './',
@@ -24,6 +24,7 @@ const PRECACHE = [
   'assets/vendor/bootstrap/css/bootstrap.subset.min.css',
   'assets/vendor/glightbox/css/glightbox.min.css',
   'assets/vendor/glightbox/js/glightbox.min.js',
+  'assets/vendor/typed.js/typed.umd.js',
   'assets/fonts/inter-var-latin.woff2',
   'assets/fonts/source-serif-4-var-latin.woff2',
   'assets/fonts/bootstrap-icons-subset.woff2',
