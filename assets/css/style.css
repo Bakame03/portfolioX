@@ -929,6 +929,75 @@ section .container {
   color: #fff;
 }
 
+/*--------------------------------------------------------------
+# "At a glance" summary card - About, under the portrait.
+# Every .about rule above is scoped to .content, so nothing in the
+# text column bleeds onto this.
+--------------------------------------------------------------*/
+.glance {
+  margin-top: 24px;
+  padding: 24px 26px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+
+.glance__title {
+  margin: 0 0 18px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.glance__list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.glance__row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.glance__row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.glance__row dt {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-color);
+  /* 0.75 keeps this above 5:1 on both card backgrounds; 0.6 did not clear AA. */
+  opacity: 0.75;
+}
+
+.glance__row dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--subtitle-color);
+}
+
+.glance__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 
 /*--------------------------------------------------------------
 # skills
