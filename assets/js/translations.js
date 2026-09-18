@@ -77,8 +77,8 @@ window.translations = {
 
     // Resume Details
     resume_role_cs2: "Computer Science — BUT2 Informatique",
-    resume_role_cs2_dates: "Incoming — Sept 2026",
-    resume_role_cs2_desc: "Entering the second year (BUT2) of the B.U.T. in Computer Science this September, building on a fully validated first year — deepening algorithms, systems architecture, databases, and Artificial Intelligence.",
+    resume_role_cs2_dates: "Sept 2026 – 2027",
+    resume_role_cs2_desc: "Now in the second year (BUT2) of the B.U.T. in Computer Science, building on a fully validated first year — deepening algorithms, systems architecture, databases, and Artificial Intelligence.",
     resume_role_cs: "Computer Science — BUT1 Informatique",
     resume_role_cs_loc: "Aix-Marseille Université — IUT d'Arles, France",
     resume_role_cs_desc: "Completed the first year (BUT1) — Admis with all 60 ECTS and 6/6 competencies validated. Foundations in development, algorithms, databases, systems, and client needs analysis.",
@@ -134,7 +134,7 @@ window.translations = {
     project_services_desc: "<strong>Problem:</strong> Fragmented user experiences when moving between external services for payments, messaging, and real-time data.<br><strong>Architecture:</strong> Orchestrates enterprise APIs: <strong>Stripe</strong> (Payments), <strong>Twilio</strong> (SMS), <strong>OpenWeatherMap</strong> (Data), and <strong>Firebase</strong> (Rtdb).<br><strong>Outcome:</strong> A cohesive 'Super-App' prototype that simplifies complex business operations into a single, unified web portal.",
     
     project_budget_title: "Budget Tracker",
-    project_budget_desc: "<strong>Problem:</strong> Managing personal finances is overwhelming without a centralized, easy-to-use tool to track every expense accurately.<br><strong>Architecture:</strong> Robust Full-Stack app built with <strong>Django (Python)</strong>. Relational data management on <strong>PostgreSQL</strong> (Render integration).<br><strong>Outcome:</strong> Working financial tool providing users with an immediate balance overview and spend support.",
+    project_budget_desc: "<strong>Problem:</strong> Tracking day-to-day income and spending needs something faster than a spreadsheet.<br><strong>Architecture:</strong> <strong>Django 5</strong> with Income/Expense models and server-side aggregation for balance, totals and spend ratio. Deployed on <strong>Render</strong> against <strong>PostgreSQL</strong> via dj-database-url.<br><strong>Outcome:</strong> A working single-ledger tracker — my first Django project taken end to end, from models and migrations to a live deployment.",
     
     project_calc_title: "Modern Web Calculator",
     project_calc_desc: "<strong>Problem:</strong> Need for a fast, zero-dependency calculation tool that works seamlessly across all devices with instant load times.<br><strong>Architecture:</strong> <strong>Vanilla JS</strong> logic + <strong>CSS3 Flexbox</strong>. Features a custom lightweight <strong>Node.js</strong> server implementation for file serving.<br><strong>Outcome:</strong> High-performance utility with instant responsiveness and a premium glass-morphic interface design.",
@@ -272,8 +272,8 @@ window.translations = {
 
     // Resume Details
     resume_role_cs2: "BUT2 Informatique",
-    resume_role_cs2_dates: "Rentrée — Sept 2026",
-    resume_role_cs2_desc: "Admis en deuxième année (BUT2) du B.U.T. Informatique pour la rentrée de septembre, après une première année entièrement validée — approfondissement des algorithmes, de l'architecture des systèmes, des bases de données et de l'Intelligence Artificielle.",
+    resume_role_cs2_dates: "Sept 2026 – 2027",
+    resume_role_cs2_desc: "Actuellement en deuxième année (BUT2) du B.U.T. Informatique, après une première année entièrement validée — approfondissement des algorithmes, de l'architecture des systèmes, des bases de données et de l'Intelligence Artificielle.",
     resume_role_cs: "BUT1 Informatique",
     resume_role_cs_loc: "Aix-Marseille Université — IUT d'Arles, France",
     resume_role_cs_desc: "Première année (BUT1) validée — Admis avec 60 ECTS et 6/6 compétences acquises. Bases solides en développement, algorithmes, bases de données, systèmes et analyse des besoins.",
@@ -329,7 +329,7 @@ window.translations = {
     project_services_desc: "<strong>Problème :</strong> Expériences utilisateur fragmentées lors du passage entre des services externes pour les paiements, la messagerie et les données en temps réel.<br><strong>Architecture :</strong> Orchestre des API d'entreprise : <strong>Stripe</strong> (Paiements), <strong>Twilio</strong> (SMS), <strong>OpenWeatherMap</strong> (Données) et <strong>Firebase</strong> (Rtdb).<br><strong>Résultat :</strong> Un prototype de 'Super-App' cohérent qui simplifie les opérations commerciales complexes en un portail web unique et unifié.",
     
     project_budget_title: "Gestionnaire de Budget",
-    project_budget_desc: "<strong>Problème :</strong> Gérer ses finances personnelles est accablant sans un outil centralisé et facile à utiliser pour suivre précisément chaque dépense.<br><strong>Architecture :</strong> Application Full-Stack robuste construite avec <strong>Django (Python)</strong>. Gestion de données relationnelles sur <strong>PostgreSQL</strong> (intégration Render).<br><strong>Résultat :</strong> Outil financier fonctionnel offrant aux utilisateurs un aperçu immédiat de leur solde et un support de dépense.",
+    project_budget_desc: "<strong>Problème :</strong> Suivre ses revenus et ses dépenses au quotidien demande plus rapide qu'un tableur.<br><strong>Architecture :</strong> <strong>Django 5</strong> avec des modèles Income/Expense et une agrégation côté serveur pour le solde, les totaux et le taux de dépense. Déployé sur <strong>Render</strong> avec <strong>PostgreSQL</strong> via dj-database-url.<br><strong>Résultat :</strong> Un traqueur fonctionnel à registre unique — mon premier projet Django mené de bout en bout, des modèles et migrations jusqu'au déploiement en ligne.",
     
     project_calc_title: "Calculatrice Web Moderne",
     project_calc_desc: "<strong>Problème :</strong> Besoin d'un outil de calcul rapide, sans dépendance, qui fonctionne parfaitement sur tous les appareils avec des temps de chargement instantanés.<br><strong>Architecture :</strong> Logique <strong>Vanilla JS</strong> + <strong>CSS3 Flexbox</strong>. Comprend une implémentation personnalisée de serveur <strong>Node.js</strong> léger pour le service de fichiers.<br><strong>Résultat :</strong> Utilitaire haute performance avec une réactivité instantanée et un design d'interface glass-morphique premium.",

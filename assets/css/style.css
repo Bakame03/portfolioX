@@ -2103,7 +2103,7 @@ section .container {
 .ic-nestjs      { color: #e0234e; }
 .ic-sql         { color: #336791; }
 .ic-rest        { color: #ff6600; }
-.ic-micro       { color: #333; }
+.ic-micro       { color: var(--text-color); }
 .ic-git         { color: #f05032; }
 .ic-docker      { color: #2496ed; }
 .ic-aiml        { color: #ff9900; }
