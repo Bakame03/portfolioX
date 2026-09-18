@@ -664,10 +664,10 @@ body.mobile-nav-active::after {
   background: var(--accent-soft);
   color: var(--accent-strong);
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  max-width: 100%;
 }
 
 .hero-status__dot {
@@ -676,6 +676,10 @@ body.mobile-nav-active::after {
   border-radius: 50%;
   background: #4c9a68;
   flex-shrink: 0;
+  /* the label can wrap to two lines on a phone — keep the dot off the
+     vertical centre so it reads as a bullet, not a stray mark */
+  align-self: flex-start;
+  margin-top: 6px;
 }
 
 /* "At a glance" card */

@@ -11,7 +11,7 @@ window.translations = {
     nav_contact: "Contact",
 
     // Hero
-    hero_status: "Open to alternance &amp; internships",
+    hero_status: "Available for a 3-month internship from 29 March 2027",
     hero_headline: "I design and ship backend systems.",
     hero_lede: "REST APIs, microservices and data models in <strong>Python</strong>, <strong>NestJS</strong> and <strong>PostgreSQL</strong> — in production at Asyst Resources, and now at Aix-Marseille Université while I move into applied AI.",
     hero_cta_projects: "View my projects",
@@ -40,7 +40,7 @@ window.translations = {
     about_degree_val: "Bachelor",
     about_email: "Email:",
     about_available: "Available for:",
-    about_available_val: "Freelance / Internship / Apprenticeship",
+    about_available_val: "3-month internship (stage) — from 29 March 2027",
     about_bio_p2: "I started programming in 2020 with no idea what computer science truly was — I honestly thought it was just Word, Excel, and PowerPoint. Coming from a scientific high school background where I once dreamed of medical school, life had other plans. The moment I discovered real programming, I fell in love. After graduating from Université du Lac Tanganyika in 2024, I landed an internship at Asyst Resources LTD in early 2025, where I discovered modern backend depth: microservices, SaaS architectures, and scalable systems. They hired me as their backend developer after the internship. In September 2025, I moved to France to continue my education at Aix-Marseille University. My goal is simple: build things that genuinely help the people around me — because I believe that is the very purpose that gives life its meaning.",
     about_btn_github: "View GitHub Activity",
 
@@ -206,7 +206,7 @@ window.translations = {
     nav_contact: "Contact",
 
     // Hero
-    hero_status: "Ouvert à l’alternance &amp; aux stages",
+    hero_status: "Disponible pour un stage de 3 mois dès le 29 mars 2027",
     hero_headline: "Je conçois et déploie des systèmes backend.",
     hero_lede: "APIs REST, microservices et modèles de données en <strong>Python</strong>, <strong>NestJS</strong> et <strong>PostgreSQL</strong> — en production chez Asyst Resources, et maintenant à Aix-Marseille Université alors que je m’oriente vers l’IA appliquée.",
     hero_cta_projects: "Voir mes projets",
@@ -235,7 +235,7 @@ window.translations = {
     about_degree_val: "Licence",
     about_email: "E-mail :",
     about_available: "Disponible pour:",
-    about_available_val: "Freelance / Stage / Apprentissage",
+    about_available_val: "Stage de 3 mois — dès le 29 mars 2027",
     about_bio_p2: "J'ai commencé la programmation en 2020 sans savoir ce qu'était réellement l'informatique — je pensais honnêtement que c'était juste Word, Excel et PowerPoint. Venant d'un parcours scientifique au lycée où je rêvais autrefois de l'école de médecine, la vie avait d'autres plans. Dès que j'ai découvert la vraie programmation, j'en suis tombé amoureux. Après avoir été diplômé de l'Université du Lac Tanganyika en 2024, j'ai décroché un stage chez Asyst Resources LTD début 2025, où j'ai découvert la profondeur du backend moderne : microservices, architectures SaaS et systèmes évolutifs. Ils m'ont embauché comme développeur backend après le stage. En septembre 2025, j'ai emménagé en France pour poursuivre mes études à l'Aix-Marseille Université. Mon objectif est simple : construire des choses qui aident vraiment les gens autour de moi — car je crois que c'est ce but précis qui donne son sens à la vie.",
     about_btn_github: "Voir l'activité GitHub",
 
