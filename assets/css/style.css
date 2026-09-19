@@ -1809,6 +1809,13 @@ section .container {
 
 .modal-lite__pages img {
   width: 100%;
+  /* Required. The width/height attributes on <img> are presentational hints
+     for the CSS width and height properties. `width: 100%` here overrides the
+     width hint, but with no author height the `height="900"` attribute still
+     applies as 900px, so a 16:9 page rendered 780x900 instead of 780x439.
+     `height: auto` hands sizing back to the file's real aspect ratio; the
+     attributes then only reserve space before load, which is what they are for. */
+  height: auto;
   border-radius: 8px;
   margin-bottom: 18px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
