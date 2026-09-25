@@ -1,0 +1,29 @@
+# Token issuer for the "Talk to my portfolio" voice assistant.
+# The site is static (GitHub Pages), so this Worker is the only place the
+# Gemini API key lives. It hands the browser a short-lived, single-use
+# ephemeral token that is locked to the portfolio persona (see src/context.js).
+#
+# Setup:   npm install && npx wrangler login
+# Secret:  npx wrangler secret put GEMINI_API_KEY
+# Deploy:  npm run deploy
+name = "portfolio-voice"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+# Served at https://portfolio-voice.bakame03.workers.dev; per-version preview
+# URLs would be extra, unlimited copies of the token endpoint.
+workers_dev = true
+preview_urls = false
+
+[vars]
+# Browsers send Origin on cross-origin fetch; anything else gets a 403.
+# This stops other sites from embedding the assistant, not scripted abuse -
+# the rate limit below is what caps cost.
+ALLOWED_ORIGINS = "https://bakame03.github.io,http://localhost:8000,http://127.0.0.1:8000"
+
+# Per-IP cap on token requests. Each token is one voice session of at most
+# SESSION_MINUTES (src/index.js), so this bounds spend per visitor.
+[[ratelimits]]
+name = "TOKEN_LIMITER"
+namespace_id = "1001"
+simple = { limit = 5, period = 60 }

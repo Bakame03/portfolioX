@@ -41,7 +41,8 @@
     style-src 'self' 'unsafe-inline';
     img-src 'self' data: https://gc.zgo.at;
     font-src 'self';
-    connect-src 'self' https://api.github.com https://formspree.io https://gc.zgo.at;
+    connect-src 'self' https://api.github.com https://formspree.io https://gc.zgo.at
+                 https://portfolio-voice.bakame03.workers.dev wss://generativelanguage.googleapis.com;
     frame-src 'self' https://www.google.com;
     form-action https://formspree.io;
     base-uri 'self'; object-src 'none'; frame-ancestors 'none'">
@@ -85,7 +86,7 @@
   <link rel="preload" href="assets/fonts/source-serif-4-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Icons are above the fold (control dock, hero socials) - preload the subset. -->
-  <link rel="preload" href="assets/fonts/bootstrap-icons-subset.b10a2789.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/bootstrap-icons-subset.3a1ad914.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.subset.min.css" rel="stylesheet">
@@ -370,8 +371,8 @@
 
         <div class="row">
           <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="h5 mb-3 skills-cat-title" data-i18n="skills_cat_prog">
-              <i class="bi bi-code-square me-2"></i> Programming Languages
+            <h3 class="h5 mb-3 skills-cat-title">
+              <i class="bi bi-code-square me-2" aria-hidden="true"></i> <span data-i18n="skills_cat_prog">Programming Languages</span>
             </h3>
             <div class="d-flex flex-wrap gap-2">
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-py me-1 ic-python"></i> Python</span>
@@ -383,8 +384,8 @@
           </div>
 
           <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="h5 mb-3 skills-cat-title" data-i18n="skills_cat_backend">
-              <i class="bi bi-server me-2"></i> Backend &amp; Frameworks
+            <h3 class="h5 mb-3 skills-cat-title">
+              <i class="bi bi-server me-2" aria-hidden="true"></i> <span data-i18n="skills_cat_backend">Backend &amp; Frameworks</span>
             </h3>
             <div class="d-flex flex-wrap gap-2">
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hexagon-fill me-1 ic-nestjs"></i> NestJS</span>
@@ -395,8 +396,8 @@
           </div>
 
           <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-            <h3 class="h5 mb-3 skills-cat-title" data-i18n="skills_cat_tools">
-              <i class="bi bi-tools me-2"></i> Tools &amp; Learning
+            <h3 class="h5 mb-3 skills-cat-title">
+              <i class="bi bi-tools me-2" aria-hidden="true"></i> <span data-i18n="skills_cat_tools">Tools &amp; Learning</span>
             </h3>
             <div class="d-flex flex-wrap gap-2">
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-git me-1 ic-git"></i> Git</span>
@@ -425,8 +426,8 @@
           </p>
           <div class="cv-downloads">
             <!-- CV Modal Trigger -->
-            <button type="button" data-modal-open="#cvModal" class="cv-badge cv-badge--primary" data-i18n="resume_view_cv">
-              <i class="bi bi-file-earmark-text"></i> View CV
+            <button type="button" data-modal-open="#cvModal" class="cv-badge cv-badge--primary">
+              <i class="bi bi-file-earmark-text" aria-hidden="true"></i> <span data-i18n="resume_view_cv">View CV</span>
             </button>
           </div>
 
@@ -434,10 +435,10 @@
           <div id="cvModal" class="modal-lite modal-lite--doc" role="dialog" aria-modal="true" aria-label="Curriculum Vitae">
             <div class="modal-lite__inner">
               <div class="modal-lite__header">
-                <span data-i18n="resume_cv_title"><i class="bi bi-file-earmark-text me-2"></i>Curriculum Vitae - Aldo Alex NGANJI</span>
+                <span><i class="bi bi-file-earmark-text me-2" aria-hidden="true"></i><span data-i18n="resume_cv_title">Curriculum Vitae - Aldo Alex NGANJI</span></span>
                 <div class="d-flex gap-2 align-items-center">
-                  <a href="assets/img/portfolio/cv.pdf" download class="modal-lite__download" title="Download CV" data-i18n="resume_download">
-                    <i class="bi bi-download"></i> Download
+                  <a href="assets/img/portfolio/cv.pdf" download class="modal-lite__download" title="Download CV">
+                    <i class="bi bi-download" aria-hidden="true"></i> <span data-i18n="resume_download">Download</span>
                   </a>
                   <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                 </div>
@@ -453,7 +454,7 @@
             <div class="resume-item pb-0">
               <h4>Aldo Alex NGANJI</h4>
               <p>
-                <em data-i18n="about_bio_role">
+                <em data-i18n="resume_summary_bio">
                   <strong>Back End Developer</strong> skilled in Python and NestJS, expanding into Artificial Intelligence.
                   Graduate of Université du Lac Tanganyika in Software Engineering, currently studying Computer Science
                   at Aix-Marseille University. Former Back End Developer at Asyst Resources LTD.
@@ -506,7 +507,7 @@
               <div id="but1Modal" class="modal-lite" role="dialog" aria-modal="true" aria-label="BUT1 final results">
                 <div class="modal-lite__inner">
                   <div class="modal-lite__header">
-                    <span data-i18n="resume_s1_label"><i class="bi bi-bar-chart-line me-2"></i>BUT1 - Résultats Finaux | 5 pages</span>
+                    <span><i class="bi bi-bar-chart-line me-2" aria-hidden="true"></i><span data-i18n="resume_s1_label">BUT1 - Résultats Finaux | 5 pages</span></span>
                     <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
@@ -535,12 +536,12 @@
               <h5>2017 - 2020</h5>
               <p><em data-i18n="resume_role_highschool_loc">Lycée Clarté Notre Dame de Vugizo, Bujumbura, Burundi</em></p>
               <p data-i18n="resume_role_highschool_desc">
-                Major: <strong>Maths, Biologie, Chimie &amp; Sciences de la Terre</strong>.
-                Graduated with <strong>Mention : Bien</strong>.
+                Major: <strong>Mathematics, Biology, Chemistry &amp; Earth Sciences</strong>.
+                Graduated with <strong>Mention Bien</strong> (with honours).
               </p>
             </div>
 
-            <h3 class="resume-title" data-i18n="resume_sec_prizes">🏆 Prizes &amp; Achievements</h3>
+            <h3 class="resume-title">🏆 <span data-i18n="resume_sec_prizes">Prizes &amp; Achievements</span></h3>
 
             <div class="resume-item resume-item--highlight">
 
@@ -590,7 +591,7 @@
               <div class="modal-lite" id="devartModal" role="dialog" aria-modal="true" aria-label="DevArt 2026 hackathon photos">
                 <div class="modal-lite__inner">
                   <div class="modal-lite__header">
-                    <span data-i18n="resume_hackathon_photos"><i class="bi bi-trophy me-2 text-gold"></i>DevArt 2026 - Prix du Jury | 10 photos</span>
+                    <span><i class="bi bi-trophy me-2 text-gold" aria-hidden="true"></i><span data-i18n="resume_hackathon_photos">DevArt 2026 - Prix du Jury | 10 photos</span></span>
                     <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
@@ -612,22 +613,22 @@
             <h3 class="resume-title" data-i18n="resume_sec_training">Training &amp; Certifications</h3>
 
             <div class="resume-item">
-              <h4 data-i18n="resume_training_db">Formation en Informatique - Niveau 2</h4>
+              <h4 data-i18n="resume_training_db">IT Training - Level 2</h4>
               <h5>2023</h5>
               <p><em data-i18n="resume_training_db_loc">Higher Life Foundation, Bujumbura, Burundi</em></p>
               <p data-i18n="resume_training_db_desc">
-                Système de gestion de base de données - <strong>Microsoft Access</strong>.
-                Obtained with <strong>Note : A+</strong>.
+                Database management system - <strong>Microsoft Access</strong>.
+                Obtained with <strong>Grade: A+</strong>.
               </p>
             </div>
 
             <div class="resume-item">
-              <h4 data-i18n="resume_training_basic">Formation en Informatique - Niveau 1</h4>
+              <h4 data-i18n="resume_training_basic">IT Training - Level 1</h4>
               <h5>2022</h5>
               <p><em data-i18n="resume_training_basic_loc">Higher Life Foundation, Bujumbura, Burundi</em></p>
               <p data-i18n="resume_training_basic_desc">
-                Initiation en informatique - <strong>Microsoft Word, Excel, PowerPoint &amp; Internet</strong>.
-                Obtained with <strong>Note : A+</strong>.
+                Introduction to computing - <strong>Microsoft Word, Excel, PowerPoint &amp; Internet</strong>.
+                Obtained with <strong>Grade: A+</strong>.
               </p>
             </div>
 
@@ -1065,6 +1066,24 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Back to top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>
 
+  <!-- ======= Voice assistant (assets/js/voice.js) =======
+       Gemini Live over a WebSocket; tokens come from voice-worker/.
+       Labels and status text are set from JS. -->
+  <div class="voice" id="voice" data-state="idle">
+    <div class="voice__panel" id="voicePanel" role="region" aria-labelledby="voiceTitle" hidden>
+      <div class="voice__header">
+        <span class="voice__title" id="voiceTitle" data-i18n="voice_title">AI assistant</span>
+        <button type="button" class="voice__close" id="voiceClose" aria-label="Close"><i class="bi bi-x" aria-hidden="true"></i></button>
+      </div>
+      <p class="voice__status" id="voiceStatus" role="status"></p>
+      <div class="voice__transcript" id="voiceTranscript"></div>
+      <p class="voice__note" data-i18n="voice_note">Answers come from Gemini and may contain mistakes. Your voice is sent to Google only while the conversation is open.</p>
+    </div>
+    <button type="button" class="voice__toggle" id="voiceToggle" aria-pressed="false" aria-controls="voicePanel">
+      <i class="bi bi-mic-fill" aria-hidden="true"></i> <span class="voice__label">Talk to my AI</span>
+    </button>
+  </div>
+
   <!-- ======= Section Title Underline Wipe (Feature #3) ======= -->
   <script>
     (function () {
@@ -1147,6 +1166,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/voice.js" defer></script>
 
 
 </body>

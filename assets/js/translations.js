@@ -70,6 +70,7 @@ window.translations = {
     resume_cv_title: "Curriculum Vitae - Aldo Alex NGANJI",
     resume_download: "Download",
     resume_sec_summary: "Summary",
+    resume_summary_bio: "<strong>Back End Developer</strong> skilled in Python and NestJS, expanding into Artificial Intelligence. Graduate of Université du Lac Tanganyika in Software Engineering, currently studying Computer Science at Aix-Marseille University. Former Back End Developer at Asyst Resources LTD.",
     resume_sec_education: "Education",
     resume_sec_prizes: "Prizes & Achievements",
     resume_sec_training: "Training & Certifications",
@@ -91,7 +92,7 @@ window.translations = {
 
     resume_role_highschool: "Baccalauréat Scientifique B",
     resume_role_highschool_loc: "Lycée Clarté Notre Dame de Vugizo, Bujumbura, Burundi",
-    resume_role_highschool_desc: "Major: <strong>Maths, Biologie, Chimie & Sciences de la Terre</strong>. Graduated with <strong>Mention : Bien</strong>.",
+    resume_role_highschool_desc: "Major: <strong>Mathematics, Biology, Chemistry &amp; Earth Sciences</strong>. Graduated with <strong>Mention Bien</strong> (with honours).",
 
     resume_prize_devart_title: "DevArt 2026 - Prix du Jury 🥇",
     resume_prize_devart_subtitle: "IUT d'Arles, Aix-Marseille Université - 32h Hackathon",
@@ -101,13 +102,13 @@ window.translations = {
     resume_prize_devart_p2: "<i class='bi bi-people-fill me-1'></i> 10 teams competed | 32h non-stop | Jury composed of local industry professionals",
     resume_hackathon_photos: "Hackathon Photos | 10 shots",
 
-    resume_training_db: "Formation en Informatique - Niveau 2",
+    resume_training_db: "IT Training - Level 2",
     resume_training_db_loc: "Higher Life Foundation, Bujumbura, Burundi",
-    resume_training_db_desc: "Système de gestion de base de données - <strong>Microsoft Access</strong>. Obtained with <strong>Note : A+</strong>.",
+    resume_training_db_desc: "Database management system - <strong>Microsoft Access</strong>. Obtained with <strong>Grade: A+</strong>.",
 
-    resume_training_basic: "Formation en Informatique - Niveau 1",
+    resume_training_basic: "IT Training - Level 1",
     resume_training_basic_loc: "Higher Life Foundation, Bujumbura, Burundi",
-    resume_training_basic_desc: "Initiation en informatique - <strong>Microsoft Word, Excel, PowerPoint & Internet</strong>. Obtained with <strong>Note : A+</strong>.",
+    resume_training_basic_desc: "Introduction to computing - <strong>Microsoft Word, Excel, PowerPoint &amp; Internet</strong>. Obtained with <strong>Grade: A+</strong>.",
 
     resume_exp_backend_role: "Back End Developer",
     resume_exp_backend_loc: "Asyst Resources LTD | Bujumbura, Burundi",
@@ -192,7 +193,23 @@ window.translations = {
 
     // Footer
     footer_quote: '"Design is not just what it looks like and feels like. It\'s how it works."',
-    footer_credits: "Designed by Aldo Alex NGANJI - AKA Bakame03"
+    footer_credits: "Designed by Aldo Alex NGANJI - AKA Bakame03",
+
+    // Voice assistant
+    voice_cta: "Talk to my AI",
+    voice_end: "End",
+    voice_title: "AI assistant",
+    voice_note: "Answers come from Gemini and may contain mistakes. Your voice is sent to Google only while the conversation is open.",
+    voice_you: "You",
+    voice_ai: "AI",
+    voice_connecting: "Connecting...",
+    voice_listening: "Listening - go ahead and speak.",
+    voice_speaking: "Speaking...",
+    voice_ended: "Conversation ended.",
+    voice_err_mic: "Microphone access was denied.",
+    voice_err_busy: "Too many requests - try again in a minute.",
+    voice_err_generic: "The assistant is unavailable right now.",
+    voice_err_unsupported: "Your browser doesn't support voice chat."
   },
   fr: {
     // Navbar
@@ -265,6 +282,7 @@ window.translations = {
     resume_cv_title: "Curriculum Vitae - Aldo Alex NGANJI",
     resume_download: "Télécharger",
     resume_sec_summary: "Résumé",
+    resume_summary_bio: "<strong>Développeur Back-End</strong> maîtrisant Python et NestJS, en cours de spécialisation vers l'Intelligence Artificielle. Diplômé de l'Université du Lac Tanganyika en Génie Logiciel, actuellement étudiant en Informatique à l'Aix-Marseille Université. Ancien Développeur Back End chez Asyst Resources LTD.",
     resume_sec_education: "Éducation",
     resume_sec_prizes: "Prix & Réalisations",
     resume_sec_training: "Formation & Certifications",
@@ -387,6 +405,22 @@ window.translations = {
 
     // Footer
     footer_quote: '"Le design, ce n\'est pas seulement ce à quoi ça ressemble ou ce qu\'on ressent. C\'est comment ça marche."',
-    footer_credits: "Conçu par Aldo Alex NGANJI - alias Bakame03"
+    footer_credits: "Conçu par Aldo Alex NGANJI - alias Bakame03",
+
+    // Voice assistant
+    voice_cta: "Parler à mon IA",
+    voice_end: "Terminer",
+    voice_title: "Assistant IA",
+    voice_note: "Les réponses viennent de Gemini et peuvent contenir des erreurs. Votre voix est envoyée à Google uniquement pendant la conversation.",
+    voice_you: "Vous",
+    voice_ai: "IA",
+    voice_connecting: "Connexion...",
+    voice_listening: "Je vous écoute, parlez.",
+    voice_speaking: "Réponse en cours...",
+    voice_ended: "Conversation terminée.",
+    voice_err_mic: "L'accès au micro a été refusé.",
+    voice_err_busy: "Trop de demandes, réessayez dans une minute.",
+    voice_err_generic: "L'assistant est indisponible pour le moment.",
+    voice_err_unsupported: "Votre navigateur ne prend pas en charge la conversation vocale."
   }
 };

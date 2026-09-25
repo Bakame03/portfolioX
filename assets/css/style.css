@@ -395,6 +395,154 @@ body.modal-open #scroll-progress {
 }
 
 /*--------------------------------------------------------------
+# Voice assistant (assets/js/voice.js)
+# Pill button bottom-right, under back-to-top; the panel opens
+# above it and takes back-to-top's spot while it is open.
+--------------------------------------------------------------*/
+.voice {
+  position: fixed;
+  right: calc(15px + env(safe-area-inset-right));
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: 997;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.voice__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 50px;
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: var(--shadow-lift);
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-spring), background 0.3s ease;
+}
+
+.voice__toggle:hover {
+  background: var(--accent-strong);
+}
+
+.voice__toggle:active {
+  transform: scale(0.94);
+}
+
+.voice__toggle i {
+  font-size: 18px;
+  line-height: 0;
+}
+
+/* Soft pulse while the microphone is live */
+.voice[data-state="listening"] .voice__toggle {
+  animation: voice-pulse 1.8s ease-out infinite;
+}
+
+@keyframes voice-pulse {
+  0%   { box-shadow: var(--shadow-lift), 0 0 0 0 rgba(193, 95, 60, 0.45); }
+  100% { box-shadow: var(--shadow-lift), 0 0 0 14px rgba(193, 95, 60, 0); }
+}
+
+.voice__panel {
+  width: min(340px, calc(100vw - 32px));
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-lift);
+  color: var(--text-color);
+}
+
+.voice__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.voice__title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--subtitle-color);
+}
+
+.voice__close {
+  width: 36px;
+  height: 36px;
+  margin-right: -8px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-color);
+  font-size: 22px;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.voice__close:hover {
+  background: var(--accent-soft);
+}
+
+.voice__status {
+  margin: 2px 0 8px;
+  font-size: 14px;
+  color: var(--accent-strong);
+  min-height: 1.4em;
+}
+
+.voice__transcript {
+  max-height: min(40vh, 280px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.voice__transcript:empty {
+  display: none;
+}
+
+.voice__line {
+  margin: 0 0 8px;
+}
+
+.voice__line strong {
+  color: var(--subtitle-color);
+}
+
+.voice__line--user strong {
+  color: var(--accent-strong);
+}
+
+.voice__note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+body.voice-open .back-to-top,
+body.modal-open .voice {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voice[data-state="listening"] .voice__toggle {
+    animation: none;
+  }
+}
+
+/*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {

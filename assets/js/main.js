@@ -360,7 +360,9 @@
       langToggle.innerText = lang.toUpperCase();
     }
 
-    localStorage.setItem('lang', lang);
+    // Guarded like every other storage write here: throws in Safari private
+    // mode / with site data blocked, which would abort the rest of this function.
+    try { localStorage.setItem('lang', lang); } catch (e) {}
     document.documentElement.lang = lang;
   }
 
