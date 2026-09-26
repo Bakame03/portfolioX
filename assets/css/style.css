@@ -541,6 +541,28 @@ body.modal-open .voice {
   pointer-events: none !important;
 }
 
+/* Phones: a round mic button, so the pill doesn't sit on top of content.
+   The label stays in the DOM for screen readers. */
+@media (max-width: 575px) {
+  .voice__toggle {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    justify-content: center;
+  }
+  .voice__toggle i {
+    font-size: 22px;
+  }
+  .voice__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .voice[data-state="listening"] .voice__toggle {
     animation: none;
@@ -1033,6 +1055,69 @@ section .container {
   font-size: 1.05rem;
   line-height: 1.75;
   margin-bottom: 20px;
+}
+
+/* "Ask my AI assistant" callout: points at the voice assistant as a
+   concrete example of the work, and starts it in place. */
+.voice-callout {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 22px;
+  padding: 14px 16px;
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  background: var(--card-bg);
+}
+
+.voice-callout__icon {
+  font-size: 24px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.voice-callout__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.about .content .voice-callout__title {
+  margin: 0 0 2px;
+  font-weight: 700;
+  color: var(--subtitle-color);
+}
+
+.about .content .voice-callout__text {
+  margin: 0;
+  font-size: 14px;
+}
+
+.voice-callout__btn {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 50px;
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.voice-callout__btn:hover {
+  background: var(--accent-strong);
+}
+
+@media (max-width: 575px) {
+  .voice-callout {
+    flex-wrap: wrap;
+  }
+  .voice-callout__btn {
+    width: 100%;
+  }
 }
 
 .about .content ul {
@@ -2021,35 +2106,6 @@ section .container {
   font-weight: 500;
 }
 
-.contact-map { border: 0; width: 100%; height: 270px; }
-
-/* Click-to-load map facade (Fix #7) */
-.map-facade {
-  width: 100%;
-  height: 270px;
-  border: 1px dashed var(--card-border);
-  border-radius: 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--section-bg);
-  color: var(--text-color);
-  transition: border-color 0.25s ease, background 0.25s ease;
-}
-.map-facade:hover { border-color: var(--accent); background: var(--accent-soft); }
-.map-facade__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  text-align: center;
-  pointer-events: none;
-}
-.map-facade__inner i { font-size: 34px; color: var(--accent); }
-.map-facade__inner span { font-weight: 600; font-size: 16px; }
-.map-facade__inner small { color: var(--text-color); opacity: 0.7; font-size: 13px; }
-
 /* Skip-to-content link: first tab stop on the page. Sits off-screen until
    keyboard focus lands on it, then slides in above every fixed layer. */
 .skip-link {
@@ -2184,7 +2240,7 @@ section .container {
   .hero-cta,
   .stack-wrapper,
   .modal-lite,
-  .map-facade,
+  .voice,
   .php-email-form,
   .github-dashboard,
   .project-card__actions,
@@ -2236,6 +2292,14 @@ section .container {
   }
 }
 
+/* A long skill badge (the generative AI one) wraps instead of overflowing
+   its column on phones - Bootstrap badges are nowrap by default. */
+.badge-wrap {
+  white-space: normal;
+  text-align: left;
+  line-height: 1.4;
+}
+
 /* Skill-badge brand icon colors */
 .ic-python      { color: #3776ab; }
 .ic-typescript  { color: #3178c6; }
@@ -2244,6 +2308,8 @@ section .container {
 .ic-html        { color: #e34f26; }
 .ic-nestjs      { color: #e0234e; }
 .ic-sql         { color: #336791; }
+.ic-mongo       { color: #47a248; }
+.ic-js          { color: #d4a300; }
 .ic-rest        { color: #ff6600; }
 .ic-micro       { color: var(--text-color); }
 .ic-git         { color: #f05032; }

@@ -350,6 +350,11 @@
     else stop(['voice_ended', 'Conversation ended.']);
   });
 
+  // In-page calls to action (e.g. the About section) start the same session.
+  document.querySelectorAll('[data-voice-start]').forEach(btn => {
+    btn.addEventListener('click', () => { if (state === 'idle') start(); });
+  });
+
   document.getElementById('voiceClose').addEventListener('click', () => {
     if (state !== 'idle') stop();
     panel.hidden = true;

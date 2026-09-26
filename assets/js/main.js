@@ -366,18 +366,19 @@
     document.documentElement.lang = lang;
   }
 
+  // The page ships in French; the inline script in <head> has already swapped
+  // <html lang> to a saved choice, so it is the source of truth here.
   if (langToggle) {
-    const savedLang = localStorage.getItem('lang') || 'en';
+    const savedLang = document.documentElement.lang || 'fr';
     updateLanguage(savedLang);
 
     langToggle.addEventListener('click', () => {
-      const currentLang = localStorage.getItem('lang') || 'en';
-      const newLang = currentLang === 'en' ? 'fr' : 'en';
+      const newLang = document.documentElement.lang === 'fr' ? 'en' : 'fr';
       updateLanguage(newLang);
     });
   } else {
     // If toggle not found (e.g. before it's injected), still try to init
-    const savedLang = localStorage.getItem('lang') || 'en';
+    const savedLang = document.documentElement.lang || 'fr';
     // Small delay to ensure translations.js is loaded if script order is tricky
     setTimeout(() => updateLanguage(savedLang), 100);
   }
@@ -533,25 +534,6 @@
       const scrolled = (window.scrollY / windowHeight) * 100;
       scrollProgress.style.width = scrolled + '%';
     }), { passive: true });
-  }
-
-  /**
-   * Contact map - click-to-load facade: no request to Google is made until the
-   * user opts in (privacy + one fewer heavy third-party embed on load).
-   */
-  const mapFacade = select('#mapFacade');
-  if (mapFacade) {
-    mapFacade.addEventListener('click', () => {
-      const iframe = document.createElement('iframe');
-      iframe.src = mapFacade.getAttribute('data-map-src');
-      iframe.className = 'contact-map';
-      iframe.title = 'Map of Arles, France';
-      iframe.setAttribute('frameborder', '0');
-      iframe.setAttribute('allowfullscreen', '');
-      iframe.setAttribute('loading', 'lazy');
-      iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
-      mapFacade.replaceWith(iframe);
-    });
   }
 
   /**

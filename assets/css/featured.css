@@ -73,6 +73,33 @@
   transform: scale(1.03);
 }
 
+/* Card with no screenshot (the generative AI notebooks): a drawn visual in
+   the same 16:10 slot so the grid stays even. */
+.project-card__image--ai {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:
+    radial-gradient(circle at 30% 25%, var(--accent-soft), transparent 60%),
+    linear-gradient(135deg, var(--section-bg), var(--card-bg));
+  color: var(--accent);
+}
+
+.project-card__image--ai > i {
+  font-size: 56px;
+  line-height: 1;
+}
+
+.project-card__image-caption {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--subtitle-color);
+  letter-spacing: 0.02em;
+}
+
 /* Image overlay for the lightbox link */
 .project-card__overlay {
   position: absolute;
