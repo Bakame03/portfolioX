@@ -208,6 +208,7 @@ window.translations = {
     voice_ended: "Conversation ended.",
     voice_err_mic: "Microphone access was denied.",
     voice_err_busy: "Too many requests - try again in a minute.",
+    voice_err_challenge: "We couldn't verify your browser. Please try again.",
     voice_err_generic: "The assistant is unavailable right now.",
     voice_err_unsupported: "Your browser doesn't support voice chat."
   },
@@ -420,6 +421,7 @@ window.translations = {
     voice_ended: "Conversation terminée.",
     voice_err_mic: "L'accès au micro a été refusé.",
     voice_err_busy: "Trop de demandes, réessayez dans une minute.",
+    voice_err_challenge: "Impossible de vérifier votre navigateur. Veuillez réessayer.",
     voice_err_generic: "L'assistant est indisponible pour le moment.",
     voice_err_unsupported: "Votre navigateur ne prend pas en charge la conversation vocale."
   }

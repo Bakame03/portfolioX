@@ -4,7 +4,8 @@
 # ephemeral token that is locked to the portfolio persona (see src/context.js).
 #
 # Setup:   npm install && npx wrangler login
-# Secret:  npx wrangler secret put GEMINI_API_KEY
+# Secrets: npx wrangler secret put GEMINI_API_KEY
+#          npx wrangler secret put TURNSTILE_SECRET
 # Deploy:  npm run deploy
 name = "portfolio-voice"
 main = "src/index.js"
@@ -18,8 +19,12 @@ preview_urls = false
 [vars]
 # Browsers send Origin on cross-origin fetch; anything else gets a 403.
 # This stops other sites from embedding the assistant, not scripted abuse -
-# the rate limit below is what caps cost.
-ALLOWED_ORIGINS = "https://bakame03.github.io,http://localhost:8000,http://127.0.0.1:8000"
+# Turnstile and the rate limit below are what cap cost.
+ALLOWED_ORIGINS = "https://bakame03.github.io"
+# Hostnames a Turnstile token may come from (checked against siteverify).
+# Production only: a localhost entry would let anyone mint tokens from a
+# page they control.
+TURNSTILE_HOSTNAMES = "bakame03.github.io"
 
 # Per-IP cap on token requests. Each token is one voice session of at most
 # SESSION_MINUTES (src/index.js), so this bounds spend per visitor.

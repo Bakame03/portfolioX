@@ -37,13 +37,13 @@
        inline-script edit, which is a poor trade for a hand-maintained page.
        Keep connect-src in sync with fetch() calls in assets/js/main.js. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self';
-    script-src 'self' 'unsafe-inline' https://gc.zgo.at;
+    script-src 'self' 'unsafe-inline' https://gc.zgo.at https://challenges.cloudflare.com;
     style-src 'self' 'unsafe-inline';
     img-src 'self' data: https://gc.zgo.at;
     font-src 'self';
     connect-src 'self' https://api.github.com https://formspree.io https://gc.zgo.at
                  https://portfolio-voice.bakame03.workers.dev wss://generativelanguage.googleapis.com;
-    frame-src 'self' https://www.google.com;
+    frame-src 'self' https://www.google.com https://challenges.cloudflare.com;
     form-action https://formspree.io;
     base-uri 'self'; object-src 'none'; frame-ancestors 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -1076,6 +1076,7 @@
         <button type="button" class="voice__close" id="voiceClose" aria-label="Close"><i class="bi bi-x" aria-hidden="true"></i></button>
       </div>
       <p class="voice__status" id="voiceStatus" role="status"></p>
+      <div class="voice__challenge" id="voiceChallenge"></div>
       <div class="voice__transcript" id="voiceTranscript"></div>
       <p class="voice__note" data-i18n="voice_note">Answers come from Gemini and may contain mistakes. Your voice is sent to Google only while the conversation is open.</p>
     </div>

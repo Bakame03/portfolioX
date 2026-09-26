@@ -8,6 +8,8 @@ const MODEL = 'gemini-3.8-live';
 const SESSION_MINUTES = 5;
 // The browser must open the WebSocket within this window after fetching.
 const CONNECT_WINDOW_SECONDS = 60;
+// Must match the `action` the page renders the Turnstile widget with.
+const TURNSTILE_ACTION = 'voice';
 
 export default {
   async fetch(request, env) {
@@ -35,7 +37,15 @@ export default {
       if (!success) return json({ error: 'rate_limited' }, 429, cors);
     }
 
-    if (!env.GEMINI_API_KEY) return json({ error: 'not_configured' }, 500, cors);
+    if (!env.GEMINI_API_KEY || !env.TURNSTILE_SECRET) return json({ error: 'not_configured' }, 500, cors);
+
+    // Bot check before anything that costs money. The rate limit alone is
+    // per IP, which a script can rotate around; Turnstile needs a real browser.
+    const form = await request.formData().catch(() => null);
+    const challenge = form && form.get('turnstile');
+    if (!(await verifyTurnstile(challenge, request, env))) {
+      return json({ error: 'challenge_failed' }, 403, cors);
+    }
 
     try {
       const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
@@ -73,6 +83,34 @@ export default {
     }
   },
 };
+
+async function verifyTurnstile(token, request, env) {
+  const hostnames = new Set(
+    (env.TURNSTILE_HOSTNAMES || '').split(',').map((h) => h.trim()).filter(Boolean),
+  );
+  if (typeof token !== 'string' || token.length === 0 || token.length > 2048 || hostnames.size === 0) {
+    return false;
+  }
+  try {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      signal: AbortSignal.timeout(10_000),
+      body: new URLSearchParams({
+        secret: env.TURNSTILE_SECRET,
+        response: token,
+        remoteip: request.headers.get('CF-Connecting-IP') || '',
+      }),
+    });
+    if (!res.ok) return false;
+    const result = await res.json();
+    return result.success === true && result.action === TURNSTILE_ACTION && hostnames.has(result.hostname);
+  } catch (err) {
+    // Network error or bad response from siteverify: fail closed.
+    console.error('siteverify failed', err);
+    return false;
+  }
+}
 
 function json(body, status, headers = {}) {
   return new Response(JSON.stringify(body), {

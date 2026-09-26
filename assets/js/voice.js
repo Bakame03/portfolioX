@@ -1,8 +1,9 @@
 /**
  * "Talk to my AI" - voice assistant over the Gemini Live API.
  *
- * Flow: click -> fetch a single-use ephemeral token from the Cloudflare
- * Worker (voice-worker/) -> open a WebSocket straight to Gemini -> stream the
+ * Flow: click -> pass a Turnstile bot check -> trade it for a single-use
+ * ephemeral token from the Cloudflare Worker (voice-worker/) -> open a
+ * WebSocket straight to Gemini -> stream the
  * microphone up as PCM16 and play the PCM16 replies back. The persona and
  * the portfolio facts are locked into the token by the Worker, so nothing
  * here can change what the assistant knows or says.
@@ -13,6 +14,9 @@
   // voice-worker/ deployed with `npm run deploy`. Keep in sync with the CSP
   // connect-src in index.html.
   const TOKEN_URL = 'https://portfolio-voice.bakame03.workers.dev/token';
+  // Public site key of the Turnstile widget; its secret lives in the Worker.
+  const TURNSTILE_SITEKEY = '0x4AAAAAAFEWW_XgZjS4kF34';
+  const TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
   const LIVE_URL = 'wss://generativelanguage.googleapis.com/ws/' +
     'google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContentConstrained';
 
@@ -102,7 +106,7 @@
     };
 
     try {
-      const [grant, stream] = await Promise.all([fetchToken(), getMicrophone()]);
+      const [grant, stream] = await Promise.all([passChallenge().then(fetchToken), getMicrophone()]);
       if (session !== s) { stream.getTracks().forEach(tr => tr.stop()); return; }
       s.stream = stream;
       await s.ctx.audioWorklet.addModule('assets/js/voice-capture.worklet.js');
@@ -115,20 +119,73 @@
     }
   }
 
-  async function fetchToken() {
+  async function fetchToken(challenge) {
     let res;
     try {
-      res = await fetch(TOKEN_URL, { method: 'POST' });
+      // Form-encoded keeps this a "simple" CORS request: no preflight round trip.
+      res = await fetch(TOKEN_URL, { method: 'POST', body: new URLSearchParams({ turnstile: challenge }) });
     } catch (e) {
       throw withStatus(e, 'voice_err_generic', 'The assistant is unavailable right now.');
     }
     if (res.status === 429) {
       throw withStatus(new Error('rate limited'), 'voice_err_busy', 'Too many requests - try again in a minute.');
     }
+    if (res.status === 403) {
+      throw withStatus(new Error('challenge rejected'), 'voice_err_challenge', "We couldn't verify your browser. Please try again.");
+    }
     if (!res.ok) {
       throw withStatus(new Error('token ' + res.status), 'voice_err_generic', 'The assistant is unavailable right now.');
     }
     return res.json();
+  }
+
+  // ---- Bot check (Cloudflare Turnstile) ---------------------------------
+  // The script only loads on first click, so visitors who never use the
+  // assistant don't pay for it. The widget stays invisible unless Cloudflare
+  // wants the visitor to tick a box, in which case it appears in the panel.
+  let turnstileLoad = null;
+  let widgetId = null;
+  let challengeWaiter = null;
+
+  function loadTurnstile() {
+    if (window.turnstile) return Promise.resolve();
+    if (!turnstileLoad) {
+      turnstileLoad = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = TURNSTILE_SRC;
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = () => { turnstileLoad = null; reject(new Error('turnstile script failed')); };
+        document.head.append(script);
+      });
+    }
+    return turnstileLoad;
+  }
+
+  async function passChallenge() {
+    try {
+      await loadTurnstile();
+    } catch (e) {
+      throw withStatus(e, 'voice_err_generic', 'The assistant is unavailable right now.');
+    }
+    return new Promise((resolve, reject) => {
+      const fail = () => reject(withStatus(new Error('turnstile failed'), 'voice_err_challenge', "We couldn't verify your browser. Please try again."));
+      challengeWaiter = { resolve, reject: fail };
+      if (widgetId === null) {
+        widgetId = window.turnstile.render('#voiceChallenge', {
+          sitekey: TURNSTILE_SITEKEY,
+          action: 'voice',
+          appearance: 'interaction-only',
+          language: document.documentElement.lang || 'auto',
+          callback: (token) => { if (challengeWaiter) challengeWaiter.resolve(token); challengeWaiter = null; },
+          'error-callback': () => { if (challengeWaiter) challengeWaiter.reject(); challengeWaiter = null; },
+          'expired-callback': () => window.turnstile.reset(widgetId)
+        });
+      } else {
+        // Tokens are single-use: every new conversation needs a fresh one.
+        window.turnstile.reset(widgetId);
+      }
+    });
   }
 
   async function getMicrophone() {
