@@ -366,5 +366,9 @@
   // Never keep the microphone open on a page the visitor has left.
   window.addEventListener('pagehide', () => { if (session) stop(); });
 
+  // The FR/EN toggle only rewrites [data-i18n] nodes; the button label and
+  // status are state-dependent, so re-render when <html lang> changes.
+  new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
   render();
 })();

@@ -66,8 +66,6 @@ triggers, simulating deforestation and the water used to cool servers.
   written while learning: calling LLM APIs, a website summarizer, tokenization
   and conversation memory, prompt chaining, several API providers. Next steps:
   RAG and agents. These are learning exercises, not production systems.
-- Budget Tracker. Django 5 with Income/Expense models and server-side totals.
-  Deployed on Render with PostgreSQL. His first Django project end to end.
 - Unified Service Ecosystem. A prototype combining Stripe (payments), Twilio
   (SMS), OpenWeatherMap and Firebase Realtime Database in one portal.
 - Eat Well (Omnifood). Responsive landing page in HTML, CSS and JavaScript

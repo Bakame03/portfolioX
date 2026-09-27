@@ -140,8 +140,6 @@ window.translations = {
     project_services_title: "Unified Service Ecosystem",
     project_services_desc: "<strong>What it is:</strong> a prototype that brings several external services into one portal.<br><strong>How:</strong> <strong>Stripe</strong> (payments), <strong>Twilio</strong> (SMS), <strong>OpenWeatherMap</strong> (weather) and <strong>Firebase</strong> (real-time database).<br><strong>Result:</strong> a working demo where these APIs are used from a single interface.",
 
-    project_budget_title: "Budget Tracker",
-    project_budget_desc: "<strong>What it is:</strong> a tool to track day-to-day income and spending.<br><strong>How:</strong> <strong>Django 5</strong> with Income and Expense models and server-side totals (balance, totals, spend ratio). Deployed on <strong>Render</strong> with <strong>PostgreSQL</strong>.<br><strong>Result:</strong> my first Django project taken from models and migrations to a live deployment.",
 
     project_calc_title: "Web Calculator",
     project_calc_desc: "<strong>What it is:</strong> a calculator that works on any device.<br><strong>How:</strong> <strong>JavaScript</strong> with no dependencies, <strong>CSS Flexbox</strong> layout, served by a small hand-written <strong>Node.js</strong> server.<br><strong>Result:</strong> a fast, lightweight tool that loads instantly.",
@@ -162,7 +160,6 @@ window.translations = {
     project_cat_hypoxia: "3D / Creative web / AI",
     project_cat_eatwell: "Front-end",
     project_cat_services: "API integration",
-    project_cat_budget: "Web development / Finance",
     project_cat_calc: "Web tools",
 
     // Services
@@ -358,8 +355,6 @@ window.translations = {
     project_services_title: "Écosystème de services unifié",
     project_services_desc: "<strong>Ce que c'est :</strong> un prototype qui réunit plusieurs services externes dans un même portail.<br><strong>Comment :</strong> <strong>Stripe</strong> (paiement), <strong>Twilio</strong> (SMS), <strong>OpenWeatherMap</strong> (météo) et <strong>Firebase</strong> (base de données temps réel).<br><strong>Résultat :</strong> une démo fonctionnelle où ces API s'utilisent depuis une seule interface.",
 
-    project_budget_title: "Gestionnaire de budget",
-    project_budget_desc: "<strong>Ce que c'est :</strong> un outil pour suivre ses revenus et ses dépenses au quotidien.<br><strong>Comment :</strong> <strong>Django 5</strong> avec des modèles Income et Expense et des calculs côté serveur (solde, totaux, taux de dépense). Déployé sur <strong>Render</strong> avec <strong>PostgreSQL</strong>.<br><strong>Résultat :</strong> mon premier projet Django mené de bout en bout, des modèles et migrations jusqu'à la mise en ligne.",
 
     project_calc_title: "Calculatrice web",
     project_calc_desc: "<strong>Ce que c'est :</strong> une calculatrice qui fonctionne sur tous les appareils.<br><strong>Comment :</strong> <strong>JavaScript</strong> sans dépendance, mise en page en <strong>CSS Flexbox</strong>, servie par un petit serveur <strong>Node.js</strong> écrit à la main.<br><strong>Résultat :</strong> un outil léger qui se charge instantanément.",
@@ -380,7 +375,6 @@ window.translations = {
     project_cat_hypoxia: "3D / Web créatif / IA",
     project_cat_eatwell: "Front-end",
     project_cat_services: "Intégration d'API",
-    project_cat_budget: "Développement web / Finance",
     project_cat_calc: "Outils web",
 
     // Services
