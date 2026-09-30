@@ -1604,7 +1604,9 @@ section .container {
   color: var(--text-color);
   font-size: 14px;
   text-align: center;
-  padding: 30px 0;
+  /* Bottom padding clears the fixed voice button (20px offset + 52px) so it
+     never sits on the credits line at the end of the page. */
+  padding: 30px 0 calc(90px + env(safe-area-inset-bottom));
   border-top: 1px solid var(--card-border);
 }
 
