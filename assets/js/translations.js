@@ -6,7 +6,6 @@ window.translations = {
     nav_skills: "Skills",
     nav_resume: "Resume",
     nav_projects: "Projects",
-    nav_testimonials: "Testimonials",
     nav_contact: "Contact",
 
     // Hero
@@ -159,14 +158,6 @@ window.translations = {
     project_cat_services: "API integration",
     project_cat_calc: "Web tools",
 
-    // Services
-
-    // Testimonials
-    testimonials_title: "Testimonials",
-    testimonial_1: "Aldo architected a critical microservices backend that cut our API response times significantly. His ability to decompose complex problems into clean, scalable modules made him the go-to person for our most technically challenging features.",
-    testimonial_2: "Aldo built the entire offline-sync engine for our web apps when connectivity was unreliable. His persistence in solving edge cases around data conflicts was remarkable. The feature became the most praised part of the product by our users.",
-    testimonial_3: "Aldo mentored me through building my first full-stack project from scratch, from database schema design to deploying on a live server. His patient, hands-on guidance in both frontend and backend fundamentals accelerated my growth as a developer more than any course could.",
-
     // Contact
     contact_title: "Contact",
     contact_subtitle: "I'm looking for a <strong>12-week internship from 29 March 2027</strong>. Write to me about an internship, a back-end project or any question.",
@@ -210,7 +201,6 @@ window.translations = {
     nav_skills: "Compétences",
     nav_resume: "CV",
     nav_projects: "Projets",
-    nav_testimonials: "Témoignages",
     nav_contact: "Contact",
 
     // Hero
@@ -362,14 +352,6 @@ window.translations = {
     project_cat_eatwell: "Front-end",
     project_cat_services: "Intégration d'API",
     project_cat_calc: "Outils web",
-
-    // Services
-
-    // Testimonials
-    testimonials_title: "Témoignages",
-    testimonial_1: "Aldo a conçu un backend de microservices critique qui a considérablement réduit les temps de réponse de notre API. Sa capacité à décomposer des problèmes complexes en modules propres et évolutifs a fait de lui la personne de référence pour nos fonctionnalités les plus difficiles techniquement.",
-    testimonial_2: "Aldo a construit l'intégralité du moteur de synchronisation hors ligne pour nos applications web lorsque la connectivité était instable. Sa persévérance à résoudre les cas particuliers autour des conflits de données a été remarquable. Cette fonctionnalité est devenue la partie la plus appréciée du produit par nos utilisateurs.",
-    testimonial_3: "Aldo m'a accompagné dans la création de mon premier projet full-stack de A à Z, de la conception du schéma de base de données au déploiement sur un serveur réel. Ses conseils patients et pratiques sur les fondamentaux du frontend et du backend ont accéléré ma croissance plus que n'importe quel cours.",
 
     // Contact
     contact_title: "Contact",
