@@ -408,7 +408,7 @@
         repoItem.className = 'repo-item';
         repoItem.innerHTML = `
           <h4><i class="bi bi-folder2"></i>${esc(repo.name)}</h4>
-          <p>${esc(repo.description) || 'No description provided.'}</p>
+          ${repo.description ? `<p>${esc(repo.description)}</p>` : ''}
           <div class="repo-meta">
             <span><i class="bi bi-star-fill"></i>${Number(repo.stargazers_count) || 0}</span>
             <span><i class="bi bi-diagram-2"></i>${Number(repo.forks_count) || 0}</span>
@@ -441,7 +441,7 @@
       if (!hasCache) {
         repoList.innerHTML = `
           <div class="col-12 text-center text-muted">
-            <p>Unable to load live activity. <a href="https://github.com/Bakame03" target="_blank" rel="noopener">View profile on GitHub</a></p>
+            <p data-i18n="gh_load_error">${(window.translations[document.documentElement.lang] || {}).gh_load_error || 'Impossible de charger les dépôts.'}</p>
           </div>
         `;
       }
@@ -449,80 +449,6 @@
   }
   
   fetchGitHubActivity();
-
-  /**
-   * GitHub profile stat tiles - replaces the three third-party stat images
-   * (readme-stats / streak-stats): no slow external image services, and the
-   * tiles inherit the site theme automatically.
-   */
-  async function fetchGitHubStats() {
-    const tiles = {
-      repos: select('#stat-repos'),
-      stars: select('#stat-stars'),
-      followers: select('#stat-followers'),
-      langs: select('#stat-langs')
-    };
-    if (!tiles.repos && !tiles.langs) return;
-
-    const CACHE_KEY = 'gh_profile_stats_v1';
-    const TTL = 30 * 60 * 1000; // 30 minutes
-
-    const render = (s) => {
-      if (tiles.repos) tiles.repos.textContent = s.repos;
-      if (tiles.stars) tiles.stars.textContent = s.stars;
-      if (tiles.followers) tiles.followers.textContent = s.followers;
-      if (tiles.langs && Array.isArray(s.langs)) {
-        tiles.langs.innerHTML = '';
-        s.langs.forEach(lang => {
-          const chip = document.createElement('span');
-          chip.className = 'stat-tile__lang';
-          chip.textContent = lang;
-          tiles.langs.appendChild(chip);
-        });
-      }
-    };
-
-    let cached = null;
-    try { cached = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) {}
-    if (cached && cached.data) {
-      render(cached.data);
-      if (Date.now() - cached.t < TTL) return;
-    }
-
-    try {
-      const [userRes, reposRes] = await Promise.all([
-        fetch('https://api.github.com/users/Bakame03'),
-        fetch('https://api.github.com/users/Bakame03/repos?per_page=100')
-      ]);
-      if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API error');
-      const user = await userRes.json();
-      const repos = await reposRes.json();
-
-      const langCount = {};
-      let stars = 0;
-      repos.forEach(r => {
-        stars += Number(r.stargazers_count) || 0;
-        if (r.language) langCount[r.language] = (langCount[r.language] || 0) + 1;
-      });
-      const langs = Object.keys(langCount)
-        .sort((a, b) => langCount[b] - langCount[a])
-        .slice(0, 4);
-
-      const data = {
-        repos: Number(user.public_repos) || 0,
-        followers: Number(user.followers) || 0,
-        stars: stars,
-        langs: langs
-      };
-      render(data);
-      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data })); } catch (e) {}
-    } catch (error) {
-      console.error('GitHub stats error:', error);
-      // Tiles keep their placeholders (or stale cached values) - no broken UI.
-    }
-  }
-
-  fetchGitHubStats();
 
   /**
    * Scroll Progress Bar

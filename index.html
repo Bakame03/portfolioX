@@ -158,9 +158,9 @@
     <nav id="navbar" class="navbar nav-menu">
       <ul>
         <li><a href="#about" class="nav-link scrollto"><i class="bi bi-person-circle"></i> <span data-i18n="nav_about">À propos</span></a></li>
-        <li><a href="#skills" class="nav-link scrollto"><i class="bi bi-card-checklist"></i> <span data-i18n="nav_skills">Compétences</span></a></li>
-        <li><a href="#resume" class="nav-link scrollto active"><i class="bi bi-file-earmark-text"></i> <span data-i18n="nav_resume">CV</span></a></li>
         <li><a href="#projects" class="nav-link scrollto"><i class="bi bi-code"></i> <span data-i18n="nav_projects">Projets</span></a></li>
+        <li><a href="#resume" class="nav-link scrollto"><i class="bi bi-file-earmark-text"></i> <span data-i18n="nav_resume">CV</span></a></li>
+        <li><a href="#skills" class="nav-link scrollto"><i class="bi bi-card-checklist"></i> <span data-i18n="nav_skills">Compétences</span></a></li>
         <li><a href="#services" class="nav-link scrollto"><i class="bi bi-server"></i> <span data-i18n="nav_services">Services</span></a></li>
         <!-- Testimonials nav hidden until real testimonials are added:
         <li><a href="#testimonials" class="nav-link scrollto"><i class="bi bi-pen"></i> <span data-i18n="nav_testimonials">Testimonials</span></a></li>
@@ -175,7 +175,8 @@
   <section id="hero" class="d-flex flex-column justify-content-center" tabindex="-1">
 
     <!-- Removed data-aos from container to manually control the sequence -->
-    <div class="container hero-intro-container">
+    <div class="container hero-intro-container hero-layout">
+      <div class="hero-copy">
       <p class="hero-intro-elem hero-status">
         <span class="hero-status__dot" aria-hidden="true"></span>
         <span data-i18n="hero_status">Disponible pour un stage de 12 semaines dès le 29 mars 2027</span>
@@ -194,6 +195,35 @@
         <a href="#projects" class="btn-hero btn-hero--primary scrollto"><span data-i18n="hero_cta_projects">Voir mes projets</span> <i class="bi bi-arrow-down" aria-hidden="true"></i></a>
         <a href="#contact" class="btn-hero btn-hero--ghost scrollto"><span data-i18n="hero_cta_contact">Me contacter</span></a>
       </div>
+      </div>
+
+      <!-- Real request/response of the voice assistant's token API
+           (voice-worker/src/index.js). Desktop only: on phones the hero stays
+           a single column. -->
+      <figure class="hero-intro-elem hero-terminal" aria-labelledby="heroTerminalCaption">
+        <div class="hero-terminal__bar" aria-hidden="true">
+          <span class="hero-terminal__dot"></span><span class="hero-terminal__dot"></span><span class="hero-terminal__dot"></span>
+          <span class="hero-terminal__title">portfolio-voice</span>
+        </div>
+<pre class="hero-terminal__body"><code><span class="t-prompt">$</span> curl -X POST \
+    https://portfolio-voice.bakame03.workers.dev/token \
+    -d turnstile=<span class="t-var" data-i18n="hero_term_token">&lt;jeton-anti-bot&gt;</span>
+
+<span class="t-ok">HTTP/2 200</span>
+{
+  <span class="t-key">"token"</span>: <span class="t-str">"auth_tokens/…"</span>,
+  <span class="t-key">"model"</span>: <span class="t-str">"gemini-3.8-live"</span>,
+  <span class="t-key">"expiresInSeconds"</span>: <span class="t-num">300</span>
+}
+
+<span class="t-comment" data-i18n="hero_term_checks"># ✓ origine vérifiée
+# ✓ anti-bot Turnstile
+# ✓ 5 requêtes/min par IP</span></code></pre>
+        <figcaption class="hero-terminal__caption" id="heroTerminalCaption">
+          <span data-i18n="hero_term_caption">L'API de jetons derrière mon assistant vocal : un Cloudflare Worker qui garde la clé Gemini côté serveur.</span>
+          <button type="button" class="hero-terminal__try" data-voice-start><i class="bi bi-mic-fill" aria-hidden="true"></i> <span data-i18n="about_voice_btn">Essayer</span></button>
+        </figcaption>
+      </figure>
     </div>
   </section><!-- End Hero -->
 
@@ -285,121 +315,182 @@
     </section><!-- End About Section -->
 
 
-    <!-- ======= Facts Section ======= -->
-    <section id="facts" class="facts">
+    <!-- ======= Projects Section (2026 Bento Masonry) ======= -->
+    <section id="projects">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2 data-i18n="impact_title">Activité</h2>
-          <p data-i18n="impact_subtitle">Ce que j'ai publié récemment sur GitHub.</p>
-         </div>
+          <h2 data-i18n="projects_title">Projets</h2>
+          <p data-i18n="projects_subtitle">Projets scolaires, de hackathon et personnels. Mon travail chez Asyst est confidentiel, il n'apparaît donc pas ici.</p>
+        </div>
 
-        <!-- ======= GitHub Activity Dashboard ======= -->
-        <div class="row github-dashboard" data-aos="fade-up" data-aos-delay="200">
-          <div class="col-12 text-center">
-            <h3 class="gh-heading"><i class="bi bi-github me-2" aria-hidden="true"></i><span data-i18n="gh_live_activity">Activité GitHub en direct</span></h3>
-            
-            <!-- Self-styled stat tiles fed by the GitHub API (main.js) - values
-                 stay "-" if the API is unreachable, no broken images. -->
-            <div class="github-stats-grid">
-              <div class="stat-tile">
-                <span class="stat-tile__value" id="stat-repos">-</span>
-                <span class="stat-tile__label" data-i18n="gh_stat_repos">Dépôts publics</span>
-              </div>
-              <div class="stat-tile">
-                <span class="stat-tile__value" id="stat-stars">-</span>
-                <span class="stat-tile__label" data-i18n="gh_stat_stars">Étoiles reçues</span>
-              </div>
-              <div class="stat-tile">
-                <span class="stat-tile__value" id="stat-followers">-</span>
-                <span class="stat-tile__label" data-i18n="gh_stat_followers">Abonnés</span>
-              </div>
-              <div class="stat-tile stat-tile--langs">
-                <span class="stat-tile__langs" id="stat-langs"></span>
-                <span class="stat-tile__label" data-i18n="gh_stat_langs">Langages principaux</span>
+        <!-- ===== Featured project: scroll-driven story (Apple product-page
+             style) - the visual stays pinned while the narrative advances ===== -->
+        <div class="flagship-story">
+          <div class="flagship-story__visual">
+            <div class="flagship-story__frame">
+              <img src="assets/img/portfolio/web/hypoxia.webp"
+                srcset="assets/img/portfolio/web/hypoxia-800.webp 800w, assets/img/portfolio/web/hypoxia.webp 1600w"
+                sizes="(min-width: 992px) 50vw, 100vw"
+                alt="HYPOXIA - L'Écho Numérique" width="1100" height="600" loading="lazy">
+              <span class="project-badge project-badge--flagship"><i class="bi bi-trophy" aria-hidden="true"></i> <span data-i18n="project_badge_flagship">Prix du Jury (DevArt)</span></span>
+              <a href="assets/img/portfolio/web/hypoxia.webp" data-gallery="portfolioGallery" class="portfolio-lightbox flagship-story__zoom" title="HYPOXIA - L'Écho Numérique" aria-label="View HYPOXIA full image"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          <div class="flagship-story__steps">
+            <div class="story-step" data-aos="fade-up">
+              <span class="story-step__eyebrow" data-i18n="story_label">Projet phare</span>
+              <h3 class="story-step__title" data-i18n="project_hypoxia_title">HYPOXIA - L'Écho Numérique</h3>
+              <span class="project-card__category" data-i18n="project_cat_hypoxia">3D / Web créatif / IA</span>
+            </div>
+            <div class="story-step" data-aos="fade-up">
+              <span class="story-step__label" data-i18n="story_step_problem">Le problème</span>
+              <p data-i18n="hypoxia_problem">Quand on utilise l'IA, on ne voit pas son coût environnemental.</p>
+            </div>
+            <div class="story-step" data-aos="fade-up">
+              <span class="story-step__label" data-i18n="story_step_arch">L'architecture</span>
+              <p data-i18n="hypoxia_arch"><strong>Next.js 14</strong> + <strong>React Three Fiber</strong>, avec des shaders React Postprocessing et <strong>Zustand</strong> pour garder à l'écran les dégâts sur l'environnement.</p>
+              <div class="project-card__tags">
+                <span class="tech-chip">Next.js 14</span>
+                <span class="tech-chip">React Three Fiber</span>
+                <span class="tech-chip">Zustand</span>
               </div>
             </div>
+            <div class="story-step" data-aos="fade-up">
+              <span class="story-step__label" data-i18n="story_step_outcome">Le résultat</span>
+              <p data-i18n="hypoxia_outcome">Chaque prompt tapé abîme un monde 3D en temps réel. Le projet a remporté le Prix du Jury du hackathon DevArt 2026.</p>
+              <div class="project-card__actions">
+                <a href="https://nebula-gray-seven.vercel.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo"><i class="bi bi-play-circle" aria-hidden="true"></i> <span data-i18n="project_btn_demo">Démo</span></a>
+                <a href="https://github.com/Bakame03/Nebula_DevArt_2026_Project_-HYPOXIA-" target="_blank" rel="noopener" class="btn-action btn-action--ghost"><i class="bi bi-code-slash" aria-hidden="true"></i> <span data-i18n="project_btn_code">Code</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <h3 class="gh-heading mt-4"><i class="bi bi-journal-code me-2" aria-hidden="true"></i><span data-i18n="gh_recent_repos">Dépôts mis à jour récemment</span></h3>
-            <div id="github-repo-list" class="github-live-list">
-              <!-- Repos will be injected here by main.js -->
-              <div class="col-12 text-center py-4">
-                <div class="spinner-border text-primary" role="status">
-                  <span class="visually-hidden">Loading...</span>
+        <div class="projects-grid">
+
+          <!-- 1. Generative AI learning path (no screenshot: notebooks, so the
+               visual block is drawn in CSS - see .project-card__image--ai) -->
+          <div class="portfolio-item" data-aos="fade-up">
+            <div class="project-card">
+              <div class="project-card__image project-card__image--ai" aria-hidden="true">
+                <i class="bi bi-robot"></i>
+                <span class="project-card__image-caption">LLM &middot; RAG &middot; Agents</span>
+                <span class="project-badge project-badge--status" data-i18n="project_badge_progress">En cours</span>
+              </div>
+              <div class="project-card__body">
+                <span class="project-card__category" data-i18n="project_cat_ai">IA générative / Python</span>
+                <h3 class="project-card__title" data-i18n="project_ai_title">Parcours d'auto-formation en IA générative</h3>
+                <p class="project-card__desc" data-i18n="project_ai_desc"><strong>Ce que c'est :</strong> des exercices et notebooks Python que j'écris en apprenant les LLM.<br><strong>Déjà fait :</strong> appels d'API de LLM, résumé de sites web, tokenisation et mémoire de conversation, chaînage de prompts, plusieurs fournisseurs d'API.<br><strong>Prochaines étapes :</strong> RAG et agents.</p>
+                <div class="project-card__tags">
+                  <span class="tech-chip">Python</span>
+                  <span class="tech-chip">Jupyter</span>
+                  <span class="tech-chip">LLM APIs</span>
+                </div>
+                <div class="project-card__actions">
+                  <a href="https://github.com/Bakame03/llm_projects_all_in_one" target="_blank" rel="noopener" class="btn-action btn-action--ghost"><i class="bi bi-code-slash" aria-hidden="true"></i> <span data-i18n="project_btn_code">Code</span></a>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="text-center mt-5">
-              <a href="https://github.com/Bakame03" target="_blank" rel="noopener" class="btn-show-more">
-                <span data-i18n="gh_view_profile">Voir le profil complet</span> <i class="bi bi-box-arrow-up-right ms-2"></i>
-              </a>
+          <!-- 2. Eat Well (Omnifood) -->
+          <div class="portfolio-item" data-aos="fade-up">
+            <div class="project-card">
+              <div class="project-card__image">
+                <img src="assets/img/portfolio/web/eatwell.webp"
+                  srcset="assets/img/portfolio/web/eatwell-800.webp 800w, assets/img/portfolio/web/eatwell.webp 1600w"
+                  sizes="(min-width: 992px) 50vw, 100vw"
+                  alt="Eat Well (Omnifood)" width="1100" height="600" loading="lazy">
+                <span class="project-badge project-badge--status" data-i18n="project_badge_production">En ligne</span>
+                <div class="project-card__overlay">
+                  <a href="assets/img/portfolio/web/eatwell.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Eat Well (Omnifood)"><i class="bi bi-arrows-fullscreen"></i></a>
+                </div>
+              </div>
+              <div class="project-card__body">
+                <span class="project-card__category" data-i18n="project_cat_eatwell">Front-end</span>
+                <h3 class="project-card__title" data-i18n="project_eatwell_title">Eat Well (Omnifood)</h3>
+                <p class="project-card__desc" data-i18n="project_eatwell_desc"><strong>Ce que c'est :</strong> la page d'accueil d'un service de repas.<br><strong>Comment :</strong> page responsive en <strong>HTML, CSS et JavaScript</strong>, avec un formulaire d'inscription relié à <strong>Firebase</strong>.<br><strong>Résultat :</strong> en ligne, avec fenêtres modales, galerie et inscription fonctionnelle.</p>
+                <div class="project-card__tags">
+                  <span class="tech-chip">HTML/CSS</span>
+                  <span class="tech-chip">Vanilla JS</span>
+                  <span class="tech-chip">Firebase</span>
+                </div>
+                <div class="project-card__actions">
+                  <a href="https://imaginative-cobbler-efa68f.netlify.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo"><i class="bi bi-play-circle" aria-hidden="true"></i> <span data-i18n="project_btn_demo">Démo</span></a>
+                  <a href="https://github.com/Bakame03/Eat_Well" target="_blank" rel="noopener" class="btn-action btn-action--ghost"><i class="bi bi-code-slash" aria-hidden="true"></i> <span data-i18n="project_btn_code">Code</span></a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
+          <!-- 3. Unified Service Ecosystem -->
+          <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-card">
+              <div class="project-card__image">
+                <img src="assets/img/portfolio/web/services.webp"
+                  srcset="assets/img/portfolio/web/services-800.webp 800w, assets/img/portfolio/web/services.webp 1600w"
+                  sizes="(min-width: 992px) 50vw, 100vw"
+                  alt="Unified Service Ecosystem" width="1100" height="600" loading="lazy">
+                <span class="project-badge project-badge--status" data-i18n="project_badge_api">API</span>
+                <div class="project-card__overlay">
+                  <a href="assets/img/portfolio/web/services.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Unified Service Ecosystem"><i class="bi bi-arrows-fullscreen"></i></a>
+                </div>
+              </div>
+              <div class="project-card__body">
+                <span class="project-card__category" data-i18n="project_cat_services">Intégration d'API</span>
+                <h3 class="project-card__title" data-i18n="project_services_title">Écosystème de services unifié</h3>
+                <p class="project-card__desc" data-i18n="project_services_desc"><strong>Ce que c'est :</strong> un prototype qui réunit plusieurs services externes dans un même portail.<br><strong>Comment :</strong> <strong>Stripe</strong> (paiement), <strong>Twilio</strong> (SMS), <strong>OpenWeatherMap</strong> (météo) et <strong>Firebase</strong> (base de données temps réel).<br><strong>Résultat :</strong> une démo fonctionnelle où ces API s'utilisent depuis une seule interface.</p>
+                <div class="project-card__tags">
+                  <span class="tech-chip">Stripe API</span>
+                  <span class="tech-chip">Twilio API</span>
+                  <span class="tech-chip">API Mashup</span>
+                </div>
+                <div class="project-card__actions">
+                  <a href="https://celadon-frangollo-6483f9.netlify.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo"><i class="bi bi-play-circle" aria-hidden="true"></i> <span data-i18n="project_btn_demo">Démo</span></a>
+                  <a href="https://github.com/Bakame03/service_web_project" target="_blank" rel="noopener" class="btn-action btn-action--ghost"><i class="bi bi-code-slash" aria-hidden="true"></i> <span data-i18n="project_btn_code">Code</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Modern Web Calculator -->
+          <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-card">
+              <div class="project-card__image">
+                <img src="assets/img/portfolio/web/calculator.webp"
+                  srcset="assets/img/portfolio/web/calculator-800.webp 800w, assets/img/portfolio/web/calculator.webp 1600w"
+                  sizes="(min-width: 992px) 50vw, 100vw"
+                  alt="Web Calculator" width="1100" height="600" loading="lazy">
+                <div class="project-card__overlay">
+                  <a href="assets/img/portfolio/web/calculator.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Modern Web Calculator"><i class="bi bi-arrows-fullscreen"></i></a>
+                </div>
+              </div>
+              <div class="project-card__body">
+                <span class="project-card__category" data-i18n="project_cat_calc">Outils web</span>
+                <h3 class="project-card__title" data-i18n="project_calc_title">Calculatrice web</h3>
+                <p class="project-card__desc" data-i18n="project_calc_desc"><strong>Ce que c'est :</strong> une calculatrice qui fonctionne sur tous les appareils.<br><strong>Comment :</strong> <strong>JavaScript</strong> sans dépendance, mise en page en <strong>CSS Flexbox</strong>, servie par un petit serveur <strong>Node.js</strong> écrit à la main.<br><strong>Résultat :</strong> un outil léger qui se charge instantanément.</p>
+                <div class="project-card__tags">
+                  <span class="tech-chip">JavaScript</span>
+                  <span class="tech-chip">Node.js</span>
+                  <span class="tech-chip">UI/UX</span>
+                </div>
+                <div class="project-card__actions">
+                  <a href="https://cool-hotteok-83ed4b.netlify.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo"><i class="bi bi-play-circle" aria-hidden="true"></i> <span data-i18n="project_btn_demo">Démo</span></a>
+                  <a href="https://github.com/Bakame03/CalculatorApp" target="_blank" rel="noopener" class="btn-action btn-action--ghost"><i class="bi bi-code-slash" aria-hidden="true"></i> <span data-i18n="project_btn_code">Code</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- End projects-grid -->
 
       </div>
-    </section><!-- End Facts Section -->
 
-    <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills section-bg">
-      <div class="container" data-aos="fade-up">
+    </section> <!-- End Projects Section -->
 
-        <div class="section-title">
-          <h2 data-i18n="skills_title">Compétences</h2>
-          <p data-i18n="skills_subtitle">Ce que j'utilise en cours, dans mes projets et en entreprise.</p>
-        </div>
 
-        <div class="row">
-          <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="h5 mb-3 skills-cat-title">
-              <i class="bi bi-code-square me-2" aria-hidden="true"></i> <span data-i18n="skills_cat_prog">Langages</span>
-            </h3>
-            <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-py me-1 ic-python"></i> Python</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-tsx me-1 ic-typescript"></i> TypeScript</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-js me-1 ic-js"></i> JavaScript</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1 ic-java"></i> Java</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1 ic-c"></i> C</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1 ic-cpp"></i> C++</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-html me-1 ic-html"></i> HTML / CSS</span>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="h5 mb-3 skills-cat-title">
-              <i class="bi bi-server me-2" aria-hidden="true"></i> <span data-i18n="skills_cat_backend">Back-end &amp; bases de données</span>
-            </h3>
-            <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hexagon-fill me-1 ic-nestjs"></i> NestJS</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hexagon-fill me-1 ic-node"></i> Node.js</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-code-slash me-1 ic-django"></i> Django</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-shuffle me-1 ic-rest"></i> API REST</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hdd-network me-1 ic-micro"></i> Microservices</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-database me-1 ic-sql"></i> PostgreSQL</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-database me-1 ic-mongo"></i> MongoDB</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-database me-1 ic-sql"></i> SQL</span>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-            <h3 class="h5 mb-3 skills-cat-title">
-              <i class="bi bi-tools me-2" aria-hidden="true"></i> <span data-i18n="skills_cat_tools">Outils &amp; formation</span>
-            </h3>
-            <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-git me-1 ic-git"></i> Git</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-box-seam me-1 ic-docker"></i> Docker</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-terminal me-1"></i> Linux</span>
-              <span class="badge badge-wrap bg-white text-dark border p-2 shadow-sm"><i class="bi bi-robot me-1 ic-aiml"></i> <span data-i18n="skills_ai">IA générative : LLM, prompt engineering, RAG, agents</span> <small class="text-muted" data-i18n="skills_learning">(en formation)</small></span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Skills Section -->
-
-    
     <!-- ======= Resume Section ======= -->
     <section id="resume" class="resume">
       <div class="container" data-aos="fade-up">
@@ -603,183 +694,98 @@
     </section><!-- End Resume Section -->
 
 
-    <!-- ======= Projects Section (2026 Bento Masonry) ======= -->
-    <section id="projects">
+    <!-- ======= Skills Section ======= -->
+    <section id="skills" class="skills section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2 data-i18n="projects_title">Projets</h2>
-          <p data-i18n="projects_subtitle">Projets scolaires, de hackathon et personnels. Mon travail chez Asyst est confidentiel, il n'apparaît donc pas ici.</p>
+          <h2 data-i18n="skills_title">Compétences</h2>
+          <p data-i18n="skills_subtitle">Ce que j'utilise en cours, dans mes projets et en entreprise.</p>
         </div>
 
-        <!-- ===== Featured project: scroll-driven story (Apple product-page
-             style) - the visual stays pinned while the narrative advances ===== -->
-        <div class="flagship-story">
-          <div class="flagship-story__visual">
-            <div class="flagship-story__frame">
-              <img src="assets/img/portfolio/web/hypoxia.webp"
-                srcset="assets/img/portfolio/web/hypoxia-800.webp 800w, assets/img/portfolio/web/hypoxia.webp 1600w"
-                sizes="(min-width: 992px) 50vw, 100vw"
-                alt="HYPOXIA - L'Écho Numérique" width="1100" height="600" loading="lazy">
-              <span class="project-badge project-badge--flagship"><i class="bi bi-trophy" aria-hidden="true"></i> <span data-i18n="project_badge_flagship">Prix du Jury (DevArt)</span></span>
-              <a href="assets/img/portfolio/web/hypoxia.webp" data-gallery="portfolioGallery" class="portfolio-lightbox flagship-story__zoom" title="HYPOXIA - L'Écho Numérique" aria-label="View HYPOXIA full image"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></a>
+        <div class="row">
+          <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="h5 mb-3 skills-cat-title">
+              <i class="bi bi-code-square me-2" aria-hidden="true"></i> <span data-i18n="skills_cat_prog">Langages</span>
+            </h3>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-py me-1 ic-python"></i> Python</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-tsx me-1 ic-typescript"></i> TypeScript</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-js me-1 ic-js"></i> JavaScript</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1 ic-java"></i> Java</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1 ic-c"></i> C</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-braces me-1 ic-cpp"></i> C++</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-filetype-html me-1 ic-html"></i> HTML / CSS</span>
             </div>
           </div>
 
-          <div class="flagship-story__steps">
-            <div class="story-step" data-aos="fade-up">
-              <span class="story-step__eyebrow" data-i18n="story_label">Projet phare</span>
-              <h3 class="story-step__title" data-i18n="project_hypoxia_title">HYPOXIA - L'Écho Numérique</h3>
-              <span class="project-card__category" data-i18n="project_cat_hypoxia">3D / Web créatif / IA</span>
+          <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="h5 mb-3 skills-cat-title">
+              <i class="bi bi-server me-2" aria-hidden="true"></i> <span data-i18n="skills_cat_backend">Back-end &amp; bases de données</span>
+            </h3>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hexagon-fill me-1 ic-nestjs"></i> NestJS</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hexagon-fill me-1 ic-node"></i> Node.js</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-code-slash me-1 ic-django"></i> Django</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-shuffle me-1 ic-rest"></i> API REST</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hdd-network me-1 ic-micro"></i> Microservices</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-database me-1 ic-sql"></i> PostgreSQL</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-database me-1 ic-mongo"></i> MongoDB</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-database me-1 ic-sql"></i> SQL</span>
             </div>
-            <div class="story-step" data-aos="fade-up">
-              <span class="story-step__label" data-i18n="story_step_problem">Le problème</span>
-              <p data-i18n="hypoxia_problem">Quand on utilise l'IA, on ne voit pas son coût environnemental.</p>
-            </div>
-            <div class="story-step" data-aos="fade-up">
-              <span class="story-step__label" data-i18n="story_step_arch">L'architecture</span>
-              <p data-i18n="hypoxia_arch"><strong>Next.js 14</strong> + <strong>React Three Fiber</strong>, avec des shaders React Postprocessing et <strong>Zustand</strong> pour garder à l'écran les dégâts sur l'environnement.</p>
-              <div class="project-card__tags">
-                <span class="tech-chip">Next.js 14</span>
-                <span class="tech-chip">React Three Fiber</span>
-                <span class="tech-chip">Zustand</span>
-              </div>
-            </div>
-            <div class="story-step" data-aos="fade-up">
-              <span class="story-step__label" data-i18n="story_step_outcome">Le résultat</span>
-              <p data-i18n="hypoxia_outcome">Chaque prompt tapé abîme un monde 3D en temps réel. Le projet a remporté le Prix du Jury du hackathon DevArt 2026.</p>
-              <div class="project-card__actions">
-                <a href="https://nebula-gray-seven.vercel.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo"><i class="bi bi-play-circle" aria-hidden="true"></i> <span data-i18n="project_btn_demo">Démo</span></a>
-                <a href="https://github.com/Bakame03/Nebula_DevArt_2026_Project_-HYPOXIA-" target="_blank" rel="noopener" class="btn-action btn-action--ghost"><i class="bi bi-code-slash" aria-hidden="true"></i> <span data-i18n="project_btn_code">Code</span></a>
-              </div>
+          </div>
+
+          <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+            <h3 class="h5 mb-3 skills-cat-title">
+              <i class="bi bi-tools me-2" aria-hidden="true"></i> <span data-i18n="skills_cat_tools">Outils &amp; formation</span>
+            </h3>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-git me-1 ic-git"></i> Git</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-box-seam me-1 ic-docker"></i> Docker</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-terminal me-1"></i> Linux</span>
+              <span class="badge badge-wrap bg-white text-dark border p-2 shadow-sm"><i class="bi bi-robot me-1 ic-aiml"></i> <span data-i18n="skills_ai">IA générative : LLM, prompt engineering, RAG, agents</span> <small class="text-muted" data-i18n="skills_learning">(en formation)</small></span>
             </div>
           </div>
         </div>
-
-        <div class="projects-grid">
-
-          <!-- 1. Generative AI learning path (no screenshot: notebooks, so the
-               visual block is drawn in CSS - see .project-card__image--ai) -->
-          <div class="portfolio-item" data-aos="fade-up">
-            <div class="project-card">
-              <div class="project-card__image project-card__image--ai" aria-hidden="true">
-                <i class="bi bi-robot"></i>
-                <span class="project-card__image-caption">LLM &middot; RAG &middot; Agents</span>
-                <span class="project-badge project-badge--status" data-i18n="project_badge_progress">En cours</span>
-              </div>
-              <div class="project-card__body">
-                <span class="project-card__category" data-i18n="project_cat_ai">IA générative / Python</span>
-                <h3 class="project-card__title" data-i18n="project_ai_title">Parcours d'auto-formation en IA générative</h3>
-                <p class="project-card__desc" data-i18n="project_ai_desc"><strong>Ce que c'est :</strong> des exercices et notebooks Python que j'écris en apprenant les LLM.<br><strong>Déjà fait :</strong> appels d'API de LLM, résumé de sites web, tokenisation et mémoire de conversation, chaînage de prompts, plusieurs fournisseurs d'API.<br><strong>Prochaines étapes :</strong> RAG et agents.</p>
-                <div class="project-card__tags">
-                  <span class="tech-chip">Python</span>
-                  <span class="tech-chip">Jupyter</span>
-                  <span class="tech-chip">LLM APIs</span>
-                </div>
-                <div class="project-card__actions">
-                  <a href="https://github.com/Bakame03/llm_projects_all_in_one" target="_blank" rel="noopener" class="btn-action btn-action--ghost"><i class="bi bi-code-slash" aria-hidden="true"></i> <span data-i18n="project_btn_code">Code</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2. Eat Well (Omnifood) -->
-          <div class="portfolio-item" data-aos="fade-up">
-            <div class="project-card">
-              <div class="project-card__image">
-                <img src="assets/img/portfolio/web/eatwell.webp"
-                  srcset="assets/img/portfolio/web/eatwell-800.webp 800w, assets/img/portfolio/web/eatwell.webp 1600w"
-                  sizes="(min-width: 992px) 50vw, 100vw"
-                  alt="Eat Well (Omnifood)" width="1100" height="600" loading="lazy">
-                <span class="project-badge project-badge--status" data-i18n="project_badge_production">En ligne</span>
-                <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/eatwell.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Eat Well (Omnifood)"><i class="bi bi-arrows-fullscreen"></i></a>
-                </div>
-              </div>
-              <div class="project-card__body">
-                <span class="project-card__category" data-i18n="project_cat_eatwell">Front-end</span>
-                <h3 class="project-card__title" data-i18n="project_eatwell_title">Eat Well (Omnifood)</h3>
-                <p class="project-card__desc" data-i18n="project_eatwell_desc"><strong>Ce que c'est :</strong> la page d'accueil d'un service de repas.<br><strong>Comment :</strong> page responsive en <strong>HTML, CSS et JavaScript</strong>, avec un formulaire d'inscription relié à <strong>Firebase</strong>.<br><strong>Résultat :</strong> en ligne, avec fenêtres modales, galerie et inscription fonctionnelle.</p>
-                <div class="project-card__tags">
-                  <span class="tech-chip">HTML/CSS</span>
-                  <span class="tech-chip">Vanilla JS</span>
-                  <span class="tech-chip">Firebase</span>
-                </div>
-                <div class="project-card__actions">
-                  <a href="https://imaginative-cobbler-efa68f.netlify.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo"><i class="bi bi-play-circle" aria-hidden="true"></i> <span data-i18n="project_btn_demo">Démo</span></a>
-                  <a href="https://github.com/Bakame03/Eat_Well" target="_blank" rel="noopener" class="btn-action btn-action--ghost"><i class="bi bi-code-slash" aria-hidden="true"></i> <span data-i18n="project_btn_code">Code</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3. Unified Service Ecosystem -->
-          <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
-            <div class="project-card">
-              <div class="project-card__image">
-                <img src="assets/img/portfolio/web/services.webp"
-                  srcset="assets/img/portfolio/web/services-800.webp 800w, assets/img/portfolio/web/services.webp 1600w"
-                  sizes="(min-width: 992px) 50vw, 100vw"
-                  alt="Unified Service Ecosystem" width="1100" height="600" loading="lazy">
-                <span class="project-badge project-badge--status" data-i18n="project_badge_api">API</span>
-                <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/services.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Unified Service Ecosystem"><i class="bi bi-arrows-fullscreen"></i></a>
-                </div>
-              </div>
-              <div class="project-card__body">
-                <span class="project-card__category" data-i18n="project_cat_services">Intégration d'API</span>
-                <h3 class="project-card__title" data-i18n="project_services_title">Écosystème de services unifié</h3>
-                <p class="project-card__desc" data-i18n="project_services_desc"><strong>Ce que c'est :</strong> un prototype qui réunit plusieurs services externes dans un même portail.<br><strong>Comment :</strong> <strong>Stripe</strong> (paiement), <strong>Twilio</strong> (SMS), <strong>OpenWeatherMap</strong> (météo) et <strong>Firebase</strong> (base de données temps réel).<br><strong>Résultat :</strong> une démo fonctionnelle où ces API s'utilisent depuis une seule interface.</p>
-                <div class="project-card__tags">
-                  <span class="tech-chip">Stripe API</span>
-                  <span class="tech-chip">Twilio API</span>
-                  <span class="tech-chip">API Mashup</span>
-                </div>
-                <div class="project-card__actions">
-                  <a href="https://celadon-frangollo-6483f9.netlify.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo"><i class="bi bi-play-circle" aria-hidden="true"></i> <span data-i18n="project_btn_demo">Démo</span></a>
-                  <a href="https://github.com/Bakame03/service_web_project" target="_blank" rel="noopener" class="btn-action btn-action--ghost"><i class="bi bi-code-slash" aria-hidden="true"></i> <span data-i18n="project_btn_code">Code</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4. Modern Web Calculator -->
-          <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
-            <div class="project-card">
-              <div class="project-card__image">
-                <img src="assets/img/portfolio/web/calculator.webp"
-                  srcset="assets/img/portfolio/web/calculator-800.webp 800w, assets/img/portfolio/web/calculator.webp 1600w"
-                  sizes="(min-width: 992px) 50vw, 100vw"
-                  alt="Web Calculator" width="1100" height="600" loading="lazy">
-                <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/calculator.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Modern Web Calculator"><i class="bi bi-arrows-fullscreen"></i></a>
-                </div>
-              </div>
-              <div class="project-card__body">
-                <span class="project-card__category" data-i18n="project_cat_calc">Outils web</span>
-                <h3 class="project-card__title" data-i18n="project_calc_title">Calculatrice web</h3>
-                <p class="project-card__desc" data-i18n="project_calc_desc"><strong>Ce que c'est :</strong> une calculatrice qui fonctionne sur tous les appareils.<br><strong>Comment :</strong> <strong>JavaScript</strong> sans dépendance, mise en page en <strong>CSS Flexbox</strong>, servie par un petit serveur <strong>Node.js</strong> écrit à la main.<br><strong>Résultat :</strong> un outil léger qui se charge instantanément.</p>
-                <div class="project-card__tags">
-                  <span class="tech-chip">JavaScript</span>
-                  <span class="tech-chip">Node.js</span>
-                  <span class="tech-chip">UI/UX</span>
-                </div>
-                <div class="project-card__actions">
-                  <a href="https://cool-hotteok-83ed4b.netlify.app/" target="_blank" rel="noopener" class="btn-action btn-action--demo"><i class="bi bi-play-circle" aria-hidden="true"></i> <span data-i18n="project_btn_demo">Démo</span></a>
-                  <a href="https://github.com/Bakame03/CalculatorApp" target="_blank" rel="noopener" class="btn-action btn-action--ghost"><i class="bi bi-code-slash" aria-hidden="true"></i> <span data-i18n="project_btn_code">Code</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div> <!-- End projects-grid -->
 
       </div>
+    </section><!-- End Skills Section -->
 
-    </section> <!-- End Projects Section -->
+
+    <!-- ======= Facts Section ======= -->
+    <section id="facts" class="facts">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2 data-i18n="impact_title">Activité</h2>
+          <p data-i18n="impact_subtitle">Ce que j'ai publié récemment sur GitHub.</p>
+         </div>
+
+        <!-- ======= GitHub Activity Dashboard ======= -->
+        <div class="row github-dashboard" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-12 text-center">
+            <div id="github-repo-list" class="github-live-list">
+              <!-- Repos will be injected here by main.js -->
+              <div class="col-12 text-center py-4">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center mt-5">
+              <a href="https://github.com/Bakame03" target="_blank" rel="noopener" class="btn-show-more">
+                <span data-i18n="gh_view_profile">Voir le profil complet</span> <i class="bi bi-box-arrow-up-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
 
 
-    
+      </div>
+    </section><!-- End Facts Section -->
+
+
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
       <div class="container" data-aos="fade-up">

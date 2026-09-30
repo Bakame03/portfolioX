@@ -46,17 +46,15 @@ window.translations = {
     about_voice_title: "Ask my AI assistant",
     about_voice_text: "This site has a voice assistant that answers questions about my background. I built it with the Gemini Live API and a Cloudflare Worker that keeps the API key off the browser.",
     about_voice_btn: "Try it",
+    hero_term_token: "&lt;anti-bot-token&gt;",
+    hero_term_checks: "# ✓ origin checked\n# ✓ Turnstile anti-bot\n# ✓ 5 requests/min per IP",
+    hero_term_caption: "The token API behind my voice assistant: a Cloudflare Worker that keeps the Gemini key on the server.",
 
     // Impact
     impact_title: "Activity",
     impact_subtitle: "What I've been pushing to GitHub lately.",
-    gh_live_activity: "GitHub Live Activity",
-    gh_recent_repos: "Recently Updated Repositories",
     gh_view_profile: "View Full Profile",
-    gh_stat_repos: "Public repositories",
-    gh_stat_stars: "Stars earned",
-    gh_stat_followers: "Followers",
-    gh_stat_langs: "Top languages",
+    gh_load_error: "Couldn't load the repositories right now. The full list is on my GitHub profile below.",
 
     // Skills
     skills_title: "Skills",
@@ -261,17 +259,15 @@ window.translations = {
     about_voice_title: "Posez vos questions à mon assistant IA",
     about_voice_text: "Ce site a un assistant vocal qui répond aux questions sur mon parcours. Je l'ai construit avec l'API Gemini Live et un Cloudflare Worker qui garde la clé d'API hors du navigateur.",
     about_voice_btn: "Essayer",
+    hero_term_token: "&lt;jeton-anti-bot&gt;",
+    hero_term_checks: "# ✓ origine vérifiée\n# ✓ anti-bot Turnstile\n# ✓ 5 requêtes/min par IP",
+    hero_term_caption: "L'API de jetons derrière mon assistant vocal : un Cloudflare Worker qui garde la clé Gemini côté serveur.",
 
     // Impact
     impact_title: "Activité",
     impact_subtitle: "Ce que j'ai publié récemment sur GitHub.",
-    gh_live_activity: "Activité GitHub en direct",
-    gh_recent_repos: "Dépôts mis à jour récemment",
     gh_view_profile: "Voir le profil complet",
-    gh_stat_repos: "Dépôts publics",
-    gh_stat_stars: "Étoiles reçues",
-    gh_stat_followers: "Abonnés",
-    gh_stat_langs: "Langages principaux",
+    gh_load_error: "Impossible de charger les dépôts pour le moment. La liste complète est sur mon profil GitHub, juste en dessous.",
 
     // Skills
     skills_title: "Compétences",
