@@ -6,7 +6,6 @@ window.translations = {
     nav_skills: "Skills",
     nav_resume: "Resume",
     nav_projects: "Projects",
-    nav_services: "Services",
     nav_testimonials: "Testimonials",
     nav_contact: "Contact",
 
@@ -161,14 +160,6 @@ window.translations = {
     project_cat_calc: "Web tools",
 
     // Services
-    services_title: "Services",
-    services_subtitle: "Mostly back-end work, plus the front-end needed to ship a complete application.",
-    service_backend_title: "Back-end & APIs",
-    service_backend_desc: "REST APIs with NestJS or Django, PostgreSQL or MongoDB databases, microservices and third-party integrations (Stripe, Twilio).",
-    service_web_title: "Full-stack web apps",
-    service_web_desc: "Complete web applications: NestJS or Django back end, PostgreSQL or MongoDB database, HTML, CSS and JavaScript interface.",
-    service_ui_title: "Front-end integration",
-    service_ui_desc: "Responsive pages in HTML, CSS and JavaScript, accessible and fast to load.",
 
     // Testimonials
     testimonials_title: "Testimonials",
@@ -192,7 +183,7 @@ window.translations = {
     contact_status_error: "Oops! There was a problem sending your message. Please try again.",
 
     // Footer
-    footer_quote: '"Design is not just what it looks like and feels like. It\'s how it works."',
+    footer_tagline: "Back-end developer (NestJS, Python) · Arles,&nbsp;France",
     footer_credits: "Designed by Aldo Alex NGANJI - AKA Bakame03",
 
     // Voice assistant
@@ -219,7 +210,6 @@ window.translations = {
     nav_skills: "Compétences",
     nav_resume: "CV",
     nav_projects: "Projets",
-    nav_services: "Services",
     nav_testimonials: "Témoignages",
     nav_contact: "Contact",
 
@@ -374,14 +364,6 @@ window.translations = {
     project_cat_calc: "Outils web",
 
     // Services
-    services_title: "Services",
-    services_subtitle: "Surtout du back-end, avec le front-end nécessaire pour livrer une application complète.",
-    service_backend_title: "Back-end & API",
-    service_backend_desc: "API REST en NestJS ou Django, bases PostgreSQL ou MongoDB, microservices et intégration de services tiers (Stripe, Twilio).",
-    service_web_title: "Applications web complètes",
-    service_web_desc: "Des applications de bout en bout : back-end NestJS ou Django, base PostgreSQL ou MongoDB, interface en HTML, CSS et JavaScript.",
-    service_ui_title: "Intégration front-end",
-    service_ui_desc: "Pages responsives en HTML, CSS et JavaScript, accessibles et rapides à charger.",
 
     // Testimonials
     testimonials_title: "Témoignages",
@@ -405,7 +387,7 @@ window.translations = {
     contact_status_error: "Un problème est survenu pendant l'envoi. Veuillez réessayer.",
 
     // Footer
-    footer_quote: '"Le design, ce n\'est pas seulement ce à quoi ça ressemble ou ce qu\'on ressent. C\'est comment ça marche."',
+    footer_tagline: "Développeur back-end (NestJS, Python) · Arles,&nbsp;France",
     footer_credits: "Conçu par Aldo Alex NGANJI - alias Bakame03",
 
     // Voice assistant
