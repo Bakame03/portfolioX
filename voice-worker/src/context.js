@@ -77,8 +77,8 @@ triggers, simulating deforestation and the water used to cool servers.
   reaches the browser, protected by Cloudflare Turnstile.
 
 ## Skills
-Languages: Python, TypeScript, JavaScript, C, C++, HTML, CSS.
-Back-end: NestJS, Django, REST APIs, microservices, PostgreSQL, MongoDB, SQL.
+Languages: Python, TypeScript, JavaScript, Java, C, C++, HTML, CSS.
+Back-end: NestJS, Node.js, Django, REST APIs, microservices, PostgreSQL, MongoDB, SQL.
 Tools: Git, Docker, Linux.
 Front-end: HTML, CSS, JavaScript (no React or Next.js as personal skills).
 Generative AI, in training: LLMs, prompt engineering, RAG, agents. He has not

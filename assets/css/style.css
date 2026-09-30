@@ -1255,6 +1255,13 @@ section .container {
   transform: translateY(-2px);
 }
 
+/* Bootstrap's .text-muted is a fixed dark grey that vanishes on the dark
+   theme's badges; follow the theme text colour instead. */
+.skills .badge .text-muted {
+  color: var(--text-color) !important;
+  opacity: 0.7;
+}
+
 /*--------------------------------------------------------------
 # Resume 
 --------------------------------------------------------------*/
@@ -2307,8 +2314,11 @@ section .container {
 .ic-typescript  { color: #3178c6; }
 .ic-c           { color: #00599c; }
 .ic-cpp         { color: #f34b7d; }
+.ic-java        { color: #e76f00; }
 .ic-html        { color: #e34f26; }
 .ic-nestjs      { color: #e0234e; }
+.ic-node        { color: #5fa04e; }
+.ic-django      { color: #44b78b; }
 .ic-sql         { color: #336791; }
 .ic-mongo       { color: #47a248; }
 .ic-js          { color: #d4a300; }
