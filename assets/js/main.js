@@ -294,7 +294,9 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    // threshold 0: a ratio would never be reached by blocks taller than the
+    // viewport (the About container on phones is ~3 screens tall).
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
     els.forEach(el => observer.observe(el));
 

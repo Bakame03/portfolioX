@@ -977,6 +977,18 @@ body.mobile-nav-active::after {
   }
 }
 
+/* Phones and tablets: size the hero to its content instead of a full,
+   vertically-centred screen, which left a large empty band above the name.
+   Top padding clears the fixed control dock. */
+@media (max-width: 991.98px) {
+  #hero {
+    height: auto;
+    min-height: 0;
+    justify-content: flex-start !important;
+    padding: calc(96px + env(safe-area-inset-top)) 0 56px;
+  }
+}
+
 /* Hero terminal card: a real call to the voice assistant's token API.
    Wide screens only - below 1200px (after the 160px side nav) there is no
    room beside the name, and phones keep the single-column hero. */

@@ -100,8 +100,8 @@ window.translations = {
     resume_prize_devart_members: "Mamadou Bailo BARRY, Aminata Sita CAMARA, Aldo Alex NGANJI, Djawad TOURE ISSAHOU",
     resume_prize_devart_note: "(BUT Informatique, 1st year)",
     resume_prize_devart_place: "1st place | 12-13 Feb 2026",
-    resume_prize_devart_p1: "Theme: <strong>'L'Écho'</strong>. We built an AI interface that shows the natural resources a request consumes. The more complex the request, the more <strong>visual and sound alerts</strong> it triggers, simulating deforestation and the water used to cool servers.",
     resume_prize_devart_p2: "<i class='bi bi-people-fill me-1'></i> 10 teams | 32 hours | Jury of local industry professionals",
+    resume_prize_devart_link: "See the winning project: HYPOXIA",
     resume_hackathon_photos: "Hackathon Photos | 10 shots",
 
     resume_exp_backend_role: "Back-end developer",
@@ -295,8 +295,8 @@ window.translations = {
     resume_prize_devart_members: "Mamadou Bailo BARRY, Aminata Sita CAMARA, Aldo Alex NGANJI, Djawad TOURE ISSAHOU",
     resume_prize_devart_note: "(BUT Informatique, 1re année)",
     resume_prize_devart_place: "1re place | 12-13 février 2026",
-    resume_prize_devart_p1: "Thème : <strong>« L'Écho »</strong>. Nous avons créé une interface d'IA qui montre les ressources naturelles consommées par chaque requête. Plus la demande est complexe, plus elle déclenche d'<strong>alertes visuelles et sonores</strong> qui simulent la déforestation et l'eau utilisée pour refroidir les serveurs.",
     resume_prize_devart_p2: "<i class='bi bi-people-fill me-1'></i> 10 équipes | 32 heures | Jury de professionnels du secteur",
+    resume_prize_devart_link: "Voir le projet primé : HYPOXIA",
     resume_hackathon_photos: "Photos du hackathon | 10 photos",
 
     resume_exp_backend_role: "Développeur back-end",
