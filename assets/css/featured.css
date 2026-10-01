@@ -70,7 +70,41 @@
 }
 
 .project-card:hover .project-card__image img {
-  transform: scale(1.03);
+  transform: scale(1.06);
+}
+
+/* Tilt toward the cursor + a soft light that follows it (main.js sets
+   --rx/--ry/--mx/--my). Mouse only; touch and reduced motion keep the plain
+   lift above. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover {
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px);
+  }
+
+  .project-card.is-tilting {
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .project-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.16), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover::after {
+    opacity: 1;
+  }
+}
+
+/* Cards rise with a slight scale; the right-hand card of each row follows
+   the left one (data-aos-delay in index.html). */
+.js .portfolio-item[data-aos]:not(.aos-animate) {
+  transform: translateY(32px) scale(0.97);
 }
 
 /* Card with no screenshot (the generative AI notebooks): a drawn visual in

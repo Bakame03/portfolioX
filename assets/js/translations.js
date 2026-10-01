@@ -45,7 +45,9 @@ window.translations = {
     about_voice_text: "This site has a voice assistant that answers questions about my background. I built it with the Gemini Live API and a Cloudflare Worker that keeps the API key off the browser.",
     about_voice_btn: "Try it",
     hero_term_token: "&lt;anti-bot-token&gt;",
-    hero_term_checks: "# ✓ origin checked\n# ✓ Turnstile anti-bot\n# ✓ 5 requests/min per IP",
+    hero_term_check1: "origin checked",
+    hero_term_check2: "Turnstile anti-bot",
+    hero_term_check3: "5 requests/min per IP",
     hero_term_caption: "The token API behind my voice assistant: a Cloudflare Worker that keeps the Gemini key on the server.",
 
     // Impact
@@ -240,7 +242,9 @@ window.translations = {
     about_voice_text: "Ce site a un assistant vocal qui répond aux questions sur mon parcours. Je l'ai construit avec l'API Gemini Live et un Cloudflare Worker qui garde la clé d'API hors du navigateur.",
     about_voice_btn: "Essayer",
     hero_term_token: "&lt;jeton-anti-bot&gt;",
-    hero_term_checks: "# ✓ origine vérifiée\n# ✓ anti-bot Turnstile\n# ✓ 5 requêtes/min par IP",
+    hero_term_check1: "origine vérifiée",
+    hero_term_check2: "anti-bot Turnstile",
+    hero_term_check3: "5 requêtes/min par IP",
     hero_term_caption: "L'API de jetons derrière mon assistant vocal : un Cloudflare Worker qui garde la clé Gemini côté serveur.",
 
     // Impact

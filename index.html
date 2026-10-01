@@ -201,20 +201,20 @@
           <span class="hero-terminal__dot"></span><span class="hero-terminal__dot"></span><span class="hero-terminal__dot"></span>
           <span class="hero-terminal__title">portfolio-voice</span>
         </div>
-<pre class="hero-terminal__body"><code><span class="t-prompt">$</span> curl -X POST \
+<pre class="hero-terminal__body"><code><span class="t-cmd"><span class="t-prompt">$</span> curl -X POST \
     https://portfolio-voice.bakame03.workers.dev/token \
-    -d turnstile=<span class="t-var" data-i18n="hero_term_token">&lt;jeton-anti-bot&gt;</span>
+    -d turnstile=<span class="t-var" data-i18n="hero_term_token">&lt;jeton-anti-bot&gt;</span></span>
+<span class="t-pending" aria-hidden="true"></span>
+<span class="t-line"><span class="t-ok">HTTP/2 200</span></span>
+<span class="t-line">{</span>
+<span class="t-line">  <span class="t-key">"token"</span>: <span class="t-str">"auth_tokens/…"</span>,</span>
+<span class="t-line">  <span class="t-key">"model"</span>: <span class="t-str">"gemini-3.8-live"</span>,</span>
+<span class="t-line">  <span class="t-key">"expiresInSeconds"</span>: <span class="t-num">300</span></span>
+<span class="t-line">}</span>
 
-<span class="t-ok">HTTP/2 200</span>
-{
-  <span class="t-key">"token"</span>: <span class="t-str">"auth_tokens/…"</span>,
-  <span class="t-key">"model"</span>: <span class="t-str">"gemini-3.8-live"</span>,
-  <span class="t-key">"expiresInSeconds"</span>: <span class="t-num">300</span>
-}
-
-<span class="t-comment" data-i18n="hero_term_checks"># ✓ origine vérifiée
-# ✓ anti-bot Turnstile
-# ✓ 5 requêtes/min par IP</span></code></pre>
+<span class="t-line t-check"><span class="t-comment"># <span class="t-tick">✓</span> <span data-i18n="hero_term_check1">origine vérifiée</span></span></span>
+<span class="t-line t-check"><span class="t-comment"># <span class="t-tick">✓</span> <span data-i18n="hero_term_check2">anti-bot Turnstile</span></span></span>
+<span class="t-line t-check"><span class="t-comment"># <span class="t-tick">✓</span> <span data-i18n="hero_term_check3">5 requêtes/min par IP</span></span></span></code></pre>
         <figcaption class="hero-terminal__caption" id="heroTerminalCaption">
           <span data-i18n="hero_term_caption">L'API de jetons derrière mon assistant vocal : un Cloudflare Worker qui garde la clé Gemini côté serveur.</span>
           <button type="button" class="hero-terminal__try" data-voice-start><i class="bi bi-mic-fill" aria-hidden="true"></i> <span data-i18n="about_voice_btn">Essayer</span></button>
@@ -392,7 +392,7 @@
           </div>
 
           <!-- 2. Eat Well (Omnifood) -->
-          <div class="portfolio-item" data-aos="fade-up">
+          <div class="portfolio-item" data-aos="fade-up" data-aos-delay="120">
             <div class="project-card">
               <div class="project-card__image">
                 <img src="assets/img/portfolio/web/eatwell.webp"
@@ -422,7 +422,7 @@
           </div>
 
           <!-- 3. Unified Service Ecosystem -->
-          <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="portfolio-item" data-aos="fade-up">
             <div class="project-card">
               <div class="project-card__image">
                 <img src="assets/img/portfolio/web/services.webp"
@@ -452,7 +452,7 @@
           </div>
 
           <!-- 4. Modern Web Calculator -->
-          <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="portfolio-item" data-aos="fade-up" data-aos-delay="120">
             <div class="project-card">
               <div class="project-card__image">
                 <img src="assets/img/portfolio/web/calculator.webp"

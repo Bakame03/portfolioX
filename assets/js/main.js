@@ -305,6 +305,119 @@
     document.documentElement.classList.add('reveal-ready');
   })();
 
+  // Skill badges: stagger index for the pop-in (style.css, .skills .badge).
+  select('#skills .d-flex', true).forEach(group => {
+    Array.from(group.children).forEach((badge, i) => badge.style.setProperty('--i', i));
+  });
+
+  /**
+   * Resume timeline - each dot lights up once its entry's top passes the
+   * middle of the screen. The growing line is pure CSS (style.css).
+   */
+  (function initTimelineDots() {
+    const section = select('#resume');
+    if (!section || !('IntersectionObserver' in window) ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const items = section.querySelectorAll('.resume-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-reached');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -50% 0px' });
+
+    items.forEach(item => observer.observe(item));
+    section.classList.add('timeline-ready');
+  })();
+
+  /**
+   * Project cards - tilt toward the cursor (max 4deg) and move the light
+   * spot with it. Mouse-only; CSS applies the vars only under the same media
+   * conditions.
+   */
+  (function initCardTilt() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const MAX = 4;
+    select('.project-card', true).forEach(card => {
+      card.addEventListener('pointermove', rafThrottle((e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--ry', ((px - 0.5) * 2 * MAX).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', ((0.5 - py) * 2 * MAX).toFixed(2) + 'deg');
+        card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+        card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+        card.classList.add('is-tilting');
+      }));
+      card.addEventListener('pointerleave', () => {
+        ['--rx', '--ry', '--mx', '--my'].forEach(v => card.style.removeProperty(v));
+        card.classList.remove('is-tilting');
+      });
+    });
+  })();
+
+  /**
+   * Hero terminal - plays the token request once: the command types itself,
+   * a pending line stands for the request in flight, then the response and
+   * the security checks appear line by line. Only where the card is shown
+   * (>= 1200px) and motion is allowed; otherwise the static card stays.
+   */
+  (function initHeroTerminal() {
+    const term = select('.hero-terminal');
+    if (!term ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !window.matchMedia('(min-width: 1200px)').matches) return;
+
+    const body = term.querySelector('.hero-terminal__body');
+    const cmd = term.querySelector('.t-cmd');
+    const pending = term.querySelector('.t-pending');
+    const lines = Array.from(term.querySelectorAll('.t-line'));
+    if (!body || !cmd || !pending || !lines.length) return;
+
+    // Keep the card's height fixed while the command is typed.
+    body.style.minHeight = body.offsetHeight + 'px';
+
+    // .is-playing hides the command (CSS) until typing starts. Its text is
+    // read only then, after the i18n pass has filled the translated parts.
+    term.classList.add('is-playing');
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+
+    (async () => {
+      await wait(900); // let the card's entrance transition finish
+      const texts = [];
+      const walker = document.createTreeWalker(cmd, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) texts.push({ node: walker.currentNode, full: walker.currentNode.textContent });
+      texts.forEach(t => { t.node.textContent = ''; });
+      const caret = document.createElement('span');
+      caret.className = 't-caret';
+      caret.setAttribute('aria-hidden', 'true');
+      cmd.after(caret);
+      term.classList.add('is-typing');
+      for (const t of texts) {
+        for (let i = 1; i <= t.full.length; i++) {
+          t.node.textContent = t.full.slice(0, i);
+          if (!/\s/.test(t.full[i - 1])) await wait(14);
+        }
+      }
+      caret.remove();
+      for (let i = 0; i < 6; i++) {
+        pending.textContent = '.'.repeat(i % 3 + 1);
+        await wait(170);
+      }
+      pending.textContent = '';
+      for (const line of lines) {
+        line.classList.add('is-on');
+        await wait(line.classList.contains('t-check') ? 280 : 90);
+      }
+      body.style.minHeight = '';
+    })();
+  })();
+
   /**
    * Theme Toggle (Dark/Light Mode)
    */
