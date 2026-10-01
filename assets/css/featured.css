@@ -341,7 +341,7 @@
   transform: translateX(2px);
 }
 
-/* ===== Featured project - scroll-driven story ===== */
+/* ===== Featured project - visual + short story ===== */
 .flagship-story {
   display: grid;
   grid-template-columns: 1fr;
@@ -364,8 +364,8 @@
   display: block;
 }
 
-/* Progressive enhancement: the pinned visual slowly zooms as the story
-   scrolls by (CSS scroll-driven animation; no JS, no effect elsewhere). */
+/* Progressive enhancement: the visual slowly zooms as it scrolls through
+   the viewport (CSS scroll-driven animation; no JS, no effect elsewhere). */
 @supports (animation-timeline: view()) {
   .flagship-story__frame img {
     animation: story-zoom linear both;
@@ -403,7 +403,7 @@
 }
 
 .story-step + .story-step {
-  margin-top: 40px;
+  margin-top: 26px;
 }
 
 .story-step__eyebrow {
@@ -453,34 +453,15 @@
 }
 
 @media (min-width: 992px) {
+  /* Compact two-column layout: the whole story fits beside the visual, so
+     there is no tall pinned scroll with empty gaps between steps. */
   .flagship-story {
     grid-template-columns: 1.15fr 1fr;
-    gap: 56px;
-    /* Columns stretch to the tallest (the steps), giving the sticky
-       frame room to travel while the story scrolls. */
+    gap: 48px;
+    align-items: center;
   }
 
-  .flagship-story__visual {
-    height: 100%;
-  }
-
-  .flagship-story__frame {
-    position: sticky;
-    top: 90px;
-  }
-
-  .story-step {
-    min-height: 38vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .story-step:first-child {
-    min-height: 24vh;
-  }
-
-  .story-step + .story-step {
-    margin-top: 0;
+  .story-step p {
+    margin-bottom: 10px;
   }
 }
