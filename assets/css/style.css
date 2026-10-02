@@ -2039,6 +2039,23 @@ section .container {
 
 
 /*--------------------------------------------------------------
+# Theme switch - circular reveal (main.js, View Transitions API)
+# The default cross-fade is replaced by a clip-path circle animated from
+# the toggle; transitions are paused while the snapshots are taken.
+--------------------------------------------------------------*/
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+
+/*--------------------------------------------------------------
 # Scroll Reveal (lightweight AOS replacement)
 # main.js adds .aos-animate via IntersectionObserver; data-aos-delay
 # is honoured as a transition-delay. Reduced motion shows instantly.

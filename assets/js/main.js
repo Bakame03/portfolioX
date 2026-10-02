@@ -440,10 +440,35 @@
     themeToggle.addEventListener('click', () => {
       const currentTheme = root.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const apply = () => {
+        root.setAttribute('data-theme', newTheme);
+        try { localStorage.setItem('theme', newTheme); } catch (e) {}
+        updateThemeColor(newTheme);
+      };
 
-      root.setAttribute('data-theme', newTheme);
-      try { localStorage.setItem('theme', newTheme); } catch (e) {}
-      updateThemeColor(newTheme);
+      // The new theme spreads in a circle from the button (View Transitions
+      // API). Without support, or with reduced motion, it switches at once.
+      if (!document.startViewTransition ||
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        apply();
+        return;
+      }
+      const r = themeToggle.getBoundingClientRect();
+      const x = r.left + r.width / 2;
+      const y = r.top + r.height / 2;
+      const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+
+      // .theme-switching turns off the 0.4s colour transitions, so the "after"
+      // snapshot is taken in the final colours, not halfway through a fade.
+      root.classList.add('theme-switching');
+      const transition = document.startViewTransition(apply);
+      transition.ready.then(() => {
+        root.animate(
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+          { duration: 600, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', pseudoElement: '::view-transition-new(root)' }
+        );
+      }).catch(() => {});
+      transition.finished.finally(() => root.classList.remove('theme-switching'));
     });
   }
 
