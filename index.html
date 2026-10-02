@@ -49,13 +49,13 @@
     base-uri 'self'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <!-- Both fire on every load (GitHub stats/repos fetch, analytics script) -
+  <!-- Both fire on every load (GitHub repos fetch, analytics script) -
        preconnect shaves the DNS+TCP+TLS handshake off that critical path.
-       api.github.com gets `crossorigin` because the fetch() calls in main.js
-       are cross-origin anonymous requests; the goatcounter <script> tag has
-       no crossorigin attribute, so its preconnect shouldn't either. -->
+       Both get `crossorigin`: main.js fetch()es api.github.com as anonymous
+       CORS requests, and the goatcounter <script> is loaded with
+       crossorigin="anonymous" for its integrity check. -->
   <link rel="preconnect" href="https://api.github.com" crossorigin>
-  <link rel="preconnect" href="https://gc.zgo.at">
+  <link rel="preconnect" href="https://gc.zgo.at" crossorigin>
 
   <title>Aldo Alex NGANJI, développeur back-end (NestJS, Python), stage de 12 semaines dès mars 2027</title>
   <meta content="Aldo Alex NGANJI, développeur back-end (NestJS, Python), stage de 12 semaines dès mars 2027" name="description">
@@ -830,6 +830,9 @@
           <div class="col-lg-8 mt-5 mt-lg-0">
 
             <form id="contactForm" action="https://formspree.io/f/mgopwjyq" method="POST" role="form" class="php-email-form">
+              <!-- Honeypot: hidden from people, filled in by bots; Formspree drops
+                   any submission where _gotcha has a value. -->
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" data-i18n="contact_name_placeholder" required>
@@ -1014,7 +1017,10 @@
 
   <!-- Privacy-friendly analytics (GoatCounter): no cookies, no personal data,
        GDPR-safe without a consent banner. Dashboard: bakame03.goatcounter.com -->
-  <script data-goatcounter="https://bakame03.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <!-- Versioned script pinned with Subresource Integrity: if the file on
+       gc.zgo.at ever changes, the browser refuses to run it. To upgrade,
+       take the new version's hash from goatcounter.com/help/countjs-versions. -->
+  <script data-goatcounter="https://bakame03.goatcounter.com/count" async src="https://gc.zgo.at/count.v5.js" integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ" crossorigin="anonymous"></script>
 
   <!-- Service worker: offline support + instant repeat visits (sw.js) -->
   <script>

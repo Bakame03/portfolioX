@@ -11,6 +11,6 @@
     "@google/genai": "^2.24.0"
   },
   "devDependencies": {
-    "wrangler": "^4.140.0"
+    "wrangler": "^4.146.0"
   }
 }
