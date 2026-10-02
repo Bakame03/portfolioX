@@ -2,14 +2,16 @@
  * portfolioX service worker.
  * - Navigations: network-first (a deploy is picked up on the next visit),
  *   falling back to the cached shell when offline.
- * - Same-origin assets (css/js/fonts/images): stale-while-revalidate -
+ * - Same-origin JS/CSS: network-first (always matches the fresh HTML),
+ *   cache only when offline.
+ * - Other same-origin assets (fonts/images): stale-while-revalidate -
  *   served instantly from cache while a background fetch refreshes it.
  * - Cross-origin requests (GitHub API, Formspree, analytics, CDN) are
  *   never intercepted.
  *
  * Bump CACHE_VERSION when you want to force-drop every cached asset.
  */
-const CACHE_VERSION = 'portfolioX-v34';
+const CACHE_VERSION = 'portfolioX-v35';
 
 const PRECACHE = [
   './',
@@ -75,7 +77,26 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets: stale-while-revalidate. The background refresh uses
+  // Scripts and stylesheets: network first, cache only as offline fallback.
+  // With stale-while-revalidate, the first visit after a deploy paired the
+  // fresh HTML with last version's JS/CSS (e.g. the voice consent step was
+  // missing until a reload). Small files, so the round trip is cheap.
+  if (/\.(js|css)$/.test(url.pathname)) {
+    event.respondWith(
+      fetch(new Request(request, { cache: 'no-cache' }))
+        .then((response) => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_VERSION).then((cache) => cache.put(request, copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  // Other static assets (images, fonts): stale-while-revalidate. The background refresh uses
   // cache: 'no-cache' so it revalidates with the server instead of quietly
   // re-reading the browser's HTTP cache (which may itself be stale).
   event.respondWith(
