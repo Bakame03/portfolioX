@@ -345,19 +345,46 @@
     setState('idle', status && status[0], status && status[1]);
   }
 
+  // ---- Consent ----------------------------------------------------------
+  // The microphone audio goes from the browser straight to Google, and on
+  // Gemini's free tier Google may use it to improve its products. So the
+  // first click only opens the panel with that notice; the microphone is
+  // requested once the visitor presses "Start". Remembered for this page
+  // view only (nothing stored).
+  const consent = document.getElementById('voiceConsent');
+  let consented = false;
+
+  function requestStart() {
+    if (state !== 'idle') return;
+    if (consented) { start(); return; }
+    panel.hidden = false;
+    transcript.textContent = '';
+    statusKey = null;
+    consent.hidden = false;
+    render();
+    document.getElementById('voiceConsentBtn').focus();
+  }
+
+  document.getElementById('voiceConsentBtn').addEventListener('click', () => {
+    consented = true;
+    consent.hidden = true;
+    start(); // still inside the click, so the AudioContext may play sound
+  });
+
   toggle.addEventListener('click', () => {
-    if (state === 'idle') start();
+    if (state === 'idle') requestStart();
     else stop(['voice_ended', 'Conversation ended.']);
   });
 
   // In-page calls to action (e.g. the About section) start the same session.
   document.querySelectorAll('[data-voice-start]').forEach(btn => {
-    btn.addEventListener('click', () => { if (state === 'idle') start(); });
+    btn.addEventListener('click', requestStart);
   });
 
   document.getElementById('voiceClose').addEventListener('click', () => {
     if (state !== 'idle') stop();
     panel.hidden = true;
+    consent.hidden = true;
     statusKey = null;
     render();
     toggle.focus();

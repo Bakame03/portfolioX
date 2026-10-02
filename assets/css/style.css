@@ -535,6 +535,36 @@ body.modal-open #scroll-progress {
   opacity: 0.75;
 }
 
+.voice__consent {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.voice__consent p {
+  margin: 0 0 12px;
+}
+
+.voice__consent-btn {
+  min-height: 44px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 50px;
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.voice__consent-btn:hover,
+.voice__consent-btn:focus-visible {
+  background: var(--accent-strong);
+}
+
+[data-theme="dark"] .voice__consent-btn {
+  color: #1d1c1a;
+}
+
 body.voice-open .back-to-top,
 body.modal-open .voice {
   opacity: 0 !important;

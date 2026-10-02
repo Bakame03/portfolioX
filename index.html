@@ -941,10 +941,16 @@
         <span class="voice__title" id="voiceTitle" data-i18n="voice_title">Assistant IA</span>
         <button type="button" class="voice__close" id="voiceClose" aria-label="Fermer" data-i18n-aria="a11y_close"><i class="bi bi-x" aria-hidden="true"></i></button>
       </div>
+      <!-- Shown before the microphone is requested: the visitor's voice goes
+           straight from the browser to Google, so they must know first. -->
+      <div class="voice__consent" id="voiceConsent" hidden>
+        <p data-i18n="voice_consent_text">Avant de commencer : votre voix et la transcription sont envoyées directement à Google (Gemini) pendant la conversation. Ce site utilise l'offre gratuite de Gemini, donc Google peut utiliser ces échanges pour améliorer ses produits. Ne partagez pas d'informations personnelles.</p>
+        <button type="button" class="voice__consent-btn" id="voiceConsentBtn" data-i18n="voice_consent_btn">Commencer</button>
+      </div>
       <p class="voice__status" id="voiceStatus" role="status"></p>
       <div class="voice__challenge" id="voiceChallenge"></div>
       <div class="voice__transcript" id="voiceTranscript"></div>
-      <p class="voice__note" data-i18n="voice_note">Les réponses viennent de Gemini et peuvent contenir des erreurs. Votre voix est envoyée à Google uniquement pendant la conversation.</p>
+      <p class="voice__note" data-i18n="voice_note">Les réponses viennent de Gemini et peuvent contenir des erreurs. Ne partagez pas d'informations personnelles.</p>
     </div>
     <button type="button" class="voice__toggle" id="voiceToggle" aria-pressed="false" aria-controls="voicePanel">
       <i class="bi bi-mic-fill" aria-hidden="true"></i> <span class="voice__label">Parler à mon IA</span>
