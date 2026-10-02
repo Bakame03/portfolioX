@@ -65,7 +65,10 @@
    * Scrolls to an element with header offset
    */
   const scrollto = (el) => {
-    let elementPos = select(el).offsetTop
+    // Page position, not offsetTop: offsetTop is relative to the nearest
+    // positioned ancestor, so targets nested in a section (e.g. #hypoxia
+    // inside #projects) would scroll to the wrong place.
+    let elementPos = select(el).getBoundingClientRect().top + window.scrollY
     window.scrollTo({
       top: elementPos,
       behavior: 'smooth'
