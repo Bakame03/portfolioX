@@ -442,14 +442,50 @@ body.modal-open #scroll-progress {
   line-height: 0;
 }
 
-/* Soft pulse while the microphone is live */
-.voice[data-state="listening"] .voice__toggle {
-  animation: voice-pulse 1.8s ease-out infinite;
+/* Rings that follow the real loudness (voice.js sets --voice-level 0..1):
+   terracotta for the visitor's voice, green while the AI speaks. A faint
+   ring stays at rest so "listening" is visible even in silence. */
+.voice__toggle {
+  position: relative;
 }
 
-@keyframes voice-pulse {
-  0%   { box-shadow: var(--shadow-lift), 0 0 0 0 rgba(193, 95, 60, 0.45); }
-  100% { box-shadow: var(--shadow-lift), 0 0 0 14px rgba(193, 95, 60, 0); }
+.voice__toggle::before,
+.voice__toggle::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  --ring: var(--accent);
+  transition: opacity 0.25s ease;
+}
+
+/* Rings grow by a fixed distance (not a scale), so they look the same on
+   the round phone button and the wide desktop pill, and stay inside the
+   15px margin to the screen edge (max 14px). */
+.voice__toggle::before {
+  inset: calc(-4px - var(--voice-level, 0) * 6px);
+  border: 3px solid var(--ring);
+}
+
+.voice__toggle::after {
+  inset: calc(-6px - var(--voice-level, 0) * 8px);
+  border: 2px solid var(--ring);
+}
+
+.voice[data-state="speaking"] .voice__toggle::before,
+.voice[data-state="speaking"] .voice__toggle::after {
+  --ring: #4c9a68;
+}
+
+.voice[data-state="listening"] .voice__toggle::before,
+.voice[data-state="speaking"] .voice__toggle::before {
+  opacity: calc(0.3 + var(--voice-level, 0) * 0.6);
+}
+
+.voice[data-state="listening"] .voice__toggle::after,
+.voice[data-state="speaking"] .voice__toggle::after {
+  opacity: calc(var(--voice-level, 0) * 0.45);
 }
 
 .voice__panel {

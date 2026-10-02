@@ -102,8 +102,14 @@
       stream: null,
       sources: new Set(),
       playhead: 0,
-      closing: false
+      closing: false,
+      out: null,     // AnalyserNode on the model's audio (level meter)
+      micLevel: 0    // RMS of the latest microphone chunk
     };
+    s.out = s.ctx.createAnalyser();
+    s.out.fftSize = 512;
+    s.out.connect(s.ctx.destination);
+    startMeter(s);
 
     try {
       const [grant, stream] = await Promise.all([passChallenge().then(fetchToken), getMicrophone()]);
@@ -275,6 +281,7 @@
     const mimeType = 'audio/pcm;rate=' + s.ctx.sampleRate;
     node.port.onmessage = (event) => {
       if (session !== s) return;
+      s.micLevel = rms(event.data);
       send(s, { realtimeInput: { audio: { mimeType, data: floatToPcm16Base64(event.data) } } });
     };
     s.ctx.createMediaStreamSource(s.stream).connect(node);
@@ -292,6 +299,40 @@
       binary += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
     }
     return btoa(binary);
+  }
+
+  // ---- Level meter -----------------------------------------------------
+  // Drives --voice-level (0..1) on #voice so the rings around the mic button
+  // follow the real loudness: the visitor's voice while listening, the
+  // model's voice while speaking. Off with reduced motion.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function rms(samples) {
+    let sum = 0;
+    for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
+    return samples.length ? Math.sqrt(sum / samples.length) : 0;
+  }
+
+  function startMeter(s) {
+    if (reduceMotion) return;
+    const buf = new Float32Array(s.out.fftSize);
+    let level = 0;
+    const tick = () => {
+      if (session !== s) { root.style.removeProperty('--voice-level'); return; }
+      let target = 0;
+      if (state === 'speaking') {
+        s.out.getFloatTimeDomainData(buf);
+        target = rms(buf);
+      } else if (state === 'listening') {
+        target = s.micLevel;
+        s.micLevel *= 0.8; // fade if no new chunk arrives
+      }
+      // Speech RMS sits around 0.02-0.2: scale up, clamp, then smooth.
+      level += (Math.min(1, target * 6) - level) * 0.3;
+      root.style.setProperty('--voice-level', level.toFixed(3));
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }
 
   // ---- Audio out --------------------------------------------------------
@@ -312,7 +353,7 @@
 
     const src = s.ctx.createBufferSource();
     src.buffer = buffer;
-    src.connect(s.ctx.destination);
+    src.connect(s.out);
     const at = Math.max(s.playhead, s.ctx.currentTime + 0.03);
     src.start(at);
     s.playhead = at + buffer.duration;
