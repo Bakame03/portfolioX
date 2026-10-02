@@ -470,6 +470,15 @@
       }
     });
 
+    // Translated attributes: data-i18n-alt / -title / -aria hold the key for
+    // alt, title and aria-label (screen readers read them in the page's lang).
+    [['alt', 'alt'], ['title', 'title'], ['aria', 'aria-label']].forEach(([suffix, attr]) => {
+      select(`[data-i18n-${suffix}]`, true).forEach(el => {
+        const translation = dictionary[el.getAttribute(`data-i18n-${suffix}`)];
+        if (translation) el.setAttribute(attr, translation.replace(/<[^>]+>/g, ''));
+      });
+    });
+
     // Update Toggle Button Text
     if (langToggle) {
       langToggle.innerText = lang.toUpperCase();

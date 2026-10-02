@@ -149,9 +149,9 @@
        One frosted pill on mobile; separate buttons on desktop. Shrinks on
        scroll-down (body.controls-hidden), hides while a modal is open. -->
   <div class="control-dock">
-    <button type="button" class="bi bi-list mobile-nav-toggle d-lg-none" aria-label="Toggle navigation menu" aria-expanded="false"></button>
-    <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Switch language (English / French)" title="Switch Language">FR</button>
-    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark / light mode" title="Toggle Dark/Light Mode">
+    <button type="button" class="bi bi-list mobile-nav-toggle d-lg-none" aria-label="Ouvrir ou fermer le menu" data-i18n-aria="a11y_menu" aria-expanded="false"></button>
+    <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Changer de langue (français / anglais)" data-i18n-aria="a11y_lang" title="Changer de langue" data-i18n-title="a11y_lang_short">FR</button>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Basculer entre mode clair et sombre" data-i18n-aria="a11y_theme" title="Basculer entre mode clair et sombre" data-i18n-title="a11y_theme">
       <i class="bi bi-moon-stars-fill theme-toggle__moon" aria-hidden="true"></i>
       <i class="bi bi-sun-fill theme-toggle__sun" aria-hidden="true"></i>
     </button>
@@ -184,12 +184,12 @@
       <h1 class="hero-intro-elem hero-name"><strong>Aldo Alex NGANJI</strong></h1>
       <p class="hero-intro-elem hero-role"><span data-i18n="hero_iam">Je suis</span> <span class="typed" data-i18n="hero_roles" data-typed-items="développeur back-end,développeur NestJS et Python,étudiant en BUT Informatique"></span></p>
       <div class="social-links hero-intro-elem hero-socials">
-        <a href="https://x.com/bakame03" class="twitter" target="_blank" rel="noopener" aria-label="X (Twitter) profile"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
-        <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank" rel="noopener" aria-label="Instagram profile"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+        <a href="https://x.com/bakame03" class="twitter" target="_blank" rel="noopener" aria-label="Profil X (Twitter)" data-i18n-aria="a11y_x"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank" rel="noopener" aria-label="Profil Instagram" data-i18n-aria="a11y_instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         <a href="https://wa.me/+33758806942" class="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
-        <a href="https://www.linkedin.com/in/aldo-alex-nganji-550072383" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
-        <a href="mailto:nganjialdoalex@gmail.com" class="google-plus" aria-label="Send an email"><i class="bi bi-envelope-at" aria-hidden="true"></i></a>
-        <a href="https://github.com/Bakame03" class="github" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="bi bi-github" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/aldo-alex-nganji-550072383" class="linkedin" target="_blank" rel="noopener" aria-label="Profil LinkedIn" data-i18n-aria="a11y_linkedin"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+        <a href="mailto:nganjialdoalex@gmail.com" class="google-plus" aria-label="Envoyer un e-mail" data-i18n-aria="a11y_email"><i class="bi bi-envelope-at" aria-hidden="true"></i></a>
+        <a href="https://github.com/Bakame03" class="github" target="_blank" rel="noopener" aria-label="Profil GitHub" data-i18n-aria="a11y_github"><i class="bi bi-github" aria-hidden="true"></i></a>
       </div>
       <div class="hero-intro-elem hero-cta">
         <a href="#projects" class="btn-hero btn-hero--primary scrollto"><span data-i18n="hero_cta_projects">Voir mes projets</span> <i class="bi bi-arrow-down" aria-hidden="true"></i></a>
@@ -247,7 +247,7 @@
               <source type="image/webp"
                 srcset="assets/img/aldo_alex_nganji-480.webp 480w, assets/img/aldo_alex_nganji-960.webp 960w"
                 sizes="(min-width: 992px) 360px, calc(100vw - 32px)">
-              <img src="assets/img/aldo_alex_nganji.jpeg" class="img-fluid" alt="Portrait of Aldo Alex NGANJI" width="949" height="1080" decoding="async">
+              <img src="assets/img/aldo_alex_nganji.jpeg" class="img-fluid" alt="Portrait d'Aldo Alex NGANJI" data-i18n-alt="alt_portrait" width="949" height="1080" decoding="async">
             </picture>
 
             <!-- Short summary of where things stand. Fills the dead space under
@@ -338,9 +338,9 @@
               <img src="assets/img/portfolio/web/hypoxia.webp"
                 srcset="assets/img/portfolio/web/hypoxia-800.webp 800w, assets/img/portfolio/web/hypoxia.webp 1600w"
                 sizes="(min-width: 992px) 50vw, 100vw"
-                alt="HYPOXIA - L'Écho Numérique" width="1100" height="600" loading="lazy">
+                alt="HYPOXIA - L'Écho Numérique" data-i18n-alt="project_hypoxia_title" width="1100" height="600" loading="lazy">
               <span class="project-badge project-badge--flagship"><i class="bi bi-trophy" aria-hidden="true"></i> <span data-i18n="project_badge_flagship">Prix du Jury (DevArt)</span></span>
-              <a href="assets/img/portfolio/web/hypoxia.webp" data-gallery="portfolioGallery" class="portfolio-lightbox flagship-story__zoom" title="HYPOXIA - L'Écho Numérique" aria-label="View HYPOXIA full image"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></a>
+              <a href="assets/img/portfolio/web/hypoxia.webp" data-gallery="portfolioGallery" class="portfolio-lightbox flagship-story__zoom" title="HYPOXIA - L'Écho Numérique" data-i18n-title="project_hypoxia_title" aria-label="Voir l'image de HYPOXIA en grand" data-i18n-aria="a11y_view_hypoxia"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></a>
             </div>
           </div>
 
@@ -408,10 +408,10 @@
                 <img src="assets/img/portfolio/web/eatwell.webp"
                   srcset="assets/img/portfolio/web/eatwell-800.webp 800w, assets/img/portfolio/web/eatwell.webp 1600w"
                   sizes="(min-width: 992px) 50vw, 100vw"
-                  alt="Eat Well (Omnifood)" width="1100" height="600" loading="lazy">
+                  alt="Eat Well (Omnifood)" data-i18n-alt="project_eatwell_title" width="1100" height="600" loading="lazy">
                 <span class="project-badge project-badge--status" data-i18n="project_badge_production">En ligne</span>
                 <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/eatwell.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Eat Well (Omnifood)"><i class="bi bi-arrows-fullscreen"></i></a>
+                  <a href="assets/img/portfolio/web/eatwell.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Eat Well (Omnifood)" data-i18n-title="project_eatwell_title"><i class="bi bi-arrows-fullscreen"></i></a>
                 </div>
               </div>
               <div class="project-card__body">
@@ -438,10 +438,10 @@
                 <img src="assets/img/portfolio/web/services.webp"
                   srcset="assets/img/portfolio/web/services-800.webp 800w, assets/img/portfolio/web/services.webp 1600w"
                   sizes="(min-width: 992px) 50vw, 100vw"
-                  alt="Unified Service Ecosystem" width="1100" height="600" loading="lazy">
+                  alt="Écosystème de services unifié" data-i18n-alt="project_services_title" width="1100" height="600" loading="lazy">
                 <span class="project-badge project-badge--status" data-i18n="project_badge_api">API</span>
                 <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/services.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Unified Service Ecosystem"><i class="bi bi-arrows-fullscreen"></i></a>
+                  <a href="assets/img/portfolio/web/services.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Écosystème de services unifié" data-i18n-title="project_services_title"><i class="bi bi-arrows-fullscreen"></i></a>
                 </div>
               </div>
               <div class="project-card__body">
@@ -468,9 +468,9 @@
                 <img src="assets/img/portfolio/web/calculator.webp"
                   srcset="assets/img/portfolio/web/calculator-800.webp 800w, assets/img/portfolio/web/calculator.webp 1600w"
                   sizes="(min-width: 992px) 50vw, 100vw"
-                  alt="Web Calculator" width="1100" height="600" loading="lazy">
+                  alt="Calculatrice web" data-i18n-alt="project_calc_title" width="1100" height="600" loading="lazy">
                 <div class="project-card__overlay">
-                  <a href="assets/img/portfolio/web/calculator.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Modern Web Calculator"><i class="bi bi-arrows-fullscreen"></i></a>
+                  <a href="assets/img/portfolio/web/calculator.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Calculatrice web" data-i18n-title="project_calc_title"><i class="bi bi-arrows-fullscreen"></i></a>
                 </div>
               </div>
               <div class="project-card__body">
@@ -517,10 +517,10 @@
               <div class="modal-lite__header">
                 <span><i class="bi bi-file-earmark-text me-2" aria-hidden="true"></i><span data-i18n="resume_cv_title">Curriculum Vitae - Aldo Alex NGANJI</span></span>
                 <div class="d-flex gap-2 align-items-center">
-                  <a href="assets/img/portfolio/cv.pdf" download class="modal-lite__download" title="Download CV">
+                  <a href="assets/img/portfolio/cv.pdf" download class="modal-lite__download" title="Télécharger le CV" data-i18n-title="a11y_download_cv">
                     <i class="bi bi-download" aria-hidden="true"></i> <span data-i18n="resume_download">Télécharger</span>
                   </a>
-                  <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
+                  <button type="button" class="modal-lite__close" data-modal-close aria-label="Fermer" data-i18n-aria="a11y_close">&#x2715;</button>
                 </div>
               </div>
               <iframe src="assets/img/portfolio/cv.pdf" class="modal-lite__frame" title="CV Aldo Alex NGANJI" loading="lazy"></iframe>
@@ -559,13 +559,13 @@
               <p data-i18n="resume_role_cs_desc">Première année validée avec les 60 ECTS et les 6 compétences sur 6. Développement, algorithmique, bases de données, systèmes et analyse des besoins.</p>
 
               <!-- ===== BUT1 Stacked Photo Preview (reusable .stack-wrapper) ===== -->
-              <button type="button" class="stack-wrapper" data-modal-open="#but1Modal" aria-label="View my BUT1 final results summary (5 pages)">
+              <button type="button" class="stack-wrapper" data-modal-open="#but1Modal" aria-label="Voir la synthèse de mes résultats finaux de BUT1 (5 pages)" data-i18n-aria="a11y_but1_open">
                 <!-- Back shadow cards (for depth effect) -->
                 <span class="stack-card stack-card--back2"></span>
                 <span class="stack-card stack-card--back1"></span>
                 <!-- Top card with real preview image -->
                 <span class="stack-card stack-card--top">
-                  <img src="assets/img/dossiers/but1-1.webp" alt="Preview of BUT1 final results summary" width="200" height="148" loading="lazy">
+                  <img src="assets/img/dossiers/but1-1.webp" alt="Aperçu de la synthèse de mes résultats finaux de BUT1" data-i18n-alt="alt_but1_preview" width="200" height="148" loading="lazy">
                   <span class="stack-card__label">
                     <i class="bi bi-images me-1"></i> <span data-i18n="resume_s1_label">BUT1 - Résultats finaux | 5 pages</span>
                     <br><small data-i18n="resume_click_view">Cliquez pour voir</small>
@@ -574,18 +574,18 @@
               </button>
 
               <!-- ===== BUT1 Full-Screen Scrollable Modal ===== -->
-              <div id="but1Modal" class="modal-lite" role="dialog" aria-modal="true" aria-label="BUT1 final results">
+              <div id="but1Modal" class="modal-lite" role="dialog" aria-modal="true" aria-label="Résultats finaux du BUT1" data-i18n-aria="a11y_but1_dialog">
                 <div class="modal-lite__inner">
                   <div class="modal-lite__header">
                     <span><i class="bi bi-bar-chart-line me-2" aria-hidden="true"></i><span data-i18n="resume_s1_label">BUT1 - Résultats finaux | 5 pages</span></span>
-                    <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
+                    <button type="button" class="modal-lite__close" data-modal-close aria-label="Fermer" data-i18n-aria="a11y_close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
-                    <img src="assets/img/dossiers/but1-1.webp" alt="BUT1 - Profil analytique et bilan de compétences (couverture)" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/dossiers/but1-2.webp" alt="BUT1 - Verdict final : Admis, 60 ECTS, moyennes par semestre" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/dossiers/but1-3.webp" alt="BUT1 - Cartographie radar des 6 compétences validées" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/dossiers/but1-4.webp" alt="BUT1 - Points forts et distinctions (1er sur 48 en UE1.5)" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/dossiers/but1-5.webp" alt="BUT1 - Synthèse analytique du profil" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-1.webp" alt="BUT1 - Profil analytique et bilan de compétences (couverture)" data-i18n-alt="alt_but1_p1" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-2.webp" alt="BUT1 - Verdict final : Admis, 60 ECTS, moyennes par semestre" data-i18n-alt="alt_but1_p2" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-3.webp" alt="BUT1 - Cartographie radar des 6 compétences validées" data-i18n-alt="alt_but1_p3" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-4.webp" alt="BUT1 - Points forts et distinctions (1er sur 48 en UE1.5)" data-i18n-alt="alt_but1_p4" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/dossiers/but1-5.webp" alt="BUT1 - Synthèse analytique du profil" data-i18n-alt="alt_but1_p5" width="1600" height="900" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -658,11 +658,11 @@
               <p class="mb-3"><a href="#hypoxia" class="link-accent scrollto" data-i18n="resume_prize_devart_link">Voir le projet primé : HYPOXIA</a></p>
 
               <!-- Stacked photo preview (reusable .stack-wrapper) -->
-              <button type="button" class="stack-wrapper" data-modal-open="#devartModal" aria-label="View DevArt 2026 hackathon photos (10 shots)">
+              <button type="button" class="stack-wrapper" data-modal-open="#devartModal" aria-label="Voir les photos du hackathon DevArt 2026 (10 photos)" data-i18n-aria="a11y_devart_open">
                 <span class="stack-card stack-card--back2"></span>
                 <span class="stack-card stack-card--back1"></span>
                 <span class="stack-card stack-card--top">
-                  <img src="assets/img/devart/a.webp" alt="DevArt 2026 hackathon - Team Nebula" width="200" height="148" loading="lazy">
+                  <img src="assets/img/devart/a.webp" alt="Hackathon DevArt 2026 - équipe Nebula" data-i18n-alt="alt_devart_preview" width="200" height="148" loading="lazy">
                   <span class="stack-card__label stack-card__label--gold">
                     <i class="bi bi-camera me-1"></i> <span data-i18n="resume_hackathon_photos">Photos du hackathon | 10 photos</span>
                     <br><small data-i18n="resume_click_view">Cliquez pour voir</small>
@@ -671,23 +671,23 @@
               </button>
 
               <!-- Full-screen scrollable modal -->
-              <div class="modal-lite" id="devartModal" role="dialog" aria-modal="true" aria-label="DevArt 2026 hackathon photos">
+              <div class="modal-lite" id="devartModal" role="dialog" aria-modal="true" aria-label="Photos du hackathon DevArt 2026" data-i18n-aria="a11y_devart_dialog">
                 <div class="modal-lite__inner">
                   <div class="modal-lite__header">
                     <span><i class="bi bi-trophy me-2 text-gold" aria-hidden="true"></i><span data-i18n="resume_hackathon_photos">Photos du hackathon | 10 photos</span></span>
-                    <button type="button" class="modal-lite__close" data-modal-close aria-label="Close">&#x2715;</button>
+                    <button type="button" class="modal-lite__close" data-modal-close aria-label="Fermer" data-i18n-aria="a11y_close">&#x2715;</button>
                   </div>
                   <div class="modal-lite__pages">
-                    <img src="assets/img/devart/a.webp" alt="Team Nebula gathered at their workstation during the DevArt 2026 hackathon" width="1600" height="1200" loading="lazy">
-                    <img src="assets/img/devart/b.webp" alt="Selfie collage of Team Nebula members at the DevArt 2026 hackathon" width="900" height="1600" loading="lazy">
-                    <img src="assets/img/devart/c.webp" alt="Team Nebula presenting on stage in front of the Aix-Marseille Université banner" width="1600" height="1200" loading="lazy">
-                    <img src="assets/img/devart/d.webp" alt="Two Team Nebula members coding on laptops during the hackathon" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/devart/e.webp" alt="Team Nebula collaborating around a workstation during the hackathon" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/devart/f.webp" alt="Late-night coding at a lamp-lit desk during the 32-hour hackathon" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/devart/g.webp" alt="Wide view of the DevArt 2026 hackathon room with competing teams at IUT d'Arles" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/devart/h.webp" alt="A Team Nebula developer focused on coding at the hackathon" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/devart/i.webp" alt="Cluttered workstation during the overnight stretch of the 32-hour hackathon" width="1600" height="900" loading="lazy">
-                    <img src="assets/img/devart/j.webp" alt="Team Nebula, four members, in front of the Aix-Marseille Université banner at DevArt 2026" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/a.webp" alt="L'équipe Nebula réunie à son poste de travail pendant le hackathon DevArt 2026" data-i18n-alt="alt_devart_a" width="1600" height="1200" loading="lazy">
+                    <img src="assets/img/devart/b.webp" alt="Collage de selfies des membres de l'équipe Nebula au hackathon DevArt 2026" data-i18n-alt="alt_devart_b" width="900" height="1600" loading="lazy">
+                    <img src="assets/img/devart/c.webp" alt="L'équipe Nebula présente sur scène devant la banderole d'Aix-Marseille Université" data-i18n-alt="alt_devart_c" width="1600" height="1200" loading="lazy">
+                    <img src="assets/img/devart/d.webp" alt="Deux membres de l'équipe Nebula codent sur leurs ordinateurs pendant le hackathon" data-i18n-alt="alt_devart_d" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/e.webp" alt="L'équipe Nebula travaille ensemble autour d'un poste pendant le hackathon" data-i18n-alt="alt_devart_e" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/f.webp" alt="Code tard dans la nuit, sous une lampe de bureau, pendant le hackathon de 32 heures" data-i18n-alt="alt_devart_f" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/g.webp" alt="Vue d'ensemble de la salle du hackathon DevArt 2026 et des équipes en compétition à l'IUT d'Arles" data-i18n-alt="alt_devart_g" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/h.webp" alt="Un développeur de l'équipe Nebula concentré sur son code pendant le hackathon" data-i18n-alt="alt_devart_h" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/i.webp" alt="Poste de travail encombré pendant la nuit du hackathon de 32 heures" data-i18n-alt="alt_devart_i" width="1600" height="900" loading="lazy">
+                    <img src="assets/img/devart/j.webp" alt="L'équipe Nebula, quatre membres, devant la banderole d'Aix-Marseille Université au DevArt 2026" data-i18n-alt="alt_devart_j" width="1600" height="900" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -812,7 +812,7 @@
               </div>
 
               <div class="email">
-                <a href="mailto:nganjialdoalex@gmail.com" class="google-plus" aria-label="Send an email"><i class="bi bi-envelope-at" aria-hidden="true"></i></a>
+                <a href="mailto:nganjialdoalex@gmail.com" class="google-plus" aria-label="Envoyer un e-mail" data-i18n-aria="a11y_email"><i class="bi bi-envelope-at" aria-hidden="true"></i></a>
                 <h3 class="info-label" data-i18n="contact_email">E-mail :</h3>
                 <p>nganjialdoalex@gmail.com</p>
               </div>
@@ -914,11 +914,11 @@
       <h3>Aldo Alex NGANJI</h3>
       <p data-i18n="footer_tagline">Développeur back-end (NestJS, Python) · Arles,&nbsp;France</p>
       <div class="social-links">
-        <a href="https://x.com/bakame03" class="twitter" target="_blank" rel="noopener" aria-label="X (Twitter) profile"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
-        <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank" rel="noopener" aria-label="Instagram profile"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+        <a href="https://x.com/bakame03" class="twitter" target="_blank" rel="noopener" aria-label="Profil X (Twitter)" data-i18n-aria="a11y_x"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank" rel="noopener" aria-label="Profil Instagram" data-i18n-aria="a11y_instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
         <a href="https://wa.me/+33758806942" class="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
-        <a href="https://www.linkedin.com/in/aldo-alex-nganji-550072383" class="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
-        <a href="https://github.com/Bakame03" class="github" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="bi bi-github" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/aldo-alex-nganji-550072383" class="linkedin" target="_blank" rel="noopener" aria-label="Profil LinkedIn" data-i18n-aria="a11y_linkedin"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+        <a href="https://github.com/Bakame03" class="github" target="_blank" rel="noopener" aria-label="Profil GitHub" data-i18n-aria="a11y_github"><i class="bi bi-github" aria-hidden="true"></i></a>
       </div>
       <div class="copyright">
         &copy; <strong><span id="current_year"></span> Aldo Alex NGANJI</strong>.
@@ -927,7 +927,7 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Back to top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Retour en haut" data-i18n-aria="a11y_top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>
 
   <!-- ======= Voice assistant (assets/js/voice.js) =======
        Gemini Live over a WebSocket; tokens come from voice-worker/.
@@ -936,7 +936,7 @@
     <div class="voice__panel" id="voicePanel" role="region" aria-labelledby="voiceTitle" hidden>
       <div class="voice__header">
         <span class="voice__title" id="voiceTitle" data-i18n="voice_title">Assistant IA</span>
-        <button type="button" class="voice__close" id="voiceClose" aria-label="Close"><i class="bi bi-x" aria-hidden="true"></i></button>
+        <button type="button" class="voice__close" id="voiceClose" aria-label="Fermer" data-i18n-aria="a11y_close"><i class="bi bi-x" aria-hidden="true"></i></button>
       </div>
       <p class="voice__status" id="voiceStatus" role="status"></p>
       <div class="voice__challenge" id="voiceChallenge"></div>
