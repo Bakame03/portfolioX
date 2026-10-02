@@ -92,7 +92,7 @@ window.translations = {
     resume_role_bachelor_loc: "Université du Lac Tanganyika, Bujumbura, Burundi",
     resume_role_bachelor_desc: "Degree equivalent to a French <strong>Licence</strong> (bac+3). Software development, back-end systems, databases and software architecture.",
 
-    resume_role_highschool: "Baccalauréat Scientifique B",
+    resume_role_highschool: "Scientific Baccalaureate (Section B)",
     resume_role_highschool_loc: "Lycée Clarté Notre Dame de Vugizo, Bujumbura, Burundi",
     resume_role_highschool_desc: "Mathematics, biology, chemistry and earth sciences. Passed with <strong>Mention Bien</strong> (honours).",
 
