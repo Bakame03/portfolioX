@@ -9,7 +9,7 @@
  *
  * Bump CACHE_VERSION when you want to force-drop every cached asset.
  */
-const CACHE_VERSION = 'portfolioX-v26';
+const CACHE_VERSION = 'portfolioX-v27';
 
 const PRECACHE = [
   './',
@@ -31,7 +31,7 @@ const PRECACHE = [
   'assets/fonts/source-serif-4-var-latin.woff2',
   'assets/fonts/bootstrap-icons-subset.0100bacf.woff2',
   'assets/img/favicon.svg',
-  'assets/img/aldo_alex_nganji.webp'
+  'assets/img/aldo_alex_nganji-480.webp'
 ];
 
 self.addEventListener('install', (event) => {

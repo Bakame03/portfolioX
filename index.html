@@ -39,13 +39,14 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self';
     script-src 'self' 'unsafe-inline' https://gc.zgo.at https://challenges.cloudflare.com;
     style-src 'self' 'unsafe-inline';
-    img-src 'self' data: https://gc.zgo.at;
+    img-src 'self' data: https://gc.zgo.at https://bakame03.goatcounter.com;
     font-src 'self';
     connect-src 'self' https://api.github.com https://formspree.io https://gc.zgo.at
+                 https://bakame03.goatcounter.com
                  https://portfolio-voice.bakame03.workers.dev wss://generativelanguage.googleapis.com;
     frame-src 'self' https://challenges.cloudflare.com;
     form-action https://formspree.io;
-    base-uri 'self'; object-src 'none'; frame-ancestors 'none'">
+    base-uri 'self'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- Both fire on every load (GitHub stats/repos fetch, analytics script) -
@@ -110,7 +111,7 @@
     "@type": "Person",
     "name": "Aldo Alex NGANJI",
     "url": "https://bakame03.github.io/portfolioX/",
-    "image": "https://bakame03.github.io/portfolioX/assets/img/aldo_alex_nganji.webp",
+    "image": "https://bakame03.github.io/portfolioX/assets/img/aldo_alex_nganji.jpeg",
     "jobTitle": "Back End Developer",
     "email": "nganjialdoalex@gmail.com",
     "telephone": "+33758806942",
@@ -230,7 +231,10 @@
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
+      <!-- No scroll reveal here: on phones this section (and the portrait,
+           the LCP element) is in the first screen, so it must not wait for
+           main.js to fade it in. -->
+      <div class="container">
         <div class="section-title">
           <h2 data-i18n="about_title">À propos</h2>
           <p data-i18n="about_subtitle">Développeur back-end, je conçois des API et des services côté serveur. Je me forme aussi à l'IA générative.</p>
@@ -239,8 +243,11 @@
         <div class="row">
           <div class="col-lg-4">
             <picture>
-              <source srcset="assets/img/aldo_alex_nganji.webp" type="image/webp">
-              <img src="assets/img/aldo_alex_nganji.jpeg" class="img-fluid" alt="Portrait of Aldo Alex NGANJI" width="400" height="400" loading="lazy">
+              <!-- Not lazy: on phones the portrait is in the first screen (LCP). -->
+              <source type="image/webp"
+                srcset="assets/img/aldo_alex_nganji-480.webp 480w, assets/img/aldo_alex_nganji-960.webp 960w"
+                sizes="(min-width: 992px) 360px, calc(100vw - 32px)">
+              <img src="assets/img/aldo_alex_nganji.jpeg" class="img-fluid" alt="Portrait of Aldo Alex NGANJI" width="949" height="1080" decoding="async">
             </picture>
 
             <!-- Short summary of where things stand. Fills the dead space under
