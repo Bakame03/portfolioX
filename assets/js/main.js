@@ -45,6 +45,29 @@
    * Navbar links active state on scroll
    */
   let navbarlinks = select('#navbar .scrollto', true)
+
+  // Desktop rail: a pill that slides to the active link (style.css,
+  // .nav-indicator). Not used in the mobile drawer.
+  const navList = select('#navbar > ul')
+  const desktopNav = window.matchMedia('(min-width: 992px)')
+  let navIndicator = null
+  if (navList) {
+    navIndicator = document.createElement('span')
+    navIndicator.className = 'nav-indicator'
+    navIndicator.setAttribute('aria-hidden', 'true')
+    navList.before(navIndicator)
+  }
+  const moveNavIndicator = () => {
+    if (!navIndicator) return
+    const active = select('#navbar .scrollto.active')
+    const on = desktopNav.matches && !!active
+    select('#navbar').classList.toggle('has-indicator', on)
+    navIndicator.classList.toggle('is-visible', on)
+    // <li> offsets are relative to the (positioned) list; add the list's own
+    // offset inside the nav, where the pill lives.
+    if (on) navIndicator.style.transform = `translateY(${navList.offsetTop + active.parentElement.offsetTop}px)`
+  }
+
   const navbarlinksActive = () => {
     let position = window.scrollY + 200
     navbarlinks.forEach(navbarlink => {
@@ -57,7 +80,9 @@
         navbarlink.classList.remove('active')
       }
     })
+    moveNavIndicator()
   }
+  desktopNav.addEventListener('change', moveNavIndicator)
   window.addEventListener('load', navbarlinksActive)
   document.addEventListener('scroll', rafThrottle(navbarlinksActive), { passive: true })
 

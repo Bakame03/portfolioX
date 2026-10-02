@@ -630,12 +630,6 @@ body.modal-open .voice {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .voice[data-state="listening"] .voice__toggle {
-    animation: none;
-  }
-}
-
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
@@ -744,6 +738,43 @@ body.modal-open .voice {
     clip-path: inset(50%);
     white-space: nowrap;
     color: #fff;
+  }
+}
+
+/* Sliding active indicator (desktop rail): one terracotta pill behind the
+   icons that glides to the active link (main.js moves it). The active link
+   turns transparent so the pill shows through; the other links stay opaque,
+   so the pill seems to slide underneath them. */
+@media (min-width: 992px) {
+  .nav-menu {
+    position: relative;
+  }
+
+  .nav-menu > ul {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50px;
+    background: var(--accent);
+    pointer-events: none;
+    opacity: 0;
+    transition: transform 0.5s var(--ease-spring), opacity 0.3s ease;
+  }
+
+  .nav-indicator.is-visible {
+    opacity: 1;
+  }
+
+  .nav-menu.has-indicator .active,
+  .nav-menu.has-indicator .active:focus {
+    background: transparent;
   }
 }
 
