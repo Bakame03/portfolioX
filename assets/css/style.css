@@ -1781,6 +1781,72 @@ section .container {
   color: var(--text-color);
 }
 
+/* Click-to-copy email (main.js): looks like the text it replaces, with a
+   small copy icon; a "Copied" bubble rises above it after a click. */
+.copy-email {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: copy;
+  text-align: left;
+}
+
+.copy-email:hover,
+.copy-email:focus-visible {
+  color: var(--accent-strong);
+}
+
+.copy-email__icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.copy-email:hover .copy-email__icon,
+.copy-email:focus-visible .copy-email__icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.copy-email__tip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--subtitle-color);
+  color: var(--bg-color);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition: opacity 0.2s ease, transform 0.3s var(--ease-spring);
+}
+
+.copy-email__tip:empty {
+  padding: 0;
+}
+
+.copy-email.is-copied .copy-email__tip {
+  opacity: 1;
+  transform: translate(-50%, -8px);
+}
+
 .contact .info .email,
 .contact .info .phone {
   margin-top: 40px;

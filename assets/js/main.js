@@ -628,6 +628,35 @@
   fetchGitHubActivity();
 
   /**
+   * Email address: click copies it and a "Copied" bubble rises above it.
+   * If the clipboard is unavailable (old browser, permission), fall back to
+   * opening the mail client.
+   */
+  select('.copy-email', true).forEach(btn => {
+    const tip = btn.querySelector('.copy-email__tip');
+    let hideTimer = null;
+    btn.addEventListener('click', async () => {
+      const email = btn.getAttribute('data-copy');
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch (e) {
+        window.location.href = 'mailto:' + email;
+        return;
+      }
+      const dict = (window.translations || {})[document.documentElement.lang] || {};
+      tip.textContent = dict.copy_email_done || 'Copié ✓'; // announced (aria-live)
+      btn.classList.remove('is-copied');
+      void btn.offsetWidth; // restart the bubble animation on repeat clicks
+      btn.classList.add('is-copied');
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => {
+        btn.classList.remove('is-copied');
+        tip.textContent = '';
+      }, 1600);
+    });
+  });
+
+  /**
    * Scroll Progress Bar
    */
   const scrollProgress = select('#scroll-progress');
