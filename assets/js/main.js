@@ -681,13 +681,16 @@
    * Scroll Progress Bar
    */
   const scrollProgress = select('#scroll-progress');
-  if (scrollProgress) {
-    window.addEventListener('scroll', rafThrottle(() => {
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (window.scrollY / windowHeight) * 100;
-      scrollProgress.style.width = scrolled + '%';
-    }), { passive: true });
-  }
+  const topButton = select('.back-to-top');
+  const updateScrollProgress = () => {
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const ratio = windowHeight > 0 ? Math.min(1, window.scrollY / windowHeight) : 0;
+    if (scrollProgress) scrollProgress.style.width = (ratio * 100) + '%';
+    // Same value drives the ring around the back-to-top button (style.css).
+    if (topButton) topButton.style.setProperty('--scroll', ratio.toFixed(4));
+  };
+  window.addEventListener('scroll', rafThrottle(updateScrollProgress), { passive: true });
+  updateScrollProgress();
 
   /**
    * Reusable lightweight modal controller (data-attribute driven).

@@ -54,6 +54,7 @@ window.translations = {
     impact_title: "Activity",
     impact_subtitle: "What I've been pushing to GitHub lately.",
     gh_view_profile: "View Full Profile",
+    gh_loading: "Loading repositories…",
     gh_load_error: "Couldn't load the repositories right now. The full list is on my GitHub profile below.",
 
     // Skills
@@ -292,6 +293,7 @@ window.translations = {
     impact_title: "Activité",
     impact_subtitle: "Ce que j'ai publié récemment sur GitHub.",
     gh_view_profile: "Voir le profil complet",
+    gh_loading: "Chargement des dépôts…",
     gh_load_error: "Impossible de charger les dépôts pour le moment. La liste complète est sur mon profil GitHub, juste en dessous.",
 
     // Skills

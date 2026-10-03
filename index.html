@@ -771,12 +771,12 @@
         <div class="row github-dashboard" data-aos="fade-up" data-aos-delay="200">
           <div class="col-12 text-center">
             <div id="github-repo-list" class="github-live-list">
-              <!-- Repos will be injected here by main.js -->
-              <div class="col-12 text-center py-4">
-                <div class="spinner-border text-primary" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-              </div>
+              <!-- Placeholder cards in the shape of the real ones (style.css,
+                   .repo-item--skeleton); main.js replaces them with the repos. -->
+              <p class="visually-hidden" role="status" data-i18n="gh_loading">Chargement des dépôts…</p>
+              <div class="repo-item repo-item--skeleton" aria-hidden="true"><span class="sk sk--title"></span><span class="sk sk--line"></span><span class="sk sk--line sk--short"></span><span class="sk sk--meta"></span></div>
+              <div class="repo-item repo-item--skeleton" aria-hidden="true"><span class="sk sk--title"></span><span class="sk sk--line"></span><span class="sk sk--line sk--short"></span><span class="sk sk--meta"></span></div>
+              <div class="repo-item repo-item--skeleton" aria-hidden="true"><span class="sk sk--title"></span><span class="sk sk--line"></span><span class="sk sk--line sk--short"></span><span class="sk sk--meta"></span></div>
             </div>
 
             <div class="text-center mt-5">
@@ -960,7 +960,7 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Retour en haut" data-i18n-aria="a11y_top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center" aria-label="Retour en haut" data-i18n-aria="a11y_top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i><svg class="back-to-top__ring" viewBox="0 0 50 50" aria-hidden="true"><circle class="back-to-top__track" cx="25" cy="25" r="23" pathLength="100"/><circle class="back-to-top__progress" cx="25" cy="25" r="23" pathLength="100"/></svg></a>
 
   <!-- ======= Voice assistant (assets/js/voice.js) =======
        Gemini Live over a WebSocket; tokens come from voice-worker/.
