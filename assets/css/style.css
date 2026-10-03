@@ -1879,8 +1879,110 @@ section .container {
 }
 
 .contact .php-email-form button[type=submit]:disabled {
-  opacity: 0.65;
   cursor: wait;
+}
+
+/* Send button morph: label -> spinner circle -> green circle + drawn check.
+   The inline form script in index.html sets data-state and the width. */
+.contact .php-email-form .form-send {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, padding 0.4s ease;
+}
+
+.form-send__label {
+  transition: opacity 0.2s ease;
+}
+
+.form-send__spinner,
+.form-send__check {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-send__spinner {
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  transition: opacity 0.15s ease;
+}
+
+.form-send__check {
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+}
+
+.contact .php-email-form .form-send[data-state="sending"],
+.contact .php-email-form .form-send[data-state="sent"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.form-send[data-state="sending"] .form-send__label,
+.form-send[data-state="sent"] .form-send__label {
+  opacity: 0;
+}
+
+.form-send[data-state="sending"] .form-send__spinner {
+  opacity: 1;
+  transition-delay: 0.2s; /* appear once the button has shrunk */
+  animation: form-send-spin 0.8s linear infinite;
+}
+
+.contact .php-email-form .form-send[data-state="sent"] {
+  background: #4c9a68;
+}
+
+.form-send[data-state="sent"] .form-send__check {
+  opacity: 1;
+  animation: form-send-check 0.45s ease-out 0.25s forwards;
+}
+
+.form-send[data-state="error"] {
+  animation: form-send-shake 0.4s ease;
+}
+
+@keyframes form-send-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes form-send-check {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes form-send-shake {
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* Screen-reader-only "Sending..." announcement (the spinner shows it) */
+#form-status.form-status--sending {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /*--------------------------------------------------------------

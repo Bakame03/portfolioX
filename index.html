@@ -850,7 +850,14 @@
               <div class="my-3">
                 <div id="form-status" role="status" aria-live="polite"></div>
               </div>
-              <div class="text-center"><button type="submit" data-i18n="contact_btn_send">Envoyer le message</button></div>
+              <div class="text-center">
+                <!-- Morphs into a spinner, then a drawn check mark (style.css, .form-send) -->
+                <button type="submit" class="form-send">
+                  <span class="form-send__label" data-i18n="contact_btn_send">Envoyer le message</span>
+                  <span class="form-send__spinner" aria-hidden="true"></span>
+                  <svg class="form-send__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                </button>
+              </div>
             </form>
 
             <script>
@@ -871,13 +878,35 @@
                   status.className = kind ? 'form-status--' + kind : '';
                 }
 
+                // Button states: "" (label) -> sending (circle + spinner) ->
+                // sent (green circle, check draws itself) or back to the label
+                // with a short shake on error. Width is animated from the
+                // measured pixel width, since CSS can't transition from auto.
+                var labelWidth = 0;
+                function setButton(state) {
+                  if (state === 'sending') {
+                    labelWidth = submitBtn.offsetWidth;
+                    submitBtn.style.width = labelWidth + 'px';
+                    void submitBtn.offsetWidth; // commit the start width
+                  }
+                  submitBtn.dataset.state = state;
+                  if (state === 'sending' || state === 'sent') {
+                    submitBtn.style.width = submitBtn.offsetHeight + 'px';
+                  } else {
+                    submitBtn.style.width = labelWidth + 'px';
+                    setTimeout(function () {
+                      if (!submitBtn.dataset.state || submitBtn.dataset.state === 'error') submitBtn.style.width = '';
+                    }, 450);
+                  }
+                }
+
                 function handleSubmit(event) {
                   event.preventDefault();
                   var data = new FormData(event.target);
-                  var btnLabel = submitBtn.textContent;
                   submitBtn.disabled = true;
-                  submitBtn.textContent = t('contact_status_sending', 'Sending...');
-                  setStatus('', '');
+                  setButton('sending');
+                  // Announced to screen readers; visually the spinner says it.
+                  setStatus('sending', t('contact_status_sending', 'Sending...'));
 
                   fetch(event.target.action, {
                     method: form.method,
@@ -885,16 +914,17 @@
                     headers: { 'Accept': 'application/json' }
                   }).then(function (response) {
                     if (response.ok) {
+                      setButton('sent');
                       setStatus('success', t('contact_status_success', 'Thanks for your message!'));
                       form.reset();
+                      setTimeout(function () { setButton(''); submitBtn.disabled = false; }, 2500);
                     } else {
-                      setStatus('error', t('contact_status_error', 'Oops! There was a problem sending your message.'));
+                      throw new Error('Formspree ' + response.status);
                     }
                   }).catch(function () {
+                    setButton('error');
                     setStatus('error', t('contact_status_error', 'Oops! There was a problem sending your message.'));
-                  }).finally(function () {
                     submitBtn.disabled = false;
-                    submitBtn.textContent = btnLabel;
                   });
                 }
 
