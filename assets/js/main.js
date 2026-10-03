@@ -658,6 +658,21 @@
       Array.prototype.slice.call(modal.querySelectorAll(FOCUSABLE))
         .filter(el => el.getClientRects().length > 0);
 
+    // The dialog grows out of the thumbnail/button that opened it and shrinks
+    // back into it on close (FLIP: transform + opacity only).
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const canAnimate = (trigger) => trigger && trigger.isConnected &&
+      !reduceMotion.matches && typeof Element.prototype.animate === 'function';
+
+    // Transform that puts the dialog's content box over the trigger.
+    const fromTrigger = (inner, trigger) => {
+      const a = trigger.getBoundingClientRect();
+      const b = inner.getBoundingClientRect();
+      const k = a.width / b.width;
+      return `translate(${a.left - b.left}px, ${a.top - b.top}px) scale(${k})`;
+    };
+    const EASE = 'cubic-bezier(0.2, 0.8, 0.2, 1)';
+
     const openModal = (modal, trigger) => {
       lastTrigger = trigger || document.activeElement;
       modal.classList.add('is-open');
@@ -668,15 +683,47 @@
       // Move focus into the dialog: the close button if present, else the dialog.
       const target = modal.querySelector('.modal-lite__close') || modal;
       target.focus();
+
+      const inner = modal.querySelector('.modal-lite__inner');
+      if (inner && canAnimate(lastTrigger)) {
+        inner.style.transformOrigin = 'top left';
+        inner.animate(
+          [{ transform: fromTrigger(inner, lastTrigger), opacity: 0.3 }, { transform: 'none', opacity: 1 }],
+          { duration: 450, easing: EASE }
+        );
+        modal.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 250, easing: 'ease-out' });
+      }
     };
 
     const closeModal = (modal) => {
-      modal.classList.remove('is-open');
-      document.body.style.overflow = '';
-      document.body.classList.remove('modal-open');
-      // Return focus to whatever opened the dialog.
-      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+      if (modal.dataset.closing) return;
+      const trigger = lastTrigger;
+      const finish = () => {
+        delete modal.dataset.closing;
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+        document.body.classList.remove('modal-open');
+        // Return focus to whatever opened the dialog.
+        if (trigger && typeof trigger.focus === 'function') trigger.focus();
+      };
       lastTrigger = null;
+
+      const inner = modal.querySelector('.modal-lite__inner');
+      if (!inner || !canAnimate(trigger)) { finish(); return; }
+      modal.dataset.closing = '1';
+      inner.style.transformOrigin = 'top left';
+      const fade = modal.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 350, easing: 'ease-in', fill: 'forwards' });
+      const shrink = inner.animate(
+        [{ transform: 'none', opacity: 1 }, { transform: fromTrigger(inner, trigger), opacity: 0.3 }],
+        { duration: 350, easing: EASE, fill: 'forwards' }
+      );
+      // Hide first, then drop both held end states in the same task, so the
+      // dialog never flashes back at full opacity.
+      shrink.finished.then(() => {
+        finish();
+        shrink.cancel();
+        fade.cancel();
+      });
     };
 
     select('[data-modal-open]', true).forEach(trigger => {
