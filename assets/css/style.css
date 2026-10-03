@@ -2291,6 +2291,21 @@ section .container {
 }
 
 /*--------------------------------------------------------------
+# Language switch - translated text fades out blurred, is swapped, then
+# fades back in (main.js). The transition only exists during the switch,
+# so it never overrides the elements' own transitions. Form fields are
+# left out: only their placeholder changes, the field itself must not fade.
+--------------------------------------------------------------*/
+.lang-anim [data-i18n]:not(input):not(textarea) {
+  transition: opacity 0.2s ease, filter 0.2s ease !important;
+}
+
+.lang-out [data-i18n]:not(input):not(textarea) {
+  opacity: 0 !important;
+  filter: blur(4px);
+}
+
+/*--------------------------------------------------------------
 # Scroll Reveal (lightweight AOS replacement)
 # main.js adds .aos-animate via IntersectionObserver; data-aos-delay
 # is honoured as a transition-delay. Reduced motion shows instantly.

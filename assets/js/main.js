@@ -549,9 +549,30 @@
     const savedLang = document.documentElement.lang || 'fr';
     updateLanguage(savedLang);
 
+    // The translated text fades out with a slight blur, is swapped while
+    // invisible, then fades back in (style.css, .lang-anim / .lang-out).
+    // Only [data-i18n] elements move, so images and layout stay still.
+    let langSwitching = false;
     langToggle.addEventListener('click', () => {
       const newLang = document.documentElement.lang === 'fr' ? 'en' : 'fr';
-      updateLanguage(newLang);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        updateLanguage(newLang);
+        return;
+      }
+      if (langSwitching) return;
+      langSwitching = true;
+      const root = document.documentElement;
+      root.classList.add('lang-anim', 'lang-out');
+      setTimeout(() => {
+        updateLanguage(newLang);
+        requestAnimationFrame(() => {
+          root.classList.remove('lang-out');
+          setTimeout(() => {
+            root.classList.remove('lang-anim');
+            langSwitching = false;
+          }, 240);
+        });
+      }, 160);
     });
   } else {
     // If toggle not found (e.g. before it's injected), still try to init
