@@ -376,6 +376,24 @@
   transition-delay: 0.12s;
 }
 
+/* Optional "buy me a coffee" thank-you line in the footer */
+#footer .svc-coffee {
+  margin: -24px 0 28px;
+  font-size: 14px;
+  font-style: normal;
+}
+
+#footer .svc-coffee a {
+  color: var(--accent-strong);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#footer .svc-coffee a:hover,
+#footer .svc-coffee a:focus-visible {
+  text-decoration: underline;
+}
+
 /* The footer's extra bottom padding clears the voice button on index.html;
    this page has none. */
 .services-page #footer {
