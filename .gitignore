@@ -3,3 +3,43 @@ drafts/
 # Local file-manager metadata — never belongs in a published site.
 .DS_Store
 .comments/
+
+# Secrets: never commit these. The site needs none; the voice worker's keys
+# live in Cloudflare (wrangler secret put), local copies in .dev.vars.
+.env
+.env.*
+!.env.example
+.dev.vars
+*.pem
+*.key
+
+# OS files
+Thumbs.db
+desktop.ini
+._*
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code local settings (personal, not project config)
+.claude/settings.local.json
+
+# Dependencies, build output and tool caches (anywhere in the repo)
+node_modules/
+dist/
+.wrangler/
+__pycache__/
+*.pyc
+
+# Logs, reports and temporary files
+*.log
+npm-debug.log*
+lighthouse*.json
+lighthouse*.html
+*.tmp
+*.bak
+*.orig

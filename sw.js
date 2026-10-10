@@ -11,11 +11,14 @@
  *
  * Bump CACHE_VERSION when you want to force-drop every cached asset.
  */
-const CACHE_VERSION = 'portfolioX-v42';
+const CACHE_VERSION = 'portfolioX-v43';
 
 const PRECACHE = [
   './',
   'index.html',
+  'services.html',
+  'assets/css/services.css',
+  'assets/js/services.js',
   '404.html',
   'manifest.json',
   'assets/css/style.css',

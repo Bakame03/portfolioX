@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <meta name="theme-color" content="#faf9f5">
+  <!-- Same pre-paint script as index.html: js class, saved language and theme
+       applied before first render (no flash). -->
+  <script>
+    var _d = document.documentElement;
+    _d.className = _d.className.replace('no-js', 'js');
+    try { var _l = localStorage.getItem('lang'); if (_l) _d.lang = _l; } catch (e) {}
+    try {
+      var _t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      _d.setAttribute('data-theme', _t);
+      var _m = document.querySelector('meta[name="theme-color"]');
+      if (_m) _m.setAttribute('content', _t === 'dark' ? '#262624' : '#faf9f5');
+    } catch (e) {}
+  </script>
+
+  <!-- Stricter than index.html: this page makes no API, form or voice calls,
+       only the analytics script. 'unsafe-inline' is for the script above. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self';
+    script-src 'self' 'unsafe-inline' https://gc.zgo.at;
+    style-src 'self';
+    img-src 'self' data: https://gc.zgo.at https://bakame03.goatcounter.com;
+    font-src 'self';
+    connect-src 'self' https://gc.zgo.at https://bakame03.goatcounter.com;
+    frame-src 'none';
+    form-action 'none';
+    base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://gc.zgo.at" crossorigin>
+
+  <title>Coups de main : IA et dépannage logiciel | Aldo Alex NGANJI</title>
+  <meta content="Aldo Alex NGANJI aide ses amis et ses proches à intégrer l'IA dans leur travail (Claude, Gemini) et à régler leurs problèmes de logiciel." name="description">
+  <meta content="Aldo Alex NGANJI" name="author">
+  <link rel="canonical" href="https://bakame03.github.io/portfolioX/services.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="Coups de main : IA et dépannage logiciel | Aldo Alex NGANJI">
+  <meta property="og:description" content="Intégrer l'IA comme un collègue dans son travail, et régler ses problèmes de logiciel : un coup de main entre amis.">
+  <meta property="og:image" content="https://bakame03.github.io/portfolioX/assets/img/og-preview-fr.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://bakame03.github.io/portfolioX/services.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="preload" href="assets/fonts/source-serif-4-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link href="assets/vendor/bootstrap/css/bootstrap.subset.min.css" rel="stylesheet">
+  <link href="assets/css/icons.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/services.css" rel="stylesheet">
+</head>
+
+<body class="services-page">
+  <a href="#svc-main" class="skip-link" data-i18n="skip_link">Aller au contenu</a>
+
+  <div class="control-dock">
+    <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Changer de langue (français / anglais)" data-i18n-aria="a11y_lang" title="Changer de langue" data-i18n-title="a11y_lang_short">FR</button>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Basculer entre mode clair et sombre" data-i18n-aria="a11y_theme" title="Basculer entre mode clair et sombre" data-i18n-title="a11y_theme">
+      <i class="bi bi-moon-stars-fill theme-toggle__moon" aria-hidden="true"></i>
+      <i class="bi bi-sun-fill theme-toggle__sun" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <main id="svc-main" class="svc">
+    <a href="index.html" class="svc-back" data-i18n="svc_back">← Retour au portfolio</a>
+
+    <header class="svc-hero svc-reveal">
+      <p class="svc-hero__eyebrow" data-i18n="svc_eyebrow">En dehors de mes études</p>
+      <h1 class="svc-hero__title" data-i18n="svc_title">Je vous donne un coup de main</h1>
+      <p class="svc-hero__lede" data-i18n="svc_lede">J'aide souvent des amis et des proches à utiliser l'IA dans leur travail, ou à régler un problème de logiciel. Si vous en avez besoin, écrivez-moi : on en parle simplement.</p>
+    </header>
+
+    <div class="svc-grid">
+
+      <!-- ===== AI as a coworker ===== -->
+      <article class="svc-card svc-reveal" data-demo="ai">
+        <!-- Demo: the same task's bar fills fully "before", then a much
+             shorter bar "with AI" (illustration, no figures claimed). -->
+        <div class="svc-demo svc-demo--ai" aria-hidden="true">
+          <div class="svc-bar">
+            <span class="svc-bar__label" data-i18n="svc_demo_before">Avant</span>
+            <span class="svc-bar__track"><span class="svc-bar__fill svc-bar__fill--before"></span></span>
+          </div>
+          <div class="svc-bar">
+            <span class="svc-bar__label" data-i18n="svc_demo_after">Avec l'IA</span>
+            <span class="svc-bar__track"><span class="svc-bar__fill svc-bar__fill--after"><i class="bi bi-robot"></i></span></span>
+          </div>
+          <p class="svc-demo__caption" data-i18n="svc_demo_caption">La même tâche, avec l'IA comme collègue.</p>
+        </div>
+
+        <div class="svc-card__body">
+          <span class="svc-card__tag" data-i18n="svc_ai_tag">Travailler plus malin, pas plus dur</span>
+          <h2 class="svc-card__title"><i class="bi bi-robot" aria-hidden="true"></i> <span data-i18n="svc_ai_title">Faire de l'IA un vrai collègue</span></h2>
+          <p data-i18n="svc_ai_desc">Sur vos propres tâches, je vous montre comment confier une partie du travail à l'IA : rédiger, résumer, analyser, automatiser. Le but n'est pas de tester un gadget, mais d'intégrer l'IA dans votre travail de tous les jours, quel que soit votre métier.</p>
+          <p class="svc-card__label" data-i18n="svc_ai_tools">Les outils que je vous montre</p>
+          <ul class="svc-tools">
+            <li>Claude Code</li>
+            <li>Claude Cowork</li>
+            <li>Claude Design</li>
+            <li>Claude in Chrome</li>
+            <li data-i18n="svc_tool_office">Claude dans Word et Excel</li>
+            <li data-i18n="svc_tool_gemini">Gemini dans Google Workspace</li>
+          </ul>
+          <a href="index.html?sujet=ia#contact" class="svc-cta"><i class="bi bi-envelope" aria-hidden="true"></i> <span data-i18n="svc_ai_cta">Demander un conseil IA</span></a>
+        </div>
+      </article>
+
+      <!-- ===== Software troubleshooting ===== -->
+      <article class="svc-card svc-reveal" data-demo="sw">
+        <!-- Demo: a small diagnostic that ticks its steps one by one. -->
+        <div class="svc-demo svc-demo--sw" aria-hidden="true">
+          <ul class="svc-diag">
+            <li><span class="svc-diag__mark"></span><span data-i18n="svc_diag_1">Analyse du problème</span></li>
+            <li><span class="svc-diag__mark"></span><span data-i18n="svc_diag_2">Cause trouvée</span></li>
+            <li><span class="svc-diag__mark"></span><span data-i18n="svc_diag_3">Correction appliquée</span></li>
+            <li class="svc-diag__done"><span class="svc-diag__mark"></span><span data-i18n="svc_diag_4">Tout refonctionne</span></li>
+          </ul>
+        </div>
+
+        <div class="svc-card__body">
+          <span class="svc-card__tag svc-card__tag--warn" data-i18n="svc_sw_tag">Logiciel uniquement, pas de matériel</span>
+          <h2 class="svc-card__title"><i class="bi bi-tools" aria-hidden="true"></i> <span data-i18n="svc_sw_title">Dépannage logiciel</span></h2>
+          <p data-i18n="svc_sw_desc">PC lent, logiciel qui plante, installation, mises à jour ou réglages : je vous aide à trouver la cause et à régler le problème. Je ne répare pas le matériel (écran, batterie, composants).</p>
+          <a href="index.html?sujet=logiciel#contact" class="svc-cta"><i class="bi bi-envelope" aria-hidden="true"></i> <span data-i18n="svc_sw_cta">Décrire mon problème</span></a>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="svc-note svc-reveal">
+      <p data-i18n="svc_note">C'est de l'entraide entre amis et connaissances : écrivez-moi, on voit ensemble ce dont vous avez besoin.</p>
+      <a href="index.html#contact" class="svc-cta svc-cta--solid" data-i18n="svc_contact">Me contacter</a>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <h3>Aldo Alex NGANJI</h3>
+      <p data-i18n="footer_tagline">Développeur back-end (NestJS, Python) · Arles,&nbsp;France</p>
+      <div class="copyright">
+        &copy; <strong><span id="current_year"></span> Aldo Alex NGANJI</strong>.
+      </div>
+    </div>
+  </footer>
+
+  <script data-goatcounter="https://bakame03.goatcounter.com/count" async src="https://gc.zgo.at/count.v5.js" integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ" crossorigin="anonymous"></script>
+  <script src="assets/js/translations.js" defer></script>
+  <script src="assets/js/services.js" defer></script>
+</body>
+</html>

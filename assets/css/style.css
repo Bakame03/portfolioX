@@ -1810,6 +1810,28 @@ section .container {
   color: var(--text-color);
 }
 
+/* Discreet link to the "Coups de main" page (contact intro + footer) */
+.services-link {
+  margin: 14px 0 0;
+  font-size: 14px;
+}
+
+.services-link a {
+  color: var(--accent-strong);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.services-link a:hover,
+.services-link a:focus-visible {
+  text-decoration: underline;
+}
+
+#footer .services-link {
+  margin: -24px 0 28px;
+  font-style: normal;
+}
+
 /* Click-to-copy email (main.js): looks like the text it replaces, with a
    small copy icon; a "Copied" bubble rises above it after a click. */
 .copy-email {

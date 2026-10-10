@@ -799,6 +799,8 @@
         <div class="section-title">
           <h2 data-i18n="contact_title">Contact</h2>
           <p data-i18n="contact_subtitle">Je cherche un <strong>stage de 12 semaines à partir du 29 mars 2027</strong>. Écrivez-moi pour un stage, un projet back-end ou une simple question.</p>
+          <!-- Side activity on its own page, so this page stays focused on the internship. -->
+          <p class="services-link"><a href="services.html"><span data-i18n="svc_link">Je donne aussi des coups de main en IA et en dépannage logiciel</span> <span aria-hidden="true">→</span></a></p>
         </div>
 
         <div class="row mt-1">
@@ -929,6 +931,15 @@
                 }
 
                 form.addEventListener("submit", handleSubmit);
+
+                // Coming from services.html (?sujet=ia|logiciel#contact): prefill
+                // the subject. Deferred scripts (translations.js) have run by
+                // DOMContentLoaded, so the subject follows the active language.
+                document.addEventListener('DOMContentLoaded', function () {
+                  var keys = { ia: 'svc_subject_ai', logiciel: 'svc_subject_sw' };
+                  var key = keys[new URLSearchParams(window.location.search).get('sujet')];
+                  if (key && !form.subject.value) form.subject.value = t(key, '');
+                });
               })();
             </script>
 
@@ -946,6 +957,7 @@
     <div class="container">
       <h3>Aldo Alex NGANJI</h3>
       <p data-i18n="footer_tagline">Développeur back-end (NestJS, Python) · Arles,&nbsp;France</p>
+      <p class="services-link"><a href="services.html"><span data-i18n="svc_link">Je donne aussi des coups de main en IA et en dépannage logiciel</span> <span aria-hidden="true">→</span></a></p>
       <div class="social-links">
         <a href="https://x.com/bakame03" class="twitter" target="_blank" rel="noopener" aria-label="Profil X (Twitter)" data-i18n-aria="a11y_x"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
         <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank" rel="noopener" aria-label="Profil Instagram" data-i18n-aria="a11y_instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
