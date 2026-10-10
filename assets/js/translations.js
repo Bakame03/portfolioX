@@ -227,7 +227,7 @@ window.translations = {
     svc_subject_sw: "Software problem",
     svc_link: "I also help with AI and software problems",
     svc_coffee_text: "Did one of my tips help you?",
-    svc_coffee_link: "You can buy me a coffee ☕",
+    svc_coffee_link: "Buy me a coffee",
 
     // Contact
     contact_title: "Contact",
@@ -497,7 +497,7 @@ window.translations = {
     svc_subject_sw: "Problème de logiciel",
     svc_link: "Je donne aussi des coups de main en IA et en dépannage logiciel",
     svc_coffee_text: "Un de mes conseils vous a aidé ?",
-    svc_coffee_link: "Vous pouvez m'offrir un café ☕",
+    svc_coffee_link: "Offrez-moi un café",
 
     // Contact
     contact_title: "Contact",

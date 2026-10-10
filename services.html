@@ -150,7 +150,20 @@
       <h3>Aldo Alex NGANJI</h3>
       <p data-i18n="footer_tagline">Développeur back-end (NestJS, Python) · Arles,&nbsp;France</p>
       <!-- Optional thank-you, never a price: plain link, no third-party widget script. -->
-      <p class="svc-coffee"><span data-i18n="svc_coffee_text">Un de mes conseils vous a aidé ?</span> <a href="https://buymeacoffee.com/bakame03" target="_blank" rel="noopener" data-i18n="svc_coffee_link">Vous pouvez m'offrir un café ☕</a></p>
+      <div class="svc-coffee">
+        <p data-i18n="svc_coffee_text">Un de mes conseils vous a aidé ?</p>
+        <!-- Pill with a drawn cup; the steam rises on hover/focus (services.css). -->
+        <a href="https://buymeacoffee.com/bakame03" target="_blank" rel="noopener" class="coffee-btn">
+          <svg class="coffee-btn__icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path class="coffee-btn__steam" d="M11 9c-1.5-1.5 1.5-3 0-4.5"/>
+            <path class="coffee-btn__steam" d="M15.5 9c-1.5-1.5 1.5-3 0-4.5"/>
+            <path class="coffee-btn__steam" d="M20 9c-1.5-1.5 1.5-3 0-4.5"/>
+            <path class="coffee-btn__cup" d="M6 12h19v7a7 7 0 0 1-7 7h-5a7 7 0 0 1-7-7z"/>
+            <path class="coffee-btn__cup" d="M25 14h1.5a3 3 0 0 1 0 6H25"/>
+          </svg>
+          <span data-i18n="svc_coffee_link">Offrez-moi un café</span>
+        </a>
+      </div>
       <div class="social-links">
         <a href="https://x.com/bakame03" class="twitter" target="_blank" rel="noopener" aria-label="Profil X (Twitter)" data-i18n-aria="a11y_x"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
         <a href="https://www.instagram.com/bakame03/" class="instagram" target="_blank" rel="noopener" aria-label="Profil Instagram" data-i18n-aria="a11y_instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>

@@ -376,22 +376,82 @@
   transition-delay: 0.12s;
 }
 
-/* Optional "buy me a coffee" thank-you line in the footer */
+/* Optional "buy me a coffee" thank-you in the footer: a calm pill with a
+   drawn cup; on hover/focus it fills and three wisps of steam rise. */
 #footer .svc-coffee {
-  margin: -24px 0 28px;
+  margin: -16px 0 32px;
+}
+
+#footer .svc-coffee p {
+  margin: 0 0 10px;
   font-size: 14px;
   font-style: normal;
 }
 
-#footer .svc-coffee a {
+.coffee-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px 8px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 50px;
+  background: var(--accent-soft);
   color: var(--accent-strong);
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.3s var(--ease-spring);
 }
 
-#footer .svc-coffee a:hover,
-#footer .svc-coffee a:focus-visible {
-  text-decoration: underline;
+.coffee-btn:hover,
+.coffee-btn:focus-visible {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .coffee-btn:hover,
+[data-theme="dark"] .coffee-btn:focus-visible {
+  color: #1d1c1a;
+}
+
+.coffee-btn__icon {
+  width: 22px;
+  height: 22px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.coffee-btn__steam {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .coffee-btn:hover .coffee-btn__steam,
+  .coffee-btn:focus-visible .coffee-btn__steam {
+    animation: coffee-steam 1.4s ease-out infinite;
+  }
+
+  .coffee-btn__steam:nth-child(2) { animation-delay: 0.25s !important; }
+  .coffee-btn__steam:nth-child(3) { animation-delay: 0.5s !important; }
+}
+
+/* Reduced motion: the steam simply shows, without rising. */
+@media (prefers-reduced-motion: reduce) {
+  .coffee-btn:hover .coffee-btn__steam,
+  .coffee-btn:focus-visible .coffee-btn__steam {
+    opacity: 0.8;
+  }
+}
+
+@keyframes coffee-steam {
+  0%   { opacity: 0; transform: translateY(3px); }
+  40%  { opacity: 0.9; }
+  100% { opacity: 0; transform: translateY(-5px); }
 }
 
 /* The footer's extra bottom padding clears the voice button on index.html;
