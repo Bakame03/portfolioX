@@ -596,11 +596,26 @@
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     }[c]));
 
+    // Repo data may come from the localStorage cache, which every GitHub
+    // Pages site of this account shares (same origin: bakame03.github.io).
+    // Only real GitHub links are used, so a tampered cache can't inject a
+    // javascript: or foreign link.
+    const safeRepoUrl = (u) => {
+      try {
+        const url = new URL(u);
+        return url.protocol === 'https:' && url.hostname === 'github.com' ? url.href : null;
+      } catch (e) {
+        return null;
+      }
+    };
+
     const render = (repos) => {
       repoList.innerHTML = ''; // Clear spinner
       repos.forEach(repo => {
+        const href = safeRepoUrl(repo && repo.html_url);
+        if (!href) return; // skip anything that isn't a github.com link
         const repoItem = document.createElement('a');
-        repoItem.href = repo.html_url;
+        repoItem.href = href;
         repoItem.target = '_blank';
         repoItem.rel = 'noopener';
         repoItem.className = 'repo-item';
