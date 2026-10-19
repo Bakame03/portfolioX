@@ -18,7 +18,9 @@ GitHub: https://github.com/Bakame03
 LinkedIn: https://www.linkedin.com/in/aldo-alex-nganji-550072383
 
 ## Availability
-Looking for a 12-week internship (stage) starting 29 March 2027.
+Looking for a 12-week internship (stage) starting 29 March 2027, extendable up
+to 5 months, with the option to continue as a work-study (alternance).
+Mobility: anywhere in France.
 
 ## Story
 Started programming in 2020 without really knowing what computer science was,
@@ -36,6 +38,8 @@ are useful to the people around him.
   all 60 ECTS and 6 of 6 competencies validated.
 - Bachelor's degree in software engineering, Université du Lac Tanganyika,
   Bujumbura, Burundi, 2020 - 2025 (equivalent to a French Licence, bac+3).
+- Online course on Udemy: LLM Engineering, LLMs, RAG and AI agents (2026, in
+  progress), self-directed alongside the BUT.
 - Baccalauréat Scientifique B, Lycée Clarté Notre Dame de Vugizo, Bujumbura,
   2017 - 2020. Mention Bien.
 
@@ -46,6 +50,12 @@ are useful to the people around him.
   architecture; MongoDB and SQL databases; code reviews with Git; unit tests;
   technical documentation.
 - The Asyst code is under NDA and cannot be shown publicly.
+
+## Student job
+- Crew member ("équipier polyvalent") at Burger King, Arles, France, since
+  25 March 2026, on a student permanent contract (CDI étudiant). He works there
+  alongside his BUT studies to fund them: teamwork during rush hours,
+  procedures and hygiene rules, moving between stations.
 
 ## Award
 DevArt 2026, Prix du Jury (1st place), 12-13 February 2026, IUT d'Arles.
@@ -79,8 +89,8 @@ triggers, simulating deforestation and the water used to cool servers.
 
 ## Skills
 Languages: Python, TypeScript, JavaScript, Java, C, C++, HTML, CSS.
-Back-end: NestJS, Node.js, Django, REST APIs, microservices, PostgreSQL, MongoDB, SQL.
-Tools: Git, Docker, Linux.
+Back-end: NestJS, REST APIs, microservices, PostgreSQL, MongoDB, SQL.
+Tools and methods: Git, Docker, Linux, Scrum, Trello.
 Front-end: HTML, CSS, JavaScript (no React or Next.js as personal skills).
 Generative AI, in training: LLMs, prompt engineering, RAG, agents. He has not
 built RAG systems or agents in production; say so honestly if asked.

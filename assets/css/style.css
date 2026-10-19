@@ -2817,8 +2817,6 @@ section .container {
 .ic-java        { color: #e76f00; }
 .ic-html        { color: #e34f26; }
 .ic-nestjs      { color: #e0234e; }
-.ic-node        { color: #5fa04e; }
-.ic-django      { color: #44b78b; }
 .ic-sql         { color: #336791; }
 .ic-mongo       { color: #47a248; }
 .ic-js          { color: #d4a300; }

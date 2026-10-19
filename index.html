@@ -124,7 +124,7 @@
       { "@type": "CollegeOrUniversity", "name": "Aix-Marseille Université - IUT d'Arles" },
       { "@type": "CollegeOrUniversity", "name": "Université du Lac Tanganyika" }
     ],
-    "knowsAbout": ["Python", "NestJS", "TypeScript", "JavaScript", "Java", "Node.js", "Django", "Backend Development", "REST APIs", "Microservices", "PostgreSQL", "MongoDB", "C", "C++", "Software Engineering"],
+    "knowsAbout": ["Python", "NestJS", "TypeScript", "JavaScript", "Java", "Backend Development", "REST APIs", "Microservices", "PostgreSQL", "MongoDB", "C", "C++", "Software Engineering"],
     "knowsLanguage": ["French", "English"],
     "sameAs": [
       "https://github.com/Bakame03",
@@ -298,6 +298,7 @@
                 <ul>
                   <li><i class="bi bi-globe"></i> <strong data-i18n="about_website">Site web :</strong> <a href="https://bakame03.github.io/portfolioX/"><span data-i18n="about_my_website">Mon site</span></a></li>
                   <li><i class="bi bi-geo-alt"></i> <strong data-i18n="about_city">Ville :</strong> <span data-i18n="about_city_val">Arles, France</span></li>
+                  <li><i class="bi bi-geo-alt-fill"></i> <strong data-i18n="about_mobility">Mobilité :</strong> <span data-i18n="about_mobility_val">toute la France</span></li>
                   <li><i class="bi bi-translate"></i> <strong data-i18n="about_languages">Langues :</strong> <span class="lang-typed-val" data-i18n="about_languages_val">Français, anglais</span></li>
                 </ul>
               </div>
@@ -305,7 +306,7 @@
                 <ul>
                   <li><i class="bi bi-journal-check"></i> <strong data-i18n="about_degree">Diplôme :</strong> <span data-i18n="about_degree_val">Licence en génie logiciel</span></li>
                   <li><i class="bi bi-envelope-at"></i> <strong data-i18n="about_email">E-mail :</strong> <button type="button" class="copy-email" data-copy="nganjialdoalex@gmail.com" title="Copier l'adresse" data-i18n-title="copy_email_hint">nganjialdoalex@gmail.com<svg class="copy-email__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span class="copy-email__tip" aria-live="polite"></span></button></li>
-                  <li><i class="bi bi-people"></i> <strong data-i18n="about_available">Disponible pour :</strong> <span data-i18n="about_available_val">Stage de 12 semaines dès le 29 mars 2027</span></li>
+                  <li><i class="bi bi-people"></i> <strong data-i18n="about_available">Disponible pour :</strong> <span data-i18n="about_available_val">Stage de 12 semaines dès le 29 mars 2027, prolongeable jusqu'à 5 mois, avec possibilité de poursuivre en alternance</span></li>
                 </ul>
               </div>
             </div>
@@ -599,6 +600,13 @@
             </div>
 
             <div class="resume-item">
+              <h4 data-i18n="resume_role_udemy">Formation en ligne : LLM Engineering, LLM, RAG et agents IA</h4>
+              <h5 data-i18n="resume_role_udemy_dates">2026, en cours</h5>
+              <p><em>Udemy</em></p>
+              <p data-i18n="resume_role_udemy_desc">Formation personnelle en IA générative, suivie en parallèle du BUT.</p>
+            </div>
+
+            <div class="resume-item">
               <h4 data-i18n="resume_role_highschool">Baccalauréat Scientifique B</h4>
               <h5>2017 - 2020</h5>
               <p><em data-i18n="resume_role_highschool_loc">Lycée Clarté Notre Dame de Vugizo, Bujumbura, Burundi</em></p>
@@ -633,6 +641,20 @@
                 <li data-i18n="resume_exp_intern_p1">Intégration dans l'équipe back-end et prise en main de <strong>NestJS</strong> et <strong>TypeScript</strong> sur des projets réels.</li>
                 <li data-i18n="resume_exp_intern_p2">Participation au développement d'API REST dans une architecture microservices.</li>
                 <li data-i18n="resume_exp_intern_p3">Le stage a débouché sur une embauche.</li>
+              </ul>
+            </div>
+
+            <!-- Student job alongside the BUT (kept apart from the dev experience) -->
+            <h3 class="resume-title" data-i18n="resume_sec_other">Autres expériences</h3>
+
+            <div class="resume-item">
+              <h4 data-i18n="resume_job_bk_role">Équipier polyvalent</h4>
+              <h5 data-i18n="resume_job_bk_dates">Depuis mars 2026</h5>
+              <p><em data-i18n="resume_job_bk_loc">Burger King | Arles, France · CDI étudiant</em></p>
+              <ul>
+                <li data-i18n="resume_job_bk_p1">Job étudiant en parallèle du BUT Informatique, pour financer mes études.</li>
+                <li data-i18n="resume_job_bk_p2">Travail en équipe pendant les rushs, dans le respect des procédures et des règles d'hygiène.</li>
+                <li data-i18n="resume_job_bk_p3">Polyvalence entre les différents postes.</li>
               </ul>
             </div>
 
@@ -731,8 +753,6 @@
             </h3>
             <div class="d-flex flex-wrap gap-2">
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hexagon-fill me-1 ic-nestjs"></i> NestJS</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hexagon-fill me-1 ic-node"></i> Node.js</span>
-              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-code-slash me-1 ic-django"></i> Django</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-shuffle me-1 ic-rest"></i> API REST</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-hdd-network me-1 ic-micro"></i> Microservices</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-database me-1 ic-sql"></i> PostgreSQL</span>
@@ -749,6 +769,8 @@
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-git me-1 ic-git"></i> Git</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-box-seam me-1 ic-docker"></i> Docker</span>
               <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-terminal me-1"></i> Linux</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-people me-1"></i> Scrum</span>
+              <span class="badge bg-white text-dark border p-2 shadow-sm"><i class="bi bi-card-checklist me-1"></i> Trello</span>
               <span class="badge badge-wrap bg-white text-dark border p-2 shadow-sm"><i class="bi bi-robot me-1 ic-aiml"></i> <span data-i18n="skills_ai">IA générative : LLM, prompt engineering, RAG, agents</span> <small class="text-muted" data-i18n="skills_learning">(en formation)</small></span>
             </div>
           </div>
@@ -798,7 +820,7 @@
 
         <div class="section-title">
           <h2 data-i18n="contact_title">Contact</h2>
-          <p data-i18n="contact_subtitle">Je cherche un <strong>stage de 12 semaines à partir du 29 mars 2027</strong>. Écrivez-moi pour un stage, un projet back-end ou une simple question.</p>
+          <p data-i18n="contact_subtitle">Je cherche un <strong>stage de 12 semaines à partir du 29 mars 2027</strong>, prolongeable jusqu'à 5 mois, avec possibilité de poursuivre en alternance. Mobilité : toute la France. Écrivez-moi pour un stage, un projet back-end ou une simple question.</p>
           <!-- Side activity on its own page, so this page stays focused on the internship. -->
           <p class="services-link"><a href="services.html"><span data-i18n="svc_link">Je donne aussi des coups de main en IA et en dépannage logiciel</span> <span aria-hidden="true">→</span></a></p>
         </div>
