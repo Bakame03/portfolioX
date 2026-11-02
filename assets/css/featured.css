@@ -294,6 +294,13 @@
   white-space: nowrap;
 }
 
+/* Same look when the action is a <button> (e.g. "Try it" on the voice
+   assistant card) instead of a link. */
+button.btn-action {
+  font-family: inherit;
+  cursor: pointer;
+}
+
 .btn-action i {
   font-size: 14px;
   transition: transform 0.3s var(--ease-spring);

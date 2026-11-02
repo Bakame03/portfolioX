@@ -10,7 +10,7 @@ window.translations = {
 
     // Hero
     hero_iam: "I'm",
-    hero_status: "Available for a 12-week internship from 29 March 2027",
+    hero_status: "Available for a 13-week internship from 29 March 2027",
     hero_cta_projects: "View my projects",
     hero_cta_contact: "Get in touch",
     hero_roles: "a back-end developer,a NestJS and Python developer,a computer science student",
@@ -43,7 +43,7 @@ window.translations = {
     glance_award_val: "Jury Prize, DevArt 2026",
     glance_stack: "Stack",
     about_available: "Available for:",
-    about_available_val: "12-week internship from 29 March 2027, extendable up to 5 months, with the option to continue as a work-study (alternance)",
+    about_available_val: "13-week internship from 29 March to 26 June 2027, then possible summer fixed-term contract (CDD) or work-study (alternance) from September 2027",
     about_bio_p2: "I started programming in 2020 without really knowing what computer science was, and I was hooked right away. In 2025 I finished my software engineering degree at Université du Lac Tanganyika and joined Asyst Resources, first as an intern, then as a back-end developer. In September 2025 I moved to France to continue my studies at IUT d'Arles. What drives me is building things that are actually useful to the people around me.",
     about_btn_github: "View GitHub Activity",
     about_voice_title: "Ask my AI assistant",
@@ -143,6 +143,12 @@ window.translations = {
     project_ai_title: "Self-taught path in generative AI",
     project_ai_desc: "<strong>What it is:</strong> Python exercises and notebooks I write while learning about LLMs.<br><strong>So far:</strong> calling LLM APIs, a website summarizer, tokenization and conversation memory, prompt chaining, working with several providers.<br><strong>Next:</strong> RAG and agents.",
     project_badge_progress: "In progress",
+    project_voice_title: "This portfolio's voice assistant",
+    project_voice_desc: "<strong>What it is:</strong> a voice assistant that answers recruiters' questions about my background.<br><strong>How:</strong> Gemini Live API, with a Cloudflare Worker that keeps the API key off the browser.<br><strong>Result:</strong> live on this site.",
+    project_cat_voice: "Voice AI / Back-end",
+    project_archisim_title: "ArchiSim (school project, BUT 2)",
+    project_archisim_desc: "<strong>What it is:</strong> a web simulator of a Von Neumann computer architecture.<br><strong>My role:</strong> Scrum Master of a 5-person team, running sprints and tracking tasks on Trello.<br><strong>Status:</strong> in progress (2026).",
+    project_cat_archisim: "School project / Scrum",
     project_cat_ai: "Generative AI / Python",
 
     project_eatwell_title: "Eat Well (Omnifood)",
@@ -243,7 +249,7 @@ window.translations = {
 
     // Contact
     contact_title: "Contact",
-    contact_subtitle: "I'm looking for a <strong>12-week internship from 29 March 2027</strong>, extendable up to 5 months, with the option to continue as a work-study (alternance). Open to anywhere in France. Write to me about an internship, a back-end project or any question.",
+    contact_subtitle: "I'm looking for a <strong>13-week internship from 29 March to 26 June 2027</strong>, then I'd like to continue with a summer fixed-term contract or a work-study (alternance) for my 3rd year from September 2027. Open to anywhere in France. Write to me about an internship, a back-end project or any question.",
     contact_location: "Location:",
     contact_email: "Email:",
     copy_email_hint: "Copy the address",
@@ -292,7 +298,7 @@ window.translations = {
 
     // Hero
     hero_iam: "Je suis",
-    hero_status: "Disponible pour un stage de 12 semaines dès le 29 mars 2027",
+    hero_status: "Disponible pour un stage de 13 semaines dès le 29 mars 2027",
     hero_cta_projects: "Voir mes projets",
     hero_cta_contact: "Me contacter",
     hero_roles: "développeur back-end,développeur NestJS et Python,étudiant en BUT Informatique",
@@ -325,7 +331,7 @@ window.translations = {
     glance_award_val: "Prix du Jury, DevArt 2026",
     glance_stack: "Stack",
     about_available: "Disponible pour :",
-    about_available_val: "Stage de 12 semaines dès le 29 mars 2027, prolongeable jusqu'à 5 mois, avec possibilité de poursuivre en alternance",
+    about_available_val: "Stage de 13 semaines du 29 mars au 26 juin 2027, puis CDD possible l'été ou alternance à partir de septembre 2027",
     about_bio_p2: "J'ai commencé à programmer en 2020 sans vraiment savoir ce qu'était l'informatique, et j'ai tout de suite accroché. En 2025, j'ai terminé ma licence en génie logiciel à l'Université du Lac Tanganyika et j'ai rejoint Asyst Resources, d'abord en stage puis comme développeur back-end. En septembre 2025, je suis arrivé en France pour poursuivre mes études à l'IUT d'Arles. Ce qui me motive, c'est de construire des outils vraiment utiles aux gens autour de moi.",
     about_btn_github: "Voir mon activité GitHub",
     about_voice_title: "Posez vos questions à mon assistant IA",
@@ -425,6 +431,12 @@ window.translations = {
     project_ai_title: "Parcours d'auto-formation en IA générative",
     project_ai_desc: "<strong>Ce que c'est :</strong> des exercices et notebooks Python que j'écris en apprenant les LLM.<br><strong>Déjà fait :</strong> appels d'API de LLM, résumé de sites web, tokenisation et mémoire de conversation, chaînage de prompts, plusieurs fournisseurs d'API.<br><strong>Prochaines étapes :</strong> RAG et agents.",
     project_badge_progress: "En cours",
+    project_voice_title: "L'assistant vocal de ce portfolio",
+    project_voice_desc: "<strong>Ce que c'est :</strong> un assistant vocal qui répond aux questions des recruteurs sur mon parcours.<br><strong>Comment :</strong> l'API Gemini Live, avec un Cloudflare Worker qui garde la clé d'API hors du navigateur.<br><strong>Résultat :</strong> en ligne sur ce site.",
+    project_cat_voice: "IA vocale / Back-end",
+    project_archisim_title: "ArchiSim (projet scolaire, BUT 2)",
+    project_archisim_desc: "<strong>Ce que c'est :</strong> un simulateur web d'architecture d'ordinateur de type Von Neumann.<br><strong>Mon rôle :</strong> Scrum Master d'une équipe de 5 personnes, j'anime les sprints et je suis les tâches sur Trello.<br><strong>Statut :</strong> en cours (2026).",
+    project_cat_archisim: "Projet scolaire / Scrum",
     project_cat_ai: "IA générative / Python",
 
     project_eatwell_title: "Eat Well (Omnifood)",
@@ -525,7 +537,7 @@ window.translations = {
 
     // Contact
     contact_title: "Contact",
-    contact_subtitle: "Je cherche un <strong>stage de 12 semaines à partir du 29 mars 2027</strong>, prolongeable jusqu'à 5 mois, avec possibilité de poursuivre en alternance. Mobilité : toute la France. Écrivez-moi pour un stage, un projet back-end ou une simple question.",
+    contact_subtitle: "Je cherche un <strong>stage de 13 semaines du 29 mars au 26 juin 2027</strong>, puis j'aimerais continuer en CDD pendant l'été ou en alternance pour ma 3e année à partir de septembre 2027. Mobilité : toute la France. Écrivez-moi pour un stage, un projet back-end ou une simple question.",
     contact_location: "Localisation :",
     contact_email: "E-mail :",
     copy_email_hint: "Copier l'adresse",

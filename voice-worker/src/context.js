@@ -18,8 +18,9 @@ GitHub: https://github.com/Bakame03
 LinkedIn: https://www.linkedin.com/in/aldo-alex-nganji-550072383
 
 ## Availability
-Looking for a 12-week internship (stage) starting 29 March 2027, extendable up
-to 5 months, with the option to continue as a work-study (alternance).
+Aldo is available for a 13-week internship from 29 March to 26 June 2027. After
+that, a summer fixed-term contract (CDD) is possible, and he wants to continue
+as a work-study (alternance) for his 3rd year of BUT starting September 2027.
 Mobility: anywhere in France.
 
 ## Story
@@ -67,6 +68,9 @@ consumes; the more complex the request, the more visual and sound alerts it
 triggers, simulating deforestation and the water used to cool servers.
 
 ## Projects
+- ArchiSim (school project, BUT 2, in progress, 2026). A web simulator of a Von
+  Neumann computer architecture. Aldo is the Scrum Master of the 5-person team:
+  he runs the sprints and tracks tasks on Trello.
 - HYPOXIA - L'Écho Numérique (featured, the award-winning DevArt project).
   Every prompt typed damages a 3D world in real time, to make the
   environmental cost of AI visible. Built by the team with Next.js 14, React
