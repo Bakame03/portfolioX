@@ -268,6 +268,7 @@ window.translations = {
     // Footer
     footer_tagline: "Back-end developer (NestJS, Python) · Arles,&nbsp;France",
     footer_credits: "Designed by Aldo Alex NGANJI - AKA Bakame03",
+    footer_robot_credit: "3D robot: RobotExpressive by Tomás Laulhé (Quaternius), CC0",
 
     // Voice assistant
     voice_cta: "Talk to my AI",
@@ -557,6 +558,7 @@ window.translations = {
     // Footer
     footer_tagline: "Développeur back-end (NestJS, Python) · Arles,&nbsp;France",
     footer_credits: "Conçu par Aldo Alex NGANJI - alias Bakame03",
+    footer_robot_credit: "Robot 3D : RobotExpressive par Tomás Laulhé (Quaternius), CC0",
 
     // Voice assistant
     voice_cta: "Parler à mon IA",

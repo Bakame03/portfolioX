@@ -535,6 +535,8 @@
     // Update Toggle Button Text
     if (langToggle) {
       langToggle.innerText = lang.toUpperCase();
+      // The accessible name must contain the visible text (WCAG 2.5.3).
+      langToggle.setAttribute('aria-label', lang.toUpperCase() + ' : ' + (dictionary.a11y_lang || ''));
     }
 
     // Guarded like every other storage write here: throws in Safari private

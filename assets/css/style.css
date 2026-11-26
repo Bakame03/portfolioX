@@ -2217,6 +2217,11 @@ section .container {
 #footer .credits {
   font-size: 13px;
 }
+
+#footer .credits--robot {
+  margin-top: 4px;
+  font-size: 12px;
+}
 /* Featured Project styles moved to featured.css */
 
 /*--------------------------------------------------------------

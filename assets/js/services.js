@@ -25,7 +25,11 @@
         if (value) el.setAttribute(attr, value.replace(/<[^>]+>/g, ''));
       });
     });
-    if (langToggle) langToggle.textContent = lang.toUpperCase();
+    if (langToggle) {
+      langToggle.textContent = lang.toUpperCase();
+      // The accessible name must contain the visible text (WCAG 2.5.3).
+      langToggle.setAttribute('aria-label', lang.toUpperCase() + ' : ' + (dict.a11y_lang || ''));
+    }
     try { localStorage.setItem('lang', lang); } catch (e) {}
     root.lang = lang;
   }

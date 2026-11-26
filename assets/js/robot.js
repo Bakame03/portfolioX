@@ -3,9 +3,9 @@
  * page (RobotExpressive by Tomás Laulhé / Quaternius, CC0, assets/3d/robot.glb).
  *
  * Loaded as a module (deferred) and kept cheap until it is needed:
- * - three.js (assets/vendor/three) is imported only after the page has loaded
- *   and the browser is idle, and never on very small screens or when the
- *   visitor has hidden the robot;
+ * - three.js (assets/vendor/three) is imported only after the page has loaded,
+ *   on the visitor's first interaction (or 8 s later) and when the browser is
+ *   idle; never on very small screens or when the visitor has hidden it;
  * - the canvas is a fixed, transparent band that lets clicks through;
  * - rendering stops while the tab is hidden or the robot is turned off.
  *
@@ -106,9 +106,22 @@ async function start() {
   if (started) return;
   started = true;
   try {
+    // Work split into short steps with a yield between each, so no single
+    // task blocks the page for long (library, scene, model, shaders).
     THREE = await import(THREE_URL);
+    await yieldToPage();
     setupScene();
+    await yieldToPage();
     await loadRobot();
+    await yieldToPage();
+    // Compile the shaders before the first frame; compileAsync lets the
+    // driver do it off the main thread where supported.
+    if (renderer.compileAsync && renderer.extensions.has('KHR_parallel_shader_compile')) {
+      await renderer.compileAsync(scene, camera);
+    } else {
+      renderer.compile(scene, camera);
+    }
+    await yieldToPage();
     enter();
     updateLoop();
   } catch (err) {
@@ -499,12 +512,32 @@ function stopLoop() {
 
 document.addEventListener('visibilitychange', updateLoop);
 
-function whenIdle(fn) {
-  const run = () => ('requestIdleCallback' in window
-    ? requestIdleCallback(fn, { timeout: 3000 })
-    : setTimeout(fn, 1200));
-  if (document.readyState === 'complete') run();
-  else window.addEventListener('load', run, { once: true });
+const yieldToPage = () => new Promise((resolve) => setTimeout(resolve, 0));
+
+// Start the robot once the visitor first interacts with the page (scroll,
+// mouse, touch, key), or at the latest LATE_START_MS after the page has
+// loaded - then still wait for an idle moment. Keeps the first seconds of
+// the visit, when the page is being read, completely free of 3D work.
+const LATE_START_MS = 8000;
+const FIRST_INTERACTION = ['pointermove', 'pointerdown', 'keydown', 'wheel', 'touchstart', 'scroll'];
+
+function whenReady(fn) {
+  let fired = false;
+  let timer = 0;
+  const go = () => {
+    if (fired) return;
+    fired = true;
+    clearTimeout(timer);
+    FIRST_INTERACTION.forEach((t) => window.removeEventListener(t, go));
+    if ('requestIdleCallback' in window) requestIdleCallback(fn, { timeout: 2000 });
+    else setTimeout(fn, 200);
+  };
+  const arm = () => {
+    FIRST_INTERACTION.forEach((t) => window.addEventListener(t, go, { passive: true, once: true }));
+    timer = setTimeout(go, LATE_START_MS);
+  };
+  if (document.readyState === 'complete') arm();
+  else window.addEventListener('load', arm, { once: true });
 }
 
 // ---- Init ---------------------------------------------------------------
@@ -521,6 +554,6 @@ if (toggle && !tooSmall.matches && webglAvailable()) {
     if (on) start();
   });
 
-  if (on) whenIdle(start);
+  if (on) whenReady(start);
 }
 
