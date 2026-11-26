@@ -42,6 +42,11 @@ let surpriseTarget = 0;
 let hoverCooldown = 0;            // seconds before hover can trigger again
 let voiceState = 'idle';          // mirrors the voice assistant (voice.js)
 let nodTimer = 0;                 // seconds before the next nod while the AI speaks
+let headBone = null;              // skeleton bone "Head" (look-at offset)
+let pointer = null;               // last mouse position (client px), fine pointers only
+let lookYaw = 0;                  // current look offset (radians), eased
+let lookPitch = 0;
+let dancedAtBottom = false;       // bottom-of-page dance done for this visit down
 let x = 0;                        // robot position along the bottom edge
 let targetX = 0;
 let facing = 0;
@@ -150,6 +155,7 @@ async function loadRobot() {
 
   robot.traverse((o) => {
     if (o.morphTargetDictionary && 'Surprised' in o.morphTargetDictionary) faces.push(o);
+    if (o.isBone && o.name === 'Head') headBone = o;
   });
 
   mixer = new THREE.AnimationMixer(robot);
@@ -279,6 +285,72 @@ function onVoiceState(event) {
 
 document.addEventListener('voice:state', onVoiceState);
 
+// ---- Bonus: look at the cursor, dance at the bottom of the page --------
+// The head turns toward the mouse while the robot stands facing the visitor.
+// The offset is applied in world space on top of the animated pose, and the
+// pose is restored right after rendering, so it never accumulates.
+const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+const tmpQ = { a: null, b: null, c: null, e: null, saved: null };
+
+window.addEventListener('pointermove', (e) => {
+  if (e.pointerType === 'mouse') pointer = { x: e.clientX, y: e.clientY };
+}, { passive: true });
+document.documentElement.addEventListener('pointerleave', () => { pointer = null; });
+
+function updateLook(dt) {
+  let yaw = 0;
+  let pitch = 0;
+  const canLook = headBone && pointer && fineHover.matches && !reduceMotion.matches &&
+    (mode === 'idle' || mode === 'emote') && Math.abs(facing) < 0.3;
+  if (canLook) {
+    const headX = x;
+    const headY = window.innerHeight - 8 - robotHeightPx() * 0.8;
+    yaw = Math.max(-0.7, Math.min(0.7, (pointer.x - headX) / 500));
+    pitch = Math.max(-0.35, Math.min(0.35, (pointer.y - headY) / 600));
+  }
+  const k = Math.min(1, dt * 6);           // ease toward the target
+  lookYaw += (yaw - lookYaw) * k;
+  lookPitch += (pitch - lookPitch) * k;
+}
+
+let savedHead = null;
+function applyLook() {
+  if (!headBone || (Math.abs(lookYaw) < 0.001 && Math.abs(lookPitch) < 0.001)) { savedHead = null; return; }
+  if (!tmpQ.a) {
+    tmpQ.a = new THREE.Quaternion(); tmpQ.b = new THREE.Quaternion(); tmpQ.c = new THREE.Quaternion();
+    tmpQ.e = new THREE.Euler(); tmpQ.saved = new THREE.Quaternion();
+  }
+  savedHead = tmpQ.saved.copy(headBone.quaternion);
+  // world-space rotation: yaw around world Y, pitch around world X
+  tmpQ.a.setFromEuler(tmpQ.e.set(lookPitch, lookYaw, 0, 'YXZ'));
+  headBone.parent.getWorldQuaternion(tmpQ.b);
+  // local = parentWorld^-1 * offset * parentWorld * local
+  tmpQ.c.copy(tmpQ.b).invert().multiply(tmpQ.a).multiply(tmpQ.b);
+  headBone.quaternion.premultiply(tmpQ.c);
+}
+
+function restoreLook() {
+  if (savedHead) headBone.quaternion.copy(savedHead);
+  savedHead = null;
+}
+
+// Dance once when the visitor reaches the bottom of the page; re-armed after
+// scrolling back up a bit.
+function onScroll() {
+  const doc = document.documentElement;
+  const atBottom = window.scrollY + window.innerHeight >= doc.scrollHeight - 40;
+  if (atBottom && !dancedAtBottom) {
+    dancedAtBottom = true;
+    if (robot && !reduceMotion.matches && !inConversation() && mode !== 'entering' && mode !== 'emote') {
+      targetFacing = 0;
+      emote('Dance', () => goIdle(rand(2, 4)));
+    }
+  } else if (!atBottom && window.scrollY + window.innerHeight < doc.scrollHeight - 400) {
+    dancedAtBottom = false;
+  }
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+
 function setSurprise(v) {
   for (const mesh of faces) mesh.morphTargetInfluences[mesh.morphTargetDictionary.Surprised] = v;
 }
@@ -403,7 +475,11 @@ function frame(now) {
   last = now;
   update(dt);
   if (mixer) mixer.update(dt);
+  updateLook(dt);
+  if (robot) robot.updateMatrixWorld(true);
+  applyLook();
   render();
+  restoreLook();
 }
 
 function updateLoop() {
