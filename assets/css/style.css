@@ -344,6 +344,17 @@ h6 {
   display: none;
 }
 
+/* Invisible box kept over the robot by robot.js: the only part of the band
+   that takes the pointer (hover / click / tap). */
+.robot-hitbox {
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  pointer-events: auto;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /*--------------------------------------------------------------
 # Control dock visibility states
 # .controls-hidden - small screens, scrolling down: pill shrinks

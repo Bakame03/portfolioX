@@ -33,7 +33,13 @@ let current = null;               // action currently playing
 
 // Behaviour state (CSS pixels / radians). The model faces the camera at
 // rotation 0; +PI/2 faces right, -PI/2 faces left.
-let mode = 'idle';                // 'entering' | 'idle' | 'emote'
+let mode = 'idle';                // 'entering' | 'idle' | 'walking' | 'emote'
+let idleTimer = 0;                // seconds left before the next stroll
+let hitbox = null;                // invisible element over the robot (pointer events)
+let faces = [];                   // head meshes carrying the facial morph targets
+let surprise = 0;                 // current "Surprised" influence (0..1)
+let surpriseTarget = 0;
+let hoverCooldown = 0;            // seconds before hover can trigger again
 let x = 0;                        // robot position along the bottom edge
 let targetX = 0;
 let facing = 0;
@@ -68,6 +74,11 @@ function createLayer() {
   layer = document.createElement('div');
   layer.className = 'robot-layer';
   layer.setAttribute('aria-hidden', 'true'); // decorative
+  // The band lets clicks through; only this box, kept over the robot, takes
+  // hover and clicks.
+  hitbox = document.createElement('div');
+  hitbox.className = 'robot-hitbox';
+  layer.append(hitbox);
   document.body.append(layer);
 }
 
@@ -135,8 +146,13 @@ async function loadRobot() {
   robot.userData.minY = box.min.y;
   scene.add(robot);
 
+  robot.traverse((o) => {
+    if (o.morphTargetDictionary && 'Surprised' in o.morphTargetDictionary) faces.push(o);
+  });
+
   mixer = new THREE.AnimationMixer(robot);
   mixer.addEventListener('finished', onFinished);
+  bindPointer();
   for (const clip of gltf.animations) actions[clip.name] = mixer.clipAction(clip);
   placeRobot();
 }
@@ -147,10 +163,18 @@ function placeRobot() {
   const k = robotHeightPx() / modelHeight;
   robot.scale.setScalar(k);
   robot.position.set(x, 8 - robot.userData.minY * k, 0);
+  placeHitbox();
 }
 
 // Walking speed scales with the robot's on-screen size (pixels per second).
 const walkSpeed = () => robotHeightPx() * 0.75;
+
+// Walkable stretch of the bottom edge: from the resting spot (clear of the
+// desktop menu rail) to just before the voice/back-to-top buttons on the right.
+const minX = () => homeX();
+const maxX = () => Math.max(minX(), window.innerWidth - (phone.matches ? 100 : 270));
+const clampX = (v) => Math.min(maxX(), Math.max(minX(), v));
+const rand = (a, b) => a + Math.random() * (b - a);
 
 // ---- Behaviours ---------------------------------------------------------
 // Entrance: walk in from the left edge, stop, wave, then idle. With reduced
@@ -159,7 +183,7 @@ function enter() {
   if (reduceMotion.matches) {
     x = homeX();
     play('Idle', 0);
-    mode = 'idle';
+    goIdle();
     placeRobot();
     return;
   }
@@ -175,8 +199,74 @@ function enter() {
 function emote(name, then) {
   if (!actions[name]) return;
   mode = 'emote';
-  afterEmote = then || (() => { play('Idle'); mode = 'idle'; });
+  afterEmote = then || (() => goIdle());
   play(name, 0.25, false);
+}
+
+// Stand facing the visitor, then stroll again after a short pause.
+// Reduced motion: stay put for good.
+function goIdle(pause = rand(3, 7)) {
+  play('Idle');
+  mode = 'idle';
+  targetFacing = 0;
+  idleTimer = reduceMotion.matches ? Infinity : pause;
+}
+
+// Walk to a random spot at least a third of the stretch away, so each
+// stroll is visible; the robot turns round at either end of the stretch.
+function stroll() {
+  const lo = minX();
+  const hi = maxX();
+  if (hi - lo < robotHeightPx()) { goIdle(); return; } // no room to walk
+  let next = rand(lo, hi);
+  if (Math.abs(next - x) < (hi - lo) / 3) next = x < (lo + hi) / 2 ? rand((lo + 2 * hi) / 3, hi) : rand(lo, (2 * lo + hi) / 3);
+  targetX = next;
+  targetFacing = targetX > x ? Math.PI / 2 : -Math.PI / 2;
+  play('Walking');
+  mode = 'walking';
+}
+
+// ---- Interactions -------------------------------------------------------
+const pick = (list) => list[Math.floor(Math.random() * list.length)];
+
+// Hover (mouse): stop, face the visitor, thumbs up or nod.
+function onHover() {
+  if (mode === 'entering' || mode === 'emote' || hoverCooldown > 0) return;
+  hoverCooldown = 3;
+  targetFacing = 0;
+  emote(pick(['ThumbsUp', 'Yes']), () => goIdle(rand(2, 4)));
+}
+
+// Click / tap: a random emote with a surprised face.
+function onPoke() {
+  if (mode === 'entering') return;
+  targetFacing = 0;
+  surpriseTarget = 1;
+  emote(pick(['Jump', 'Dance', 'Wave']), () => {
+    surpriseTarget = 0;
+    goIdle(rand(2, 4));
+  });
+}
+
+function bindPointer() {
+  hitbox.addEventListener('pointerenter', (e) => {
+    if (e.pointerType === 'mouse') onHover(); // touch has no hover: tap only
+  });
+  hitbox.addEventListener('click', onPoke);
+}
+
+function setSurprise(v) {
+  for (const mesh of faces) mesh.morphTargetInfluences[mesh.morphTargetDictionary.Surprised] = v;
+}
+
+// Keep the hit box over the robot (it is narrower than tall).
+function placeHitbox() {
+  if (!hitbox) return;
+  const h = robotHeightPx();
+  const w = h * 0.7;
+  hitbox.style.width = w + 'px';
+  hitbox.style.height = h + 'px';
+  hitbox.style.transform = `translateX(${Math.round(x - w / 2)}px)`;
 }
 
 function onFinished(event) {
@@ -201,12 +291,31 @@ function update(dt) {
       targetFacing = 0;           // turn to the visitor
       emote('Wave');
     }
+  } else if (mode === 'walking') {
+    // Wait until it has turned to face the way it goes, then move.
+    if (Math.abs(facing - targetFacing) < 0.3) {
+      const dir = Math.sign(targetX - x);
+      x += dir * walkSpeed() * dt;
+      if ((dir > 0 && x >= targetX) || (dir < 0 && x <= targetX) || dir === 0) {
+        x = targetX;
+        goIdle();
+      }
+    }
+  } else if (mode === 'idle') {
+    idleTimer -= dt;
+    if (idleTimer <= 0) stroll();
   }
   turn(dt);
+  hoverCooldown = Math.max(0, hoverCooldown - dt);
+  if (surprise !== surpriseTarget) {
+    surprise += Math.sign(surpriseTarget - surprise) * Math.min(Math.abs(surpriseTarget - surprise), dt * 5);
+    setSurprise(surprise);
+  }
   if (robot) {
     robot.rotation.y = facing;
     robot.position.x = x;
   }
+  placeHitbox();
 }
 
 // Cross-fade to an animation: a looping state (Idle, Walking...) or, with
@@ -235,7 +344,11 @@ function resize() {
   camera.top = h;
   camera.bottom = 0;
   camera.updateProjectionMatrix();
-  if (mode !== 'entering') x = targetX = homeX();
+  // Keep the robot inside the walkable stretch when the window changes size.
+  if (mode !== 'entering') {
+    x = clampX(x);
+    targetX = clampX(targetX);
+  }
   placeRobot();
   render();
 }
