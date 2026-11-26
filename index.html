@@ -155,6 +155,11 @@
       <i class="bi bi-moon-stars-fill theme-toggle__moon" aria-hidden="true"></i>
       <i class="bi bi-sun-fill theme-toggle__sun" aria-hidden="true"></i>
     </button>
+    <!-- Shows/hides the animated robot (assets/js/robot.js un-hides it when
+         the robot can run: WebGL available, screen wide enough). -->
+    <button type="button" class="robot-toggle" id="robot-toggle" aria-pressed="true" aria-label="Afficher ou masquer le robot" data-i18n-aria="a11y_robot" title="Afficher ou masquer le robot" data-i18n-title="a11y_robot" hidden>
+      <i class="bi bi-robot" aria-hidden="true"></i>
+    </button>
   </div>
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex flex-column justify-content-center">
@@ -1153,6 +1158,8 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/voice.js" defer></script>
+  <!-- Animated robot: a module (deferred); three.js loads later, when idle. -->
+  <script type="module" src="assets/js/robot.js"></script>
 
 
 </body>

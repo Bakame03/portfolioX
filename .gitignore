@@ -43,3 +43,6 @@ lighthouse*.html
 *.tmp
 *.bak
 *.orig
+
+# Earlier 3D experiment (15 MB) - not used by the site, never commit it.
+assets/3d/aldo-3d.glb
