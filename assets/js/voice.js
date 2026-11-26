@@ -53,9 +53,12 @@
   }
 
   function setState(next, key, fallback) {
+    const changed = next !== state;
     state = next;
     if (key) statusKey = [key, fallback];
     render();
+    // Lets other scripts follow the conversation (assets/js/robot.js).
+    if (changed) document.dispatchEvent(new CustomEvent('voice:state', { detail: { state: next } }));
   }
 
   // Labels are set from JS, so follow language switches made by main.js.

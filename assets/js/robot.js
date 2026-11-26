@@ -40,6 +40,8 @@ let faces = [];                   // head meshes carrying the facial morph targe
 let surprise = 0;                 // current "Surprised" influence (0..1)
 let surpriseTarget = 0;
 let hoverCooldown = 0;            // seconds before hover can trigger again
+let voiceState = 'idle';          // mirrors the voice assistant (voice.js)
+let nodTimer = 0;                 // seconds before the next nod while the AI speaks
 let x = 0;                        // robot position along the bottom edge
 let targetX = 0;
 let facing = 0;
@@ -255,6 +257,28 @@ function bindPointer() {
   hitbox.addEventListener('click', onPoke);
 }
 
+// ---- Voice assistant ----------------------------------------------------
+// voice.js fires 'voice:state' (idle | connecting | listening | speaking).
+// When a conversation starts the robot waves; during it, it stays put facing
+// the visitor and nods now and then while the AI speaks.
+const inConversation = () => voiceState !== 'idle';
+
+function onVoiceState(event) {
+  const prev = voiceState;
+  voiceState = event.detail.state;
+  if (!robot) return;
+  if (prev === 'idle' && voiceState === 'connecting') {
+    targetFacing = 0;
+    emote('Wave');
+  } else if (voiceState === 'speaking') {
+    nodTimer = rand(1, 2);
+  } else if (voiceState === 'idle' && mode === 'idle') {
+    idleTimer = rand(2, 4);      // conversation over: stroll again soon
+  }
+}
+
+document.addEventListener('voice:state', onVoiceState);
+
 function setSurprise(v) {
   for (const mesh of faces) mesh.morphTargetInfluences[mesh.morphTargetDictionary.Surprised] = v;
 }
@@ -291,6 +315,8 @@ function update(dt) {
       targetFacing = 0;           // turn to the visitor
       emote('Wave');
     }
+  } else if (mode === 'walking' && inConversation()) {
+    goIdle();
   } else if (mode === 'walking') {
     // Wait until it has turned to face the way it goes, then move.
     if (Math.abs(facing - targetFacing) < 0.3) {
@@ -302,8 +328,20 @@ function update(dt) {
       }
     }
   } else if (mode === 'idle') {
-    idleTimer -= dt;
-    if (idleTimer <= 0) stroll();
+    if (inConversation()) {
+      // Stay with the visitor; nod while the AI talks (not with reduced motion).
+      targetFacing = 0;
+      if (voiceState === 'speaking' && !reduceMotion.matches) {
+        nodTimer -= dt;
+        if (nodTimer <= 0) {
+          nodTimer = rand(3, 5);
+          emote('Yes');
+        }
+      }
+    } else {
+      idleTimer -= dt;
+      if (idleTimer <= 0) stroll();
+    }
   }
   turn(dt);
   hoverCooldown = Math.max(0, hoverCooldown - dt);
