@@ -30,6 +30,15 @@ let renderer, scene, camera, mixer;
 let robot = null;                 // the loaded model (THREE.Group)
 let actions = {};                 // animation name -> AnimationAction
 let current = null;               // action currently playing
+
+// Behaviour state (CSS pixels / radians). The model faces the camera at
+// rotation 0; +PI/2 faces right, -PI/2 faces left.
+let mode = 'idle';                // 'entering' | 'idle' | 'emote'
+let x = 0;                        // robot position along the bottom edge
+let targetX = 0;
+let facing = 0;
+let targetFacing = 0;
+let afterEmote = null;            // what to do when a one-shot emote ends
 let modelHeight = 1;              // model height in model units
 let started = false;
 let visible = true;
@@ -82,7 +91,7 @@ async function start() {
     THREE = await import(THREE_URL);
     setupScene();
     await loadRobot();
-    play('Idle', 0);
+    enter();
     updateLoop();
   } catch (err) {
     // Never let the robot break the page: log, remove the layer and button.
@@ -127,6 +136,7 @@ async function loadRobot() {
   scene.add(robot);
 
   mixer = new THREE.AnimationMixer(robot);
+  mixer.addEventListener('finished', onFinished);
   for (const clip of gltf.animations) actions[clip.name] = mixer.clipAction(clip);
   placeRobot();
 }
@@ -136,13 +146,80 @@ function placeRobot() {
   if (!robot) return;
   const k = robotHeightPx() / modelHeight;
   robot.scale.setScalar(k);
-  robot.position.set(homeX(), 8 - robot.userData.minY * k, 0);
+  robot.position.set(x, 8 - robot.userData.minY * k, 0);
 }
 
-// Cross-fade to an animation (looping states for now).
-function play(name, fade = 0.4) {
+// Walking speed scales with the robot's on-screen size (pixels per second).
+const walkSpeed = () => robotHeightPx() * 0.75;
+
+// ---- Behaviours ---------------------------------------------------------
+// Entrance: walk in from the left edge, stop, wave, then idle. With reduced
+// motion the robot simply stands at its spot.
+function enter() {
+  if (reduceMotion.matches) {
+    x = homeX();
+    play('Idle', 0);
+    mode = 'idle';
+    placeRobot();
+    return;
+  }
+  x = -robotHeightPx();           // just off screen
+  targetX = homeX();
+  facing = targetFacing = Math.PI / 2;
+  play('Walking', 0);
+  mode = 'entering';
+  placeRobot();
+}
+
+// One-shot animation (wave, thumbs up...), then `then()` (default: idle).
+function emote(name, then) {
+  if (!actions[name]) return;
+  mode = 'emote';
+  afterEmote = then || (() => { play('Idle'); mode = 'idle'; });
+  play(name, 0.25, false);
+}
+
+function onFinished(event) {
+  if (event.action !== current || mode !== 'emote') return;
+  const next = afterEmote;
+  afterEmote = null;
+  if (next) next();
+}
+
+// Turn smoothly toward targetFacing (shortest way round).
+function turn(dt) {
+  let d = targetFacing - facing;
+  d = Math.atan2(Math.sin(d), Math.cos(d));
+  const step = Math.min(Math.abs(d), dt * 7);
+  facing += Math.sign(d) * step;
+}
+
+function update(dt) {
+  if (mode === 'entering') {
+    x = Math.min(targetX, x + walkSpeed() * dt);
+    if (x >= targetX) {
+      targetFacing = 0;           // turn to the visitor
+      emote('Wave');
+    }
+  }
+  turn(dt);
+  if (robot) {
+    robot.rotation.y = facing;
+    robot.position.x = x;
+  }
+}
+
+// Cross-fade to an animation: a looping state (Idle, Walking...) or, with
+// loop = false, a one-shot that holds its last pose until something else plays.
+function play(name, fade = 0.4, loop = true) {
   const next = actions[name];
-  if (!next || next === current) return;
+  if (!next) return;
+  next.setLoop(loop ? THREE.LoopRepeat : THREE.LoopOnce, loop ? Infinity : 1);
+  next.clampWhenFinished = !loop;
+  if (next === current) {
+    if (!loop) next.reset().play(); // same emote again: restart it
+    return;
+  }
   next.reset().setEffectiveWeight(1).play();
   if (current) current.crossFadeTo(next, fade, false);
   current = next;
@@ -158,6 +235,7 @@ function resize() {
   camera.top = h;
   camera.bottom = 0;
   camera.updateProjectionMatrix();
+  if (mode !== 'entering') x = targetX = homeX();
   placeRobot();
   render();
 }
@@ -172,6 +250,7 @@ function frame(now) {
   // Clamp the step so a long pause (background tab) doesn't jump animations.
   const dt = Math.min((now - last) / 1000, 0.1);
   last = now;
+  update(dt);
   if (mixer) mixer.update(dt);
   render();
 }
