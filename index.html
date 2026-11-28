@@ -827,6 +827,10 @@
           </div>
         </div>
 
+        <!-- The same skills on a turning 3D sphere (skills-sphere.js);
+             decorative, the lists above are the accessible version. -->
+        <div class="skills-sphere" aria-hidden="true"></div>
+
       </div>
     </section><!-- End Skills Section -->
 
@@ -991,6 +995,8 @@
                     if (response.ok) {
                       setButton('sent');
                       setStatus('success', t('contact_status_success', 'Thanks for your message!'));
+                      // The robot (robot.js) cheers.
+                      document.dispatchEvent(new CustomEvent('contact:sent'));
                       form.reset();
                       setTimeout(function () { setButton(''); submitBtn.disabled = false; }, 2500);
                     } else {
@@ -999,6 +1005,7 @@
                   }).catch(function () {
                     setButton('error');
                     setStatus('error', t('contact_status_error', 'Oops! There was a problem sending your message.'));
+                    document.dispatchEvent(new CustomEvent('contact:error'));
                     submitBtn.disabled = false;
                   });
                 }
@@ -1161,6 +1168,9 @@
   <script src="assets/js/voice.js" defer></script>
   <!-- Animated robot: a module (deferred); three.js loads later, when idle. -->
   <script type="module" src="assets/js/robot.js"></script>
+  <script src="assets/js/skills-sphere.js" defer></script>
+  <!-- Low-poly shape in the hero (wide screens), same three.js file as the robot. -->
+  <script type="module" src="assets/js/hero-gem.js"></script>
 
 
 </body>

@@ -11,6 +11,12 @@
  *
  * The scene uses an orthographic camera measured in CSS pixels, so the robot's
  * size and position are set in pixels (x from the left, feet at y = 0).
+ *
+ * Pages choose a flavour with <body data-robot="...">:
+ * - (none) index.html: walks along the bottom edge and reacts to the page;
+ * - "calm"  services.html: stays at its spot, waves, no strolls;
+ * - "lost"  404.html: lives in the page's .robot-stage and plays a short
+ *           "fall down, get up" scene.
  */
 
 const MIN_WIDTH = 360;            // below this, no robot at all
@@ -19,6 +25,10 @@ const THREE_URL = '../vendor/three/three-robot.min.js';
 const MODEL_URL = new URL('../3d/robot.glb', import.meta.url).href;
 
 const toggle = document.getElementById('robot-toggle');
+const PAGE = document.body.dataset.robot || 'full';   // 'full' | 'calm' | 'lost'
+const calm = PAGE !== 'full';                         // no strolls, no running
+const stage = PAGE === 'lost' ? document.querySelector('.robot-stage') : null;
+const root = document.documentElement;
 const tooSmall = window.matchMedia(`(max-width: ${MIN_WIDTH - 1}px)`);
 const phone = window.matchMedia('(max-width: 767px)');
 const desktopNav = window.matchMedia('(min-width: 992px)');
@@ -33,12 +43,13 @@ let current = null;               // action currently playing
 
 // Behaviour state (CSS pixels / radians). The model faces the camera at
 // rotation 0; +PI/2 faces right, -PI/2 faces left.
-let mode = 'idle';                // 'entering' | 'idle' | 'walking' | 'emote'
+let mode = 'idle';                // 'entering' | 'idle' | 'walking' | 'emote' | 'sitting'
 let idleTimer = 0;                // seconds left before the next stroll
 let hitbox = null;                // invisible element over the robot (pointer events)
 let faces = [];                   // head meshes carrying the facial morph targets
-let surprise = 0;                 // current "Surprised" influence (0..1)
-let surpriseTarget = 0;
+const moods = {};                 // morph name (Surprised/Angry/Sad) -> { v, t }
+let scripted = false;             // 404 scene playing: ignore pokes and reactions
+let runTimer = 0;                 // seconds of running left (fast scroll)
 let hoverCooldown = 0;            // seconds before hover can trigger again
 let voiceState = 'idle';          // mirrors the voice assistant (voice.js)
 let nodTimer = 0;                 // seconds before the next nod while the AI speaks
@@ -47,6 +58,7 @@ let pointer = null;               // last mouse position (client px), fine point
 let lookYaw = 0;                  // current look offset (radians), eased
 let lookPitch = 0;
 let dancedAtBottom = false;       // bottom-of-page dance done for this visit down
+let quietTime = 0;                // seconds since the visitor last did anything
 let x = 0;                        // robot position along the bottom edge
 let targetX = 0;
 let facing = 0;
@@ -78,15 +90,16 @@ function webglAvailable() {
 
 // ---- Layer --------------------------------------------------------------
 function createLayer() {
-  layer = document.createElement('div');
-  layer.className = 'robot-layer';
+  // 404: the page provides its own box; elsewhere, a band along the bottom.
+  layer = stage || document.createElement('div');
+  if (!stage) layer.className = 'robot-layer';
   layer.setAttribute('aria-hidden', 'true'); // decorative
   // The band lets clicks through; only this box, kept over the robot, takes
   // hover and clicks.
   hitbox = document.createElement('div');
   hitbox.className = 'robot-hitbox';
   layer.append(hitbox);
-  document.body.append(layer);
+  if (!stage) document.body.append(layer);
 }
 
 function setVisible(on) {
@@ -97,9 +110,14 @@ function setVisible(on) {
 }
 
 // ---- Sizes (CSS pixels) -------------------------------------------------
-const robotHeightPx = () => (phone.matches ? 75 : 110);
-// Resting spot: just right of the desktop menu rail, or near the left edge.
-const homeX = () => (desktopNav.matches ? 150 : 50);
+const robotHeightPx = () => (stage ? 140 : phone.matches ? 75 : 110);
+// Resting spot: just right of the desktop menu rail, or near the left edge
+// (services.html has no rail; 404: the middle of its box).
+const homeX = () => {
+  if (stage) return layer.clientWidth / 2;
+  if (calm) return phone.matches ? 50 : 80;
+  return desktopNav.matches ? 150 : 50;
+};
 
 // ---- Lazy start ---------------------------------------------------------
 async function start() {
@@ -113,6 +131,10 @@ async function start() {
     setupScene();
     await yieldToPage();
     await loadRobot();
+    if (stage) {                  // swap the static picture for the robot
+      root.classList.add('robot-ready');
+      resize();
+    }
     await yieldToPage();
     // Compile the shaders before the first frame; compileAsync lets the
     // driver do it off the main thread where supported.
@@ -193,7 +215,7 @@ const walkSpeed = () => robotHeightPx() * 0.75;
 // Walkable stretch of the bottom edge: from the resting spot (clear of the
 // desktop menu rail) to just before the voice/back-to-top buttons on the right.
 const minX = () => homeX();
-const maxX = () => Math.max(minX(), window.innerWidth - (phone.matches ? 100 : 270));
+const maxX = () => (calm ? homeX() : Math.max(minX(), window.innerWidth - (phone.matches ? 100 : 270)));
 const clampX = (v) => Math.min(maxX(), Math.max(minX(), v));
 const rand = (a, b) => a + Math.random() * (b - a);
 
@@ -201,11 +223,15 @@ const rand = (a, b) => a + Math.random() * (b - a);
 // Entrance: walk in from the left edge, stop, wave, then idle. With reduced
 // motion the robot simply stands at its spot.
 function enter() {
-  if (reduceMotion.matches) {
+  if (PAGE === 'lost') { lostScene(); return; }
+  if (reduceMotion.matches || calm) {
+    // Calm pages: appear at the spot and wave; reduced motion: just stand.
     x = homeX();
+    facing = targetFacing = 0;
     play('Idle', 0);
-    goIdle();
     placeRobot();
+    if (calm && !reduceMotion.matches) emote('Wave');
+    else goIdle();
     return;
   }
   x = -robotHeightPx();           // just off screen
@@ -230,7 +256,7 @@ function goIdle(pause = rand(3, 7)) {
   play('Idle');
   mode = 'idle';
   targetFacing = 0;
-  idleTimer = reduceMotion.matches ? Infinity : pause;
+  idleTimer = reduceMotion.matches || calm ? Infinity : pause;
 }
 
 // Walk to a random spot at least a third of the stretch away, so each
@@ -243,7 +269,7 @@ function stroll() {
   if (Math.abs(next - x) < (hi - lo) / 3) next = x < (lo + hi) / 2 ? rand((lo + 2 * hi) / 3, hi) : rand(lo, (2 * lo + hi) / 3);
   targetX = next;
   targetFacing = targetX > x ? Math.PI / 2 : -Math.PI / 2;
-  play('Walking');
+  play(runTimer > 0 ? 'Running' : 'Walking');
   mode = 'walking';
 }
 
@@ -252,7 +278,7 @@ const pick = (list) => list[Math.floor(Math.random() * list.length)];
 
 // Hover (mouse): stop, face the visitor, thumbs up or nod.
 function onHover() {
-  if (mode === 'entering' || mode === 'emote' || hoverCooldown > 0) return;
+  if (scripted || mode === 'entering' || mode === 'emote' || mode === 'sitting' || hoverCooldown > 0) return;
   hoverCooldown = 3;
   targetFacing = 0;
   emote(pick(['ThumbsUp', 'Yes']), () => goIdle(rand(2, 4)));
@@ -260,11 +286,12 @@ function onHover() {
 
 // Click / tap: a random emote with a surprised face.
 function onPoke() {
-  if (mode === 'entering') return;
+  // Sitting: the click's pointerdown already makes it stand up; let it finish.
+  if (scripted || mode === 'entering' || mode === 'sitting' || current === actions.Standing) return;
   targetFacing = 0;
-  surpriseTarget = 1;
+  setMood('Surprised', 1);
   emote(pick(['Jump', 'Dance', 'Wave']), () => {
-    surpriseTarget = 0;
+    setMood('Surprised', 0);
     goIdle(rand(2, 4));
   });
 }
@@ -288,7 +315,8 @@ function onVoiceState(event) {
   if (!robot) return;
   if (prev === 'idle' && voiceState === 'connecting') {
     targetFacing = 0;
-    emote('Wave');
+    if (mode === 'sitting') emote('Standing', () => emote('Wave'));
+    else emote('Wave');
   } else if (voiceState === 'speaking') {
     nodTimer = rand(1, 2);
   } else if (voiceState === 'idle' && mode === 'idle') {
@@ -316,8 +344,9 @@ function updateLook(dt) {
   const canLook = headBone && pointer && fineHover.matches && !reduceMotion.matches &&
     (mode === 'idle' || mode === 'emote') && Math.abs(facing) < 0.3;
   if (canLook) {
-    const headX = x;
-    const headY = window.innerHeight - 8 - robotHeightPx() * 0.8;
+    const box = layer.getBoundingClientRect();
+    const headX = box.left + x;
+    const headY = box.bottom - 8 - robotHeightPx() * 0.8;
     yaw = Math.max(-0.7, Math.min(0.7, (pointer.x - headX) / 500));
     pitch = Math.max(-0.35, Math.min(0.35, (pointer.y - headY) / 600));
   }
@@ -348,15 +377,20 @@ function restoreLook() {
 }
 
 // Dance once when the visitor reaches the bottom of the page; re-armed after
-// scrolling back up a bit.
+// scrolling back up a bit. Calm pages (services.html): a wave instead, toward
+// the coffee link and contacts.
+let lastScrollY = window.scrollY;
+let lastScrollT = performance.now();
+
 function onScroll() {
   const doc = document.documentElement;
+  measureScrollSpeed();
   const atBottom = window.scrollY + window.innerHeight >= doc.scrollHeight - 40;
   if (atBottom && !dancedAtBottom) {
     dancedAtBottom = true;
-    if (robot && !reduceMotion.matches && !inConversation() && mode !== 'entering' && mode !== 'emote') {
+    if (robot && !scripted && !reduceMotion.matches && !inConversation() && mode !== 'entering' && mode !== 'emote' && mode !== 'sitting') {
       targetFacing = 0;
-      emote('Dance', () => goIdle(rand(2, 4)));
+      emote(calm ? 'Wave' : 'Dance', () => goIdle(rand(2, 4)));
     }
   } else if (!atBottom && window.scrollY + window.innerHeight < doc.scrollHeight - 400) {
     dancedAtBottom = false;
@@ -364,8 +398,184 @@ function onScroll() {
 }
 window.addEventListener('scroll', onScroll, { passive: true });
 
-function setSurprise(v) {
-  for (const mesh of faces) mesh.morphTargetInfluences[mesh.morphTargetDictionary.Surprised] = v;
+// ---- Rest: sit down when the visitor is inactive ------------------------
+// After SIT_AFTER seconds without any activity (mouse, scroll, key, touch)
+// the robot sits down at its spot; the next activity makes it stand up.
+// Not with reduced motion (the robot stays still there anyway).
+const SIT_AFTER = 30;
+const ACTIVITY = ['pointermove', 'pointerdown', 'keydown', 'wheel', 'touchstart', 'scroll'];
+
+function sitDown() {
+  if (!actions.Sitting || !actions.Standing) return;
+  mode = 'sitting';
+  // Three-quarter view toward the middle of the page: the seated pose reads
+  // much better than straight on.
+  targetFacing = x < window.innerWidth / 2 ? 0.6 : -0.6;
+  play('Sitting', 0.5, false);    // one-shot that holds the seated pose
+}
+
+function onActivity() {
+  quietTime = 0;
+  if (robot && mode === 'sitting') emote('Standing', () => goIdle(rand(1, 3)));
+}
+ACTIVITY.forEach((t) => window.addEventListener(t, onActivity, { passive: true }));
+
+// ---- Fast scroll: run ---------------------------------------------------
+// Scrolling fast (more than RUN_SPEED px/s, measured over 50 ms or more)
+// makes the robot run for a moment; it goes back to walking afterwards.
+const RUN_SPEED = 2500;
+
+function measureScrollSpeed() {
+  const now = performance.now();
+  const dt = (now - lastScrollT) / 1000;
+  if (dt < 0.05) return;
+  const speed = Math.abs(window.scrollY - lastScrollY) / dt;
+  lastScrollY = window.scrollY;
+  lastScrollT = now;
+  if (dt < 0.5 && speed > RUN_SPEED) onFastScroll();
+}
+
+function onFastScroll() {
+  if (!robot || calm || scripted || reduceMotion.matches || inConversation()) return;
+  runTimer = 1.4;
+  if (mode === 'idle') stroll();
+}
+
+// ---- Reactions to the page ----------------------------------------------
+// One-shot emote facing the visitor; sitting: stand up first. Returns false
+// when the robot can't react right now (not loaded, entering, 404 scene,
+// conversation with the assistant).
+function react(name, then) {
+  if (!robot || scripted || mode === 'entering' || inConversation()) return false;
+  targetFacing = 0;
+  const done = then || (() => goIdle(rand(2, 4)));
+  if (mode === 'sitting') emote('Standing', () => emote(name, done));
+  else emote(name, done);
+  return true;
+}
+
+// Back on the tab after a while: a wave.
+let hiddenAt = 0;
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { hiddenAt = performance.now(); return; }
+  if (hiddenAt && performance.now() - hiddenAt > 5000) react('Wave');
+  hiddenAt = 0;
+});
+
+// Theme and language switches (any page): dark mode surprises it, light mode
+// gets a thumbs up, a new language gets a wave.
+new MutationObserver((records) => {
+  for (const r of records) {
+    const value = root.getAttribute(r.attributeName);
+    if (value === r.oldValue) continue;
+    if (r.attributeName === 'data-theme') {
+      if (react(value === 'dark' ? 'Jump' : 'ThumbsUp')) flashMood('Surprised', 1.6);
+    } else if (r.attributeName === 'lang') {
+      react('Wave');
+    }
+  }
+}).observe(root, { attributes: true, attributeFilter: ['data-theme', 'lang'], attributeOldValue: true });
+
+// index.html sections: thumbs up when the projects come into view, a wave at
+// the contact form. Once each per visit.
+if (PAGE === 'full' && 'IntersectionObserver' in window) {
+  const sections = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting || mode === 'emote' || mode === 'sitting') continue;
+      if (react(e.target.id === 'contact' ? 'Wave' : 'ThumbsUp')) sections.unobserve(e.target);
+    }
+  }, { rootMargin: '0px 0px -55% 0px' });   // section top reaches mid-screen
+  ['projects', 'contact'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) sections.observe(el);
+  });
+}
+
+// Contact form: shakes its head (angry) at an invalid field, thumbs up and a
+// jump once the message is sent, a sad "no" if sending failed. index.html's
+// form script fires 'contact:sent' / 'contact:error'.
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  let lastInvalid = 0;
+  contactForm.addEventListener('invalid', () => {
+    const now = performance.now();
+    if (now - lastInvalid < 1500) return;       // one reaction per submit
+    lastInvalid = now;
+    if (react('No')) flashMood('Angry', 1.8);
+  }, true);
+}
+document.addEventListener('contact:sent', () => {
+  if (react('ThumbsUp', () => emote('Jump', () => goIdle(rand(2, 4))))) flashMood('Surprised', 1);
+});
+document.addEventListener('contact:error', () => {
+  if (react('No')) flashMood('Sad', 2.5);
+});
+
+// ---- 404 scene ------------------------------------------------------------
+// Stands a moment, looks surprised, falls over (sad face), lies there, gets
+// back up (the fall played backwards) and waves toward the "back" button.
+// Reduced motion: it just stands there looking a bit sad.
+function lostScene() {
+  x = homeX();
+  facing = targetFacing = 0;
+  play('Idle', 0);
+  placeRobot();
+  if (reduceMotion.matches) { setMood('Sad', 0.7); goIdle(); return; }
+  scripted = true;
+  mode = 'emote';
+  const wait = (ms, fn) => setTimeout(fn, ms);
+  wait(700, () => {
+    setMood('Surprised', 1);
+    wait(500, () => {
+      setMood('Surprised', 0);
+      setMood('Sad', 1);
+      emote('Death', () => wait(1300, () => {
+        emoteReverse('Death', () => {
+          setMood('Sad', 0);
+          scripted = false;
+          emote('Wave', () => goIdle());
+        });
+      }));
+    });
+  });
+}
+
+// Play a one-shot backwards from its end (or from where it is held).
+function emoteReverse(name, then) {
+  const action = actions[name];
+  if (!action) return;
+  mode = 'emote';
+  afterEmote = then;
+  if (current !== action) {
+    play(name, 0.25, false);
+    action.time = action.getClip().duration;
+  }
+  action.enabled = true;
+  action.paused = false;
+  action.timeScale = -1;
+}
+
+// ---- Facial expressions (morph targets) -----------------------------------
+function setMood(name, target) {
+  (moods[name] || (moods[name] = { v: 0, t: 0 })).t = target;
+}
+
+function flashMood(name, seconds) {
+  setMood(name, 1);
+  setTimeout(() => setMood(name, 0), seconds * 1000);
+}
+
+// Ease every expression toward its target and apply it to the face meshes.
+function updateMoods(dt) {
+  for (const name in moods) {
+    const m = moods[name];
+    if (m.v === m.t) continue;
+    m.v += Math.sign(m.t - m.v) * Math.min(Math.abs(m.t - m.v), dt * 5);
+    for (const mesh of faces) {
+      const i = mesh.morphTargetDictionary[name];
+      if (i !== undefined) mesh.morphTargetInfluences[i] = m.v;
+    }
+  }
 }
 
 // Keep the hit box over the robot (it is narrower than tall).
@@ -404,9 +614,11 @@ function update(dt) {
     goIdle();
   } else if (mode === 'walking') {
     // Wait until it has turned to face the way it goes, then move.
+    const gait = runTimer > 0 ? 'Running' : 'Walking';
+    if (actions[gait] && current !== actions[gait]) play(gait, 0.25);
     if (Math.abs(facing - targetFacing) < 0.3) {
       const dir = Math.sign(targetX - x);
-      x += dir * walkSpeed() * dt;
+      x += dir * walkSpeed() * (runTimer > 0 ? 2.4 : 1) * dt;
       if ((dir > 0 && x >= targetX) || (dir < 0 && x <= targetX) || dir === 0) {
         x = targetX;
         goIdle();
@@ -423,17 +635,18 @@ function update(dt) {
           emote('Yes');
         }
       }
+    } else if (quietTime >= SIT_AFTER && !reduceMotion.matches) {
+      sitDown();
     } else {
       idleTimer -= dt;
       if (idleTimer <= 0) stroll();
     }
   }
+  quietTime = inConversation() ? 0 : quietTime + dt;
   turn(dt);
   hoverCooldown = Math.max(0, hoverCooldown - dt);
-  if (surprise !== surpriseTarget) {
-    surprise += Math.sign(surpriseTarget - surprise) * Math.min(Math.abs(surpriseTarget - surprise), dt * 5);
-    setSurprise(surprise);
-  }
+  runTimer = Math.max(0, runTimer - dt);
+  updateMoods(dt);
   if (robot) {
     robot.rotation.y = facing;
     robot.position.x = x;
@@ -448,6 +661,7 @@ function play(name, fade = 0.4, loop = true) {
   if (!next) return;
   next.setLoop(loop ? THREE.LoopRepeat : THREE.LoopOnce, loop ? Infinity : 1);
   next.clampWhenFinished = !loop;
+  next.timeScale = 1;
   if (next === current) {
     if (!loop) next.reset().play(); // same emote again: restart it
     return;
@@ -541,7 +755,16 @@ function whenReady(fn) {
 }
 
 // ---- Init ---------------------------------------------------------------
-if (toggle && !tooSmall.matches && webglAvailable()) {
+if (PAGE === 'lost') {
+  // 404: no toggle (the visitor's choice from the other pages still counts);
+  // the robot is the page's picture, so it starts as soon as the page loads.
+  if (stage && readChoice() && webglAvailable()) {
+    createLayer();
+    const go = () => start();
+    if (document.readyState === 'complete') go();
+    else window.addEventListener('load', go, { once: true });
+  }
+} else if (toggle && !tooSmall.matches && webglAvailable()) {
   createLayer();
   toggle.hidden = false;
   let on = readChoice();

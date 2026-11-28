@@ -62,7 +62,7 @@
   <link href="assets/css/services.css" rel="stylesheet">
 </head>
 
-<body class="services-page">
+<body class="services-page" data-robot="calm">
   <a href="#svc-main" class="skip-link" data-i18n="skip_link">Aller au contenu</a>
 
   <div class="control-dock">
@@ -70,6 +70,10 @@
     <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Basculer entre mode clair et sombre" data-i18n-aria="a11y_theme" title="Basculer entre mode clair et sombre" data-i18n-title="a11y_theme">
       <i class="bi bi-moon-stars-fill theme-toggle__moon" aria-hidden="true"></i>
       <i class="bi bi-sun-fill theme-toggle__sun" aria-hidden="true"></i>
+    </button>
+    <!-- Shows/hides the robot (robot.js, calm version on this page). -->
+    <button type="button" class="robot-toggle" id="robot-toggle" aria-pressed="true" aria-label="Afficher ou masquer le robot" data-i18n-aria="a11y_robot" title="Afficher ou masquer le robot" data-i18n-title="a11y_robot" hidden>
+      <i class="bi bi-robot" aria-hidden="true"></i>
     </button>
   </div>
 
@@ -175,11 +179,14 @@
       <div class="copyright">
         &copy; <strong><span id="current_year"></span> Aldo Alex NGANJI</strong>.
       </div>
+      <div class="credits credits--robot" data-i18n="footer_robot_credit">Robot 3D : RobotExpressive par Tomás Laulhé (Quaternius), CC0</div>
     </div>
   </footer>
 
   <script data-goatcounter="https://bakame03.goatcounter.com/count" async src="https://gc.zgo.at/count.v5.js" integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ" crossorigin="anonymous"></script>
   <script src="assets/js/translations.js" defer></script>
   <script src="assets/js/services.js" defer></script>
+  <!-- Animated robot (calm version): a module; three.js loads later, when idle. -->
+  <script type="module" src="assets/js/robot.js"></script>
 </body>
 </html>
